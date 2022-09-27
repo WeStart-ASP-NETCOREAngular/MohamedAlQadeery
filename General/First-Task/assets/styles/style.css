@@ -145,6 +145,8 @@ body{
     
     body{
         height: 1150px;
+        background-image: url("../images/bg-pattern-top-mobile.svg"), url("../images/bg-pattern-bottom-mobile.svg");
+        background-repeat: no-repeat;
     }
     .grid-container{   
         grid-template-columns: 1fr;
@@ -183,6 +185,8 @@ body{
         
         margin-left: 0;
     }
+
+
 
   }
 /* Responsive css */
