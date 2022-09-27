@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Inter',sans-serif;
+    font-size: 24px;
+    background-color: hsl(233, 47%, 7%);
+    display: flex;
+    align-items: center;
+    height: 1000px;
+   
+}
+
+.container{
+    width: 1440px;
+    margin: 0 auto;
+    
+}
+
+
+.card{
+    background-color:  hsl(244, 38%, 16%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 10px;
+    overflow: hidden;
+   
+    
+}
+
+.card-text-section{
+    padding: 10%;
+}
+
+.card-text-section h1 {
+    color: hsl(0, 0%, 100%);
+    font-weight: 700;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.card-text-section p {
+    color: hsla(0, 0%, 100%, 0.75);
+}
+
+.stats{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 120px;    
+    text-transform: uppercase;
+}
+
+.stats .block .number{
+    color: hsl(0, 0%, 100%);
+    font-weight: 700;
+}
+
+.stats .block p{
+    color: hsla(0, 0%, 100%, 0.6);
+}
+
+
+.card-text-section h1 span {
+    color:  hsl(277, 64%, 61%);
+}
+.card-img-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-img-section {
+    position: relative;
+
+}
+.card-img-section::after {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: hsla(277, 70%, 43%, 0.6);
+}
+
+@media  (max-width: 500px) {
+
+  
+    .card-text-section{
+        text-align: center;
+    }
+    .card{
+        grid-template-columns: 1fr;
+    }
+    .card-para {
+       margin-top:40px;
+    }
+
+    .stats{
+        flex-direction: column;
+        padding-top: 40px;
+    }    
+
+    .card-img-section{
+        order:1;
+    }
+
+    .card-text-section{
+       order: 2;
+    }
+    
+}
