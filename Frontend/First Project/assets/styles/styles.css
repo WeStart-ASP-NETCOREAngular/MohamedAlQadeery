@@ -6,6 +6,7 @@
 
 body{
     width: 1440px;
+  
 
 }
 
@@ -20,30 +21,30 @@ body{
     
 }
 
-#sidebar{
+.sidebar{
     grid-area: sidebar;
     background-color: #f6f6f6;
     padding: 1.5rem;
     height: 768px;
     
 }
-#sidebar img{
+.sidebar img{
    margin-bottom: 1rem;
     
 }
 
-#sidebar h2{
+.sidebar h2{
 font-size: 23px;
 font-weight: 400;
 color: #3f3d56;
 }
 
-#sidebar p.job-text{
+.sidebar p.job-text{
     font-weight: 400;
     color: rgb(106, 103, 103);
     font-size: 12px;
 }
-#sidebar p.email{
+.sidebar p.email{
     font-weight: 400;
     color: rgb(196, 194, 194);
     font-size: 10px;
@@ -55,10 +56,10 @@ div.socials{
     
 }
 
-#sidebar a{
+.sidebar a{
     color: inherit;
 }
-#sidebar a:hover{
+.sidebar a:hover{
     color: rgb(106, 32, 114);
 }
 
@@ -73,9 +74,57 @@ div.socials{
     gap: 1.5rem;
     width: 100%;
     flex-wrap: wrap;
-    padding: 1rem;
+    padding: 1.03rem;
 }
 
 .project-item{
     width: 350px;
+}
+
+
+@media (max-width:500px){
+    
+    body{
+        width: 450px;
+       
+    
+    }
+    .grid-container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        'sidebar'
+        'content';
+        gap: 1rem;
+        
+        
+    }
+
+    .sidebar{
+        grid-column:span 2;
+     
+        background-color: #f6f6f6;
+        padding: 1rem;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        
+    }
+    .sidebar img{
+        margin-top: 2rem;
+    }
+    .flex-container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .project-item img{
+        width: 80%;
+    }
+    
 }
