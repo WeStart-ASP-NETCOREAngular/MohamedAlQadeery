@@ -2,7 +2,7 @@
 
 
 ## Desktop Design
-![Desktop Design](/assets/images/desktop-design.jpg)
+![Desktop Design](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/blob/master/General/Second-Task/assets/images/desktop-design.jpg)
 
 ## Mobile Design 
-![Mobile Design](/assets/images/mobile-design.jpg)
+![Mobile Design](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/blob/master/General/Second-Task/assets/images/mobile-design.jpg)
