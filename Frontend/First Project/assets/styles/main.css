@@ -63,27 +63,8 @@ div.socials{
     color: rgb(106, 32, 114);
 }
 
-.content{
-    grid-area: content;
-    
-}
 
-.flex-container{
-    display: flex;
-    justify-content: flex-start;
-    gap: 1.5rem;
-    width: 100%;
-    flex-wrap: wrap;
-    padding: 1.03rem;
-}
-
-.project-item{
-    width: 350px;
-}
-
-
-@media (max-width:500px){
-    
+@media (max-width:500px) {
     body{
         width: 450px;
        
@@ -113,18 +94,4 @@ div.socials{
     .sidebar img{
         margin-top: 2rem;
     }
-    .flex-container{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        padding: 1rem;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-
-    .project-item img{
-        width: 80%;
-    }
-    
 }
