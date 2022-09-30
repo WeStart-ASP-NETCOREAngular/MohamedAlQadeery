@@ -5,3 +5,33 @@
     padding: 2%;
     margin-left: 2%;
 }
+
+.blog-item{
+    width: 100%;
+}
+
+.blog-item p,h2{
+    font-weight: 400;
+}
+
+.blog-item h2{
+    font-size: 40px;
+    color: #515070;
+}
+
+.blog-item p.blog-text{
+    display: inline;
+}
+
+
+@media (max-width:500px) {
+
+    .flex-container{
+        align-items: center;
+        justify-content: center;
+    }
+    .blog-item{
+        width: 80%;
+    }
+    
+}

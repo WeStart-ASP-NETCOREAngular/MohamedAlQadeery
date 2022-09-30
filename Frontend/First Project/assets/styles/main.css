@@ -91,16 +91,25 @@ div.socials{
     }
 
     .sidebar{
-        grid-column:span 2;
-     
+        grid-column:span ;
+        grid-area: sidebar;
+
         background-color: #f6f6f6;
         padding: 1rem;
-        width: 100%;
+        width: 80%;
         height: 100%;
         text-align: center;
+
         
     }
     .sidebar img{
+
         margin-top: 2rem;
+
+    }
+
+    .content{
+        grid-area: content;
+        
     }
 }
