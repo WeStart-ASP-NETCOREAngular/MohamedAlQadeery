@@ -1,0 +1,28 @@
+
+.content{
+    padding: 1em;
+}
+
+ p,h2{
+    font-weight: 400;
+}
+
+ h2{
+    font-size: 40px;
+    color: #515070;
+}
+
+
+
+@media (max-width:500px) {
+
+   
+   .content{
+    width: 100vw;
+   }
+
+ 
+
+    
+    
+}
