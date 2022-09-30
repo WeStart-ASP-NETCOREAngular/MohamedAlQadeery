@@ -1,3 +1,6 @@
+
+
+
 .flex-container{
     display: flex;
     flex-direction: column;
@@ -31,13 +34,8 @@
 
 @media (max-width:500px) {
 
-    .flex-container{
-        align-items: center;
-        justify-content: center;
-    }
-    .blog-item{
-        width: 80%;
-    }
+   
+   
 
     .flex-container{
         display: flex;
@@ -45,8 +43,12 @@
         row-gap: 2em;
         padding: 1rem;
         justify-content: center;
+        align-items: center;
+        width:100vw; 
        
         
     }
+
+    
     
 }
