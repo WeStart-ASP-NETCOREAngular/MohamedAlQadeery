@@ -30,7 +30,7 @@ body{
     grid-area: sidebar;
     background-color: #f6f6f6;
     padding: 1.5rem;
-    height: 100vh;
+    height: 100%;
     
     
 }
@@ -38,16 +38,19 @@ body{
 .sticky {
     position: sticky;
     top: 2em;
+    
 }
 .sidebar img{
    margin-bottom: 1rem;
     
 }
 
-.sidebar.sticky h2{
+.sidebar a.dev-name{
 font-size: 23px;
 font-weight: 400;
 color: #3f3d56;
+text-decoration: none;
+
 }
 
 .sidebar p.job-text{
@@ -94,7 +97,6 @@ div.socials{
         'content';
         gap: 1rem;
         
-        
     }
 
     .sidebar{
@@ -103,24 +105,28 @@ div.socials{
         grid-area: sidebar;
 
         background-color: #f6f6f6;
-        padding: 1rem;
+        
         width:100vw; 
         height: 100%;
         text-align: center;
         
+       
 
         
     }
-    .sidebar.sticky img{
-
-        margin-top: 2rem;
-
-    }
+   
 
     .content{
         grid-area: content;
         
     }
 
+    .sidebar img{
+        display:block;
+        padding: 1em;
+        margin: 0 auto;
+    }
+   
+   
     
 }
