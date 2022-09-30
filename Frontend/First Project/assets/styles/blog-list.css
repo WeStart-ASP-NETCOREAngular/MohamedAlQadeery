@@ -23,6 +23,11 @@
     display: inline;
 }
 
+.blog-link{
+    color: #ff8e6e;
+   
+}
+
 
 @media (max-width:500px) {
 
@@ -32,6 +37,16 @@
     }
     .blog-item{
         width: 80%;
+    }
+
+    .flex-container{
+        display: flex;
+        flex-direction: column;
+        row-gap: 2em;
+        padding: 1rem;
+        justify-content: center;
+       
+        
     }
     
 }
