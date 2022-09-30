@@ -1,9 +1,5 @@
 
 
-.content{
-    grid-area: content;
-    
-}
 
 .flex-container{
     display: flex;
