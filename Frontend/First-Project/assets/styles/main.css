@@ -83,6 +83,15 @@ div.socials{
     
 }
 
+.sidebar-footer {
+    position: fixed;
+    top: 95%;
+    color: rgba(63,61,86,0.5019607843137255 );
+}
+
+.heart{
+    color: rgb(231, 139, 198);
+}
 @media (max-width:500px) {
     body{
         width: 450px;
@@ -126,6 +135,11 @@ div.socials{
         padding: 1em;
         margin: 0 auto;
     }
+
+    .sidebar-footer {
+       display: none;
+    }
+    
    
    
     
