@@ -1,0 +1,46 @@
+
+.content{
+    padding: 4em;
+    margin: 3em;
+    width: 80%;
+    border: 2px dashed #707070;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+ p,h2{
+    font-weight: 400;
+}
+
+ h2{
+    font-size: 40px;
+    color: #515070;
+}
+
+
+.sidebar{
+    height: 100vh;
+}
+
+.img-showcase{
+   width: 100%;
+}
+
+@media (max-width:500px) {
+
+   
+   .content{
+    width: 80vw;
+    
+   }
+   .sidebar{
+    height: 100%;
+   
+}
+ 
+
+    
+    
+}
