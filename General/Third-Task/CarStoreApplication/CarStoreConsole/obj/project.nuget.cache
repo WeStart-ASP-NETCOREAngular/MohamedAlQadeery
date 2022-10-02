@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "o1oWgGJloiYmmzYkpZJhnD9CoZ4eYxhZ/ysKeMLVR3DHkZeesrpJGg48ADizSBtkGjoKeWRJ7FC3maQkxT4uig==",
+  "success": true,
+  "projectFilePath": "D:\\My C# Journey\\Asp.net core\\CarStoreApplication\\CarStoreConsole\\CarStoreConsole.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Apple Tech\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
+  ],
+  "logs": []
+}

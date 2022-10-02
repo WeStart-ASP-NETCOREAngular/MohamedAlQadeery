@@ -1,0 +1,47 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "CarStoreConsole/1.0.0": {
+        "dependencies": {
+          "CarStoreLibrary": "1.0.0",
+          "TodosLibrary": "1.0.0"
+        },
+        "runtime": {
+          "CarStoreConsole.dll": {}
+        }
+      },
+      "CarStoreLibrary/1.0.0": {
+        "runtime": {
+          "CarStoreLibrary.dll": {}
+        }
+      },
+      "TodosLibrary/1.0.0": {
+        "runtime": {
+          "TodosLibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CarStoreConsole/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CarStoreLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TodosLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
