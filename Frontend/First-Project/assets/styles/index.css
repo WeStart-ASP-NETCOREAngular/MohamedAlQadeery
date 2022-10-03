@@ -13,7 +13,17 @@
 }
 
 .project-item{
-    width: 350px;
+    width: 30%;
+}
+
+.project-item a img{
+    width: 90%;
+    transition: .5s all ease;
+}
+
+.project-item a:hover img{
+   
+    transform: scale(1.1);
 }
 
 
@@ -29,9 +39,12 @@
         align-items: center;
     }
 
-    .project-item img{
-        width: 80%;
+    .project-item {
+       width: 80vw;
+       justify-self: center;
+       align-self: center;
     }
+    
 
     .sidebar{
         height: 100%;
