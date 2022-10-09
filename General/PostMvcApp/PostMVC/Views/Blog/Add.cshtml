@@ -1,0 +1,13 @@
+@model Post
+@{
+    ViewData["Title"] = "Add Page";
+
+}
+
+<div class="text-center">
+    <h1>Add Post</h1>
+    <form asp-action="Add" asp-controller="Blog" method="post">
+        <input type="text" asp-for="Title">
+        <input type="submit" value="Add">
+    </form>
+</div>
