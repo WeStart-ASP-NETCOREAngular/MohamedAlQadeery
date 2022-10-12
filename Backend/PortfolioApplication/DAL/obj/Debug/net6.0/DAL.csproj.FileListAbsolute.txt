@@ -1,0 +1,17 @@
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\bin\Debug\net6.0\DAL.deps.json
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\bin\Debug\net6.0\DAL.runtimeconfig.json
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\bin\Debug\net6.0\DAL.dll
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\bin\Debug\net6.0\DAL.pdb
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\bin\Debug\net6.0\Domain.dll
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\bin\Debug\net6.0\Domain.pdb
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\obj\Debug\net6.0\DAL.csproj.AssemblyReference.cache
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\obj\Debug\net6.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\obj\Debug\net6.0\DAL.AssemblyInfoInputs.cache
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\obj\Debug\net6.0\DAL.AssemblyInfo.cs
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\obj\Debug\net6.0\DAL.csproj.CoreCompileInputs.cache
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\obj\Debug\net6.0\DAL.csproj.CopyComplete
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\obj\Debug\net6.0\DAL.dll
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\obj\Debug\net6.0\refint\DAL.dll
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\obj\Debug\net6.0\DAL.pdb
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\obj\Debug\net6.0\DAL.genruntimeconfig.cache
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\DAL\obj\Debug\net6.0\ref\DAL.dll

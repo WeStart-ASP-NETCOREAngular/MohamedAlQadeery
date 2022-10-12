@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SXJIhvBCYffc/9FLHHSztYq0VxXBehxsEvW7DLMZbnH+rYtId/J1kMwOIAEbI1KKw3+bkIsP1ASM+jvEDBX1Zw==",
+  "dgSpecHash": "XMEr0VB9BBHCm4efVyDdKUphDbusrCJfqbRrWrJO4k+QAa3IY+0y88WIqyPPIxvoDMw5Kw31ADtINpymuqsabA==",
   "success": true,
   "projectFilePath": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\PortfolioMvc.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\Apple Tech\\.nuget\\packages\\microsoft.entityframeworkcore.design\\6.0.10\\microsoft.entityframeworkcore.design.6.0.10.nupkg.sha512",
     "C:\\Users\\Apple Tech\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.10\\microsoft.entityframeworkcore.relational.6.0.10.nupkg.sha512",
     "C:\\Users\\Apple Tech\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\6.0.10\\microsoft.entityframeworkcore.sqlserver.6.0.10.nupkg.sha512",
+    "C:\\Users\\Apple Tech\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\6.0.10\\microsoft.entityframeworkcore.tools.6.0.10.nupkg.sha512",
     "C:\\Users\\Apple Tech\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Apple Tech\\.nuget\\packages\\microsoft.extensions.caching.memory\\6.0.1\\microsoft.extensions.caching.memory.6.0.1.nupkg.sha512",
     "C:\\Users\\Apple Tech\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
