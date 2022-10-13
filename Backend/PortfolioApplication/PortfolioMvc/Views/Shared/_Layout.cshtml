@@ -8,8 +8,9 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <!-- CSS only -->
-<link rel="stylesheet" href="~/assets/styles/main.css">
-<link rel="stylesheet" href="~/assets/styles/index.css">
+    <link rel="stylesheet" href="~/assets/styles/main.css">
+    <link rel="stylesheet" href="~/assets/styles/index.css">
+    @RenderSection("css",false)
 </head>
 
 
@@ -45,7 +46,8 @@
     </section>
 
 
-   
+    @RenderSection("js",false)
+
 </body>
 
 </html>

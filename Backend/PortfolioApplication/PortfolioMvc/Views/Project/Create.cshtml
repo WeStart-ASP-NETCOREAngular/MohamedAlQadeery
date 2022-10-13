@@ -1,0 +1,26 @@
+@model CreateProjectVM
+
+@section css{
+<link rel="stylesheet" href="~/assets/styles/form.css">
+}
+
+<div class="flex-container">
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" />
+        
+        <label asp-for="Url"></label>
+        <input asp-for="Url" />
+        
+        <label asp-for="Image"></label>
+        <input asp-for="Image" />
+
+        
+       
+
+       @* <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>*@
+
+        <input type="submit" value="Create">
+    </form>
+</div>

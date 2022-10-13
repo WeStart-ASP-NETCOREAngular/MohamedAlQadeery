@@ -1,0 +1,21 @@
+﻿@model List<Project>
+
+<div class="flex-container">
+
+    @if (!Model.Any())
+    {
+        <h1 class="heading">No Projects Added yet</h1>
+    }
+    else
+    {
+        @foreach (var project in Model)
+        {
+            <div class="project-item">
+                <a href="project-details.html"> <img src="@project.ImagePath"></a>
+            </div>
+
+        }
+    }
+
+
+</div>
