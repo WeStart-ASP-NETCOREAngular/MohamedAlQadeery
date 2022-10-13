@@ -4,6 +4,12 @@
 <link rel="stylesheet" href="~/assets/styles/form.css">
 }
 
+@if (!ViewContext.ModelState.IsValid)
+{
+    <div asp-validation-summary="All" class="alert alert-danger"></div>
+
+}
+
 <div class="flex-container">
     <form asp-action="Create" method="post" enctype="multipart/form-data">
         <label asp-for="Title"></label>

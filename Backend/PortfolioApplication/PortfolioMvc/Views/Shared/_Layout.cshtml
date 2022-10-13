@@ -10,6 +10,8 @@
     <!-- CSS only -->
     <link rel="stylesheet" href="~/assets/styles/main.css">
     <link rel="stylesheet" href="~/assets/styles/index.css">
+    <link rel="stylesheet" href="~/assets/styles/alerts.css">
+    
     @RenderSection("css",false)
 </head>
 
@@ -40,6 +42,13 @@
             </div>
 
             <div class="content">
+                @if (TempData["success"] != null)
+{
+    <div class="alert alert-success success-operation">
+        @TempData["success"]
+    </div>
+}
+
                 @RenderBody()
             </div>
         </div>
