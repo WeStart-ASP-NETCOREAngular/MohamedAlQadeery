@@ -92,6 +92,10 @@ div.socials{
 .heart{
     color: rgb(231, 139, 198);
 }
+
+
+
+
 @media (max-width:500px) {
     body{
         width: 450px;
@@ -143,4 +147,5 @@ div.socials{
    
    
     
+
 }

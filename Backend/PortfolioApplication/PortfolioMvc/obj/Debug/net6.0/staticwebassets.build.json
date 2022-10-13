@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dAINwX831ElIfSUapcwEdzVEWSxFAbhhEXnXzW+QeO8=",
+  "Hash": "mpLr2QriGiF4OByWWoEMYAhejZOkz8wmTL+bHNRS390=",
   "Source": "PortfolioMvc",
   "BasePath": "_content/PortfolioMvc",
   "Mode": "Default",
@@ -270,6 +270,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\9e08fba1-ef0f-414c-bc05-7591bd73d214.png"
+    },
+    {
+      "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\Images\\c2d6fcb3-ec1a-4ec8-9d64-3d29c45c7597.png",
+      "SourceId": "PortfolioMvc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\",
+      "BasePath": "_content/PortfolioMvc",
+      "RelativePath": "Images/c2d6fcb3-ec1a-4ec8-9d64-3d29c45c7597.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\c2d6fcb3-ec1a-4ec8-9d64-3d29c45c7597.png"
     },
     {
       "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\js\\site.js",

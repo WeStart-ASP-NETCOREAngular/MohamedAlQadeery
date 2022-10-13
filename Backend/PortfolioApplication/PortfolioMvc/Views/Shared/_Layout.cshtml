@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="~/assets/styles/main.css">
     <link rel="stylesheet" href="~/assets/styles/index.css">
     <link rel="stylesheet" href="~/assets/styles/alerts.css">
-    
+
     @RenderSection("css",false)
 </head>
 
@@ -33,9 +33,16 @@
                         <a href="#"><i class="bi bi-twitch"></i></a>
                         <a href="#"><i class="bi bi-github"></i></a>
                     </div>
+
+                    <div class="btn-div">
+                        <a asp-action="Create" asp-controller="Project" class="bootstrap-btn">Create Project</a>
+
+                    </div>
                     <div class="sidebar-footer">
                         Created By <i class="bi bi-heart-fill heart"></i> Mohamed AlQadeery
                     </div>
+
+                    
                 </div>
 
 
@@ -43,11 +50,11 @@
 
             <div class="content">
                 @if (TempData["success"] != null)
-{
-    <div class="alert alert-success success-operation">
-        @TempData["success"]
-    </div>
-}
+                {
+                    <div class="alert alert-success success-operation">
+                        @TempData["success"]
+                    </div>
+                }
 
                 @RenderBody()
             </div>
