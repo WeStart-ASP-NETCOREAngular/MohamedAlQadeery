@@ -14,11 +14,17 @@
 
 .project-item{
     width: 30%;
+    max-width:30%;
 }
 
 .project-item a img{
     width: 90%;
     transition: .5s all ease;
+    max-width:90%;
+    max-height:70%;
+    padding:2em 0;
+    //object-fit:cover;
+    //border-radius:50px;
 }
 
 .project-item a:hover img{

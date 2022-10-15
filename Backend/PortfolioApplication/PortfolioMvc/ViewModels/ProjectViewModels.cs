@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,8 +25,10 @@ namespace PortfolioMvc.ViewModels
     {
         public int Id { get; set; }
 
+      
         //to display current Image in edit view
-        public string ImagePath { get; set; }
+        [Display(Name ="Current Image")]
+        public string? ImagePath { get; set; }
         //nullable
         public IFormFile? Image { get; set; }
 

@@ -1,7 +1,7 @@
-﻿@model CreateProjectVM
+﻿@model EditProjectVM
 
 @section css{
-<link rel="stylesheet" href="~/assets/styles/form.css">
+<link rel="stylesheet" href="~/assets/styles/form.css" asp-append-version="true">
 }
 
 @if (!ViewContext.ModelState.IsValid)
@@ -11,12 +11,19 @@
 }
 
 <div class="flex-container">
-    <form asp-action="Create" method="post" enctype="multipart/form-data">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <input asp-for=Id  type="hidden"/>
+        
+        <label asp-for="ImagePath"></label>
+        <img src="~/Images/@Model.ImagePath" class="project-image"/>
+        
         <label asp-for="Title"></label>
         <input asp-for="Title" />
         
         <label asp-for="Url"></label>
         <input asp-for="Url" />
+        
+  
         
         <label asp-for="Image"></label>
         <input asp-for="Image" />
@@ -27,6 +34,6 @@
        @* <label for="subject">Subject</label>
         <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>*@
         <a asp-action="Index" asp-controller="Project" class="bootstrap-btn-grey">Back</a>
-        <input type="submit" value="Create" class="bootstrap-btn">
+        <input type="submit" value="Update" class="bootstrap-btn">
     </form>
 </div>

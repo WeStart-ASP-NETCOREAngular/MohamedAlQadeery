@@ -68,6 +68,8 @@ namespace PortfolioMvc.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(EditProjectVM editProjectVM)
         {
+            if (!ModelState.IsValid) return View();
+
             var project = _context.Projects.FirstOrDefault(p=>p.Id==editProjectVM.Id);
             if (project == null) return NotFound();
 
@@ -85,7 +87,7 @@ namespace PortfolioMvc.Controllers
             _context.SaveChanges();
             GenrateTempMessage("success", "Project has been updated successfully!");
 
-            return RedirectToAction(nameof(Edit));
+            return RedirectToAction(nameof(Edit), new {id = project.Id});
         }
 
 
