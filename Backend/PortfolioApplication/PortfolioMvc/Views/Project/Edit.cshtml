@@ -1,0 +1,32 @@
+﻿@model CreateProjectVM
+
+@section css{
+<link rel="stylesheet" href="~/assets/styles/form.css">
+}
+
+@if (!ViewContext.ModelState.IsValid)
+{
+    <div asp-validation-summary="All" class="alert alert-danger"></div>
+
+}
+
+<div class="flex-container">
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" />
+        
+        <label asp-for="Url"></label>
+        <input asp-for="Url" />
+        
+        <label asp-for="Image"></label>
+        <input asp-for="Image" />
+
+        
+       
+
+       @* <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>*@
+        <a asp-action="Index" asp-controller="Project" class="bootstrap-btn-grey">Back</a>
+        <input type="submit" value="Create" class="bootstrap-btn">
+    </form>
+</div>
