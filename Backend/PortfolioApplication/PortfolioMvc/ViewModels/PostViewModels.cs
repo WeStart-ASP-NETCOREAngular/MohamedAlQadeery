@@ -17,4 +17,10 @@
         public int Id { get; set; }
        
     }
+    public class ShowPostVM : AbstractPostVM
+    {
+        public int Id { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+    }
 }

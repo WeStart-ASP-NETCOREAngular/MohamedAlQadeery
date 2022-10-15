@@ -1,0 +1,52 @@
+﻿@model ShowPostVM
+
+@section css {
+      <link rel="stylesheet" href="~/assets/styles/blog-details.css" asp-append-version="true">
+
+}
+<div class="buttons-flex">
+
+    <a asp-action="Edit" asp-action="Edit" asp-controller="Post" asp-route-id="@Model.Id" class="bootstrap-btn">Edit</a>
+        <form id="DeleteForm"     asp-action="Delete" asp-controller="Post"
+     method="post">
+
+        <input asp-for="Id" type="hidden"/>
+        <button id="deleteBtn"
+                class="bootstrap-btn"
+               style=" background-color:red" >Delete</button>
+    </form>
+
+
+</div>
+    <p class="blog-date"><i><i class="bi bi-clock"></i></i>@Model.CreatedAt.ToString("MM/dd/yyyy")</p>
+
+
+<h2>@Model.Title</h2>
+<p class="blog-text">
+    @Model.Body
+</p>
+
+
+
+@section js{
+<script>
+    $("#deleteBtn").click(function(e){
+        e.preventDefault();
+        swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this post!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+   
+         $('#DeleteForm').submit();
+  } else {
+    swal("The post is not deleted !");
+  }
+});
+    });
+  </script>
+}

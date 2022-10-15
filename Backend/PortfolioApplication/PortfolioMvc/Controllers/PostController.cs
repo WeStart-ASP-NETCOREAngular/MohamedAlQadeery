@@ -84,5 +84,16 @@ namespace PortfolioMvc.Controllers
             GenrateTempMessage("success", "Post has been deleted successfully");
             return RedirectToAction(nameof(Index));
         }
+
+
+        [HttpGet]
+        public IActionResult Show(int id)
+        {
+            var post = _context.Posts.FirstOrDefault(p => p.Id == id);
+            if (post == null) return NotFound();
+
+            return View(new ShowPostVM { Id = post.Id,Title=post.Title,Body=post.Body,CreatedAt=post.CreatedAt});
+
+        }
     }
 }
