@@ -15,10 +15,11 @@
    
 }
 
-.project-item{
-    width: 30%;
-    max-width:30%;
-   
+@media(min-width:700px){
+    .project-item {
+        width: 30%;
+        max-width: 30%;
+    }
 }
 
 .project-item a img{
@@ -50,9 +51,8 @@
     }
 
     .project-item {
-       width: 80vw;
-       justify-self: center;
-       align-self: center;
+      width: 80vw;
+      text-align:center;
     }
     
 

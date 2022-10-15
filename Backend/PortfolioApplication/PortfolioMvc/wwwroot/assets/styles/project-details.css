@@ -12,13 +12,17 @@
     
 }
 
-    .content .buttons-flex{
-        padding:1em;
-        display:flex;
-    } 
-    .content .buttons-flex button{
-       margin-left:.2em;
+  
+
+@media(min-width:700px) {
+    .content .buttons-flex {
+        padding: 1em;
+        display: flex;
     }
+
+        .content .buttons-flex button {
+            margin-left: .2em;
+        }
 
     .content img {
         width: 50%;
@@ -26,13 +30,14 @@
         display: block;
         padding-bottom: 2em;
     }
+}
 
  p,h2{
     font-weight: 400;
 }
 
  h2{
-    font-size: 40px;
+    font-size: 3em;
     color: #515070;
 }
 
@@ -52,14 +57,39 @@
    
    .content{
     width: 80vw;
+    max-height:70%;
+    height:70%;
     
    }
    .sidebar{
     height: 100%;
    
-}
- 
 
+}
+
+    .content .buttons-flex {
+        padding: 3em;
+        display: flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+        .content .buttons-flex button,a {
+            margin: .2em;
+           
+        }
+
+    h2 {
+        font-size: 1.1em;
+        color: #515070;
+    }
+
+    .content img {
+        width: 100%;
+        object-fit: cover;
+        display: block;
+        padding-bottom: 2em;
+    }
     
     
 }

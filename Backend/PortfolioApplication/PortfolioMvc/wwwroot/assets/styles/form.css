@@ -44,3 +44,9 @@ input[type=submit]:hover {
     margin: 1em;
 }
 
+
+form div{
+    text-align:end;
+    margin-right:2em;
+}
+
