@@ -67,3 +67,7 @@ a span.blog-link:hover{
     
     
 }
+
+.sidebar{
+    height:100% !important;
+}

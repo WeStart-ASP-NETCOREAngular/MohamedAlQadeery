@@ -1,0 +1,33 @@
+﻿@model List<Post>
+
+@section css {
+<link rel="stylesheet" href="~/assets/styles/blog-list.css" asp-append-version="true">
+
+}
+
+
+<div class="flex-container">
+    @if (!Model.Any())
+    {
+                <h1 class="heading">No Posts Added yet</h1>
+
+    }
+    else
+    {
+         foreach (var post in Model)
+         {
+             <div class="blog-item">
+        <p class="blog-date"><i><i class="bi bi-clock"></i></i></p>
+        <a href="blog-details.html" class="blog-title">About this template</a>
+        <p class="blog-text">
+            This is a very simple template for designers to showcase there work.
+            All the CSS is done and organized for you  so go and make something awesome with it.
+        </p>
+        <a href="blog-details.html"><span class="blog-link">Read More </span></a>
+    </div>
+         }
+
+    }
+
+
+</div>
