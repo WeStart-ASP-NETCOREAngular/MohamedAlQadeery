@@ -1,0 +1,23 @@
+﻿@model ShowProjectVM
+
+@section css{
+<link rel="stylesheet" href="~/assets/styles/project-details.css" asp-append-version="true">
+}
+
+
+
+
+<img src="~/Images/@Model.ImagePath" />
+<h2>@Model.Title</h2>
+@if (Model.Url != null)
+{
+    <a href="@Model.Url">Project link</a>
+}
+
+
+<div class="buttons-flex">
+    <a asp-action="Edit" asp-controller="Project" class="bootstrap-btn">Edit</a>
+    <a asp-action="Create" asp-controller="Project" class="bootstrap-btn" style=" background-color:red;">Delete</a>
+
+</div>
+

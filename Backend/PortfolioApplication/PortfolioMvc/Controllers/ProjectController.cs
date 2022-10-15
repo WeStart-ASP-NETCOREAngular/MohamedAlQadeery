@@ -91,6 +91,15 @@ namespace PortfolioMvc.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult Show(int id)
+        {
+            var project = _context.Projects.FirstOrDefault(p => p.Id == id);
+            if (project == null) return NotFound();
+
+            return View(new ShowProjectVM { Title=project.Title,Url=project.Url,ImagePath = project.ImagePath});
+
+        }
         private string UploadImage(IFormFile image)
         {
             var uploadFolder = Path.Combine(_webHostEnvironment.WebRootPath, IMAGES_FOLDER);

@@ -33,4 +33,9 @@ namespace PortfolioMvc.ViewModels
         public IFormFile? Image { get; set; }
 
     }
+
+    public class ShowProjectVM : AbstractProjectVM
+    {
+        public string ImagePath { get; set; }
+    }
 }

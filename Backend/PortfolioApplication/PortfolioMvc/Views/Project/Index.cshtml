@@ -14,7 +14,7 @@
         @foreach (var project in Model)
         {
             <div class="project-item">
-                <a href="project-details.html"> <img src="~/Images/@project.ImagePath"></a>
+                <a asp-action="Show" asp-route-id="@project.Id" asp-controller="Project"> <img src="~/Images/@project.ImagePath"></a>
             </div>
 
         }
