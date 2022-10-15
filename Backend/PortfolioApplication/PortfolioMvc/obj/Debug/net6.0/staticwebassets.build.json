@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vUqiQNsx1es85xMqNUNrkJb4EmpNuhAw3x1uG+9JWFE=",
+  "Hash": "AQJsr3ve9hHZdMSI6j8Z+Z97X7aBANAeMyzI7epFmtk=",
   "Source": "PortfolioMvc",
   "BasePath": "_content/PortfolioMvc",
   "Mode": "Default",
@@ -253,6 +253,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\Images\\4a74a259-544a-48f0-b016-795de6ba8ebe.png",
+      "SourceId": "PortfolioMvc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\",
+      "BasePath": "_content/PortfolioMvc",
+      "RelativePath": "Images/4a74a259-544a-48f0-b016-795de6ba8ebe.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\4a74a259-544a-48f0-b016-795de6ba8ebe.png"
     },
     {
       "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\Images\\c2d6fcb3-ec1a-4ec8-9d64-3d29c45c7597.png",
