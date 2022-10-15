@@ -5,7 +5,7 @@ using PortfolioMvc.ViewModels;
 
 namespace PortfolioMvc.Controllers
 {
-    public class ProjectController : Controller
+    public class ProjectController : BaseController
     {
         private readonly PortfolioDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
@@ -116,10 +116,7 @@ namespace PortfolioMvc.Controllers
 
         }
 
-        private void GenrateTempMessage(string key, string body)
-        {
-            TempData[key] = body;
-        }
+      
 
     }
 }

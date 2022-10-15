@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AQJsr3ve9hHZdMSI6j8Z+Z97X7aBANAeMyzI7epFmtk=",
+  "Hash": "G4QXK3HvseO3ohP9jJHxNCkCzqHO6AxE/vRoWbDAlDA=",
   "Source": "PortfolioMvc",
   "BasePath": "_content/PortfolioMvc",
   "Mode": "Default",
@@ -255,12 +255,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\Images\\4a74a259-544a-48f0-b016-795de6ba8ebe.png",
+      "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\Images\\8ea15041-8f31-4183-9d7b-364ac645b911.jpg",
       "SourceId": "PortfolioMvc",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\",
       "BasePath": "_content/PortfolioMvc",
-      "RelativePath": "Images/4a74a259-544a-48f0-b016-795de6ba8ebe.png",
+      "RelativePath": "Images/8ea15041-8f31-4183-9d7b-364ac645b911.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -269,7 +269,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\4a74a259-544a-48f0-b016-795de6ba8ebe.png"
+      "OriginalItemSpec": "wwwroot\\Images\\8ea15041-8f31-4183-9d7b-364ac645b911.jpg"
+    },
+    {
+      "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\Images\\b76a9eb1-66ea-44eb-a86f-cba314d9f1d4.png",
+      "SourceId": "PortfolioMvc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\",
+      "BasePath": "_content/PortfolioMvc",
+      "RelativePath": "Images/b76a9eb1-66ea-44eb-a86f-cba314d9f1d4.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\b76a9eb1-66ea-44eb-a86f-cba314d9f1d4.png"
     },
     {
       "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\Images\\c2d6fcb3-ec1a-4ec8-9d64-3d29c45c7597.png",
