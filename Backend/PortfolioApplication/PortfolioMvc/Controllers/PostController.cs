@@ -1,5 +1,7 @@
 ﻿using DAL;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using PortfolioMvc.ViewModels;
 
 namespace PortfolioMvc.Controllers
 {
@@ -26,6 +28,16 @@ namespace PortfolioMvc.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(CreatePostVM createPostVM)
+        {
+            if (!ModelState.IsValid) return View();
 
+            _context.Posts.Add(new Post {Title=createPostVM.Title,Body=createPostVM.Body });
+            _context.SaveChanges();
+            GenrateTempMessage("success", "Post has been created succesfully");
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -1,0 +1,29 @@
+﻿@model CreatePostVM
+
+@section css{
+<link rel="stylesheet" href="~/assets/styles/form.css" asp-append-version="true">
+}
+
+@if (!ViewContext.ModelState.IsValid)
+{
+    <div asp-validation-summary="All" class="alert alert-danger"></div>
+
+}
+
+<div class="flex-container">
+    <form asp-action="Create" asp-controller="Post" method="post" >
+        <label asp-for="Title"></label>
+        <input asp-for="Title" />
+        
+    
+        
+       
+
+        <label asp-for="Body"></label>
+        <textarea asp-for=Body placeholder="Write something.." style="height:10em"></textarea>
+       <div>
+            <a asp-action="Index" asp-controller="Post" class="bootstrap-btn-grey">Back</a>
+        <input type="submit" value="Create" class="bootstrap-btn">
+       </div>
+    </form>
+</div>
