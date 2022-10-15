@@ -97,8 +97,23 @@ namespace PortfolioMvc.Controllers
             var project = _context.Projects.FirstOrDefault(p => p.Id == id);
             if (project == null) return NotFound();
 
-            return View(new ShowProjectVM { Title=project.Title,Url=project.Url,ImagePath = project.ImagePath});
+            return View(new ShowProjectVM {Id=project.Id, Title=project.Title,Url=project.Url,ImagePath = project.ImagePath});
 
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            var project = _context.Projects.FirstOrDefault(p => p.Id == id);
+            if (project == null) return NotFound();
+            var isImageDeleted = DeleteImage(project.ImagePath);
+            if (!isImageDeleted) return BadRequest();
+            _context.Projects.Remove(project);
+            _context.SaveChanges();
+
+            GenrateTempMessage("success", "Project has been deleted successfully");
+            return RedirectToAction(nameof(Index));
         }
         private string UploadImage(IFormFile image)
         {

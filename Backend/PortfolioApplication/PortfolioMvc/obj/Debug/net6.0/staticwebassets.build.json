@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "G4QXK3HvseO3ohP9jJHxNCkCzqHO6AxE/vRoWbDAlDA=",
+  "Hash": "bYHbF1kka7JztLqsqSyCaB+T5by7eR/kVvb1xXMLTFA=",
   "Source": "PortfolioMvc",
   "BasePath": "_content/PortfolioMvc",
   "Mode": "Default",
@@ -270,40 +270,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\8ea15041-8f31-4183-9d7b-364ac645b911.jpg"
-    },
-    {
-      "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\Images\\b76a9eb1-66ea-44eb-a86f-cba314d9f1d4.png",
-      "SourceId": "PortfolioMvc",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\",
-      "BasePath": "_content/PortfolioMvc",
-      "RelativePath": "Images/b76a9eb1-66ea-44eb-a86f-cba314d9f1d4.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\b76a9eb1-66ea-44eb-a86f-cba314d9f1d4.png"
-    },
-    {
-      "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\Images\\c2d6fcb3-ec1a-4ec8-9d64-3d29c45c7597.png",
-      "SourceId": "PortfolioMvc",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\",
-      "BasePath": "_content/PortfolioMvc",
-      "RelativePath": "Images/c2d6fcb3-ec1a-4ec8-9d64-3d29c45c7597.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\c2d6fcb3-ec1a-4ec8-9d64-3d29c45c7597.png"
     },
     {
       "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\Images\\d1197523-659c-4d19-b5eb-3242afcebb96.png",

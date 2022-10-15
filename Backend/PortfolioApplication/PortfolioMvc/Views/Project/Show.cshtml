@@ -17,7 +17,37 @@
 
 <div class="buttons-flex">
     <a asp-action="Edit" asp-controller="Project" class="bootstrap-btn">Edit</a>
-    <a asp-action="Create" asp-controller="Project" class="bootstrap-btn" style=" background-color:red;">Delete</a>
+        <form id="DeleteForm"     asp-action="Delete" asp-controller="Project"
+     method="post">
+
+        <input asp-for="Id" type="hidden"/>
+        <button id="deleteBtn"
+                class="bootstrap-btn"
+               style=" background-color:red" >Delete</button>
+    </form>
+
 
 </div>
 
+@section js{
+<script>
+    $("#deleteBtn").click(function(e){
+        e.preventDefault();
+        swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this project!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+   
+         $('#DeleteForm').submit();
+  } else {
+    swal("The project is not deleted !");
+  }
+});
+    });
+  </script>
+}

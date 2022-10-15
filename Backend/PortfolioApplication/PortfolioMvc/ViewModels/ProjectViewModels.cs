@@ -36,6 +36,9 @@ namespace PortfolioMvc.ViewModels
 
     public class ShowProjectVM : AbstractProjectVM
     {
+        //we put id here so we can use it to delete the project
+        public int Id { get; set; }
+
         public string ImagePath { get; set; }
     }
 }

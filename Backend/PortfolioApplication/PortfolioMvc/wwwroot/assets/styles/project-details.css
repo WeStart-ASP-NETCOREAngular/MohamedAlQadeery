@@ -14,6 +14,10 @@
 
     .content .buttons-flex{
         padding:1em;
+        display:flex;
+    } 
+    .content .buttons-flex button{
+       margin-left:.2em;
     }
 
     .content img {
