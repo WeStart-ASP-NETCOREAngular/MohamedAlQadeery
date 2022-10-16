@@ -1,10 +1,15 @@
 ﻿@model ShowPostVM
-
+@{
+    bool isAuth = User.Identity.IsAuthenticated;
+}
 @section css {
       <link rel="stylesheet" href="~/assets/styles/blog-details.css" asp-append-version="true">
 
 }
-<div class="buttons-flex">
+
+@if (isAuth)
+{
+   <div class="buttons-flex">
 
     <a asp-action="Edit" asp-action="Edit" asp-controller="Post" asp-route-id="@Model.Id" class="bootstrap-btn">Edit</a>
         <form id="DeleteForm"     asp-action="Delete" asp-controller="Post"
@@ -17,7 +22,9 @@
     </form>
 
 
-</div>
+</div> 
+}
+
     <p class="blog-date"><i><i class="bi bi-clock"></i></i>@Model.CreatedAt.ToString("MM/dd/yyyy")</p>
 
 

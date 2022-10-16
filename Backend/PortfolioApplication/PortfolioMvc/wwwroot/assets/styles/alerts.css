@@ -98,6 +98,10 @@
     padding : 2em 0;
 }
 
+.btn-div a {
+    margin-bottom:1em;
+}
+
 .bootstrap-btn , .bootstrap-btn a {
     display: inline-block;
     font-weight: 400;

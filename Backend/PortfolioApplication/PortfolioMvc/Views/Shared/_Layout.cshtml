@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    bool isAuth = User.Identity.IsAuthenticated;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -35,9 +39,18 @@
                     </div>
 
                     <div class="btn-div">
-                        <a asp-action="Create" asp-controller="Project" class="bootstrap-btn">Create Project</a>
+
+                      @if(isAuth){
+                              <a asp-action="Create" asp-controller="Project" class="bootstrap-btn">Create Project</a>
                         <a asp-action="Index" asp-controller="Post" class="bootstrap-btn" style="background-color:green">Posts</a>
 
+                               <a asp-controller="Account" asp-action="Logout" class="bootstrap-btn"
+                                   >Logout</a>
+                        }
+                        else{
+                            <a asp-controller="Account" asp-action="Login" class="bootstrap-btn"
+                                   >Login</a>
+                        }
                     </div>
                     <div class="sidebar-footer">
                         Created By <i class="bi bi-heart-fill heart"></i> Mohamed AlQadeery

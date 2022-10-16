@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "swnWZ+28UbL8eCY03ctSLU7PGw3bA2HmXSjOQJRkL/w=",
+  "Hash": "/+wcMNSj4Tu8tEMW2Q09+oTTzjVfP5pZ9bKfILhlb1w=",
   "Source": "PortfolioMvc",
   "BasePath": "_content/PortfolioMvc",
   "Mode": "Default",
@@ -253,6 +253,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\Images\\2d743aca-9fbf-4a6c-bf3c-f59e9c0d9899.png",
+      "SourceId": "PortfolioMvc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\",
+      "BasePath": "_content/PortfolioMvc",
+      "RelativePath": "Images/2d743aca-9fbf-4a6c-bf3c-f59e9c0d9899.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\2d743aca-9fbf-4a6c-bf3c-f59e9c0d9899.png"
+    },
+    {
+      "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\Images\\fd1c40d7-f54c-4db8-8ac7-6448c213ff2a.png",
+      "SourceId": "PortfolioMvc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\",
+      "BasePath": "_content/PortfolioMvc",
+      "RelativePath": "Images/fd1c40d7-f54c-4db8-8ac7-6448c213ff2a.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\fd1c40d7-f54c-4db8-8ac7-6448c213ff2a.png"
     },
     {
       "Identity": "D:\\BTI\\Mohamed AlQadeery\\Backend\\PortfolioApplication\\PortfolioMvc\\wwwroot\\js\\site.js",

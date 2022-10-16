@@ -50,3 +50,43 @@ form div{
     margin-right:2em;
 }
 
+
+.login-form {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    width: 90%;
+    padding-top: 1rem;
+}
+ .login-form input[type=submit] {
+       display:block;
+}
+
+.login-heading{
+    padding-top:1em;
+}
+
+
+@media(max-width:500px){
+    .login-heading {
+        padding:0 .5em;
+        margin:1em 0;
+        text-align:center;
+        margin-right:3em;
+    }
+
+    .login-form{
+        padding : 0 1em;
+        justify-content:center;
+        width:100%;
+        align-items:center;
+        text-align:center;
+    }
+
+        .login-form input[type=submit] {
+         display:unset;
+        }
+
+    
+   
+}

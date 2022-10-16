@@ -1,5 +1,6 @@
 ﻿using DAL;
 using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PortfolioMvc.ViewModels;
 
@@ -17,6 +18,9 @@ namespace PortfolioMvc.Controllers
             _context = context;
             _webHostEnvironment = webHostEnvironment;
         }
+        [HttpGet]
+        [AllowAnonymous]
+        
         public IActionResult Index()
         {
             var projects = _context.Projects.ToList();
@@ -92,6 +96,7 @@ namespace PortfolioMvc.Controllers
 
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Show(int id)
         {
             var project = _context.Projects.FirstOrDefault(p => p.Id == id);

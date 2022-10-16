@@ -1,5 +1,6 @@
 ﻿using DAL;
 using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PortfolioMvc.ViewModels;
 
@@ -15,6 +16,7 @@ namespace PortfolioMvc.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var posts = _context.Posts.ToList();
@@ -85,8 +87,8 @@ namespace PortfolioMvc.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Show(int id)
         {
             var post = _context.Posts.FirstOrDefault(p => p.Id == id);

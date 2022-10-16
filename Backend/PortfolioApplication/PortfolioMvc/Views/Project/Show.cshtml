@@ -1,5 +1,7 @@
 ﻿@model ShowProjectVM
-
+@{
+    bool isAuth = User.Identity.IsAuthenticated;
+}
 @section css{
 <link rel="stylesheet" href="~/assets/styles/project-details.css" asp-append-version="true">
 }
@@ -9,13 +11,15 @@
 
 <img src="~/Images/@Model.ImagePath" />
 <h2>@Model.Title</h2>
-@if (Model.Url != null)
+@if (!string.IsNullOrEmpty(Model.Url))
 {
     <a href="@Model.Url">Project link</a>
 }
 
 
-<div class="buttons-flex">
+@if (isAuth)
+{
+    <div class="buttons-flex">
     <a asp-action="Edit" asp-action="Edit" asp-controller="Project" asp-route-id="@Model.Id" class="bootstrap-btn">Edit</a>
         <form id="DeleteForm"     asp-action="Delete" asp-controller="Project"
      method="post">
@@ -28,6 +32,7 @@
 
 
 </div>
+}
 
 @section js{
 <script>
