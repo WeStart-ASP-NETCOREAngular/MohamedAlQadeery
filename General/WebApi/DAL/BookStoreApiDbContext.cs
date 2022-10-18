@@ -1,4 +1,5 @@
 ﻿using DomainLayer.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class BookStoreApiDbContext : DbContext
+    public class BookStoreApiDbContext : IdentityDbContext
     {
         public BookStoreApiDbContext(DbContextOptions<BookStoreApiDbContext> options) : base(options)
         {
