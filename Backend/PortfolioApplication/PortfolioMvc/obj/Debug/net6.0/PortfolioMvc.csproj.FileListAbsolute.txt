@@ -271,3 +271,4 @@ D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\PortfolioMvc\obj\Debug\net
 D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\PortfolioMvc\obj\Debug\net6.0\PortfolioMvc.pdb
 D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\PortfolioMvc\obj\Debug\net6.0\PortfolioMvc.genruntimeconfig.cache
 D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\PortfolioMvc\obj\Debug\net6.0\ref\PortfolioMvc.dll
+D:\BTI\Mohamed AlQadeery\Backend\PortfolioApplication\PortfolioMvc\bin\Debug\net6.0\bundleconfig.json
