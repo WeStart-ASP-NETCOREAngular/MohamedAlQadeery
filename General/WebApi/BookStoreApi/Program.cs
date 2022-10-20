@@ -1,4 +1,6 @@
 
+using BookStoreApi.services.Interface;
+using BookStoreApi.services.Services;
 using DAL;
 using DAL.Repositories;
 using DomainLayer.Interfaces;
@@ -15,7 +17,9 @@ builder.Services.AddDbContext<BookStoreApiDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
 builder.Services.AddScoped<IBookRepository,BookRepository>();
+builder.Services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddIdentityCore<IdentityUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BookStoreApiDbContext>()
