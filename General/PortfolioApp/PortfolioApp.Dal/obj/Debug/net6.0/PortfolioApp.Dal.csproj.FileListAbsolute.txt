@@ -1,0 +1,17 @@
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\bin\Debug\net6.0\PortfolioApp.Dal.deps.json
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\bin\Debug\net6.0\PortfolioApp.Dal.runtimeconfig.json
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\bin\Debug\net6.0\PortfolioApp.Dal.dll
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\bin\Debug\net6.0\PortfolioApp.Dal.pdb
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\bin\Debug\net6.0\PortfolioApp.Domain.dll
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\bin\Debug\net6.0\PortfolioApp.Domain.pdb
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\PortfolioApp.Dal.csproj.AssemblyReference.cache
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\PortfolioApp.Dal.GeneratedMSBuildEditorConfig.editorconfig
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\PortfolioApp.Dal.AssemblyInfoInputs.cache
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\PortfolioApp.Dal.AssemblyInfo.cs
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\PortfolioApp.Dal.csproj.CoreCompileInputs.cache
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\PortfolioApp.Dal.csproj.CopyComplete
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\PortfolioApp.Dal.dll
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\refint\PortfolioApp.Dal.dll
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\PortfolioApp.Dal.pdb
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\PortfolioApp.Dal.genruntimeconfig.cache
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\ref\PortfolioApp.Dal.dll
