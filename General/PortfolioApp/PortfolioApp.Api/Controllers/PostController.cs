@@ -13,11 +13,14 @@ namespace PortfolioApp.Api.Controllers
     {
         private readonly IPostRepository _repo;
         private readonly IStringLocalizer<PostController> _stringLocalizer;
+        private readonly IStringLocalizer<SharedResource> _sharedLocalizer;
 
-        public PostController(IPostRepository repo,IStringLocalizer<PostController> stringLocalizer)
+        public PostController(IPostRepository repo,
+            IStringLocalizer<PostController> stringLocalizer,IStringLocalizer<SharedResource> sharedLocalizer)
         {
             _repo = repo;
             _stringLocalizer = stringLocalizer;
+            _sharedLocalizer = sharedLocalizer;
         }
 
         /// <summary>
@@ -29,11 +32,13 @@ namespace PortfolioApp.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllPosts()
         {
-            var name = _stringLocalizer["name"];
+         
+
             return Ok(new
             {
                 posts = await _repo.GetAllAsync(),
-                name = name.Value
+                name = _stringLocalizer["name"].Value,
+                sharedName = _sharedLocalizer["shared_name"].Value
             }); ;   
         }
 

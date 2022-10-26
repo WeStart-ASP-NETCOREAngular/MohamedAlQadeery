@@ -73,3 +73,5 @@ D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\obj\Debug\net6.0\
 D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\obj\Debug\net6.0\PortfolioApp.Api.csproj.GenerateResource.cache
 D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\obj\Debug\net6.0\ar\PortfolioApp.Api.resources.dll
 D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\obj\Debug\net6.0\en-US\PortfolioApp.Api.resources.dll
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\obj\Debug\net6.0\PortfolioApp.Api.Resources.SharedResource.ar.resources
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\obj\Debug\net6.0\PortfolioApp.Api.Resources.SharedResource.en-US.resources
