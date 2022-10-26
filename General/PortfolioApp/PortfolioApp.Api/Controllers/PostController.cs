@@ -16,28 +16,77 @@ namespace PortfolioApp.Api.Controllers
         {
             _repo = repo;
         }
-        
+
+        /// <summary>
+        ///   Gets all posts from database  
+        /// </summary>
+        /// <returns>a list of posts</returns>
+     
+        /// <response code="200">a list of books has been retreived successfully </response>
         [HttpGet]
         public async Task<IActionResult> GetAllPosts()
         {
+            
             return Ok(await _repo.GetAllAsync());   
         }
 
+
+        /// <summary>
+        /// Add a new post
+        /// </summary>
+        /// <param name="createPostDto"></param>
+        /// <returns>
+        ///  returns a newly created post
+        /// </returns>
+        /// /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /Post
+        ///     { 
+        ///        "title": "Harry Potter",
+        ///        "body": "Part 4"
+        ///     }
+        ///
+        /// </remarks>
+        /// <response code="201">Post has been created successfully</response>
+        /// <response code="400">There was validation error in post values </response>
 
         [HttpPost]
         public async Task<IActionResult> AddPost(CreatePostDto createPostDto)
         {
             var post = new Post { Title = createPostDto.Title,Body = createPostDto.Body};
-            return Ok(await _repo.AddAsync(post));
+            await _repo.AddAsync(post);
+            return CreatedAtAction(nameof(GetPost), new {id=post.Id},post);
         }
 
 
+        /// <summary>
+        /// Gets a specfic post by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        ///  returns a post if its found
+        /// </returns>
+        /// <response code="200">Post is retrived successfully</response>
+        /// <response code="404">Post is not found in our database</response>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPost(int id)
         {
-            return Ok(await _repo.GetByIdAsync(id));
+            var post = await _repo.GetByIdAsync(id);
+            if (post == null) return NotFound();
+            return Ok(post);
         }
 
+        /// <summary>
+        /// Update a specifc post by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updatePostDto"></param>
+        /// <returns>
+        /// returns a post after being updated
+        /// </returns>
+          /// <response code="200">Post is updated successfully</response>
+        /// <response code="400">Post is not updated id/validation error</response>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePost(int id ,UpdatePostDto updatePostDto)
         {
@@ -48,6 +97,15 @@ namespace PortfolioApp.Api.Controllers
             return BadRequest();
         }
 
+        /// <summary>
+        /// Delete a specfic post by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        ///  returns 200 status code
+        /// </returns>
+        /// <response code="200">Post is deleted successfully</response>
+        /// <response code="400">Post is not deleted</response>
         [HttpDelete]
         public async Task<IActionResult> DeletePost(int id)
         {

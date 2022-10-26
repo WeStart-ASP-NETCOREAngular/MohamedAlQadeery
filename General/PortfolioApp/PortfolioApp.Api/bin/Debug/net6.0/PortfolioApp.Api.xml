@@ -4,5 +4,67 @@
         <name>PortfolioApp.Api</name>
     </assembly>
     <members>
+        <member name="M:PortfolioApp.Api.Controllers.PostController.GetAllPosts">
+            <summary>
+              Gets all posts from database  
+            </summary>
+            <returns>a list of posts</returns>
+            <response code="200">a list of books has been retreived successfully </response>
+        </member>
+        <member name="M:PortfolioApp.Api.Controllers.PostController.AddPost(PortfolioApp.Api.DTOs.CreatePostDto)">
+             <summary>
+             Add a new post
+             </summary>
+             <param name="createPostDto"></param>
+             <returns>
+              returns a newly created post
+             </returns>
+             /// <remarks>
+             Sample request:
+            
+                 POST /Post
+                 { 
+                    "title": "Harry Potter",
+                    "body": "Part 4"
+                 }
+            
+             </remarks>
+             <response code="201">Post has been created successfully</response>
+             <response code="400">There was validation error in post values </response>
+        </member>
+        <member name="M:PortfolioApp.Api.Controllers.PostController.GetPost(System.Int32)">
+            <summary>
+            Gets a specfic post by id
+            </summary>
+            <param name="id"></param>
+            <returns>
+             returns a post if its found
+            </returns>
+            <response code="200">Post is retrived successfully</response>
+            <response code="404">Post is not found in our database</response>
+        </member>
+        <member name="M:PortfolioApp.Api.Controllers.PostController.UpdatePost(System.Int32,PortfolioApp.Api.DTOs.UpdatePostDto)">
+            <summary>
+            Update a specifc post by id
+            </summary>
+            <param name="id"></param>
+            <param name="updatePostDto"></param>
+            <returns>
+            returns a post after being updated
+            </returns>
+            <response code="200">Post is updated successfully</response>
+            <response code="400">Post is not updated id/validation error</response>
+        </member>
+        <member name="M:PortfolioApp.Api.Controllers.PostController.DeletePost(System.Int32)">
+            <summary>
+            Delete a specfic post by id
+            </summary>
+            <param name="id"></param>
+            <returns>
+             returns 200 status code
+            </returns>
+            <response code="200">Post is deleted successfully</response>
+            <response code="400">Post is not deleted</response>
+        </member>
     </members>
 </doc>
