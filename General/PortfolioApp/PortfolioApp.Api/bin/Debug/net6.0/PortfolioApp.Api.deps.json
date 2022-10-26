@@ -17,6 +17,14 @@
         },
         "runtime": {
           "PortfolioApp.Api.dll": {}
+        },
+        "resources": {
+          "ar/PortfolioApp.Api.resources.dll": {
+            "locale": "ar"
+          },
+          "en-US/PortfolioApp.Api.resources.dll": {
+            "locale": "en-US"
+          }
         }
       },
       "Humanizer.Core/2.8.26": {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using PortfolioApp.Api.DTOs;
 using PortfolioApp.Domain.Abstraction.Repositories;
 using PortfolioApp.Domain.Models;
@@ -11,10 +12,12 @@ namespace PortfolioApp.Api.Controllers
     public class PostController : ControllerBase
     {
         private readonly IPostRepository _repo;
+        private readonly IStringLocalizer<PostController> _stringLocalizer;
 
-        public PostController(IPostRepository repo)
+        public PostController(IPostRepository repo,IStringLocalizer<PostController> stringLocalizer)
         {
             _repo = repo;
+            _stringLocalizer = stringLocalizer;
         }
 
         /// <summary>
@@ -26,8 +29,12 @@ namespace PortfolioApp.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllPosts()
         {
-            
-            return Ok(await _repo.GetAllAsync());   
+            var name = _stringLocalizer["name"];
+            return Ok(new
+            {
+                posts = await _repo.GetAllAsync(),
+                name = name.Value
+            }); ;   
         }
 
 
