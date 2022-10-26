@@ -37,6 +37,10 @@ builder.Services.AddDbContext<PortfolioAppDbContext>(options =>
 builder.Services.AddScoped<IPostRepository,PostRepository>();
 builder.Services.AddScoped<IProjectRepository,ProjectRepository>();
 
+builder.Services.AddLocalization(options =>
+{
+    options.ResourcesPath = "Resources";
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,6 +53,15 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+var supportedCultures = new[] { "en-US", "ar" };
+var localizationOptions =
+    new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
+localizationOptions.ApplyCurrentCultureToResponseHeaders = true;
 
 app.MapControllers();
 
