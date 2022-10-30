@@ -75,3 +75,8 @@ D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\obj\Debug\net6.0\
 D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\obj\Debug\net6.0\en-US\PortfolioApp.Api.resources.dll
 D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\obj\Debug\net6.0\PortfolioApp.Api.Resources.SharedResource.ar.resources
 D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\obj\Debug\net6.0\PortfolioApp.Api.Resources.SharedResource.en-US.resources
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\bin\Debug\net6.0\Mapster.dll
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\bin\Debug\net6.0\Mapster.Core.dll
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\bin\Debug\net6.0\Mapster.DependencyInjection.dll
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\bin\Debug\net6.0\PortfolioApp.Core.dll
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Api\bin\Debug\net6.0\PortfolioApp.Core.pdb

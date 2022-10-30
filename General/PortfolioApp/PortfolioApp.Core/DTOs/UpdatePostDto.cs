@@ -1,4 +1,4 @@
-﻿namespace PortfolioApp.Api.DTOs
+﻿namespace PortfolioApp.Core.DTOs
 {
     public class UpdatePostDto
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PortfolioApp.Api.DTOs;
+using PortfolioApp.Core.DTOs;
 using PortfolioApp.Domain.Abstraction.Repositories;
 using PortfolioApp.Domain.Models;
 

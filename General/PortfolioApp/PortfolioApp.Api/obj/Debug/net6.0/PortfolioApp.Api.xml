@@ -11,7 +11,7 @@
             <returns>a list of posts</returns>
             <response code="200">a list of books has been retreived successfully </response>
         </member>
-        <member name="M:PortfolioApp.Api.Controllers.PostController.AddPost(PortfolioApp.Api.DTOs.CreatePostDto)">
+        <member name="M:PortfolioApp.Api.Controllers.PostController.AddPost(PortfolioApp.Core.DTOs.CreatePostDto)">
              <summary>
              Add a new post
              </summary>
@@ -43,7 +43,7 @@
             <response code="200">Post is retrived successfully</response>
             <response code="404">Post is not found in our database</response>
         </member>
-        <member name="M:PortfolioApp.Api.Controllers.PostController.UpdatePost(System.Int32,PortfolioApp.Api.DTOs.UpdatePostDto)">
+        <member name="M:PortfolioApp.Api.Controllers.PostController.UpdatePost(System.Int32,PortfolioApp.Core.DTOs.UpdatePostDto)">
             <summary>
             Update a specifc post by id
             </summary>

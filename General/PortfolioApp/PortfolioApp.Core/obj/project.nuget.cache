@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "pFPDIlDiV45Y0YcF1q8FtEHHpoWkM0vY8dW+lTykTPbIgEJY3F1eVIIplsQeLVYBqwSz1T003NNkQudO+sCm2A==",
+  "success": true,
+  "projectFilePath": "D:\\BTI\\Mohamed AlQadeery\\General\\PortfolioApp\\PortfolioApp.Core\\PortfolioApp.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Apple Tech\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\Apple Tech\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\Apple Tech\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

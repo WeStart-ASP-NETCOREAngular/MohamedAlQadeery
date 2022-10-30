@@ -15,3 +15,5 @@ D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\
 D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\PortfolioApp.Dal.pdb
 D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\PortfolioApp.Dal.genruntimeconfig.cache
 D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\obj\Debug\net6.0\ref\PortfolioApp.Dal.dll
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\bin\Debug\net6.0\PortfolioApp.Core.dll
+D:\BTI\Mohamed AlQadeery\General\PortfolioApp\PortfolioApp.Dal\bin\Debug\net6.0\PortfolioApp.Core.pdb

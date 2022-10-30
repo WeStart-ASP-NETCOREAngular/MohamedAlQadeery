@@ -1,3 +1,5 @@
+using Mapster;
+using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using PortfolioApp.Dal;
@@ -41,6 +43,15 @@ builder.Services.AddLocalization(options =>
 {
     options.ResourcesPath = "Resources";
 });
+
+
+var config = TypeAdapterConfig.GlobalSettings;
+config.Scan(Assembly.GetExecutingAssembly());
+
+builder.Services.AddSingleton(config);
+builder.Services.AddScoped<IMapper, ServiceMapper>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

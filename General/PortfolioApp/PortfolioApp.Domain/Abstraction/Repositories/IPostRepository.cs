@@ -1,4 +1,5 @@
-﻿using PortfolioApp.Domain.Models;
+﻿using PortfolioApp.Core.DTOs;
+using PortfolioApp.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace PortfolioApp.Domain.Abstraction.Repositories
     {
         Task<Post> AddAsync(Post post);
         Task<bool> RemoveAsync(int id);
-        Task<List<Post>> GetAllAsync();
+        Task<List<ListPostDto>> GetAllAsync();
         Task<bool> UpdateAsync(int id, Post post);
         Task<Post> GetByIdAsync(int id);
         

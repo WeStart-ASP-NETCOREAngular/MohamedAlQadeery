@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MapsterMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-using PortfolioApp.Api.DTOs;
+using PortfolioApp.Core.DTOs;
 using PortfolioApp.Domain.Abstraction.Repositories;
 using PortfolioApp.Domain.Models;
 
@@ -14,13 +15,17 @@ namespace PortfolioApp.Api.Controllers
         private readonly IPostRepository _repo;
         private readonly IStringLocalizer<PostController> _stringLocalizer;
         private readonly IStringLocalizer<SharedResource> _sharedLocalizer;
+        private readonly IMapper _mapper;
 
         public PostController(IPostRepository repo,
-            IStringLocalizer<PostController> stringLocalizer,IStringLocalizer<SharedResource> sharedLocalizer)
+            IStringLocalizer<PostController> stringLocalizer
+            ,IStringLocalizer<SharedResource> sharedLocalizer,
+            IMapper mapper)
         {
             _repo = repo;
             _stringLocalizer = stringLocalizer;
             _sharedLocalizer = sharedLocalizer;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -66,7 +71,8 @@ namespace PortfolioApp.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPost(CreatePostDto createPostDto)
         {
-            var post = new Post { Title = createPostDto.Title,Body = createPostDto.Body};
+            // var post = new Post { Title = createPostDto.Title,Body = createPostDto.Body};
+            var post = _mapper.Map<Post>(createPostDto);
             await _repo.AddAsync(post);
             return CreatedAtAction(nameof(GetPost), new {id=post.Id},post);
         }

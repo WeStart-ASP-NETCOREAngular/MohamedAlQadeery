@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PortfolioApp.Domain.Abstraction.Repositories;
 using PortfolioApp.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Mapster;
+using PortfolioApp.Core.DTOs;
 
 namespace PortfolioApp.Dal.Repositories
 {
@@ -24,9 +21,9 @@ namespace PortfolioApp.Dal.Repositories
             return post;
         }
 
-        public async Task<List<Post>> GetAllAsync()
+        public async Task<List<ListPostDto>> GetAllAsync()
         {
-            return await _context.Posts.ToListAsync();
+            return await _context.Posts.ProjectToType<ListPostDto>().ToListAsync();
         }
 
         public async Task<Post> GetByIdAsync(int id)

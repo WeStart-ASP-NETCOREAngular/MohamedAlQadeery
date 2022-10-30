@@ -1,4 +1,6 @@
-﻿namespace PortfolioApp.Api.DTOs
+﻿using Microsoft.AspNetCore.Http;
+
+namespace PortfolioApp.Core.DTOs
 {
     public class UpdateProjectDto
     {
