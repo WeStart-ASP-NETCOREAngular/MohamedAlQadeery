@@ -2,6 +2,7 @@ using Mapster;
 using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using PortfolioApp.Api.DependencyInjection;
 using PortfolioApp.Dal;
 using PortfolioApp.Dal.Repositories;
 using PortfolioApp.Domain.Abstraction.Repositories;
@@ -31,11 +32,8 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
+builder.Services.AddDataLayer(builder.Configuration);
 
-builder.Services.AddDbContext<PortfolioAppDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
-});
 builder.Services.AddScoped<IPostRepository,PostRepository>();
 builder.Services.AddScoped<IProjectRepository,ProjectRepository>();
 
