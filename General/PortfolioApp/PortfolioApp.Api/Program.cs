@@ -33,16 +33,14 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
-builder.Services.AddDataLayer(builder.Configuration);
-builder.Services.AddMapster();
+
+builder.Services.AddDataLayer(builder.Configuration)
+    .AddLocalzitionService()
+    .AddMapster();
+
 
 builder.Services.AddScoped<IPostRepository,PostRepository>();
 builder.Services.AddScoped<IProjectRepository,ProjectRepository>();
-
-builder.Services.AddLocalization(options =>
-{
-    options.ResourcesPath = "Resources";
-});
 
 
 
