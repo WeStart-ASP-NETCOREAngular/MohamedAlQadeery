@@ -3,6 +3,7 @@ using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using PortfolioApp.Api.DependencyInjection;
+using PortfolioApp.Api.Extensions;
 using PortfolioApp.Dal;
 using PortfolioApp.Dal.Repositories;
 using PortfolioApp.Domain.Abstraction.Repositories;
@@ -33,6 +34,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddDataLayer(builder.Configuration);
+builder.Services.AddMapster();
 
 builder.Services.AddScoped<IPostRepository,PostRepository>();
 builder.Services.AddScoped<IProjectRepository,ProjectRepository>();
@@ -43,11 +45,7 @@ builder.Services.AddLocalization(options =>
 });
 
 
-var config = TypeAdapterConfig.GlobalSettings;
-config.Scan(Assembly.GetExecutingAssembly());
 
-builder.Services.AddSingleton(config);
-builder.Services.AddScoped<IMapper, ServiceMapper>();
 
 
 var app = builder.Build();
@@ -63,15 +61,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-var supportedCultures = new[] { "en-US", "ar" };
-var localizationOptions =
-    new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
-    .AddSupportedCultures(supportedCultures)
-    .AddSupportedUICultures(supportedCultures);
-
-app.UseRequestLocalization(localizationOptions);
-localizationOptions.ApplyCurrentCultureToResponseHeaders = true;
-
+app.UseLocalization();
 app.MapControllers();
 
 app.Run();
