@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApp.api", "TodoApp.api\TodoApp.api.csproj", "{E280D714-0A49-4BEC-B2DE-E3530ABABF86}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApp.domain", "TodoApp.domain\TodoApp.domain.csproj", "{8346F7EB-F5F9-45A4-A417-AC8E2C34CCA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E280D714-0A49-4BEC-B2DE-E3530ABABF86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E280D714-0A49-4BEC-B2DE-E3530ABABF86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E280D714-0A49-4BEC-B2DE-E3530ABABF86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8346F7EB-F5F9-45A4-A417-AC8E2C34CCA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8346F7EB-F5F9-45A4-A417-AC8E2C34CCA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8346F7EB-F5F9-45A4-A417-AC8E2C34CCA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8346F7EB-F5F9-45A4-A417-AC8E2C34CCA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
