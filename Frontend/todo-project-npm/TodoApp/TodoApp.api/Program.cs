@@ -16,6 +16,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 
+app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().WithOrigins(builder.Configuration.GetSection("AllowedOrigins").Value));
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
