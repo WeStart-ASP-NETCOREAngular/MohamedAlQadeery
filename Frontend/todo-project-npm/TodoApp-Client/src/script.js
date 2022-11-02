@@ -29,6 +29,7 @@ const tableBody = document.querySelector("#tableBody");
 let categoriesTableHead = ` <tr>
 <th scope="col">#</th>
 <th scope="col">Name</th>
+<th scope="col">Todos Count</th>
 <th scope="col">Action</th>
 </tr>`;
 
@@ -48,11 +49,13 @@ categoriesBtn.addEventListener("click", function (event) {
   axios
     .get(BASEURL + "/api/category")
     .then((response) => {
+      console.log(response.data);
       const resultData = response.data
         .map((el, index) => {
           return ` <tr>
             <th scope="col">${++index}</th>
             <th scope="col">${el.name}</th>
+            <th scope="col">${el.todosCount}</th>
             <th scope="col">
               <a data-bs-toggle="modal"
               data-bs-target="#editCategoryModal" data-id="${

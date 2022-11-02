@@ -10,7 +10,7 @@ namespace TodoApp.core.DTOs
 
     public abstract class CategoryDto
     {
-       
+       [Required]
         public string Name { get; set; }
 
     }
@@ -19,6 +19,7 @@ namespace TodoApp.core.DTOs
     public class DisplayCategoryDto : CategoryDto
     {
         public int Id { get; set; }
+        public int TodosCount { get; set; }
     }
 
 
