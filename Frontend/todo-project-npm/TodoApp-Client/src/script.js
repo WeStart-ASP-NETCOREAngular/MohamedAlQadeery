@@ -36,6 +36,7 @@ categoriesBtn.addEventListener("click", function (event) {
   event.preventDefault();
   tableHead.innerHTML = categoriesTableHead;
   tableBody.innerHTML = "";
+  document.querySelector("#page-header").innerHTML = "Categories Page";
   axios
     .get(BASEURL + "/api/category")
     .then((response) => {

@@ -31,6 +31,7 @@ todosBtn.addEventListener("click", function (event) {
   event.preventDefault();
   tableHead.innerHTML = todosTableHead;
   tableBody.innerHTML = "";
+  document.querySelector("#page-header").innerHTML = "Todos Page";
 
   axios
     .get(BASEURL + "/api/todo")
