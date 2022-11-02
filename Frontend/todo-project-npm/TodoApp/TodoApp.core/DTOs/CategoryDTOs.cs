@@ -10,10 +10,12 @@ namespace TodoApp.core.DTOs
 
     public abstract class CategoryDto
     {
-        [Required]
+       
         public string Name { get; set; }
 
     }
+
+    // display in list , and return from create/update
     public class DisplayCategoryDto : CategoryDto
     {
         public int Id { get; set; }
@@ -32,9 +34,9 @@ namespace TodoApp.core.DTOs
     }
 
 
+    // in GetById action  (display full info)
     public class ShowCategoryDto : CategoryDto
     {       
-        public string Name { get; set; }
 
         public List<ListTodoDto> Todos { get; set; }
 

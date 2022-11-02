@@ -30,12 +30,13 @@ namespace TodoApp.dal.Repositories
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
+
+            var category =  await _context.Categories.FindAsync(id);
             if (category == null) return false;
             _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
+           return await _context.SaveChangesAsync() > 0;
 
-            return true;
+          
 
         }
 
