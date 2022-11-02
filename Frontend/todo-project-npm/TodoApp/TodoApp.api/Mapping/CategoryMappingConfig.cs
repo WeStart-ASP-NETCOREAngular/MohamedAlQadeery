@@ -9,6 +9,7 @@ namespace TodoApp.api.Mapping
         public void Register(TypeAdapterConfig config)
         {
             config.NewConfig<Category, DisplayCategoryDto>();
+            config.NewConfig<UpdateCategoryDto, Category>();
         }
     }
 }

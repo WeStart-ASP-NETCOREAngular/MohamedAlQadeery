@@ -13,7 +13,7 @@ namespace TodoApp.domain.Abstraction.Repositories
         Task<List<DisplayCategoryDto>> GetAllAsync();
         Task<Category> GetByIdAsync(int id);
         Task<Category> CreateAsync(Category createdCategory);
-        Task<Category> UpdateAsync(Category updatedCategory, int id);
+        Task<Category> UpdateAsync(Category updatedCategory);
         Task<bool> DeleteAsync(int id);
     }
 }

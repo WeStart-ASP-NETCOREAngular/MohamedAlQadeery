@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace TodoApp.core.DTOs
 
     public abstract class CategoryDto
     {
+        [Required]
         public string Name { get; set; }
 
     }
@@ -25,7 +27,7 @@ namespace TodoApp.core.DTOs
 
     public class UpdateCategoryDto : CategoryDto
     {
-        public string Name { get; set; }
+        
 
     }
 

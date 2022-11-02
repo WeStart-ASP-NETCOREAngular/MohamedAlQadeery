@@ -35,6 +35,20 @@ namespace TodoApp.api.Controllers
             return Ok(_mapper.Map<DisplayCategoryDto>(createdCategory));
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCategory(int id , UpdateCategoryDto updateCategoryDto)
+        {
+            if (await _repo.GetByIdAsync(id) == null) return NotFound();
+
+            var categoryToUpdate = _mapper.Map<Category>(updateCategoryDto);
+            categoryToUpdate.Id = id;
+
+            await _repo.UpdateAsync(categoryToUpdate);
+
+            return Ok(_mapper.Map<DisplayCategoryDto>(categoryToUpdate));
+
+        }
+
 
     }
 }
