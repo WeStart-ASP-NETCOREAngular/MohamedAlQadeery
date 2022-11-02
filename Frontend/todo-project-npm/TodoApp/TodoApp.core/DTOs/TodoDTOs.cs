@@ -13,7 +13,6 @@ namespace TodoApp.core.DTOs
         public string Task { get; set; }
 
 
-        public bool IsCompleted { get; set; }
         
 
     }
@@ -22,6 +21,8 @@ namespace TodoApp.core.DTOs
     {
         public int Id { get; set; }
         public string CategoryName { get; set; }
+        public bool IsCompleted { get; set; }
+
     }
 
     public class CreateTodoDto : TodoDto
@@ -45,6 +46,8 @@ namespace TodoApp.core.DTOs
         [Required]
 
         public DateTime DueDate { get; set; }
+        public bool IsCompleted { get; set; }
+
     }
 
     public class ShowTodoDto : TodoDto
