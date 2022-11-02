@@ -16,7 +16,6 @@ const categoriesBtn = document.querySelector("#categoriesBtn");
 const todosBtn = document.querySelector("#todosBtn");
 const createCategoryButton = document.querySelector("#createCategoryButton");
 const updateCategoryButton = document.querySelector("#updateCategoryButton");
-const deleteButton = document.querySelector("#delete");
 
 const DisplayCategoryModalButton = document.querySelector(
   "#DisplayCategoryModalButton"
@@ -62,7 +61,7 @@ categoriesBtn.addEventListener("click", function (event) {
              
               <a  data-id="${
                 el.id
-              }" id="delete" class="btn btn-danger delete">Delete</a>
+              }" id="delete-category" class="btn btn-danger delete">Delete</a>
             
             </th>
           </tr>`;
@@ -74,12 +73,6 @@ categoriesBtn.addEventListener("click", function (event) {
     .catch((err) => {
       console.log(error);
     });
-});
-
-todosBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  tableHead.innerHTML = todosTableHead;
-  tableBody.innerHTML = "";
 });
 
 createCategoryButton.addEventListener("click", function (event) {
@@ -139,8 +132,14 @@ updateCategoryButton.addEventListener("click", function (event) {
     });
 });
 
+todosBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  tableHead.innerHTML = todosTableHead;
+  tableBody.innerHTML = "";
+});
+
 document.addEventListener("click", function (e) {
-  if (e.target && e.target.id == "delete") {
+  if (e.target && e.target.id == "delete-category") {
     const deleteButton = e.target;
     let id = deleteButton.getAttribute("data-id");
 
