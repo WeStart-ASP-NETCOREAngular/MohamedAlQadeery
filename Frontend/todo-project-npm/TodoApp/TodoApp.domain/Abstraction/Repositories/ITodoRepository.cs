@@ -11,9 +11,9 @@ namespace TodoApp.domain.Abstraction.Repositories
     public interface ITodoRepository
     {
         Task<List<ListTodoDto>> GetAllAsync();
-        Task<Category> GetByIdAsync(int id);
-        Task<Category> CreateAsync(Todo createdTodo);
-        Task<Category> UpdateAsync(Todo updatedTodo);
+        Task<Todo> GetByIdAsync(int id);
+        Task<Todo> CreateAsync(Todo createdTodo);
+        Task<Todo> UpdateAsync(Todo updatedTodo);
         Task<bool> DeleteAsync(int id);
 
     }
