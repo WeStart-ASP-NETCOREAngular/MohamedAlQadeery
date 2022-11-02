@@ -5,6 +5,7 @@ import bootstrap from "bootstrap";
 
 import swal from "sweetalert";
 
+import todo from "./todos";
 //Buttons click listeners
 
 // Axios
@@ -13,7 +14,6 @@ console.log("Axios scripts goes here");
 const BASEURL = "https://localhost:7098";
 
 const categoriesBtn = document.querySelector("#categoriesBtn");
-const todosBtn = document.querySelector("#todosBtn");
 const createCategoryButton = document.querySelector("#createCategoryButton");
 const updateCategoryButton = document.querySelector("#updateCategoryButton");
 
@@ -31,15 +31,6 @@ let categoriesTableHead = ` <tr>
 <th scope="col">Name</th>
 <th scope="col">Todos Count</th>
 <th scope="col">Action</th>
-</tr>`;
-
-let todosTableHead = ` <tr>
-<th scope="col">#</th>
-<th scope="col">Name</th>
-<th scope="col">Category</th>
-<th scope="col">Status</th>
-<th scope="col">Action</th>
-
 </tr>`;
 
 categoriesBtn.addEventListener("click", function (event) {
@@ -74,7 +65,7 @@ categoriesBtn.addEventListener("click", function (event) {
       tableBody.innerHTML = resultData;
     })
     .catch((err) => {
-      console.log(error);
+      toastr.error(err.message);
     });
 });
 
@@ -133,12 +124,6 @@ updateCategoryButton.addEventListener("click", function (event) {
     .finally(function () {
       document.querySelector("#closeUpdateCategoryModalButton").click();
     });
-});
-
-todosBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  tableHead.innerHTML = todosTableHead;
-  tableBody.innerHTML = "";
 });
 
 document.addEventListener("click", function (e) {
