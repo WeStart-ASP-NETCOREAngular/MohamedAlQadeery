@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDataLayer(builder.Configuration);
 builder.Services.AddMapster();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ITodoRepository, TodoRepository>();
 
 var app = builder.Build();
 

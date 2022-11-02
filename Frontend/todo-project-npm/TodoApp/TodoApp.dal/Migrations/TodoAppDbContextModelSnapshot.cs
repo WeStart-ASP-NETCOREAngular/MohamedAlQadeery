@@ -36,7 +36,7 @@ namespace TodoApp.dal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("TodoApp.domain.Models.Todo", b =>
@@ -68,7 +68,7 @@ namespace TodoApp.dal.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Todos");
+                    b.ToTable("Todos", (string)null);
                 });
 
             modelBuilder.Entity("TodoApp.domain.Models.Todo", b =>

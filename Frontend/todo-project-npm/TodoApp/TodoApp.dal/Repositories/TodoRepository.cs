@@ -21,8 +21,11 @@ namespace TodoApp.dal.Repositories
         }
         public async Task<Todo> CreateAsync(Todo createdTodo)
         {
-             await _context.Todos.AddAsync(createdTodo);
-
+            var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == createdTodo.CategoryId);
+            if (category == null) return null;
+            await _context.Todos.AddAsync(createdTodo);
+            //tmp line need to be fixed 
+            createdTodo.Category =category;
             await _context.SaveChangesAsync();
             return createdTodo;
         }
@@ -43,11 +46,15 @@ namespace TodoApp.dal.Repositories
 
         public async Task<Todo> GetByIdAsync(int id)
         {
-            return await _context.Todos.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
+            return await _context.Todos.Include(t=>t.Category).AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public async Task<Todo> UpdateAsync(Todo updatedTodo)
         {
+            var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == updatedTodo.CategoryId);
+            if (category == null) return null;
+            updatedTodo.Category = category;
+
             _context.Todos.Update(updatedTodo);
             await _context.SaveChangesAsync();
             return updatedTodo;

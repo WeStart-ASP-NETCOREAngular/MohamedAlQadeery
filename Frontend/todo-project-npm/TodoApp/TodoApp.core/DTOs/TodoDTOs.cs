@@ -10,7 +10,6 @@ namespace TodoApp.core.DTOs
     public abstract class TodoDto
     {
         [Required]
-
         public string Task { get; set; }
 
 
@@ -21,6 +20,7 @@ namespace TodoApp.core.DTOs
 
     public class ListTodoDto : TodoDto
     {
+        public int Id { get; set; }
         public string CategoryName { get; set; }
     }
 
@@ -30,7 +30,6 @@ namespace TodoApp.core.DTOs
         public string CategoryId { get; set; }
         public string Description { get; set; }
         [Required]
-
         public DateTime DueDate { get; set; }
 
     }
@@ -46,5 +45,15 @@ namespace TodoApp.core.DTOs
         [Required]
 
         public DateTime DueDate { get; set; }
+    }
+
+    public class ShowTodoDto : TodoDto
+    {
+        public string CategoryName { get; set; }
+        public string Description { get; set; }
+       
+
+        public DateTime DueDate { get; set; }
+
     }
 }

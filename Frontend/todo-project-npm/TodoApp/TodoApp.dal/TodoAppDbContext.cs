@@ -15,6 +15,14 @@ namespace TodoApp.dal
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Todo>()
+                .HasOne(t => t.Category)
+                .WithMany(c => c.Todos)
+                 .HasForeignKey(t => t.CategoryId);
+        }
+
         public DbSet<Todo> Todos { get; set; }
         public DbSet<Category> Categories { get; set; }
     }
