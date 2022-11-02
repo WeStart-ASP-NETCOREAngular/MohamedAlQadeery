@@ -22,13 +22,14 @@ namespace TodoApp.core.DTOs
         public int Id { get; set; }
         public string CategoryName { get; set; }
         public bool IsCompleted { get; set; }
+        public string Description { get; set; }
 
     }
 
     public class CreateTodoDto : TodoDto
     {
         [Required]
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public string Description { get; set; }
         [Required]
         public DateTime DueDate { get; set; }
@@ -40,7 +41,7 @@ namespace TodoApp.core.DTOs
     {
         [Required]
 
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
        
         public string Description { get; set; }
         [Required]

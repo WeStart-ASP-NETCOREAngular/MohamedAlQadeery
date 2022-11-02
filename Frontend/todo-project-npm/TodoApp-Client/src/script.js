@@ -9,7 +9,6 @@ import todo from "./todos";
 //Buttons click listeners
 
 // Axios
-console.log("Axios scripts goes here");
 
 const BASEURL = "https://localhost:7098";
 

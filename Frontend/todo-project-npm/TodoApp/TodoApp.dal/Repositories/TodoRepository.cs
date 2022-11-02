@@ -25,7 +25,7 @@ namespace TodoApp.dal.Repositories
             if (category == null) return null;
             await _context.Todos.AddAsync(createdTodo);
             //tmp line need to be fixed 
-            createdTodo.Category =category;
+           // createdTodo.Category =category;
             await _context.SaveChangesAsync();
             return createdTodo;
         }

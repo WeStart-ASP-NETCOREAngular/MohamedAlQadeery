@@ -4,12 +4,6 @@ import toastr from "toastr";
 import bootstrap from "bootstrap";
 
 import swal from "sweetalert";
-import axios from "axios";
-
-import toastr from "toastr";
-import bootstrap from "bootstrap";
-
-import swal from "sweetalert";
 
 const BASEURL = "https://localhost:7098";
 const todosBtn = document.querySelector("#todosBtn");
@@ -17,7 +11,12 @@ const DisplayTodoModalButton = document.querySelector(
   "#DisplayTodoModalButton"
 );
 const categoriesSelectInput = document.querySelector("#CategoriesSelectInput");
+const editCategoriesSelectInput = document.querySelector(
+  "#editCategoriesSelectInput"
+);
 const addTodoButton = document.querySelector("#addTodoButton");
+const updateTodoButton = document.querySelector("#updateTodoButton");
+const editTodoModal = document.querySelector("#editTodoModal");
 
 let todosTableHead = ` <tr>
 <th scope="col">#</th>
@@ -48,8 +47,12 @@ todosBtn.addEventListener("click", function (event) {
           }</th>
           <th scope="col">
             <a data-bs-toggle="modal"
-            data-bs-target="#editCategoryModal" data-id="${el.id}" data-name="${
-            el.name
+            data-bs-target="#editTodoModal" data-id="${el.id}" data-task="${
+            el.task
+          }" data-categoryName ="${el.categoryName}" data-description = "${
+            el.description
+          }" data-isCompleted = "${
+            el.isCompleted
           }" class="btn btn-primary">Edit</a>
            
             <a  data-id="${
@@ -107,5 +110,82 @@ addTodoButton.addEventListener("click", function (event) {
     .catch((err) => toastr.error(err.message))
     .finally(function () {
       document.querySelector("#closeCreateTodoModalButton").click();
+    });
+});
+
+editTodoModal.addEventListener("show.bs.modal", function (event) {
+  const editButton = event.relatedTarget;
+  let id = editButton.getAttribute("data-id");
+  let task = editButton.getAttribute("data-task");
+  let description = editButton.getAttribute("data-description");
+  let isCompleted = editButton.getAttribute("data-isCompleted");
+  let categoryName = editButton.getAttribute("data-categoryName");
+
+  const todo_id = editTodoModal.querySelector("#todo_id");
+  const editTodoTask = editTodoModal.querySelector("#editTodoTask");
+  const editTodoDescription = editTodoModal.querySelector(
+    "#editTodoDescription"
+  );
+
+  const todoStatus = editTodoModal.querySelector("#todoStatus");
+
+  todo_id.setAttribute("value", id);
+  editTodoTask.setAttribute("value", task);
+  editTodoDescription.innerHTML = description;
+
+  axios
+    .get(BASEURL + "/api/category")
+    .then((response) => {
+      const result = response.data.map(
+        (el) =>
+          `<option value ="${el.id}" ${
+            categoryName == el.name ? "selected" : ""
+          }>${el.name}</option>`
+      );
+
+      editCategoriesSelectInput.innerHTML = result;
+    })
+    .catch((err) => toastr.error(err.message));
+});
+
+updateTodoButton.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  let id = editTodoModal.querySelector("#todo_id").value;
+
+  let editTodoTask = editTodoModal.querySelector("#editTodoTask").value;
+
+  let editTodoDescription = editTodoModal.querySelector(
+    "#editTodoDescription"
+  ).value;
+
+  let todoStatus = editTodoModal.querySelector("#todoStatus").value === "true";
+  console.log(todoStatus);
+  let editDueDate = document.querySelector("#editDueDate").value;
+
+  let categoryId = parseInt(
+    document.querySelector("#editCategoriesSelectInput").value
+  );
+
+  axios
+    .put(BASEURL + "/api/todo/" + id, {
+      categoryId: categoryId,
+      task: editTodoTask,
+      description: editTodoDescription,
+      dueDate: editDueDate,
+      isCompleted: todoStatus,
+    })
+    .then((response) => {
+      toastr.success(
+        `${response.data.task} todo has been updated succesfully !`
+      );
+      todosBtn.click();
+    })
+    .catch((err) => {
+      console.log(err);
+      toastr.error(err.message);
+    })
+    .finally(function () {
+      document.querySelector("#closeEditTodoModalButton").click();
     });
 });

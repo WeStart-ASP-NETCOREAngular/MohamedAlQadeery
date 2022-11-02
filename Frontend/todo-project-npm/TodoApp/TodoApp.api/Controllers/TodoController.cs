@@ -47,13 +47,14 @@ namespace TodoApp.api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateTodo(int id, UpdateTodoDto updateTodoDto)
         {
+           
             if (await _repo.GetByIdAsync(id) == null) return NotFound();
 
             var todoToUpdate = _mapper.Map<Todo>(updateTodoDto);
             todoToUpdate.Id = id;
 
           var todo =   await _repo.UpdateAsync(todoToUpdate);
-            if (todo == null) return BadRequest();
+            if (todo == null) return BadRequest("something went wrong");
             return Ok(_mapper.Map<ListTodoDto>(todoToUpdate));
 
         }

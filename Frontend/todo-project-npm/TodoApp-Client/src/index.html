@@ -158,7 +158,63 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="editTodoModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Edit Todo </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="col-form-label">Task:</label>
+              <input type="text" class="form-control"
+                name="name" id="editTodoTask">
+            </div>
 
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Description:</label>
+              <textarea class="form-control" id="editTodoDescription"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label class="col-form-label"> Category</label>
+
+              <select class="form-select" id="editCategoriesSelectInput">
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="col-form-label">Due Date:</label>
+              <input type="date" class="form-control"
+                name="name" id="editDueDate">
+            </div>
+
+            <div class="mb-3">
+              <label class="col-form-label">Status</label>
+
+              <select class="form-select" id="todoStatus">
+                <option value="false">Pending</option>
+                <option value="true">Completed</option>
+              </select>
+            </div>
+
+            <input type="hidden" id="todo_id" name="todo_id">
+          </div>
+          <div class="modal-footer">
+            <button id="closeEditTodoModalButton" type="button" class="btn
+              btn-secondary"
+              data-bs-dismiss="modal">Close</button>
+            <button id="updateTodoButton" type="button" class="btn btn-primary">Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- End Todo modals -->
     <script type="module" src="script.js"></script>
   </body>
 </html>
