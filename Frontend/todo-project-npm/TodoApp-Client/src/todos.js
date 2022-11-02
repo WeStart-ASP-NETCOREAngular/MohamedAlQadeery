@@ -57,7 +57,7 @@ todosBtn.addEventListener("click", function (event) {
            
             <a  data-id="${
               el.id
-            }" id="delete-category" class="btn btn-danger delete">Delete</a>
+            }" id="delete-todo" class="btn btn-danger delete">Delete</a>
           
           </th>
         </tr>`;
@@ -188,4 +188,38 @@ updateTodoButton.addEventListener("click", function (event) {
     .finally(function () {
       document.querySelector("#closeEditTodoModalButton").click();
     });
+});
+
+document.addEventListener("click", function (e) {
+  if (e.target && e.target.id == "delete-todo") {
+    const deleteButton = e.target;
+    let id = deleteButton.getAttribute("data-id");
+
+    swal({
+      title: "Are you sure?",
+      text: `Once deleted, you will not be able to recover this Todo! `,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axios
+          .delete(BASEURL + "/api/todo/" + id)
+          .then((response) => {
+            swal("Poof! Your todo has been deleted!", {
+              icon: "success",
+            });
+          })
+          .catch((err) => {
+            toastr.error(err.message);
+            console.log(err);
+          })
+          .finally(function () {
+            todosBtn.click();
+          });
+      } else {
+        swal("todo is not deleted");
+      }
+    });
+  }
 });
