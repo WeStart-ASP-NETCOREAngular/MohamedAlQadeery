@@ -14,13 +14,13 @@ namespace TodoApp.api.Controllers
         private readonly ICategoryRepository _repo;
         private readonly IMapper _mapper;
 
-        public CategoryController(ICategoryRepository repo,IMapper mapper)
+        public CategoryController(ICategoryRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult>GetAllCategories()
+        public async Task<IActionResult> GetAllCategories()
         {
             return Ok(await _repo.GetAllAsync());
         }
@@ -41,11 +41,11 @@ namespace TodoApp.api.Controllers
             var category = _mapper.Map<Category>(createCategoryDto);
             var createdCategory = await _repo.CreateAsync(category);
 
-            return CreatedAtAction(nameof(GetCategoryById), new {id = category.Id}, _mapper.Map<DisplayCategoryDto>(createdCategory));
+            return CreatedAtAction(nameof(GetCategoryById), new { id = category.Id }, _mapper.Map<DisplayCategoryDto>(createdCategory));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCategory(int id , UpdateCategoryDto updateCategoryDto)
+        public async Task<IActionResult> UpdateCategory(int id, UpdateCategoryDto updateCategoryDto)
         {
             if (await _repo.GetByIdAsync(id) == null) return NotFound();
 
@@ -58,7 +58,7 @@ namespace TodoApp.api.Controllers
 
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             if(!await _repo.DeleteAsync(id)) { return BadRequest(); }
