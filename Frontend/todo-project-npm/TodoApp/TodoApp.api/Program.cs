@@ -1,4 +1,6 @@
 using TodoApp.api.DependancyInjection;
+using TodoApp.dal.Repositories;
+using TodoApp.domain.Abstraction.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDataLayer(builder.Configuration);
 builder.Services.AddMapster();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 

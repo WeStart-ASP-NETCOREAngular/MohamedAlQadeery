@@ -12,7 +12,7 @@ namespace TodoApp.core.DTOs
         public string Name { get; set; }
 
     }
-    public class ListCategoryDto : CategoryDto
+    public class DisplayCategoryDto : CategoryDto
     {
         public int Id { get; set; }
     }

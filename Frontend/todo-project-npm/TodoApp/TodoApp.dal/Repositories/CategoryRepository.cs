@@ -22,15 +22,15 @@ namespace TodoApp.dal.Repositories
         public async Task<Category> CreateAsync(Category createdCategory)
         {
             await _context.Categories.AddAsync(createdCategory);
-             await _context.SaveChangesAsync();
-         return createdCategory;
+            await _context.SaveChangesAsync();
+            return createdCategory;
 
-   
+
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
-           var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
             if (category == null) return false;
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
@@ -39,9 +39,9 @@ namespace TodoApp.dal.Repositories
 
         }
 
-        public async Task<List<ListCategoryDto>> GetAllAsync()
+        public async Task<List<DisplayCategoryDto>> GetAllAsync()
         {
-            return await _context.Categories.ProjectToType<ListCategoryDto>().ToListAsync();
+            return await _context.Categories.ProjectToType<DisplayCategoryDto>().ToListAsync();
         }
 
         public async Task<Category> GetByIdAsync(int id)
@@ -54,8 +54,8 @@ namespace TodoApp.dal.Repositories
             var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
 
             if (category == null) return category;
-           
-          
+
+
             _context.Categories.Update(updatedCategory);
             await _context.SaveChangesAsync();
             return updatedCategory;
