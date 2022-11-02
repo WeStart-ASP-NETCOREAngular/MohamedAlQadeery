@@ -10,10 +10,10 @@ namespace TodoApp.domain.Abstraction.Repositories
 {
     public interface ICategoryRepository
     {
-        List<ListCategoryDto> GetAllAsync();
+        Task<List<ListCategoryDto>> GetAllAsync();
         Task<Category> GetByIdAsync(int id);
         Task<Category> CreateAsync(Category createdCategory);
         Task<Category> UpdateAsync(Category updatedCategory, int id);
-        Task DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
     }
 }
