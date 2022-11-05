@@ -57,6 +57,34 @@ createCategoryButton.addEventListener("click", function (event) {
   AddCategory({ name: nameInput.value });
 });
 
+editCategoryModal?.addEventListener("show.bs.modal", function (event) {
+  // Button that triggered the modal
+  const editButton = event.relatedTarget as HTMLButtonElement;
+  var categoryName = editButton.getAttribute("data-name");
+
+  let id = editButton.getAttribute("data-id");
+
+  const modalCategoryName = editCategoryModal.querySelector(
+    ".categoryUpdateName"
+  );
+  const modalcategoryId = editCategoryModal.querySelector(".categoryId");
+
+  modalCategoryName?.setAttribute("value", `${categoryName}`);
+  modalcategoryId?.setAttribute("value", `${id}`);
+});
+
+updateCategoryButton?.addEventListener("click", function (event) {
+  event.preventDefault();
+  let categoryNameInput = editCategoryModal?.querySelector(
+    ".categoryUpdateName"
+  ) as HTMLInputElement;
+  let categoryId = editCategoryModal?.querySelector(
+    ".categoryId"
+  ) as HTMLInputElement;
+
+  UpdateCategory(+categoryId.value, { name: categoryNameInput.value });
+});
+
 function AddCategory(category: Category) {
   axios
     .post(BASEURL + "/api/Category", { name: category.name })
@@ -102,5 +130,26 @@ function GetAllCategories() {
     })
     .catch((err) => {
       toastr.error(err.message);
+    });
+}
+
+function UpdateCategory(id: number, category: Category) {
+  axios
+    .put(BASEURL + "/api/category/" + id, category)
+    .then((response) => {
+      toastr.success(
+        `${response.data.name} category has been updated succesfully !`
+      );
+      categoriesBtn.click();
+    })
+    .catch((err) => {
+      toastr.error(err.message);
+    })
+    .finally(function () {
+      let closeButton = document.querySelector(
+        "#closeUpdateCategoryModalButton"
+      ) as HTMLButtonElement;
+
+      closeButton.click();
     });
 }

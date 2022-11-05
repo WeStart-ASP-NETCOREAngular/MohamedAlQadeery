@@ -34,6 +34,22 @@ createCategoryButton.addEventListener("click", function (event) {
     let nameInput = document.querySelector("#categoryName");
     AddCategory({ name: nameInput.value });
 });
+editCategoryModal === null || editCategoryModal === void 0 ? void 0 : editCategoryModal.addEventListener("show.bs.modal", function (event) {
+    // Button that triggered the modal
+    const editButton = event.relatedTarget;
+    var categoryName = editButton.getAttribute("data-name");
+    let id = editButton.getAttribute("data-id");
+    const modalCategoryName = editCategoryModal.querySelector(".categoryUpdateName");
+    const modalcategoryId = editCategoryModal.querySelector(".categoryId");
+    modalCategoryName === null || modalCategoryName === void 0 ? void 0 : modalCategoryName.setAttribute("value", `${categoryName}`);
+    modalcategoryId === null || modalcategoryId === void 0 ? void 0 : modalcategoryId.setAttribute("value", `${id}`);
+});
+updateCategoryButton === null || updateCategoryButton === void 0 ? void 0 : updateCategoryButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    let categoryNameInput = editCategoryModal === null || editCategoryModal === void 0 ? void 0 : editCategoryModal.querySelector(".categoryUpdateName");
+    let categoryId = editCategoryModal === null || editCategoryModal === void 0 ? void 0 : editCategoryModal.querySelector(".categoryId");
+    UpdateCategory(+categoryId.value, { name: categoryNameInput.value });
+});
 function AddCategory(category) {
     axios_1.default
         .post(BASEURL + "/api/Category", { name: category.name })
@@ -71,5 +87,20 @@ function GetAllCategories() {
     })
         .catch((err) => {
         toastr_1.default.error(err.message);
+    });
+}
+function UpdateCategory(id, category) {
+    axios_1.default
+        .put(BASEURL + "/api/category/" + id, category)
+        .then((response) => {
+        toastr_1.default.success(`${response.data.name} category has been updated succesfully !`);
+        categoriesBtn.click();
+    })
+        .catch((err) => {
+        toastr_1.default.error(err.message);
+    })
+        .finally(function () {
+        let closeButton = document.querySelector("#closeUpdateCategoryModalButton");
+        closeButton.click();
     });
 }
