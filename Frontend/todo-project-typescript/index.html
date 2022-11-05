@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>To Do App</title>
+        <link rel="stylesheet" href="style.scss" />
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="row mb-5 mt-3">
+                <div class="col-md-6">
+                    <a id="todosBtn" href="" class="btn btn-primary">Todos</a>
+                    <a id="categoriesBtn" href="" class="btn btn-primary">Categories</a>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <button id="DisplayCategoryModalButton" type="button"
+                        class="btn
+                        btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#createCategoryModal">
+                        Create Category
+                    </button>
+                    <button id="DisplayTodoModalButton" type="button" class="btn
+                        btn-success" data-bs-toggle="modal"
+                        data-bs-target="#createTodoModal">
+                        Create Todo
+                    </button>
+                </div>
+
+
+                <table class="table table table-hover">
+                    <h1 class="text-center mb-5" id="page-header"></h1>
+                    <thead id="tableHead">
+
+                    </thead>
+                    <tbody id="tableBody">
+
+                    </tbody>
+
+
+                </table>
+
+
+
+            </div>
+
+        </div>
+
+
+
+        <!--Category  Modals -->
+        <div class="modal fade" id="createCategoryModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Create Category</h1>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label class="col-form-label">Name:</label>
+                            <input type="text" class="form-control"
+                                id="categoryName"
+                                name="name">
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary"
+                            id="createCategoryButton">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="editCategoryModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Edit Category</h1>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label class="col-form-label">Name:</label>
+                            <input type="text" class="form-control
+                                categoryUpdateName"
+                                name="name">
+
+                            <input type="hidden" class="form-control categoryId"
+                                name="id">
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                            id="closeUpdateCategoryModalButton">Close</button>
+                        <button type="button" class="btn btn-primary"
+                            id="updateCategoryButton">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Categoru Modals -->
+        <!-- Create Todo Modal -->
+        <div class="modal fade" id="createTodoModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Create Todo </h1>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="col-form-label">Task:</label>
+                            <input type="text" class="form-control"
+                                name="name" id="todoTask">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="todoDescription"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="col-form-label"> Category</label>
+                            <select class="form-select"
+                                id="CategoriesSelectInput">
+
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="col-form-label">Due Date:</label>
+                            <input type="date" class="form-control"
+                                name="name" id="dueDate">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="closeCreateTodoModalButton" type="button"
+                            class="btn
+                            btn-secondary"
+                            data-bs-dismiss="modal">Close</button>
+                        <button id="addTodoButton" type="button" class="btn
+                            btn-primary">Create
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="editTodoModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Edit Todo </h1>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="col-form-label">Task:</label>
+                            <input type="text" class="form-control"
+                                name="name" id="editTodoTask">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Description:</label>
+                            <textarea class="form-control"
+                                id="editTodoDescription"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="col-form-label"> Category</label>
+                            <select class="form-select"
+                                id="editCategoriesSelectInput">
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="col-form-label">Due Date:</label>
+                            <input type="date" class="form-control"
+                                name="name" id="editDueDate">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="col-form-label">Status</label>
+
+                            <select class="form-select" id="todoStatus">
+                                <option value="false">Pending</option>
+                                <option value="true">Completed</option>
+                            </select>
+                        </div>
+
+                        <input type="hidden" id="todo_id" name="todo_id">
+                    </div>
+                    <div class="modal-footer">
+                        <button id="closeEditTodoModalButton" type="button"
+                            class="btn
+                            btn-secondary"
+                            data-bs-dismiss="modal">Close</button>
+                        <button id="updateTodoButton" type="button" class="btn
+                            btn-primary">Update
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- End Todo modals -->
+        <script type="module" src="index.js"></script>
+    </body>
+</html>
