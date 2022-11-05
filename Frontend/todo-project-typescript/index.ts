@@ -1,6 +1,6 @@
 import axios from "axios";
 import toastr from "toastr";
-import bootstrap from "bootstrap";
+import * as bootstrap from "bootstrap";
 
 import Swal from "sweetalert2";
 // Axios
@@ -17,7 +17,7 @@ const updateCategoryButton = document.querySelector("#updateCategoryButton");
 
 const DisplayCategoryModalButton = document.querySelector(
   "#DisplayCategoryModalButton"
-);
+) as HTMLButtonElement;
 const editCategoryModal = document.querySelector("#editCategoryModal");
 
 const tableHead = document.querySelector("#tableHead") as HTMLElement;
@@ -47,19 +47,28 @@ categoriesBtn.addEventListener("click", function (event) {
   GetAllCategories();
 });
 
+createCategoryButton.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  let nameInput: HTMLInputElement = document.querySelector(
+    "#categoryName"
+  ) as HTMLInputElement;
+
+  AddCategory({ name: nameInput.value });
+});
+
 function AddCategory(category: Category) {
   axios
     .post(BASEURL + "/api/Category", { name: category.name })
     .then((response) => {
-      // toastr.success(
-      //   `${response.data.name} category has been created succesfully !`
-      // );
-      //categoriesBtn.click();
+      toastr.success(
+        `${response.data.name} category has been created succesfully !`
+      );
+      categoriesBtn.click();
     })
     .catch((err) => toastr.error(err.message))
     .finally(function () {
-      //DisplayCategoryModalButton.click();
-      console.log("as");
+      DisplayCategoryModalButton.click();
     });
 }
 

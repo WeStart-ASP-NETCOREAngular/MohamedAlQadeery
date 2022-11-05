@@ -29,19 +29,21 @@ categoriesBtn.addEventListener("click", function (event) {
     page_header.innerHTML = "Categories Page";
     GetAllCategories();
 });
+createCategoryButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    let nameInput = document.querySelector("#categoryName");
+    AddCategory({ name: nameInput.value });
+});
 function AddCategory(category) {
     axios_1.default
         .post(BASEURL + "/api/Category", { name: category.name })
         .then((response) => {
-        // toastr.success(
-        //   `${response.data.name} category has been created succesfully !`
-        // );
-        //categoriesBtn.click();
+        toastr_1.default.success(`${response.data.name} category has been created succesfully !`);
+        categoriesBtn.click();
     })
         .catch((err) => toastr_1.default.error(err.message))
         .finally(function () {
-        //DisplayCategoryModalButton.click();
-        console.log("as");
+        DisplayCategoryModalButton.click();
     });
 }
 function GetAllCategories() {
