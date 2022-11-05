@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import toastr from "toastr";
 import * as bootstrap from "bootstrap";
 
-import Swal from "sweetalert2";
+import Swal, { SweetAlertResult } from "sweetalert2";
 // Axios
 
 const BASEURL = "https://localhost:7098";
@@ -151,5 +151,44 @@ function UpdateCategory(id: number, category: Category) {
       ) as HTMLButtonElement;
 
       closeButton.click();
+    });
+}
+
+document.addEventListener("click", function (e) {
+  if (e.target && (<HTMLElement>e.target).id == "delete-category") {
+    const deleteButton = e.target as HTMLButtonElement;
+    let id = deleteButton.getAttribute("data-id")!;
+
+    Swal.fire({
+      title: "Are you sure to delete this category?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((willDelete) => {
+      if (willDelete.dismiss) {
+        Swal.fire("Category is not deleted");
+      } else if (willDelete) {
+        DeleteCategory(parseInt(id));
+      }
+    });
+  }
+});
+
+function DeleteCategory(id: number) {
+  axios
+    .delete(BASEURL + "/api/category/" + id)
+    .then((response: AxiosResponse) => {
+      console.log(response);
+      Swal.fire("Success", `category has been deleted`, "success");
+    })
+    .catch((err) => {
+      toastr.error(err.message);
+      console.log(err);
+    })
+    .finally(function () {
+      categoriesBtn.click();
     });
 }
