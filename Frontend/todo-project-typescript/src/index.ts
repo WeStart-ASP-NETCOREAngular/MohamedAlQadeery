@@ -6,6 +6,8 @@ import {
   categoriesTableHead,
   createCategoryButton,
   DisplayCategoryModalButton,
+  editCategoryModal,
+  updateCategoryButton,
 } from "./Shared/CategoryHtmlElements";
 import CategoryPage from "./Pages/CategoryPage";
 import Swal from "sweetalert2";
@@ -53,5 +55,35 @@ document.addEventListener("click", function (e) {
       }
     });
   }
+});
+
+editCategoryModal?.addEventListener("show.bs.modal", function (event) {
+  // Button that triggered the modal
+  const editButton = event.relatedTarget as HTMLButtonElement;
+  var categoryName = editButton.getAttribute("data-name");
+
+  let id = editButton.getAttribute("data-id");
+
+  const modalCategoryName = editCategoryModal.querySelector(
+    ".categoryUpdateName"
+  );
+  const modalcategoryId = editCategoryModal.querySelector(".categoryId");
+
+  modalCategoryName?.setAttribute("value", `${categoryName}`);
+  modalcategoryId?.setAttribute("value", `${id}`);
+});
+
+updateCategoryButton?.addEventListener("click", function (event) {
+  event.preventDefault();
+  let categoryNameInput = editCategoryModal?.querySelector(
+    ".categoryUpdateName"
+  ) as HTMLInputElement;
+  let categoryId = editCategoryModal?.querySelector(
+    ".categoryId"
+  ) as HTMLInputElement;
+
+  _categoryHtmlPage.OnUpdateCategory(+categoryId.value, {
+    name: categoryNameInput.value,
+  });
 });
 // End of events

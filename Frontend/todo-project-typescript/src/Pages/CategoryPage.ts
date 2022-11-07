@@ -65,6 +65,29 @@ export default class CategoryHtmlPage {
       });
   }
 
+  OnUpdateCategory(id: number, category: ICategory) {
+    this._categoryService
+      .UpdateCategory(id, category)
+      .then((response) => {
+        toastr.success(
+          `${response.data.name} category has been updated succesfully !`
+        );
+        this.categories.find((c) => c.id == id)!.name = response.data.name;
+
+        categoriesBtn.click();
+      })
+      .catch((err) => {
+        toastr.error(err.message);
+      })
+      .finally(function () {
+        let closeButton = document.querySelector(
+          "#closeUpdateCategoryModalButton"
+        ) as HTMLButtonElement;
+
+        closeButton.click();
+      });
+  }
+
   MapToTable() {
     tableBody.innerHTML = "";
     const resultData = this.categories
@@ -75,7 +98,9 @@ export default class CategoryHtmlPage {
         <th scope="col">${el.todosCount}</th>
         <th scope="col">
           <a data-bs-toggle="modal"
-          data-bs-target="#editCategoryModal" data-id="${el.id}" data-name="${
+          data-bs-target="#editCategoryModal" data-id="${
+            el.id
+          }" data-todoCount ="${el.todosCount}" data-name="${
           el.name
         }" class="btn btn-primary">Edit</a>
          
