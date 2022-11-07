@@ -1,8 +1,8 @@
 import Swal from "sweetalert2";
-import ICategory from "../Interfaces/ICategory";
 import ITodo from "../Interfaces/ITodo";
 import CategoryService from "../Services/CategoryService";
 import TodoService from "../Services/TodoService";
+import toastr from "toastr";
 import {
   categoriesSelectInput,
   DisplayTodoModalButton,

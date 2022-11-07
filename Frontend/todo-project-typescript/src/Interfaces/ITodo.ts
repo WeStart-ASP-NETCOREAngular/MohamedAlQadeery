@@ -3,7 +3,7 @@ export default interface ITodo {
   task: string;
   description?: string;
   categoryName?: string;
-  categoryId: number;
-  isCompleted: boolean;
-  dueDate: Date;
+  categoryId?: number;
+  isCompleted?: boolean;
+  dueDate?: Date;
 }

@@ -74,3 +74,17 @@ TodoHtmlElements_1.DisplayTodoModalButton.addEventListener("click", function (e)
     e.preventDefault();
     _todoHtmlPage.OnCreateTodoModalDisplay();
 });
+TodoHtmlElements_1.addTodoButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    let category_input = document.querySelector("#CategoriesSelectInput");
+    let category_Id = category_input.value;
+    let todoTask = document.querySelector("#todoTask");
+    let todoDescription = document.querySelector("#todoDescription");
+    let dueDate = document.querySelector("#dueDate");
+    _todoHtmlPage.OnClickCreateTodo({
+        categoryId: +category_Id,
+        task: todoTask.value,
+        description: todoDescription.value,
+        dueDate: new Date(dueDate.value),
+    });
+});

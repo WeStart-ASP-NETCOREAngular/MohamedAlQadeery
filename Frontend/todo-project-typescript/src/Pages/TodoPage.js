@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sweetalert2_1 = __importDefault(require("sweetalert2"));
 const CategoryService_1 = __importDefault(require("../Services/CategoryService"));
 const TodoService_1 = __importDefault(require("../Services/TodoService"));
+const toastr_1 = __importDefault(require("toastr"));
 const TodoHtmlElements_1 = require("../Shared/TodoHtmlElements");
 const tableHead = document.querySelector("#tableHead");
 const tableBody = document.querySelector("#tableBody");
@@ -21,7 +22,7 @@ class TodoPage {
             .then((response) => {
             this.todos = response.data;
         })
-            .catch((err) => toastr.error(err.message));
+            .catch((err) => toastr_1.default.error(err.message));
     }
     OnTodosClick() {
         UpdateTable();
@@ -33,12 +34,12 @@ class TodoPage {
             .AddTodo(todo)
             .then((response) => {
             this.todos.push(response.data);
-            toastr.success(`Task is added successfully!`);
+            toastr_1.default.success(`Task is added successfully!`);
             this.MapToTable();
             TodoHtmlElements_1.todosBtn.click();
         })
             .catch((err) => {
-            toastr.error(err.message);
+            toastr_1.default.error(err.message);
         })
             .finally(function () {
             TodoHtmlElements_1.DisplayTodoModalButton.click(); // closes the modal when clicking on the button again
@@ -52,7 +53,7 @@ class TodoPage {
             this.todos = this.todos.filter((c) => c.id != id);
         })
             .catch((err) => {
-            toastr.error(err.message);
+            toastr_1.default.error(err.message);
             console.log(err);
         })
             .finally(function () {
@@ -107,7 +108,7 @@ class TodoPage {
             const result = response.data.map((el) => `<option value ="${el.id}">${el.name}</option>`);
             TodoHtmlElements_1.categoriesSelectInput.innerHTML = "" + result;
         })
-            .catch((err) => toastr.error(err.message));
+            .catch((err) => toastr_1.default.error(err.message));
     }
 }
 exports.default = TodoPage;

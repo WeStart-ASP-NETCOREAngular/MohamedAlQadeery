@@ -105,3 +105,25 @@ DisplayTodoModalButton.addEventListener("click", function (e) {
   e.preventDefault();
   _todoHtmlPage.OnCreateTodoModalDisplay();
 });
+
+addTodoButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  let category_input = document.querySelector(
+    "#CategoriesSelectInput"
+  ) as HTMLInputElement;
+  let category_Id = category_input.value;
+
+  let todoTask = document.querySelector("#todoTask") as HTMLInputElement;
+  let todoDescription = document.querySelector(
+    "#todoDescription"
+  ) as HTMLInputElement;
+
+  let dueDate = document.querySelector("#dueDate") as HTMLInputElement;
+
+  _todoHtmlPage.OnClickCreateTodo({
+    categoryId: +category_Id,
+    task: todoTask.value,
+    description: todoDescription.value,
+    dueDate: new Date(dueDate.value),
+  });
+});
