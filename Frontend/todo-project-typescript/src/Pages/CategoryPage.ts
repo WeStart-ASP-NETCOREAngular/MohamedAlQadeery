@@ -7,6 +7,7 @@ import {
   categoriesTableHead,
   DisplayCategoryModalButton,
 } from "../Shared/CategoryHtmlElements";
+import Swal from "sweetalert2";
 
 const tableHead = document.querySelector("#tableHead") as HTMLElement;
 const tableBody = document.querySelector("#tableBody") as HTMLElement;
@@ -45,6 +46,22 @@ export default class CategoryHtmlPage {
       })
       .finally(function () {
         DisplayCategoryModalButton.click(); // closes the modal when clicking on the button again
+      });
+  }
+
+  OnClickDeleteCategory(id: number) {
+    this._categoryService
+      .DeleteCategory(id)
+      .then((response) => {
+        Swal.fire("Success", `category has been deleted`, "success");
+        this.categories = this.categories.filter((c) => c.id != id);
+      })
+      .catch((err) => {
+        toastr.error(err.message);
+        console.log(err);
+      })
+      .finally(function () {
+        categoriesBtn.click();
       });
   }
 

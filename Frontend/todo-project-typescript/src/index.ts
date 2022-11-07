@@ -8,6 +8,7 @@ import {
   DisplayCategoryModalButton,
 } from "./Shared/CategoryHtmlElements";
 import CategoryPage from "./Pages/CategoryPage";
+import Swal from "sweetalert2";
 
 const _categoryHtmlPage: CategoryPage = new CategoryPage();
 
@@ -31,4 +32,26 @@ createCategoryButton.addEventListener("click", function (e) {
   _categoryHtmlPage.OnClickCreateCategory({ name: categoryName.value });
 });
 
+document.addEventListener("click", function (e) {
+  if (e.target && (<HTMLElement>e.target).id == "delete-category") {
+    const deleteButton = e.target as HTMLButtonElement;
+    let id = deleteButton.getAttribute("data-id")!;
+
+    Swal.fire({
+      title: "Are you sure to delete this category?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((willDelete) => {
+      if (willDelete.dismiss) {
+        Swal.fire("Category is not deleted");
+      } else if (willDelete) {
+        _categoryHtmlPage.OnClickDeleteCategory(+id);
+      }
+    });
+  }
+});
 // End of events
