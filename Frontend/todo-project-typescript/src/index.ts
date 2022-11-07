@@ -11,13 +11,21 @@ import {
 } from "./Shared/CategoryHtmlElements";
 import CategoryPage from "./Pages/CategoryPage";
 import Swal from "sweetalert2";
+import TodoPage from "./Pages/TodoPage";
+import {
+  addTodoButton,
+  DisplayTodoModalButton,
+  todosBtn,
+} from "./Shared/TodoHtmlElements";
 
 const _categoryHtmlPage: CategoryPage = new CategoryPage();
+const _todoHtmlPage: TodoPage = new TodoPage();
 
 // Start of events
 window.addEventListener("load", function (e) {
   e.preventDefault();
   _categoryHtmlPage.OnPageLoad();
+  _todoHtmlPage.OnPageLoad();
 });
 
 categoriesBtn.addEventListener("click", function (e) {
@@ -87,3 +95,13 @@ updateCategoryButton?.addEventListener("click", function (event) {
   });
 });
 // End of events
+
+todosBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  _todoHtmlPage.OnTodosClick();
+});
+
+DisplayTodoModalButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  _todoHtmlPage.OnCreateTodoModalDisplay();
+});

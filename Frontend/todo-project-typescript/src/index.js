@@ -6,11 +6,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const CategoryHtmlElements_1 = require("./Shared/CategoryHtmlElements");
 const CategoryPage_1 = __importDefault(require("./Pages/CategoryPage"));
 const sweetalert2_1 = __importDefault(require("sweetalert2"));
+const TodoPage_1 = __importDefault(require("./Pages/TodoPage"));
+const TodoHtmlElements_1 = require("./Shared/TodoHtmlElements");
 const _categoryHtmlPage = new CategoryPage_1.default();
+const _todoHtmlPage = new TodoPage_1.default();
 // Start of events
 window.addEventListener("load", function (e) {
     e.preventDefault();
     _categoryHtmlPage.OnPageLoad();
+    _todoHtmlPage.OnPageLoad();
 });
 CategoryHtmlElements_1.categoriesBtn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -62,3 +66,11 @@ CategoryHtmlElements_1.updateCategoryButton === null || CategoryHtmlElements_1.u
     });
 });
 // End of events
+TodoHtmlElements_1.todosBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    _todoHtmlPage.OnTodosClick();
+});
+TodoHtmlElements_1.DisplayTodoModalButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    _todoHtmlPage.OnCreateTodoModalDisplay();
+});

@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sweetalert2_1 = __importDefault(require("sweetalert2"));
+const CategoryService_1 = __importDefault(require("../Services/CategoryService"));
 const TodoService_1 = __importDefault(require("../Services/TodoService"));
 const TodoHtmlElements_1 = require("../Shared/TodoHtmlElements");
 const tableHead = document.querySelector("#tableHead");
@@ -12,6 +13,7 @@ class TodoPage {
     constructor() {
         this.todos = [];
         this._todosService = new TodoService_1.default();
+        this._categoriesService = new CategoryService_1.default();
     }
     OnPageLoad() {
         this._todosService
@@ -97,6 +99,15 @@ class TodoPage {
         })
             .join(" ");
         tableBody.innerHTML = resultData;
+    }
+    OnCreateTodoModalDisplay() {
+        this._categoriesService
+            .GetAllCategories()
+            .then((response) => {
+            const result = response.data.map((el) => `<option value ="${el.id}">${el.name}</option>`);
+            TodoHtmlElements_1.categoriesSelectInput.innerHTML = "" + result;
+        })
+            .catch((err) => toastr.error(err.message));
     }
 }
 exports.default = TodoPage;

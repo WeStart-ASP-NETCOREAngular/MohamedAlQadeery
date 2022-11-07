@@ -1,7 +1,10 @@
 import Swal from "sweetalert2";
+import ICategory from "../Interfaces/ICategory";
 import ITodo from "../Interfaces/ITodo";
+import CategoryService from "../Services/CategoryService";
 import TodoService from "../Services/TodoService";
 import {
+  categoriesSelectInput,
   DisplayTodoModalButton,
   todosBtn,
   todosTableHead,
@@ -12,7 +15,7 @@ const tableBody = document.querySelector("#tableBody") as HTMLElement;
 export default class TodoPage {
   public todos: ITodo[] = [];
   private _todosService: TodoService = new TodoService();
-
+  private _categoriesService: CategoryService = new CategoryService();
   constructor() {}
 
   OnPageLoad() {
@@ -117,6 +120,19 @@ export default class TodoPage {
       .join(" ");
 
     tableBody.innerHTML = resultData;
+  }
+
+  OnCreateTodoModalDisplay() {
+    this._categoriesService
+      .GetAllCategories()
+      .then((response) => {
+        const result = response.data.map(
+          (el) => `<option value ="${el.id}">${el.name}</option>`
+        );
+
+        categoriesSelectInput.innerHTML = "" + result;
+      })
+      .catch((err) => toastr.error(err.message));
   }
 }
 

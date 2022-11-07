@@ -14,6 +14,9 @@ export const updateTodoButton = document.querySelector(
 ) as HTMLButtonElement;
 export const editTodoModal = document.querySelector("#editTodoModal");
 
+export const categoriesSelectInput = document.querySelector(
+  "#CategoriesSelectInput"
+) as HTMLInputElement;
 export const todosTableHead = ` <tr>
 <th scope="col">#</th>
 <th scope="col">Name</th>
