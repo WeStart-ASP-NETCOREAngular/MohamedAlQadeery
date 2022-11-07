@@ -62,6 +62,25 @@ document.addEventListener("click", function (e) {
         _categoryHtmlPage.OnClickDeleteCategory(+id);
       }
     });
+  } else if (e.target && (<HTMLElement>e.target).id == "delete-todo") {
+    const deleteButton = e.target as HTMLButtonElement;
+    let id = deleteButton.getAttribute("data-id")!;
+
+    Swal.fire({
+      title: "Are you sure to delete this Todo?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((willDelete) => {
+      if (willDelete.dismiss) {
+        Swal.fire("Todo is not deleted");
+      } else if (willDelete) {
+        _todoHtmlPage.OnClickDeleteTodo(+id);
+      }
+    });
   }
 });
 

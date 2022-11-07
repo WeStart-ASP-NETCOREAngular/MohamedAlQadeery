@@ -46,6 +46,26 @@ document.addEventListener("click", function (e) {
             }
         });
     }
+    else if (e.target && e.target.id == "delete-todo") {
+        const deleteButton = e.target;
+        let id = deleteButton.getAttribute("data-id");
+        sweetalert2_1.default.fire({
+            title: "Are you sure to delete this Todo?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then((willDelete) => {
+            if (willDelete.dismiss) {
+                sweetalert2_1.default.fire("Todo is not deleted");
+            }
+            else if (willDelete) {
+                _todoHtmlPage.OnClickDeleteTodo(+id);
+            }
+        });
+    }
 });
 CategoryHtmlElements_1.editCategoryModal === null || CategoryHtmlElements_1.editCategoryModal === void 0 ? void 0 : CategoryHtmlElements_1.editCategoryModal.addEventListener("show.bs.modal", function (event) {
     // Button that triggered the modal
