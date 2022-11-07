@@ -10,7 +10,7 @@ export const updateCategoryButton = document.querySelector(
 
 export const DisplayCategoryModalButton = document.querySelector(
   "#DisplayCategoryModalButton"
-);
+) as HTMLButtonElement;
 export const editCategoryModal = document.querySelector("#editCategoryModal");
 
 export const categoriesTableHead = ` <tr>
