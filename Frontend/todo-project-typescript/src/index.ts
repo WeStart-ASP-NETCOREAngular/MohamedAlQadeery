@@ -1,11 +1,6 @@
-import ICategory from "./Interfaces/ICategory";
-import CategoryService from "./Services/CategoryService";
-import toastr from "toastr";
 import {
   categoriesBtn,
-  categoriesTableHead,
   createCategoryButton,
-  DisplayCategoryModalButton,
   editCategoryModal,
   updateCategoryButton,
 } from "./Shared/CategoryHtmlElements";
@@ -15,7 +10,9 @@ import TodoPage from "./Pages/TodoPage";
 import {
   addTodoButton,
   DisplayTodoModalButton,
+  editTodoModal,
   todosBtn,
+  updateTodoButton,
 } from "./Shared/TodoHtmlElements";
 
 const _categoryHtmlPage: CategoryPage = new CategoryPage();
@@ -40,6 +37,126 @@ createCategoryButton.addEventListener("click", function (e) {
   ) as HTMLInputElement;
 
   _categoryHtmlPage.OnClickCreateCategory({ name: categoryName.value });
+});
+
+editCategoryModal?.addEventListener("show.bs.modal", function (event) {
+  // Button that triggered the modal
+  const editButton = event.relatedTarget as HTMLButtonElement;
+  var categoryName = editButton.getAttribute("data-name");
+
+  let id = editButton.getAttribute("data-id");
+
+  const modalCategoryName = editCategoryModal.querySelector(
+    ".categoryUpdateName"
+  );
+  const modalcategoryId = editCategoryModal.querySelector(".categoryId");
+
+  modalCategoryName?.setAttribute("value", `${categoryName}`);
+  modalcategoryId?.setAttribute("value", `${id}`);
+});
+
+updateCategoryButton?.addEventListener("click", function (event) {
+  event.preventDefault();
+  let categoryNameInput = editCategoryModal?.querySelector(
+    ".categoryUpdateName"
+  ) as HTMLInputElement;
+  let categoryId = editCategoryModal?.querySelector(
+    ".categoryId"
+  ) as HTMLInputElement;
+
+  _categoryHtmlPage.OnUpdateCategory(+categoryId.value, {
+    name: categoryNameInput.value,
+  });
+});
+
+todosBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  _todoHtmlPage.OnTodosClick();
+});
+
+DisplayTodoModalButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  _todoHtmlPage.OnCreateTodoModalDisplay();
+});
+
+addTodoButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  let category_input = document.querySelector(
+    "#CategoriesSelectInput"
+  ) as HTMLInputElement;
+  let category_Id = category_input.value;
+
+  let todoTask = document.querySelector("#todoTask") as HTMLInputElement;
+  let todoDescription = document.querySelector(
+    "#todoDescription"
+  ) as HTMLInputElement;
+
+  let dueDate = document.querySelector("#dueDate") as HTMLInputElement;
+
+  _todoHtmlPage.OnClickCreateTodo({
+    categoryId: +category_Id,
+    task: todoTask.value,
+    description: todoDescription.value,
+    dueDate: new Date(dueDate.value),
+  });
+});
+
+editTodoModal?.addEventListener("show.bs.modal", function (event) {
+  const editButton = event.relatedTarget!;
+  let id = editButton.getAttribute("data-id")!;
+  let task = editButton.getAttribute("data-task")!;
+  let description = editButton.getAttribute("data-description")!;
+  let isCompleted = editButton.getAttribute("data-isCompleted")!;
+  let categoryName = editButton.getAttribute("data-categoryName")!;
+
+  const todo_id = editTodoModal.querySelector("#todo_id") as HTMLInputElement;
+  const editTodoTask = editTodoModal.querySelector(
+    "#editTodoTask"
+  ) as HTMLInputElement;
+  const editTodoDescription = editTodoModal.querySelector(
+    "#editTodoDescription"
+  ) as HTMLInputElement;
+
+  const todoStatus = editTodoModal.querySelector(
+    "#todoStatus"
+  ) as HTMLInputElement;
+
+  todo_id.setAttribute("value", id);
+  editTodoTask.setAttribute("value", task);
+  editTodoDescription.innerHTML = description;
+
+  _todoHtmlPage.OnUpdateTodoModalDisplay(categoryName);
+});
+
+updateTodoButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  let id = editTodoModal.querySelector("#todo_id") as HTMLInputElement;
+
+  let editTodoTask = editTodoModal.querySelector(
+    "#editTodoTask"
+  ) as HTMLInputElement;
+
+  let editTodoDescription = editTodoModal.querySelector(
+    "#editTodoDescription"
+  ) as HTMLInputElement;
+
+  let todoStatus_input = editTodoModal?.querySelector(
+    "#todoStatus"
+  ) as HTMLInputElement;
+
+  let todoStatus: boolean = todoStatus_input.value === "true";
+  let editDueDate = document.querySelector("#editDueDate") as HTMLInputElement;
+  let categoryId = document.querySelector(
+    "#editCategoriesSelectInput"
+  ) as HTMLInputElement;
+
+  _todoHtmlPage.OnUpdateTodo(+id.value, {
+    task: editTodoTask.value,
+    description: editTodoDescription.value,
+    isCompleted: todoStatus,
+    categoryId: parseInt(categoryId.value),
+    dueDate: editDueDate.value,
+  });
 });
 
 document.addEventListener("click", function (e) {
@@ -83,66 +200,4 @@ document.addEventListener("click", function (e) {
     });
   }
 });
-
-editCategoryModal?.addEventListener("show.bs.modal", function (event) {
-  // Button that triggered the modal
-  const editButton = event.relatedTarget as HTMLButtonElement;
-  var categoryName = editButton.getAttribute("data-name");
-
-  let id = editButton.getAttribute("data-id");
-
-  const modalCategoryName = editCategoryModal.querySelector(
-    ".categoryUpdateName"
-  );
-  const modalcategoryId = editCategoryModal.querySelector(".categoryId");
-
-  modalCategoryName?.setAttribute("value", `${categoryName}`);
-  modalcategoryId?.setAttribute("value", `${id}`);
-});
-
-updateCategoryButton?.addEventListener("click", function (event) {
-  event.preventDefault();
-  let categoryNameInput = editCategoryModal?.querySelector(
-    ".categoryUpdateName"
-  ) as HTMLInputElement;
-  let categoryId = editCategoryModal?.querySelector(
-    ".categoryId"
-  ) as HTMLInputElement;
-
-  _categoryHtmlPage.OnUpdateCategory(+categoryId.value, {
-    name: categoryNameInput.value,
-  });
-});
 // End of events
-
-todosBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  _todoHtmlPage.OnTodosClick();
-});
-
-DisplayTodoModalButton.addEventListener("click", function (e) {
-  e.preventDefault();
-  _todoHtmlPage.OnCreateTodoModalDisplay();
-});
-
-addTodoButton.addEventListener("click", function (e) {
-  e.preventDefault();
-  let category_input = document.querySelector(
-    "#CategoriesSelectInput"
-  ) as HTMLInputElement;
-  let category_Id = category_input.value;
-
-  let todoTask = document.querySelector("#todoTask") as HTMLInputElement;
-  let todoDescription = document.querySelector(
-    "#todoDescription"
-  ) as HTMLInputElement;
-
-  let dueDate = document.querySelector("#dueDate") as HTMLInputElement;
-
-  _todoHtmlPage.OnClickCreateTodo({
-    categoryId: +category_Id,
-    task: todoTask.value,
-    description: todoDescription.value,
-    dueDate: new Date(dueDate.value),
-  });
-});

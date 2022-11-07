@@ -12,7 +12,7 @@ export const addTodoButton = document.querySelector(
 export const updateTodoButton = document.querySelector(
   "#updateTodoButton"
 ) as HTMLButtonElement;
-export const editTodoModal = document.querySelector("#editTodoModal");
+export const editTodoModal = document.querySelector("#editTodoModal")!;
 
 export const categoriesSelectInput = document.querySelector(
   "#CategoriesSelectInput"
@@ -24,3 +24,7 @@ export const todosTableHead = ` <tr>
 <th scope="col">Status</th>
 <th scope="col">Action</th>
 </tr>`;
+
+export const editCategoriesSelectInput = document.querySelector(
+  "#editCategoriesSelectInput"
+) as HTMLInputElement;

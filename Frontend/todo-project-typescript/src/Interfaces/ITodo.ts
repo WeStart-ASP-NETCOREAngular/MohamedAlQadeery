@@ -5,5 +5,5 @@ export default interface ITodo {
   categoryName?: string;
   categoryId?: number;
   isCompleted?: boolean;
-  dueDate?: Date;
+  dueDate?: Date | string;
 }

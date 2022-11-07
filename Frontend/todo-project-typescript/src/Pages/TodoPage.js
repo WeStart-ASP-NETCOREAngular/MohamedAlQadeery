@@ -60,26 +60,27 @@ class TodoPage {
             TodoHtmlElements_1.todosBtn.click();
         });
     }
-    //   OnUpdateCategory(id: number, category: ICategory) {
-    //     this._categoryService
-    //       .UpdateCategory(id, category)
-    //       .then((response) => {
-    //         toastr.success(
-    //           `${response.data.name} category has been updated succesfully !`
-    //         );
-    //         this.todos.find((c) => c.id == id)!.name = response.data.name;
-    //         categoriesBtn.click();
-    //       })
-    //       .catch((err) => {
-    //         toastr.error(err.message);
-    //       })
-    //       .finally(function () {
-    //         let closeButton = document.querySelector(
-    //           "#closeUpdateCategoryModalButton"
-    //         ) as HTMLButtonElement;
-    //         closeButton.click();
-    //       });
-    //   }
+    OnUpdateTodo(id, todo) {
+        this._todosService
+            .UpdateTodo(id, todo)
+            .then((response) => {
+            toastr_1.default.success(` todo has been updated succesfully !`);
+            let foundTodo = this.todos.find((c) => c.id == id);
+            foundTodo.task = todo === null || todo === void 0 ? void 0 : todo.task;
+            foundTodo.description = todo === null || todo === void 0 ? void 0 : todo.description;
+            foundTodo.isCompleted = todo === null || todo === void 0 ? void 0 : todo.isCompleted;
+            foundTodo.categoryId = todo === null || todo === void 0 ? void 0 : todo.categoryId;
+            foundTodo.dueDate = todo.dueDate;
+            TodoHtmlElements_1.todosBtn.click();
+        })
+            .catch((err) => {
+            toastr_1.default.error(err.message);
+        })
+            .finally(function () {
+            let closeButton = document.querySelector("#closeEditTodoModalButton");
+            closeButton.click();
+        });
+    }
     MapToTable() {
         tableBody.innerHTML = "";
         const resultData = this.todos
@@ -107,6 +108,15 @@ class TodoPage {
             .then((response) => {
             const result = response.data.map((el) => `<option value ="${el.id}">${el.name}</option>`);
             TodoHtmlElements_1.categoriesSelectInput.innerHTML = "" + result;
+        })
+            .catch((err) => toastr_1.default.error(err.message));
+    }
+    OnUpdateTodoModalDisplay(categoryName) {
+        this._categoriesService
+            .GetAllCategories()
+            .then((response) => {
+            const result = response.data.map((el) => `<option value ="${el.id}" ${categoryName == el.name ? "selected" : ""}>${el.name}</option>`);
+            TodoHtmlElements_1.editCategoriesSelectInput.innerHTML = "" + result;
         })
             .catch((err) => toastr_1.default.error(err.message));
     }
