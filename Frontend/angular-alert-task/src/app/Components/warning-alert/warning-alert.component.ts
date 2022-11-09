@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './warning-alert.component.html',
   styleUrls: ['./warning-alert.component.css'],
 })
-export class WarningComponent {}
+export class WarningComponent {
+  text: string = 'Warning Alert';
+}
