@@ -17,8 +17,8 @@
     Simple Post MVC Crud (No EF Core)
   
   -[WebApi](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/WebApi)
-    the project was written in one layer (Web api project) rewrite this code using clean architecture  
+    the project was written in one layer (Web api project) rewrite this code using clean architecture 
     
-    -[CustomerApp](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/CustomerApp)
-      -Simple Customer CRUD (No EF Core)  
-      -use Javascript Promises (fetch-api) to add and display customers
+   -[CustomerApp](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/CustomerApp)  
+      Simple Customer CRUD (No EF Core)  
+      use Javascript Promises (fetch-api) to add and display customers  
