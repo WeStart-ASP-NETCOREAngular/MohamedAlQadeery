@@ -10,14 +10,14 @@
   -[Thrid-Task](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/Third-Task/CarStoreApplication)  
   Exercise for Generic List  
  
-  -[PortfolioApp](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/PortfolioApp)
-  add documation for the api and loclaiztion   
+  -[PortfolioApp](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/PortfolioApp)  
+  Add documation for the api and loclaiztion   
   
-  -[PostMVc](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/PostMvcApp)
-    Simple Post MVC Crud (No EF Core)
+  -[PostMVc](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/PostMvcApp)  
+    Simple Post MVC Crud (No EF Core)  
   
-  -[WebApi](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/WebApi)
-    the project was written in one layer (Web api project) rewrite this code using clean architecture 
+  -[WebApi](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/WebApi)  
+    the project was written in one layer (Web api project) rewrite this code using clean architecture   
     
    -[CustomerApp](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/CustomerApp)  
       Simple Customer CRUD (No EF Core)  
