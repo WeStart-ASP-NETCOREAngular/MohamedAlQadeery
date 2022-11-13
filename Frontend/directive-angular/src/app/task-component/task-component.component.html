@@ -1,0 +1,11 @@
+
+
+<button (click)="OnClickDisplayButton()">Display</button>
+
+<p *ngIf="displayPara">{{para}}</p>
+
+<ul>
+  <li *ngFor="let log of logList let i= index">
+    <span [ngStyle]="{'background-color': i> 5 ? 'blue':''}">{{log}}</span>
+  </li>
+</ul>
