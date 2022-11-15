@@ -25,6 +25,13 @@ export class TodoFormComponent implements OnInit {
       content: this.todoContent,
     };
     this.onAddTodoEvent?.emit(todo);
+
+    this.ClearInputs();
+  }
+
+  private ClearInputs() {
+    this.todoTitle = '';
+    this.todoContent = '';
   }
 
   DisableAddButton(): boolean {
