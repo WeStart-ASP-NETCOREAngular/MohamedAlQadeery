@@ -1,1 +1,15 @@
-<p>todo-form works!</p>
+<h1>Add new Todo</h1>
+
+
+<!-- form -->
+<label>Todo Title:</label>
+<input type="text" class="form-control" [(ngModel)]="todoTitle" />
+<label>Todo Content:</label>
+<input type="text" class="form-control" [(ngModel)]="todoContent" />
+<br />
+<button [disabled]="DisableAddButton()" type="submit" class="btn btn-primary"
+  (click)="OnAddTodo()">
+  Add task
+</button>
+
+<hr>

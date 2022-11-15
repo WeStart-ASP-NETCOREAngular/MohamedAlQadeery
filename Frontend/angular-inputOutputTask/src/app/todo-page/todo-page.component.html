@@ -1,1 +1,4 @@
-<p>todo-page works!</p>
+<div class="container">
+  <app-todo-form (onAddTodoEvent)="HandleOnAddTodo($event)"></app-todo-form>
+  <app-todo-item *ngFor="let todoItem of todos" [todo]="todoItem"></app-todo-item>
+</div>
