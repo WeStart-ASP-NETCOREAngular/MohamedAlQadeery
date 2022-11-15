@@ -4,8 +4,8 @@
     <strong style="color: blue"> {{ todo?.title }}</strong>
 
     <div>
-      <button class="btn btn-secondary">Edit</button>
-      <button class="btn btn-danger ms-1">Delete</button>
+      <button class="btn btn-secondary" (click)="OnClickEditButton">Edit</button>
+      <button class="btn btn-danger ms-1" (click)="OnClickDelteButton()">Delete</button>
     </div>
   </div>
 </div>
