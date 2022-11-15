@@ -15,4 +15,9 @@ export class TodoPageComponent implements OnInit {
   HandleOnAddTodo($event: ITodo) {
     this.todos.push($event);
   }
+
+  HandleOnDeleteTodo($event: number) {
+    console.log($event);
+    this.todos = this.todos.filter((t) => t.id != $event);
+  }
 }

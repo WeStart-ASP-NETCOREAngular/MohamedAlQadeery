@@ -1,4 +1,5 @@
 <div class="container">
   <app-todo-form (onAddTodoEvent)="HandleOnAddTodo($event)"></app-todo-form>
-  <app-todo-item *ngFor="let todoItem of todos" [todo]="todoItem"></app-todo-item>
+  <app-todo-item *ngFor="let todoItem of todos" [todo]="todoItem"
+    (OnDeleteTodo)="HandleOnDeleteTodo($event)"></app-todo-item>
 </div>
