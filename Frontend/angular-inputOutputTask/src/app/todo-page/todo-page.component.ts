@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, OnInit, EventEmitter } from '@angular/core';
 import { ITodo } from '../interfaces/ITodo';
 
 @Component({
@@ -10,6 +10,10 @@ export class TodoPageComponent implements OnInit {
   todos: ITodo[] = [];
   constructor() {}
 
+  showEditForm = false;
+
+  todoToEdit: ITodo = {};
+
   ngOnInit(): void {}
 
   HandleOnAddTodo($event: ITodo) {
@@ -19,5 +23,19 @@ export class TodoPageComponent implements OnInit {
   HandleOnDeleteTodo($event: number) {
     console.log($event);
     this.todos = this.todos.filter((t) => t.id != $event);
+  }
+
+  HandleOnEditTodo($event: ITodo) {
+    this.todoToEdit = $event;
+    this.showEditForm = true;
+  }
+
+  HandleOnUpdateTodo($event: ITodo) {
+    let todoToUpdate = this.todos.find((t) => t.id == $event.id)!;
+    todoToUpdate.title = $event.title;
+    todoToUpdate.content = $event.content;
+
+    console.log('todo is updated');
+    this.showEditForm = false;
   }
 }

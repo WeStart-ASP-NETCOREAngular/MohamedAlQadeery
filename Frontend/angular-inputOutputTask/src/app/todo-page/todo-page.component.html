@@ -1,5 +1,8 @@
 <div class="container">
   <app-todo-form (onAddTodoEvent)="HandleOnAddTodo($event)"></app-todo-form>
+  <app-edit-todo-form *ngIf="showEditForm" [todoToEdit]="todoToEdit"
+    (OnUpdateTodoEvent)="HandleOnUpdateTodo($event)"></app-edit-todo-form>
   <app-todo-item *ngFor="let todoItem of todos" [todo]="todoItem"
-    (OnDeleteTodo)="HandleOnDeleteTodo($event)"></app-todo-item>
+    (OnDeleteTodo)="HandleOnDeleteTodo($event)"
+    (OnEditButtonClicked)="HandleOnEditTodo($event)"></app-todo-item>
 </div>

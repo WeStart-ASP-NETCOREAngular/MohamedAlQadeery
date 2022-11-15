@@ -1,0 +1,15 @@
+<h1>Edit {{todoToEdit.title}} Todo</h1>
+
+
+<!-- form -->
+<label>Todo Title:</label>
+<input type="text" class="form-control" [(ngModel)]="title" />
+<label>Todo Content:</label>
+<input type="text" class="form-control" [(ngModel)]="content" />
+<br />
+<button [disabled]="DisableEditButton()" type="submit" class="btn btn-primary"
+  (click)="OnEditTodo()">
+  Update Task
+</button>
+
+<hr>

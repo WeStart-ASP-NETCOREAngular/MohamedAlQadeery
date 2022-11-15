@@ -6,6 +6,7 @@ import { TodoItemComponent } from './todo-item/todo-item.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import { TodoPageComponent } from './todo-page/todo-page.component';
 import { FormsModule } from '@angular/forms';
+import { EditTodoFormComponent } from './edit-todo-form/edit-todo-form.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { FormsModule } from '@angular/forms';
     TodoItemComponent,
     TodoFormComponent,
     TodoPageComponent,
+    EditTodoFormComponent,
   ],
   imports: [BrowserModule, FormsModule],
   providers: [],

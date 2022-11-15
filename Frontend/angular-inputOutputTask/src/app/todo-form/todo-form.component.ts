@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ITodo } from '../interfaces/ITodo';
 
 @Component({
@@ -12,6 +12,7 @@ export class TodoFormComponent implements OnInit {
   genrateId: number = 0;
 
   @Output() onAddTodoEvent = new EventEmitter<ITodo>();
+
   isEmptyInput: boolean = false;
   constructor() {}
 

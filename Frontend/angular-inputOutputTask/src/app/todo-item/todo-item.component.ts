@@ -7,9 +7,9 @@ import { ITodo } from '../interfaces/ITodo';
   styleUrls: ['./todo-item.component.css'],
 })
 export class TodoItemComponent implements OnInit {
-  @Input() todo: ITodo | undefined;
+  @Input() todo: ITodo = {};
 
-  @Output() OnEditTodo = new EventEmitter<ITodo>();
+  @Output() OnEditButtonClicked = new EventEmitter<ITodo>();
   @Output() OnDeleteTodo = new EventEmitter<number>();
 
   constructor() {}
@@ -17,7 +17,9 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {}
 
   OnClickEditButton() {
-    this.OnEditTodo?.emit(this.todo);
+    console.log('edit button click from todo item');
+
+    this.OnEditButtonClicked?.emit(this.todo);
   }
 
   OnClickDelteButton() {
