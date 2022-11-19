@@ -1,4 +1,5 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { TodosService } from 'src/app/_services/todos.service';
 import { ITodo } from '../../_interfaces/ITodo';
 
 @Component({
@@ -10,8 +11,12 @@ export class EditTodoFormComponent implements OnInit {
   @Input() todoToEdit: ITodo = {};
   title = '';
   content = '';
-  @Output() OnUpdateTodoEvent = new EventEmitter<ITodo>();
-  constructor() {}
+
+  // this event will invoked after the updated finish so we can hide the edit form
+  @Output() OnUpdatedFinished = new EventEmitter();
+  //
+
+  constructor(public _todoService: TodosService) {}
 
   ngOnInit(): void {
     this.title = this.todoToEdit.title!;
@@ -21,7 +26,9 @@ export class EditTodoFormComponent implements OnInit {
   OnEditTodo() {
     this.todoToEdit.title = this.title;
     this.todoToEdit.content = this.content;
-    this.OnUpdateTodoEvent?.emit(this.todoToEdit);
+
+    this._todoService.UpdateTodo(this.todoToEdit);
+    this.OnUpdatedFinished.emit(); // invoke the event
   }
   DisableEditButton() {
     if (this.todoToEdit.title == '' || this.todoToEdit.content == '') {

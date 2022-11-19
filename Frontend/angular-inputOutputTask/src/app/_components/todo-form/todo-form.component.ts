@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TodosService } from 'src/app/_services/todos.service';
 import { ITodo } from '../../_interfaces/ITodo';
 
 @Component({
@@ -14,7 +15,7 @@ export class TodoFormComponent implements OnInit {
   @Output() onAddTodoEvent = new EventEmitter<ITodo>();
 
   isEmptyInput: boolean = false;
-  constructor() {}
+  constructor(public _todoService: TodosService) {}
 
   ngOnInit(): void {}
 
@@ -24,7 +25,8 @@ export class TodoFormComponent implements OnInit {
       title: this.todoTitle,
       content: this.todoContent,
     };
-    this.onAddTodoEvent?.emit(todo);
+
+    this._todoService.AddTodo(todo);
 
     this.ClearInputs();
   }

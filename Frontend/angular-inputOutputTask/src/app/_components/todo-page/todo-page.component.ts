@@ -1,40 +1,39 @@
-import { Component, Output, OnInit, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Output,
+  OnInit,
+  EventEmitter,
+  OnDestroy,
+} from '@angular/core';
+import { TodosService } from 'src/app/_services/todos.service';
 import { ITodo } from '../../_interfaces/ITodo';
 @Component({
   selector: 'app-todo-page',
   templateUrl: './todo-page.component.html',
   styleUrls: ['./todo-page.component.css'],
 })
-export class TodoPageComponent implements OnInit {
+export class TodoPageComponent implements OnInit, OnDestroy {
   todos: ITodo[] = [];
-  constructor() {}
+  constructor(public _todoService: TodosService) {}
 
   showEditForm = false;
 
   todoToEdit: ITodo = {};
 
-  ngOnInit(): void {}
-
-  HandleOnAddTodo($event: ITodo) {
-    this.todos.push($event);
+  ngOnInit(): void {
+    this._todoService.OnEditTodo.subscribe((editTodo: ITodo) => {
+      this.todoToEdit = editTodo;
+      this.showEditForm = true;
+    });
   }
 
-  HandleOnDeleteTodo($event: number) {
-    console.log($event);
-    this.todos = this.todos.filter((t) => t.id != $event);
+  ngOnDestroy(): void {
+    this._todoService.OnEditTodo.unsubscribe();
+
+    console.log('TodoPageComponent unsubscribed from edit todo event');
   }
 
-  HandleOnEditTodo($event: ITodo) {
-    this.todoToEdit = $event;
-    this.showEditForm = true;
-  }
-
-  HandleOnUpdateTodo($event: ITodo) {
-    let todoToUpdate = this.todos.find((t) => t.id == $event.id)!;
-    todoToUpdate.title = $event.title;
-    todoToUpdate.content = $event.content;
-
-    console.log('todo is updated');
+  HandleOnUpdatedFinsihed() {
     this.showEditForm = false;
   }
 }

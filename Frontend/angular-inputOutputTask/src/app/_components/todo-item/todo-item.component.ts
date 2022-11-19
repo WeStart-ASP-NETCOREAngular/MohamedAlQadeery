@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TodosService } from 'src/app/_services/todos.service';
 import { ITodo } from '../../_interfaces/ITodo';
 
 @Component({
@@ -9,20 +10,15 @@ import { ITodo } from '../../_interfaces/ITodo';
 export class TodoItemComponent implements OnInit {
   @Input() todo: ITodo = {};
 
-  @Output() OnEditButtonClicked = new EventEmitter<ITodo>();
-  @Output() OnDeleteTodo = new EventEmitter<number>();
-
-  constructor() {}
+  constructor(public _todoService: TodosService) {}
 
   ngOnInit(): void {}
 
   OnClickEditButton() {
-    console.log('edit button click from todo item');
-
-    this.OnEditButtonClicked?.emit(this.todo);
+    this._todoService.OnEditTodo.emit(this.todo);
   }
 
   OnClickDelteButton() {
-    this.OnDeleteTodo?.emit(this.todo?.id);
+    this._todoService.DeleteTodo(this.todo.id!);
   }
 }

@@ -1,8 +1,7 @@
 <div class="container">
-  <app-todo-form (onAddTodoEvent)="HandleOnAddTodo($event)"></app-todo-form>
+  <app-todo-form></app-todo-form>
+
   <app-edit-todo-form *ngIf="showEditForm" [todoToEdit]="todoToEdit"
-    (OnUpdateTodoEvent)="HandleOnUpdateTodo($event)"></app-edit-todo-form>
-  <app-todo-item *ngFor="let todoItem of todos" [todo]="todoItem"
-    (OnDeleteTodo)="HandleOnDeleteTodo($event)"
-    (OnEditButtonClicked)="HandleOnEditTodo($event)"></app-todo-item>
+    (OnUpdatedFinished)="HandleOnUpdatedFinsihed()"></app-edit-todo-form>
+  <app-todo-item *ngFor="let todoItem of _todoService.todos" [todo]="todoItem"></app-todo-item>
 </div>
