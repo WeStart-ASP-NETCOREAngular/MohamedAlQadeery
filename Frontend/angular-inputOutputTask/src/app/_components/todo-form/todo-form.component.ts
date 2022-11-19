@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ITodo } from '../interfaces/ITodo';
+import { ITodo } from '../../_interfaces/ITodo';
 
 @Component({
   selector: 'app-todo-form',

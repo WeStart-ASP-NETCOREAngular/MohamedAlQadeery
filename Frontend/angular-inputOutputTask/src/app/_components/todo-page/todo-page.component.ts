@@ -1,6 +1,5 @@
 import { Component, Output, OnInit, EventEmitter } from '@angular/core';
-import { ITodo } from '../interfaces/ITodo';
-
+import { ITodo } from '../../_interfaces/ITodo';
 @Component({
   selector: 'app-todo-page',
   templateUrl: './todo-page.component.html',
