@@ -9,7 +9,8 @@ export class TodosService {
 
   constructor() {}
 
-  OnEditTodo = new EventEmitter<ITodo>();
+  OnEditTodoSelected = new EventEmitter<ITodo>();
+  OnUpdatedTodo = new EventEmitter(); //Invoke after todo is updated
 
   AddTodo(todo: ITodo) {
     this.todos.push(todo);
@@ -23,5 +24,6 @@ export class TodosService {
     let todoToUpdate = this.todos.find((t) => t.id == todo.id)!;
     todoToUpdate.title = todo.title;
     todoToUpdate.content = todo.content;
+    this.OnUpdatedTodo.emit();
   }
 }

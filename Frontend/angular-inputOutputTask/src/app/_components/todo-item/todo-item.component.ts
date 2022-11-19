@@ -15,7 +15,7 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {}
 
   OnClickEditButton() {
-    this._todoService.OnEditTodo.emit(this.todo);
+    this._todoService.OnEditTodoSelected.emit(this.todo);
   }
 
   OnClickDelteButton() {

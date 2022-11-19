@@ -21,14 +21,18 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   todoToEdit: ITodo = {};
 
   ngOnInit(): void {
-    this._todoService.OnEditTodo.subscribe((editTodo: ITodo) => {
+    this._todoService.OnEditTodoSelected.subscribe((editTodo: ITodo) => {
       this.todoToEdit = editTodo;
       this.showEditForm = true;
+    });
+
+    this._todoService.OnUpdatedTodo.subscribe(() => {
+      this.showEditForm = false;
     });
   }
 
   ngOnDestroy(): void {
-    this._todoService.OnEditTodo.unsubscribe();
+    this._todoService.OnEditTodoSelected.unsubscribe();
 
     console.log('TodoPageComponent unsubscribed from edit todo event');
   }

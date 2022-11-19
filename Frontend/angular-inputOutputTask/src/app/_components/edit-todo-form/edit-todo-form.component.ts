@@ -12,10 +12,6 @@ export class EditTodoFormComponent implements OnInit {
   title = '';
   content = '';
 
-  // this event will invoked after the updated finish so we can hide the edit form
-  @Output() OnUpdatedFinished = new EventEmitter();
-  //
-
   constructor(public _todoService: TodosService) {}
 
   ngOnInit(): void {
@@ -28,7 +24,6 @@ export class EditTodoFormComponent implements OnInit {
     this.todoToEdit.content = this.content;
 
     this._todoService.UpdateTodo(this.todoToEdit);
-    this.OnUpdatedFinished.emit(); // invoke the event
   }
   DisableEditButton() {
     if (this.todoToEdit.title == '' || this.todoToEdit.content == '') {
