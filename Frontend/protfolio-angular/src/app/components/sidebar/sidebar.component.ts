@@ -7,11 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
-  constructor(private _router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {}
-
-  OnClickPosts() {
-    this._router.navigate(['posts']);
-  }
 }
