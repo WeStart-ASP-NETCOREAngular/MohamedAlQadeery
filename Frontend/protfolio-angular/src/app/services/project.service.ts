@@ -27,4 +27,8 @@ export class ProjectService {
   public GetAllProjects(): IProject[] {
     return this._project;
   }
+
+  public GetProjectById(id: number): IProject | undefined {
+    return this._project.find((p) => p.id == id);
+  }
 }
