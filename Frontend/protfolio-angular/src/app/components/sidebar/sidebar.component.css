@@ -1,90 +1,76 @@
-.sidebar{
+.sidebar {
   grid-area: sidebar;
   background-color: #f6f6f6;
   padding: 1.5rem;
   height: 100vh;
-
-
 }
 
 .sticky {
   position: sticky;
   top: 2em;
-
 }
-.sidebar img{
- margin-bottom: 1rem;
-
+.sidebar img {
+  margin-bottom: 1rem;
 }
 
-.sidebar a.dev-name{
-font-size: 23px;
-font-weight: 400;
-color: #3f3d56;
-text-decoration: none;
-
+.sidebar a.dev-name {
+  font-size: 23px;
+  font-weight: 400;
+  color: #3f3d56;
+  text-decoration: none;
 }
 
-.sidebar p.job-text{
+.sidebar p.job-text {
   font-weight: 400;
   color: rgb(106, 103, 103);
   font-size: 12px;
 }
-.sidebar p.email{
+.sidebar p.email {
   font-weight: 400;
   color: rgb(196, 194, 194);
   font-size: 10px;
 }
 
-div.socials{
-  padding-top: .4rem;
+div.socials {
+  padding-top: 0.4rem;
   font-size: 30px;
-
 }
 
-.sidebar a{
+.sidebar a {
   color: inherit;
 }
-.sidebar a:hover{
+.sidebar a:hover {
   color: rgb(106, 32, 114);
 }
-
 
 .sidebar-footer {
   position: fixed;
   top: 95%;
-  color: rgba(63,61,86,0.5019607843137255 );
+  color: rgba(63, 61, 86, 0.5019607843137255);
 }
 
-.heart{
+.heart {
   color: rgb(231, 139, 198);
 }
 
-@media (max-width:500px) {
-  .sidebar{
-
-    grid-column:span ;
+@media (max-width: 500px) {
+  .sidebar {
+    grid-column: span;
     grid-area: sidebar;
 
     background-color: #f6f6f6;
 
-    width:100vw;
+    width: 100%;
     height: 100%;
     text-align: center;
+  }
+  .sidebar img {
+    display: block;
+    padding: 1em;
+    margin: 0 auto;
+  }
 
-
-
-
-}
-
-
-.sidebar img{
-  display:block;
-  padding: 1em;
-  margin: 0 auto;
-}
-
-.sidebar-footer {
- display: none;
-}
+  .sidebar-footer {
+    display: none;
+  }
 }
