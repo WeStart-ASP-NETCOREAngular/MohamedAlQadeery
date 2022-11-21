@@ -5,7 +5,7 @@ import { IProject } from '../interfaces/IProject';
   providedIn: 'root',
 })
 export class ProjectService {
-  private _project: IProject[] = [
+  private _projects: IProject[] = [
     {
       id: 1,
       title: 'First Project',
@@ -25,10 +25,10 @@ export class ProjectService {
   constructor() {}
 
   public GetAllProjects(): IProject[] {
-    return this._project;
+    return this._projects;
   }
 
   public GetProjectById(id: number): IProject | undefined {
-    return this._project.find((p) => p.id == id);
+    return this._projects.find((p) => p.id == id);
   }
 }

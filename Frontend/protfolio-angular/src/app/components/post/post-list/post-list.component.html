@@ -1,1 +1,15 @@
-<p>post-list works!</p>
+<div class="flex-container">
+  <div class="blog-item" *ngFor="let post of posts">
+    <p class="blog-date"><i><i class="bi bi-clock"></i></i>
+      {{post.createdAt.toDateString()}}</p>
+    <a [routerLink]="['posts/',post.id]" class="blog-title">{{post.title}}</a>
+    <p class="blog-text">
+      {{post.body}}
+    </p>
+    <a [routerLink]="['posts/',post.id]"><span class="blog-link">Read More
+      </span></a>
+  </div>
+
+
+
+</div>
