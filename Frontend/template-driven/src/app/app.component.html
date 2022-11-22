@@ -1,0 +1,64 @@
+<div class="container">
+
+  <div class="row justify-content-center">
+    <div class="col-md-6 pt-5">
+
+      <div class="alert alert-danger" *ngIf="isNotValid">
+        <ul>
+          <li>
+            Form is not valid
+          </li>
+
+
+
+        </ul>
+      </div>
+
+      <form #loginForm="ngForm">
+
+        <div class="mb-3">
+          <label class="form-label" for="Username">Username : </label>
+          <input class="form-control" type="text" name="username"
+            ngModel
+            #username="ngModel"
+            required>
+
+          <p class="text-danger" *ngIf="!username.valid && username.touched">
+            Username is required
+          </p>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="Username">Skill : </label>
+          <select name="skill" class="form-control" [ngModel]="defaultSelect">
+            <option value="basic">Basic</option>
+            <option value="advanced">advanced</option>
+            <option value="pro">pro</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="Email">Email :</label>
+          <input class="form-control" type="text" name="email" ngModel
+            #email="ngModel" required email>
+
+          <p class="text-danger" *ngIf="!email.valid && email.touched">
+            email is not valid
+          </p>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="Password">Password :</label>
+          <input class="form-control" type="password" name="password" ngModel
+            required #password="ngModel">
+
+          <p class="text-danger" *ngIf="!password.valid && password.touched">
+            password is not valid
+          </p>
+        </div>
+
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
