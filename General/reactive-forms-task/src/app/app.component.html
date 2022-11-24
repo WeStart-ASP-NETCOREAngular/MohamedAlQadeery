@@ -1,0 +1,45 @@
+<div class="container">
+
+  <div class="row justify-content-center">
+    <div class="col-md-6 pt-5">
+
+
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+
+        <div class="mb-3">
+          <label class="form-label" for="Project">Project : </label>
+          <input class="form-control" formControlName="projectName" type="text">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="Email">Email : </label>
+          <input class="form-control" formControlName="email" type="text">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="Username">Project status : </label>
+          <select name="status" formControlName="status" class="form-control">
+            <option value="stable">stable</option>
+            <option value="critical">critical</option>
+            <option value="finished">finished</option>
+          </select>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      <br>
+      <div class="alert alert-success" *ngIf="isSubmit && projectForm.valid">
+        project Name : {{projectName}}<br>
+        email : {{email}}<br>
+        status : {{status}}
+      </div>
+
+      <div *ngIf="!projectForm.valid && projectForm.touched" class="alert
+        alert-danger">
+        Something is not valid in the form
+      </div>
+    </div>
+  </div>
+</div>
