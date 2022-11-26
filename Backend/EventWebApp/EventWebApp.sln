@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventWebApp.api", "EventWebApp\EventWebApp.api.csproj", "{FEB37EE1-E2C0-45F2-AFC5-C4942BB4F49A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventWebApp", "EventWebApp\EventWebApp.csproj", "{FEB37EE1-E2C0-45F2-AFC5-C4942BB4F49A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventWebApp.Domain", "EventWebApp.Domain\EventWebApp.Domain.csproj", "{9D9452EF-F436-47AC-9534-239E0CCAB77C}"
 EndProject
