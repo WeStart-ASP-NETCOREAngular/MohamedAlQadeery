@@ -17,6 +17,8 @@ namespace EventWebApp.Domain.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
+
+
         public List<EventTag> EventTags { get; set; }
 
         public List<EventUser> EventUsers { get; set; }
