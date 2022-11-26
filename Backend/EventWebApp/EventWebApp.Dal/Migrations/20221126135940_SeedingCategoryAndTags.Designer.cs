@@ -4,6 +4,7 @@ using EventWebApp.Dal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventWebApp.Dal.Migrations
 {
     [DbContext(typeof(EventWebAppDbContext))]
-    partial class EventWebAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221126135940_SeedingCategoryAndTags")]
+    partial class SeedingCategoryAndTags
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,13 +119,13 @@ namespace EventWebApp.Dal.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 11, 26, 16, 3, 38, 974, DateTimeKind.Local).AddTicks(6615),
+                            CreatedAt = new DateTime(2022, 11, 26, 15, 59, 40, 727, DateTimeKind.Local).AddTicks(7525),
                             Name = "Sport"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 11, 26, 16, 3, 38, 974, DateTimeKind.Local).AddTicks(6649),
+                            CreatedAt = new DateTime(2022, 11, 26, 15, 59, 40, 727, DateTimeKind.Local).AddTicks(7559),
                             Name = "Gaming"
                         });
                 });
@@ -197,7 +199,7 @@ namespace EventWebApp.Dal.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedAt")
+                    b.Property<DateTime>("DeletedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -212,25 +214,29 @@ namespace EventWebApp.Dal.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 11, 26, 16, 3, 38, 974, DateTimeKind.Local).AddTicks(6762),
+                            CreatedAt = new DateTime(2022, 11, 26, 15, 59, 40, 727, DateTimeKind.Local).AddTicks(7697),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "WorldCup"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 11, 26, 16, 3, 38, 974, DateTimeKind.Local).AddTicks(6765),
+                            CreatedAt = new DateTime(2022, 11, 26, 15, 59, 40, 727, DateTimeKind.Local).AddTicks(7700),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "FPS"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2022, 11, 26, 16, 3, 38, 974, DateTimeKind.Local).AddTicks(6767),
+                            CreatedAt = new DateTime(2022, 11, 26, 15, 59, 40, 727, DateTimeKind.Local).AddTicks(7702),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Music"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2022, 11, 26, 16, 3, 38, 974, DateTimeKind.Local).AddTicks(6769),
+                            CreatedAt = new DateTime(2022, 11, 26, 15, 59, 40, 727, DateTimeKind.Local).AddTicks(7704),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "FIFA"
                         });
                 });

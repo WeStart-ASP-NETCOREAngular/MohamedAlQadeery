@@ -21,6 +21,21 @@ namespace EventWebApp.Dal
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Category>().HasData(
+              new Category { Id = 1, Name="Sport" },
+              new Category { Id = 2, Name="Gaming" }
+              );
+
+               modelBuilder.Entity<Tag>().HasData(
+              new Tag { Id = 1, Name="WorldCup" },
+              new Tag { Id = 2, Name="FPS" },
+              new Tag { Id = 3, Name="Music" },
+              new Tag { Id = 4, Name="FIFA" }
+              );
+
+          
+
             modelBuilder.Entity<EventTag>().HasKey(et => new {et.EventId,et.TagId});
             modelBuilder.Entity<EventUser>().HasKey(eu => new {eu.EventId,eu.AppUserId });
         }
