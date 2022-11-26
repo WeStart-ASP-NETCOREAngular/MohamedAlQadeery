@@ -16,6 +16,6 @@ namespace EventWebApp.Domain.Models
 
         public DateTime? DeletedAt { get; set; } = null;
 
-        public List<EventUser>? EventUsers { get; set; }
+        public List<EventUser>? EventUsers { get; set; } = null;
     }
 }
