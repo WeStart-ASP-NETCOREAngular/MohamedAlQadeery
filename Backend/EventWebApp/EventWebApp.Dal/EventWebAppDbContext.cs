@@ -15,6 +15,14 @@ namespace EventWebApp.Dal
         public EventWebAppDbContext(DbContextOptions<EventWebAppDbContext> options) : base(options)
         {
 
+
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<EventTag>().HasKey(et => new {et.EventId,et.TagId});
+            modelBuilder.Entity<EventUser>().HasKey(eu => new {eu.EventId,eu.AppUserId });
         }
 
         public DbSet<AppUser>  Users { get; set; }
