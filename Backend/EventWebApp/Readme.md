@@ -45,6 +45,8 @@ Main features
 ---------------------------
 - Manage all events (CRUD)  
 - Manage all users (CRUD)  
+- Manage All Categories (CRUD)  
+- Manage All Tags (CRUD)  
 
 
 -----------------------------------------
