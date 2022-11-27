@@ -1,4 +1,5 @@
-﻿using EventWebApp.Domain.Models;
+﻿using EventWebApp.Contracts.DTOs.Category;
+using EventWebApp.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace EventWebApp.Domain.Abstraction.Repositories
 {
     public interface ICategoryRepository
     {
-        Task<List<Category>> GetAllAsync();
-        Task<Category> GetByIdAsync(int id);
+        Task<List<CategoryDto>> GetAllAsync();
+        Task<CategoryDto> GetByIdAsync(int id);
         Task<Category> CreateAsync(Category createdCategory);
         Task<Category> UpdateAsync(Category updatedCategory);
         Task<bool> DeleteAsync(int id);

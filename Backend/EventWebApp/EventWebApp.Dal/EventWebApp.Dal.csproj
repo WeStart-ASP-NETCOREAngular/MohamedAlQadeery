@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EventWebApp.Contracts\EventWebApp.Contracts.csproj" />
     <ProjectReference Include="..\EventWebApp.Domain\EventWebApp.Domain.csproj" />
   </ItemGroup>
 

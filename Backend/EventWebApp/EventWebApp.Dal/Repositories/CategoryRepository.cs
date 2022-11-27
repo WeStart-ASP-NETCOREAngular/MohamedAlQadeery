@@ -1,4 +1,5 @@
-﻿using EventWebApp.Domain.Abstraction.Repositories;
+﻿using EventWebApp.Contracts.DTOs.Category;
+using EventWebApp.Domain.Abstraction.Repositories;
 using EventWebApp.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,14 +19,15 @@ namespace EventWebApp.Dal.Repositories
             _context = ctx;
         }
 
-        public async Task<List<Category>> GetAllAsync()
+        public async Task<List<CategoryDto>> GetAllAsync()
         {
-            return await _context.Categories.ToListAsync();
+            return await _context.Categories.Select(c => new CategoryDto
+            { Id=c.Id,Name = c.Name,CreatedAt=c.CreatedAt}).ToListAsync();
         }
 
-        public async Task<Category> GetByIdAsync(int id)
+        public async Task<CategoryDto> GetByIdAsync(int id)
         {
-            return await _context.Categories.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
+            return await _context.Categories.AsNoTracking().Select(c => new CategoryDto { Name =c.Name,Id=c.Id,CreatedAt=c.CreatedAt}).FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<Category> CreateAsync(Category createdCategory)
