@@ -10,8 +10,8 @@ namespace EventWebApp.Domain.Abstraction.Repositories
 {
     public interface ICategoryRepository
     {
-        Task<List<CategoryDto>> GetAllAsync();
-        Task<CategoryDto> GetByIdAsync(int id);
+        Task<List<ListCategoryDto>> GetAllAsync();
+        Task<ListCategoryDto> GetByIdAsync(int id);
         Task<Category> CreateAsync(Category createdCategory);
         Task<Category> UpdateAsync(Category updatedCategory);
         Task<bool> DeleteAsync(int id);

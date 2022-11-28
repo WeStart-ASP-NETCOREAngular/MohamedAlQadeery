@@ -19,15 +19,15 @@ namespace EventWebApp.Dal.Repositories
             _context = ctx;
         }
 
-        public async Task<List<CategoryDto>> GetAllAsync()
+        public async Task<List<ListCategoryDto>> GetAllAsync()
         {
-            return await _context.Categories.Select(c => new CategoryDto
+            return await _context.Categories.Select(c => new ListCategoryDto
             { Id=c.Id,Name = c.Name,CreatedAt=c.CreatedAt}).ToListAsync();
         }
 
-        public async Task<CategoryDto> GetByIdAsync(int id)
+        public async Task<ListCategoryDto> GetByIdAsync(int id)
         {
-            return await _context.Categories.AsNoTracking().Select(c => new CategoryDto { Name =c.Name,Id=c.Id,CreatedAt=c.CreatedAt}).FirstOrDefaultAsync(c => c.Id == id);
+            return await _context.Categories.AsNoTracking().Select(c => new ListCategoryDto { Name =c.Name,Id=c.Id,CreatedAt=c.CreatedAt}).FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<Category> CreateAsync(Category createdCategory)
