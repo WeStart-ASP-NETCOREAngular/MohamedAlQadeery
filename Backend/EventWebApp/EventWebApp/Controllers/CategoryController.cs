@@ -6,12 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EventWebApp.Controllers
 {
+    /// <summary>
+    /// Category api Controller 
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+   
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryRepository _categoryRepository;
 
+        private readonly ICategoryRepository _categoryRepository;
+        
+        /// <summary>
+        /// Category Controller to inject services
+        /// </summary>
+        /// <param name="categoryRepository"></param>
         public CategoryController(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
@@ -71,13 +80,70 @@ namespace EventWebApp.Controllers
         /// <response code="400">There was validation error in cateogry values </response>
 
         [HttpPost]
+      
         public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
         {
-            var category = new Category { Name = createCategoryDto.Name };
-           await _categoryRepository.CreateAsync(category);
+            var categoryToCreate = new Category { Name = createCategoryDto.Name };
+           await _categoryRepository.CreateAsync(categoryToCreate);
 
-            return CreatedAtAction(nameof(GetCategoryById), new { id = category.Id }, category);
+            return CreatedAtAction(nameof(GetCategoryById), new { id = categoryToCreate.Id }, categoryToCreate);
 
+        }
+
+        /// <summary>
+        /// Update a specifc Category by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updateCategoryDto"></param>
+        /// <returns>
+        /// returns a category after being updated
+        /// </returns>
+        /// 
+        /// /// /// <remarks>
+        /// Sample request:
+        ///
+        ///     PUT /Category
+        ///     { 
+        ///        "name": "Updated Sport",
+        ///       
+        ///     }
+        ///
+        /// </remarks>
+        /// <response code="204">Category is updated successfully</response>
+        /// <response code="400">Category is not updated id/validation error</response>
+      
+        [HttpPut("{id}")]
+       
+        public async Task<IActionResult> UpdateCategory(int id ,UpdateCategoryDto updateCategoryDto)
+        {
+            var categoryToUpdate = new Category { Name = updateCategoryDto.Name };
+            var isUpdated=   await _categoryRepository.UpdateAsync(id, categoryToUpdate);
+            if (isUpdated != null) return NoContent();
+
+            return BadRequest();
+
+        }
+
+
+
+
+        /// <summary>
+        /// Delete a specfic category by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        ///  returns 204 success status code with no content
+        /// </returns>
+        /// <response code="204">Category is deleted successfully</response>
+        /// <response code="400">Category is not deleted (Id could be wrong)</response>
+        [HttpDelete("{id}")]
+   
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            var isDeleted = await _categoryRepository.DeleteAsync(id);
+            if (isDeleted) return NoContent();
+
+            return BadRequest();
         }
 
     }

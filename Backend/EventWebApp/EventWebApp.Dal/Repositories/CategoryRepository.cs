@@ -48,12 +48,13 @@ namespace EventWebApp.Dal.Repositories
     
         public async Task<Category> UpdateAsync(int id,Category updatedCategory)
         {
-            var category = await _context.Categories.FindAsync(id);
-            if(category == null) { return null; }
+            var categoryToUpdate = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            if(categoryToUpdate == null) { return null; }
+            categoryToUpdate.Name = updatedCategory.Name;
 
-            _context.Categories.Update(updatedCategory);
+            _context.Categories.Update(categoryToUpdate);
             await _context.SaveChangesAsync();
-            return updatedCategory;
+            return categoryToUpdate;
         }
     }
 }

@@ -14,5 +14,6 @@ namespace EventWebApp.Contracts.DTOs.Category
 
         public string Name { get; set; }
 
+
     }
 }
