@@ -12,7 +12,7 @@ namespace EventWebApp.Domain.Abstraction.Repositories
         Task<List<Tag>> GetAllAsync();
         Task<Tag> GetByIdAsync(int id);
         Task<Tag> CreateAsync(Tag createdTag);
-        Task<Tag> UpdateAsync(Tag updatedTag);
+        Task<Tag> UpdateAsync(int id,Tag updatedTag);
         Task<bool> DeleteAsync(int id);
     }
 }

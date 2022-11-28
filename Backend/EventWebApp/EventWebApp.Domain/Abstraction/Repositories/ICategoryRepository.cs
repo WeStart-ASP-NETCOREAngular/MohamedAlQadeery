@@ -13,7 +13,7 @@ namespace EventWebApp.Domain.Abstraction.Repositories
         Task<List<ListCategoryDto>> GetAllAsync();
         Task<ListCategoryDto> GetByIdAsync(int id);
         Task<Category> CreateAsync(Category createdCategory);
-        Task<Category> UpdateAsync(Category updatedCategory);
+        Task<Category> UpdateAsync(int id,Category updatedCategory);
         Task<bool> DeleteAsync(int id);
 
     }

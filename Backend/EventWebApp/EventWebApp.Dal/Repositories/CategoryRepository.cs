@@ -46,8 +46,11 @@ namespace EventWebApp.Dal.Repositories
         }
 
     
-        public async Task<Category> UpdateAsync(Category updatedCategory)
+        public async Task<Category> UpdateAsync(int id,Category updatedCategory)
         {
+            var category = await _context.Categories.FindAsync(id);
+            if(category == null) { return null; }
+
             _context.Categories.Update(updatedCategory);
             await _context.SaveChangesAsync();
             return updatedCategory;
