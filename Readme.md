@@ -21,6 +21,13 @@
    -[CustomerApp](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/CustomerApp)  
       Simple Customer CRUD (No EF Core)  
       use Javascript Promises (fetch-api) to add and display customers  
+      
+  -[directive-angular](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/Frontend/directive-angular)  
+ Angular task that cover directives (ngIF,ngFor) and covers NgStyle    
+
+-[template-driven](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/Frontend/template-driven)  
+ Angular task that cover template driven forms  
+    
 
 ## Frontend -> Tasks related to front end projects  Angular etc..  
 -[First Project](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/Frontend/First-Project)  
@@ -35,8 +42,11 @@
  -[angular-alert-task](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/Frontend/angular-alert-task)  
  Make first angular app and 2 components warning alert and success alert and display them beneath each other  
  
- -[directive-angular](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/Frontend/directive-angular)  
- Angular task that cover directives (ngIF,ngFor) and covers NgStyle    
+
+-[reactive-forms-task](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/reactive-forms-task  
+ Angular task that cover reactive  forms 
+ 
+
 
 ## Backend->Tasks related to backend Asp.net core/web api etc..  
 -[PortfolioApplication](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/Backend/PortfolioApplication)  
@@ -44,5 +54,7 @@
   
   -[PortfolioApplication-WebApi](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/Frontend/todo-project-npm)  
   use the profolio design we made in front end task and create the backend for it using Asp.net core Web Api
+  
+  
 
 
