@@ -1,4 +1,5 @@
-﻿using EventWebApp.Domain.Abstraction.Repositories;
+﻿using EventWebApp.Contracts.DTOs.Category;
+using EventWebApp.Domain.Abstraction.Repositories;
 using EventWebApp.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,15 @@ namespace EventWebApp.Controllers
         }
 
       
+        [HttpPost]
+        public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
+        {
+            var category = new Category { Name = createCategoryDto.Name };
+           await _categoryRepository.CreateAsync(category);
+
+            return CreatedAtAction(nameof(GetCategoryById), new { id = category.Id }, category);
+
+        }
 
     }
 }
