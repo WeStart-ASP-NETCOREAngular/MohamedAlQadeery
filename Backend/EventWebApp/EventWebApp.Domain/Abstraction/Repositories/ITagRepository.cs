@@ -1,4 +1,5 @@
-﻿using EventWebApp.Domain.Models;
+﻿using EventWebApp.Contracts.DTOs.Tag;
+using EventWebApp.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace EventWebApp.Domain.Abstraction.Repositories
 {
     public interface ITagRepository
     {
-        Task<List<Tag>> GetAllAsync();
-        Task<Tag> GetByIdAsync(int id);
+        Task<List<ListTagDto>> GetAllAsync();
+        Task<ListTagDto> GetByIdAsync(int id);
         Task<Tag> CreateAsync(Tag createdTag);
         Task<Tag> UpdateAsync(int id,Tag updatedTag);
         Task<bool> DeleteAsync(int id);
