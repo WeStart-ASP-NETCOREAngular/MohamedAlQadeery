@@ -12,7 +12,7 @@ import { HubConnection } from '@microsoft/signalr/dist/esm/HubConnection';
 export class AppComponent implements OnInit {
   title = 'signalr-angular';
   messageForm: FormGroup;
-  messages: string[] = [];
+  messages: { name: string; message: string }[] = [];
   hubConnection: HubConnection;
   constructor(public _authService: AuthService) {}
 
@@ -33,7 +33,22 @@ export class AppComponent implements OnInit {
       .catch((error) => {
         console.log(error);
       });
+
+    this.hubConnection.on('onMessageRecived', (user, message) => {
+      this.messages.push({ name: user, message: message });
+      console.log('message recesvied');
+    });
   }
 
-  SendMessage() {}
+  SendMessage() {
+    const { message } = this.messageForm.value;
+
+    this.hubConnection.invoke(
+      'SendMessageToAll',
+      this._authService.GetUsername(),
+      message
+    );
+    this.messageForm.reset();
+    console.log('Sending message.......');
+  }
 }

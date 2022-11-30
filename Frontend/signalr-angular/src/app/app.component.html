@@ -16,17 +16,32 @@
       <app-login *ngIf="!_authService.isAuthenticted();else loggedInBlock"></app-login>
       <ng-template #loggedInBlock>
 
-        <div class="display-5">
+        <div class="display-5 mb-5 text-center">
           Welcome {{_authService.GetUsername()}}
 
         </div>
 
-        <div class="row">
-          <form [formGroup]="messageForm" (ngSubmit)="SendMessage()">
-            <input type="text" formControlName="message">
-            <button type="submit">Send</button>
-          </form>
+        <div class="row justify-content-center mb-3">
+          <div class="col-6">
+            <form [formGroup]="messageForm" (ngSubmit)="SendMessage()">
+              <label class="form-label">Enter your message</label>
+              <input type="text" class="form-control mb-2"
+                formControlName="message">
+              <button [disabled]="!messageForm.valid" type="submit" class="btn
+                btn-success">Send</button>
+            </form>
+          </div>
         </div>
+
+        <div class="row ">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let message of messages">
+              <span class="text-success"> {{ message.name}} :
+                {{message.message}}</span>
+            </li>
+          </ul>
+        </div>
+
 
       </ng-template>
     </div>
