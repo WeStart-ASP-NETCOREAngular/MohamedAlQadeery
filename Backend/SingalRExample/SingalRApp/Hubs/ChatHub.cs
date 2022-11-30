@@ -14,7 +14,27 @@ namespace SingalRApp.Hubs
             await Clients.Client(connectionId).SendAsync("onMessageRecived",message);
         }
 
+        public override  Task OnConnectedAsync()
+        {
+            UserList.ConnectedClients.Add(Context.ConnectionId);
+             Clients.All.SendAsync("onConnectedClientsUpdated", UserList.ConnectedClients.ToList());
+            return base.OnConnectedAsync();
+        }
 
+        public override Task OnDisconnectedAsync(Exception? exception)
+        {
+            UserList.ConnectedClients.Remove(Context.ConnectionId);
+            Clients.All.SendAsync("onConnectedClientsUpdated", UserList.ConnectedClients.ToList());
+
+            return base.OnDisconnectedAsync(exception);
+        }
+
+    }
+
+
+    public static class UserList
+    {
+        public static HashSet<string> ConnectedClients = new HashSet<string>();
     }
 
 
