@@ -13,7 +13,10 @@ export class AppComponent implements OnInit {
   title = 'signalr-angular';
   messageForm: FormGroup;
   messages: { name: string; message: string }[] = [];
+  // userList: { connectionId: string; username: string }[] = [];
+  userList: string[] = [];
   hubConnection: HubConnection;
+
   constructor(public _authService: AuthService) {}
 
   ngOnInit(): void {
@@ -21,22 +24,37 @@ export class AppComponent implements OnInit {
       message: new FormControl('', Validators.required),
     });
 
-    this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('https://localhost:7248/chathub')
-      .build();
+    this._authService.onLoggedInEvent.subscribe(() => {
+      this.hubConnection = new signalR.HubConnectionBuilder()
+        .withUrl('https://localhost:7248/chathub')
+        .build();
 
-    this.hubConnection
-      .start()
-      .then(() => {
-        console.log('Connection started successfully');
-      })
-      .catch((error) => {
-        console.log(error);
+      this.hubConnection
+        .start()
+        .then(() => {
+          console.log('Connection started successfully');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      this.hubConnection.on('onMessageRecived', (user, message) => {
+        this.messages.push({ name: user, message: message });
+        console.log('message recesvied');
       });
 
-    this.hubConnection.on('onMessageRecived', (user, message) => {
-      this.messages.push({ name: user, message: message });
-      console.log('message recesvied');
+      this.hubConnection.on('onConnectedClientsUpdated', (users) => {
+        this.userList = users;
+      });
+
+      // this.hubConnection.on('onConnectedClientsUpdated', (users: string[]) => {
+      //   users.forEach((u) =>
+      //     this.userList.push({
+      //       connectionId: u,
+      //       username: this._authService.GetUsername(),
+      //     })
+      //   );
+      // });
     });
   }
 

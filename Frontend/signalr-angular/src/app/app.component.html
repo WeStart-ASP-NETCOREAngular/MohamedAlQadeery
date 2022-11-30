@@ -21,6 +21,17 @@
 
         </div>
 
+
+        <div class="row mb-3">
+          <div class="col-3" *ngFor="let user of userList">
+            <div class="card">
+              <div class="card-body">
+                {{user}}
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="row justify-content-center mb-3">
           <div class="col-6">
             <form [formGroup]="messageForm" (ngSubmit)="SendMessage()">
@@ -32,6 +43,8 @@
             </form>
           </div>
         </div>
+
+
 
         <div class="row ">
           <ul class="list-group">
