@@ -10,11 +10,20 @@
 
     <div class="container mt-5">
 
-      <div class="display-5 text-center mb-4">
+      <div class="display-2 text-center mb-4">
         SignalR Testing
       </div>
-      <app-login></app-login>
+      <app-login *ngIf="!_authService.isAuthenticted();else loggedInBlock"></app-login>
+      <ng-template #loggedInBlock>
 
+        <div class="display-5">
+          Welcome {{_authService.GetUsername()}}
+
+        </div>
+
+
+
+      </ng-template>
     </div>
 
   </body>

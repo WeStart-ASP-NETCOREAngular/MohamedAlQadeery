@@ -3,7 +3,8 @@
     <form [formGroup]="userNameForm" (ngSubmit)="OnSubmitUsernameForm()">
       <label for="form-label">Enter Your Username</label>
       <input class="form-control mb-3" formControlName="username" type="text" />
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button [disabled]="!userNameForm.valid" type="submit" class="btn
+        btn-primary">Submit</button>
     </form>
   </div>
 </div>

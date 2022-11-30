@@ -6,13 +6,19 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   constructor() {}
-  private username: string;
+  private username: string = '';
+  private isLoggedIn = false;
 
   public SetUsername(name: string) {
     this.username = name;
+    this.isLoggedIn = true;
   }
 
   public GetUsername(): string {
     return this.username;
+  }
+
+  public isAuthenticted(): boolean {
+    return this.isLoggedIn;
   }
 }
