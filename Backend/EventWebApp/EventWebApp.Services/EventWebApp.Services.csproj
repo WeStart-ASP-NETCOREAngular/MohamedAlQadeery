@@ -6,4 +6,8 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EventWebApp.Domain\EventWebApp.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

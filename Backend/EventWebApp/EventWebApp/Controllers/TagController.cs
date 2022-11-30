@@ -1,5 +1,6 @@
 ﻿using EventWebApp.Contracts.DTOs.Tag;
 using EventWebApp.Domain.Abstraction.Repositories;
+using EventWebApp.Domain.Abstraction.Services;
 using EventWebApp.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ namespace EventWebApp.Controllers
     public class TagController : ControllerBase
     {
 
+
         private readonly ITagRepository _TagRepository;
 
         /// <summary>
@@ -22,6 +24,7 @@ namespace EventWebApp.Controllers
         public TagController(ITagRepository TagRepository)
         {
             _TagRepository = TagRepository;
+            
         }
 
         /// <summary>
@@ -34,7 +37,7 @@ namespace EventWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllTags()
         {
-            return Ok(await _TagRepository.GetAllAsync());
+            return Ok(  await _TagRepository.GetAllAsync());
         }
 
         /// <summary>
@@ -51,7 +54,7 @@ namespace EventWebApp.Controllers
         {
             var Tag = await _TagRepository.GetByIdAsync(id);
             if (Tag == null) return NotFound();
-
+             
             return Ok(Tag);
         }
 

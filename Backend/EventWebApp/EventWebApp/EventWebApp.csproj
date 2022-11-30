@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EventWebApp.Dal\EventWebApp.Dal.csproj" />
+    <ProjectReference Include="..\EventWebApp.Services\EventWebApp.Services.csproj" />
   </ItemGroup>
 
 </Project>

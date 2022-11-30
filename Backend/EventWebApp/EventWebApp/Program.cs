@@ -1,6 +1,9 @@
 using EventWebApp.Dal;
 using EventWebApp.Dal.Repositories;
 using EventWebApp.Domain.Abstraction.Repositories;
+using EventWebApp.Domain.Abstraction.Services;
+using EventWebApp.Services;
+using EventWebApp.Services.DependancyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -34,6 +37,7 @@ builder.Services.AddDbContext<EventWebAppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
 
+builder.Services.AddAuthLayer(builder.Configuration);
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 var app = builder.Build();
