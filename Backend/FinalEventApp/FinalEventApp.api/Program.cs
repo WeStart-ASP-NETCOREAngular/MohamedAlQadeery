@@ -1,6 +1,8 @@
 using FinalEventApp.api.Abstractions.Repositories;
 using FinalEventApp.api.Data.Repositories;
 using FinalEventApp.api.DependancyInjections;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerDocumentation();
 builder.Services.AddDataLayer(builder.Configuration);
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 var app = builder.Build();
