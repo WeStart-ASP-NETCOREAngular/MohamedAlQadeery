@@ -16,12 +16,12 @@ namespace FinalEventApp.api.Models
 
 
         [ForeignKey("Owner")]
-        public int OwnerId { get; set; }
+        public string OwnerId { get; set; }
         public AppUser Owner { get; set; }
 
         public List<EventTag> EventTags { get; set; }
 
-        public List<EventUser>? EventUsers { get; set; }
+        public List<EventUser> EventUsers { get; set; }
 
 
     }

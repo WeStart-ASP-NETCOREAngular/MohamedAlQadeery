@@ -23,11 +23,13 @@ namespace FinalEventApp.api.Data
 
             modelBuilder.Entity<EventTag>().HasKey(et => new { et.EventId, et.TagId });
             modelBuilder.Entity<EventUser>().HasKey(eu => new { eu.EventId, eu.AppUserId });
+            modelBuilder.Entity<AppUser>().HasMany(c => c.CreatedEvents).WithOne(e => e.Owner);
+
+            base.OnModelCreating(modelBuilder);
         }
 
       
 
-        public DbSet<AppUser>  Users { get; set; }
         public DbSet<Tag>  Tags { get; set; }
         public DbSet<Category>  Categories { get; set; }
         public DbSet<EventTag> EventTags { get; set; }

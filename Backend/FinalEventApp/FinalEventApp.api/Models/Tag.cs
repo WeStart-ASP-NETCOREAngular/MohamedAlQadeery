@@ -7,6 +7,6 @@
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? DeletedAt { get; set; } = null;
 
-        public List<EventTag>? EventTags { get; set; }
+        public List<EventTag> EventTags { get; set; }
     }
 }
