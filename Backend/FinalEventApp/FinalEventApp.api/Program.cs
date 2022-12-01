@@ -1,3 +1,5 @@
+using FinalEventApp.api.Abstractions.Repositories;
+using FinalEventApp.api.Data.Repositories;
 using FinalEventApp.api.DependancyInjections;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDataLayer(builder.Configuration);
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
