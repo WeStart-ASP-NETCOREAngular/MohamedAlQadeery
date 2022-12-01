@@ -2,7 +2,7 @@ Events Web Application (Mohamed AlQadeery) (Archive)
 ----
 
 this project is decrypted
-[New project link here ](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/General/Second-Task)  
+[New project link here ](https://github.com/WeStart-ASP-NETCOREAngular/MohamedAlQadeery/tree/master/Backend/FinalEventApp)  
 
 Web application for users who are intersted in joining or creating events with people who have smiliar interstets  
 for example events for people who are intersted in "league of legends" game where they can set a time and location for event and people can join 
