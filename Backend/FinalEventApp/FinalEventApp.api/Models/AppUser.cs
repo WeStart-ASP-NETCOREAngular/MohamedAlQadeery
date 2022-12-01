@@ -4,8 +4,8 @@ namespace FinalEventApp.api.Models
 {
     public class AppUser : IdentityUser
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string FirstName { get; set; } = String.Empty;
+        public string LastName { get; set; } = String.Empty;
         public DateTime DateOfBirth { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
