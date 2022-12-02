@@ -23,6 +23,31 @@ namespace FinalEventApp.api.Controllers
             _tokenService = tokenService;
         }
 
+
+        /// <summary>
+        /// Create new user and genrate jwt token if success 
+        /// </summary>
+        /// <param name="registerUserDto"></param>
+        /// <returns>
+        ///  Status code for the register with his token
+        /// </returns>
+        ///  <remarks>
+        /// Sample request:
+        ///
+        ///     POST /Account/Register
+        ///     {
+        ///         "firstName" : "mohamed",
+        ///         "lastName" : "testlastName",
+        ///         "userName" :"MrMohamed",
+        ///         "email" : "test@gmail.com",
+        ///         "password":"222",
+        ///         "confirmPassword" : "222"
+        ///      }
+        ///
+        /// </remarks>
+        /// <response code="200">User is registerd successfully and token genrated </response>
+        /// <response code="400">User is not created there is errors that is send with the response </response>
+
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser(RegisterUserDto registerUserDto)
         {
@@ -34,8 +59,7 @@ namespace FinalEventApp.api.Controllers
                 var errors = result.Errors.Select(e => e.Description);
                 return BadRequest(new RegisterResponseDto
                 {
-                    Errors =
-                    errors,
+                    Errors = errors,
                     RegisterationStatus = StatusCodes.Status400BadRequest
                 });
             }
@@ -47,6 +71,30 @@ namespace FinalEventApp.api.Controllers
 
             return Ok(new RegisterResponseDto { RegisterationStatus = StatusCodes.Status200OK, Token = token });
         }
+
+
+        /// <summary>
+        /// Login user using email and password
+        /// </summary>
+        /// <param name="loginUserDto"></param>
+        /// <returns>
+        ///  Status code 200 and genrated token for user 
+        /// </returns>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /Account/Login
+        ///     {
+        ///        
+        ///         "email" : "test@gmail.com",
+        ///         "password":"222",
+        ///        
+        ///      }
+        ///
+        /// </remarks>
+        /// <response code="200">User is logged successfully and token genrated </response>
+        /// <response code="400">User is not logged in and there is errors that is send with the response </response>
+
 
 
         [HttpPost("login")]
@@ -65,11 +113,12 @@ namespace FinalEventApp.api.Controllers
             }
 
             var token = await _tokenService.GenrateToken(user);
-            return Ok(new loginResponseDto {
+            return Ok(new loginResponseDto
+            {
                 loginStatus = StatusCodes.Status200OK,
                 IsLoggedInSuccessfully = true,
                 Token = token
-            
+
             });
 
         }
