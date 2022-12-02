@@ -1,6 +1,7 @@
 ﻿using FinalEventApp.api.Abstractions.Repositories;
 using FinalEventApp.api.DTOs;
 using FinalEventApp.api.Models;
+using MapsterMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,14 +17,16 @@ namespace FinalEventApp.api.Controllers
     {
 
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IMapper _mapper;
 
         /// <summary>
         /// Category Controller to inject services
         /// </summary>
         /// <param name="categoryRepository"></param>
-        public CategoryController(ICategoryRepository categoryRepository)
+        public CategoryController(ICategoryRepository categoryRepository,IMapper mapper)
         {
             _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -54,7 +57,7 @@ namespace FinalEventApp.api.Controllers
             var category = await _categoryRepository.GetCategoryByIdAsync(id);
             if (category == null) return NotFound();
 
-            return Ok(category);
+            return Ok(_mapper.Map<CategoryResponseDto>(category));
         }
 
 
@@ -83,10 +86,10 @@ namespace FinalEventApp.api.Controllers
 
         public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
         {
-            var categoryToCreate = new Category { Name = createCategoryDto.Name };
+            var categoryToCreate = _mapper.Map<Category>(createCategoryDto);
             await _categoryRepository.CreateAsync(categoryToCreate);
 
-            return CreatedAtAction(nameof(GetCategoryById), new { id = categoryToCreate.Id }, categoryToCreate);
+            return CreatedAtAction(nameof(GetCategoryById), new { id = categoryToCreate.Id }, _mapper.Map<CategoryResponseDto>(categoryToCreate));
 
         }
 
@@ -116,9 +119,9 @@ namespace FinalEventApp.api.Controllers
 
         public async Task<IActionResult> UpdateCategory(int id, UpdateCategoryDto updateCategoryDto)
         {
-            var categoryToUpdate = new Category { Name = updateCategoryDto.Name };
+            var categoryToUpdate = _mapper.Map<Category>(updateCategoryDto);
             var isUpdated = await _categoryRepository.UpdateAsync(id, categoryToUpdate);
-            if (isUpdated != null) return Ok(isUpdated);
+            if (isUpdated != null) return Ok(_mapper.Map<CategoryResponseDto>(isUpdated));
 
             return BadRequest();
 

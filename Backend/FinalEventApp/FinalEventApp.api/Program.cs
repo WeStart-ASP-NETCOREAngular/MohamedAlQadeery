@@ -14,8 +14,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocumentation();
 builder.Services.AddDataLayer(builder.Configuration);
 builder.Services.AddAuthentication();
+builder.Services.AddMapping();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
+
 
 var app = builder.Build();
 
