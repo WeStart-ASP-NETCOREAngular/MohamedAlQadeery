@@ -44,6 +44,7 @@ namespace FinalEventApp.api.Data
             {
                 Id = "b5feebcf-f317-4117-81c5-f95c98e3999e",
                 Email = "user@user.com",
+                NormalizedEmail ="USER@USER.com",
                 EmailConfirmed = true,
                 FirstName = "Mohamed",
                 LastName = "alQadeery",
@@ -67,6 +68,7 @@ namespace FinalEventApp.api.Data
             {
                 Id = "65574566-fef6-4857-903b-af23c2d795e9",
                 Email = "admin@admin.com",
+                NormalizedEmail = "ADMIN@ADMIN.COM",
                 EmailConfirmed = true,
                 FirstName = "admin",
                 LastName = "admin",

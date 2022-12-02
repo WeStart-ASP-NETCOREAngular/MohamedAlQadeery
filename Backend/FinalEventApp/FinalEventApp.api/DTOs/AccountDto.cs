@@ -30,4 +30,22 @@ namespace FinalEventApp.api.DTOs
         public IEnumerable<string> Errors { get; set; }
         public string Token { get; set; }
     }
+
+
+    public class LoginUserDto
+    {
+        [Required]
+        public string Email { get; set; }
+        [Required]
+        public string Password { get; set; }
+    }
+
+
+    public class loginResponseDto
+    {
+        public int loginStatus { get; set; }
+        public bool IsLoggedInSuccessfully { get; set; }
+        public string Error { get; set; }
+        public string Token { get; set; }
+    }
 }
