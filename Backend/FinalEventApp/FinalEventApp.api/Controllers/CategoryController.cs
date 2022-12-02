@@ -2,6 +2,7 @@
 using FinalEventApp.api.DTOs;
 using FinalEventApp.api.Models;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,7 @@ namespace FinalEventApp.api.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
+    [Authorize]
     public class CategoryController : ControllerBase
     {
 
@@ -37,6 +39,7 @@ namespace FinalEventApp.api.Controllers
         /// </returns>
         /// <response code="200">a list of categories has been retreived successfully </response>
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllCategories()
         {
             return Ok(await _categoryRepository.GetAllCategoriesAsync());
@@ -52,6 +55,7 @@ namespace FinalEventApp.api.Controllers
         /// <response code="404">Category is not found in our database</response>
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetCategoryById(int id)
         {
             var category = await _categoryRepository.GetCategoryByIdAsync(id);
@@ -83,6 +87,7 @@ namespace FinalEventApp.api.Controllers
         /// <response code="400">There was validation error in cateogry values </response>
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
 
         public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
         {
@@ -116,6 +121,7 @@ namespace FinalEventApp.api.Controllers
         /// <response code="400">Category is not updated id/validation error</response>
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin")]
 
         public async Task<IActionResult> UpdateCategory(int id, UpdateCategoryDto updateCategoryDto)
         {
@@ -140,6 +146,7 @@ namespace FinalEventApp.api.Controllers
         /// <response code="204">Category is deleted successfully</response>
         /// <response code="400">Category is not deleted (Id could be wrong)</response>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
 
         public async Task<IActionResult> DeleteCategory(int id)
         {

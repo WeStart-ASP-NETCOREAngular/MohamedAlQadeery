@@ -2,6 +2,7 @@
 using FinalEventApp.api.DTOs;
 using FinalEventApp.api.Models;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace FinalEventApp.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class TagController : ControllerBase
     {
 
@@ -80,7 +82,7 @@ namespace FinalEventApp.api.Controllers
         /// <response code="400">There was validation error in cateogry values </response>
 
         [HttpPost]
-
+        [Authorize(Roles ="admin")]
         public async Task<IActionResult> CreateTag(CreateTagDto createTagDto)
         {
             var TagToCreate = _mapper.Map<Tag>(createTagDto);
@@ -113,6 +115,7 @@ namespace FinalEventApp.api.Controllers
         /// <response code="400">Tag is not updated id/validation error</response>
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin")]
 
         public async Task<IActionResult> UpdateTag(int id, UpdateTagDto updateTagDto)
         {
@@ -137,6 +140,7 @@ namespace FinalEventApp.api.Controllers
         /// <response code="204">Tag is deleted successfully</response>
         /// <response code="400">Tag is not deleted (Id could be wrong)</response>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
 
         public async Task<IActionResult> DeleteTag(int id)
         {
