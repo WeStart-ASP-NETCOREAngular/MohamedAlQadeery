@@ -1,5 +1,7 @@
 ﻿using FinalEventApp.api.Abstractions.Repositories;
+using FinalEventApp.api.DTOs;
 using FinalEventApp.api.Models;
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 
 namespace FinalEventApp.api.Data.Repositories
@@ -13,9 +15,9 @@ namespace FinalEventApp.api.Data.Repositories
             _context = context;
         }
 
-        public async Task<List<Tag>> GetAllTagsAsync()
+        public async Task<List<TagResponseDto>> GetAllTagsAsync()
         {
-            return await _context.Tags.ToListAsync();
+            return await _context.Tags.ProjectToType<TagResponseDto>().ToListAsync();
         }
 
         public async Task<Tag> GetTagByIdAsync(int id)

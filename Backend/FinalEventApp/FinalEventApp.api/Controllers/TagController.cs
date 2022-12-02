@@ -1,6 +1,7 @@
 ﻿using FinalEventApp.api.Abstractions.Repositories;
 using FinalEventApp.api.DTOs;
 using FinalEventApp.api.Models;
+using MapsterMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,15 +14,16 @@ namespace FinalEventApp.api.Controllers
 
 
         private readonly ITagRepository _TagRepository;
+        private readonly IMapper _mapper;
 
         /// <summary>
         /// Tag Controller to inject services
         /// </summary>
         /// <param name="TagRepository"></param>
-        public TagController(ITagRepository TagRepository)
+        public TagController(ITagRepository TagRepository,IMapper mapper)
         {
             _TagRepository = TagRepository;
-
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -49,10 +51,10 @@ namespace FinalEventApp.api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTagById(int id)
         {
-            var Tag = await _TagRepository.GetTagByIdAsync(id);
-            if (Tag == null) return NotFound();
+            var tag = await _TagRepository.GetTagByIdAsync(id);
+            if (tag == null) return NotFound();
 
-            return Ok(Tag);
+            return Ok(_mapper.Map<TagResponseDto>(tag));
         }
 
 
@@ -81,10 +83,10 @@ namespace FinalEventApp.api.Controllers
 
         public async Task<IActionResult> CreateTag(CreateTagDto createTagDto)
         {
-            var TagToCreate = new Tag { Name = createTagDto.Name };
+            var TagToCreate = _mapper.Map<Tag>(createTagDto);
             await _TagRepository.CreateAsync(TagToCreate);
 
-            return CreatedAtAction(nameof(GetTagById), new { id = TagToCreate.Id }, TagToCreate);
+            return CreatedAtAction(nameof(GetTagById), new { id = TagToCreate.Id }, _mapper.Map<TagResponseDto>(TagToCreate));
 
         }
 
@@ -114,9 +116,9 @@ namespace FinalEventApp.api.Controllers
 
         public async Task<IActionResult> UpdateTag(int id, UpdateTagDto updateTagDto)
         {
-            var TagToUpdate = new Tag { Name = updateTagDto.Name };
+            var TagToUpdate = _mapper.Map<Tag>(updateTagDto);
             var isUpdated = await _TagRepository.UpdateAsync(id, TagToUpdate);
-            if (isUpdated != null) return Ok(isUpdated);
+            if (isUpdated != null) return Ok(_mapper.Map<TagResponseDto>(isUpdated));
 
             return BadRequest();
 
