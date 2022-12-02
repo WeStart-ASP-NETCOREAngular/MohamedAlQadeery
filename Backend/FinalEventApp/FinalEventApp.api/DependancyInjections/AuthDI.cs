@@ -8,10 +8,10 @@ namespace FinalEventApp.api.DependancyInjections
 {
     public static class AuthDI
     {
-        public static IServiceCollection AddAuthentication(this IServiceCollection services, ConfigurationManager configuration)
+        public static IServiceCollection AddAuthenticationJWT(this IServiceCollection services, ConfigurationManager configuration)
         {
 
-            services.AddSingleton<ITokenService, TokenService>();
+            services.AddScoped<ITokenService, TokenService>();
 
 
             services

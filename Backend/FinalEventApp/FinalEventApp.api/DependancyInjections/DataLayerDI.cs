@@ -22,6 +22,8 @@ namespace FinalEventApp.api.DependancyInjections
                 options.Password.RequiredLength = 3;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
+                options.User.RequireUniqueEmail = true;
+                
 
             })
                 .AddEntityFrameworkStores<EventAppDbContext>()

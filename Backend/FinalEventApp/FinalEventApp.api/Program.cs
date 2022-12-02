@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocumentation();
 builder.Services.AddDataLayer(builder.Configuration);
-builder.Services.AddAuthentication();
+builder.Services.AddAuthenticationJWT(builder.Configuration);
 builder.Services.AddMapping();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();

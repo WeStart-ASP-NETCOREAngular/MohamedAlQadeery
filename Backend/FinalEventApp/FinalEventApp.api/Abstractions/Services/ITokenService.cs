@@ -4,6 +4,6 @@ namespace FinalEventApp.api.Abstractions.Services
 {
     public interface ITokenService
     {
-        string GenrateToken(AppUser user);
+        Task<string> GenrateToken(AppUser user);
     }
 }
