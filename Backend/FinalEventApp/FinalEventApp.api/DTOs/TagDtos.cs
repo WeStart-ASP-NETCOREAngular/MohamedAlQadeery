@@ -2,7 +2,7 @@
 
 namespace FinalEventApp.api.DTOs
 {
-    public class CreateTagyDto
+    public class CreateTagDto
     {
         [Required]
         public string Name { get; set; }
