@@ -25,9 +25,15 @@
           type="submit" class="btn
           btn-primary">Login</button>
 
+
         <div class="spinner-border text-success" role="status" *ngIf="isLoggin">
           <span class="visually-hidden">Loading...</span>
         </div>
+
+        <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff"
+          type="pacman" [fullScreen]="true"><p style="color: white;margin-top:
+            3em;"> Loading...
+          </p></ngx-spinner>
 
       </form>
     </div>
