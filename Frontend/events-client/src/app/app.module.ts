@@ -10,7 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { AdminHomepageComponent } from './components/admin/admin-homepage/admin-homepage.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +20,13 @@ import { AdminHomepageComponent } from './components/admin/admin-homepage/admin-
     RegisterComponent,
     AdminHomepageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    SharedModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
