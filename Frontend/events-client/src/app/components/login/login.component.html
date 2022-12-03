@@ -10,7 +10,7 @@
   <div class="row justify-content-center">
 
     <div class="col-md-6">
-      <form [formGroup]="loginForm">
+      <form [formGroup]="loginForm" (ngSubmit)="OnSubmitLogin()">
         <div class="mb-3">
           <app-input [control]="email" label="Email" type="email">
 
@@ -21,7 +21,8 @@
           <app-input [control]="password" label="Password" type="password"></app-input>
         </div>
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button [disabled]="!loginForm.valid" type="submit" class="btn
+          btn-primary">Login</button>
       </form>
     </div>
 
