@@ -12,9 +12,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocumentation();
-builder.Services.AddDataLayer(builder.Configuration);
-builder.Services.AddAuthenticationJWT(builder.Configuration);
-builder.Services.AddMapping();
+builder.Services.ConfigureCors().AddDataLayer(builder.Configuration).AddAuthenticationJWT(builder.Configuration).AddMapping(); 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 
@@ -29,7 +27,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 
