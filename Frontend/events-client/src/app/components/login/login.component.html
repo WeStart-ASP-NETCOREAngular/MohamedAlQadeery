@@ -21,8 +21,14 @@
           <app-input [control]="password" label="Password" type="password"></app-input>
         </div>
 
-        <button [disabled]="!loginForm.valid" type="submit" class="btn
+        <button *ngIf="isLoggin==false" [disabled]="!loginForm.valid"
+          type="submit" class="btn
           btn-primary">Login</button>
+
+        <div class="spinner-border text-success" role="status" *ngIf="isLoggin">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+
       </form>
     </div>
 

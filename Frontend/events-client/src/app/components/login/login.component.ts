@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
     Validators.required,
     Validators.minLength(3),
   ]);
+
+  isLoggin = false; //for spinner
   constructor(private _accountService: AccountService) {}
 
   ngOnInit(): void {
@@ -26,12 +28,15 @@ export class LoginComponent implements OnInit {
   }
 
   OnSubmitLogin() {
+    this.isLoggin = true;
     this._accountService.LoginUser(this.loginForm.value).subscribe({
       next: (res: ILoginResponseDto) => {
         console.log(res);
+        this.isLoggin = false;
       },
       error: (err) => {
         console.log(err);
+        this.isLoggin = false;
       },
     });
   }
