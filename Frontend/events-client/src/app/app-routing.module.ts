@@ -4,18 +4,28 @@ import { AdminHomepageComponent } from './components/admin/admin-homepage/admin-
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { IsAuthentictedGuard } from './guards/is-authenticted.guard';
+import { IsGuestGuard } from './guards/is-guest.guard';
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
     children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent, canActivate: [IsGuestGuard] },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        canActivate: [IsGuestGuard],
+      },
     ],
   },
-  { path: 'admin', component: AdminHomepageComponent },
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  {
+    path: 'admin',
+    component: AdminHomepageComponent,
+    canActivate: [IsAuthentictedGuard],
+  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ILoginResponseDto } from 'src/app/interfaces/user/ILoginResponseDto';
 import { ILoginUserDto } from 'src/app/interfaces/user/ILoginUserDto';
 import { AccountService } from 'src/app/services/account.service';
@@ -18,7 +19,10 @@ export class LoginComponent implements OnInit {
   ]);
 
   isLoggin = false; //for spinner
-  constructor(private _accountService: AccountService) {}
+  constructor(
+    private _accountService: AccountService,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -33,6 +37,7 @@ export class LoginComponent implements OnInit {
       next: (res: ILoginResponseDto) => {
         console.log(res);
         this.isLoggin = false;
+        this._router.navigate(['home']);
       },
       error: (err) => {
         console.log(err);
