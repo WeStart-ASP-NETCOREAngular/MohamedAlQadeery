@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
+import { AdminHomepageComponent } from './components/admin/admin-homepage/admin-homepage.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SharedModule } from './shared/shared.module';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
+    AdminHomepageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, SharedModule],
   providers: [],
