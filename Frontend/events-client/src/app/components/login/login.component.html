@@ -10,15 +10,15 @@
   <div class="row justify-content-center">
 
     <div class="col-md-6">
-      <form>
+      <form [formGroup]="loginForm">
         <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Email address</label>
-          <input type="email" class="form-control">
+          <app-input [control]="email" label="Email" type="email">
+
+          </app-input>
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Password</label>
-          <input type="password" class="form-control">
+          <app-input [control]="password" label="Password" type="password"></app-input>
         </div>
 
         <button type="submit" class="btn btn-primary">Login</button>
