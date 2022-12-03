@@ -18,7 +18,7 @@ export class AccountService {
       .pipe(
         map((res) => {
           if (res.token != '') {
-            localStorage.setItem('token', res.token);
+            localStorage.setItem('userData', JSON.stringify(res));
           }
           return res;
         })
