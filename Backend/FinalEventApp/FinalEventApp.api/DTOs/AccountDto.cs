@@ -29,6 +29,9 @@ namespace FinalEventApp.api.DTOs
         public int RegisterationStatus { get; set; }
         public IEnumerable<string> Errors { get; set; }
         public string Token { get; set; }
+
+        public string Role { get; set; }
+        public string Username { get; set; }
     }
 
 
@@ -47,5 +50,7 @@ namespace FinalEventApp.api.DTOs
         public bool IsLoggedInSuccessfully { get; set; }
         public string Error { get; set; }
         public string Token { get; set; }
+        public string Role { get; set; }
+        public string Username { get; set; }
     }
 }

@@ -67,9 +67,11 @@ namespace FinalEventApp.api.Controllers
             await _userManager.AddToRoleAsync(userToRegister, "user");
 
             var token = await _tokenService.GenrateToken(userToRegister);
+            var role = await _userManager.GetRolesAsync(userToRegister);
 
 
-            return Ok(new RegisterResponseDto { RegisterationStatus = StatusCodes.Status200OK, Token = token });
+
+            return Ok(new RegisterResponseDto { RegisterationStatus = StatusCodes.Status200OK, Token = token,Username = userToRegister.UserName,Role = role.FirstOrDefault()  });
         }
 
 
@@ -113,13 +115,18 @@ namespace FinalEventApp.api.Controllers
             }
 
             var token = await _tokenService.GenrateToken(user);
+            var role = await _userManager.GetRolesAsync(user);
+
             return Ok(new loginResponseDto
             {
                 loginStatus = StatusCodes.Status200OK,
                 IsLoggedInSuccessfully = true,
-                Token = token
+                Token = token,
+                Username = user.UserName,
+                Role = role.FirstOrDefault()
 
-            });
+
+            }) ;
 
         }
     }
