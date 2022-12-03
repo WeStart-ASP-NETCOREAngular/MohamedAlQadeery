@@ -14,9 +14,15 @@
 
 
 
-      <div class="text-end">
+      <div class="text-end" *ngIf="(accountService.authUser$ | async) === null">
         <a class="btn btn-outline-light me-2" [routerLink]="['login']">Login</a>
         <a class="btn btn-warning" [routerLink]="['register']">Register</a>
+      </div>
+
+      <div class="text-end" *ngIf="(accountService.authUser$ | async) as user">
+        <span class="text-white me-3">Welcome {{user.username}} </span>
+        <a class="btn btn-danger"
+          (click)="OnClickLogout()">Logout</a>
       </div>
     </div>
   </div>

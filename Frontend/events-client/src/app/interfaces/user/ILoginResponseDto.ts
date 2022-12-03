@@ -3,4 +3,6 @@ export interface ILoginResponseDto {
   loggedInSuccessfully: boolean;
   error: string;
   token: string;
+  username: string;
+  role: string;
 }
