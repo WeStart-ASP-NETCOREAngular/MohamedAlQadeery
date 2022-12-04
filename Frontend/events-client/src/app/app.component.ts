@@ -7,20 +7,8 @@ import { AccountService } from './services/account.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'events-client';
 
   constructor(private accountService: AccountService) {}
-  ngOnInit(): void {
-    this.SetCurrentAuthUser();
-  }
-
-  private SetCurrentAuthUser() {
-    const currentAuthUser: IAuthUser = JSON.parse(
-      localStorage.getItem('user')!
-    );
-    console.log(currentAuthUser);
-
-    this.accountService.SetAuthUser(currentAuthUser);
-  }
 }

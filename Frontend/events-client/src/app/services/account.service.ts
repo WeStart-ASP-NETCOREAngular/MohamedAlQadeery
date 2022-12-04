@@ -10,11 +10,18 @@ import { ILoginUserDto } from '../interfaces/user/ILoginUserDto';
   providedIn: 'root',
 })
 export class AccountService {
-  constructor(private http: HttpClient) {}
   private baseUrl = environment.baseURL + '/api/account';
 
   private authUserSubject = new ReplaySubject<IAuthUser | null>(1);
   public authUser$ = this.authUserSubject.asObservable();
+  constructor(private http: HttpClient) {
+    const currentAuthUser: IAuthUser = JSON.parse(
+      localStorage.getItem('user')!
+    );
+    console.log(currentAuthUser);
+
+    this.EmitAuthUser(currentAuthUser);
+  }
 
   public LoginUser(loginUserDto: ILoginUserDto) {
     return this.http
@@ -27,13 +34,13 @@ export class AccountService {
             token: res.token,
           };
           localStorage.setItem('user', JSON.stringify(user));
-          this.SetAuthUser(user);
+          this.EmitAuthUser(user);
           return res;
         })
       );
   }
 
-  public SetAuthUser(user: IAuthUser) {
+  public EmitAuthUser(user: IAuthUser) {
     this.authUserSubject.next(user);
   }
   public Logout() {
