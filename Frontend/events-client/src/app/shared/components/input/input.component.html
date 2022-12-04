@@ -1,7 +1,7 @@
 <label class="form-label">{{label}}</label>
 
 <input [type]="type" class="form-control" [formControl]="control">
-<ng-container *ngIf="control.touched && !control.valid && control.dirty">
+<ng-container *ngIf="control.touched && !control.valid || control.dirty">
 
   <p *ngIf="control.getError('required')"
     class="text-danger">

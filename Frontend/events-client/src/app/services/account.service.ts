@@ -18,7 +18,6 @@ export class AccountService {
     const currentAuthUser: IAuthUser = JSON.parse(
       localStorage.getItem('user')!
     );
-    console.log(currentAuthUser);
 
     this.EmitAuthUser(currentAuthUser);
   }

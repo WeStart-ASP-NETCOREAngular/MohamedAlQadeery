@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row justify-content-center mb-4">
     <div class="col-md-6">
       <div class="display-5">
@@ -10,30 +10,37 @@
   <div class="row justify-content-center">
 
     <div class="col-md-6">
-      <form>
+      <form [formGroup]="registerForm" (ngSubmit)="HandleSubmitForm()">
         <div class="mb-3">
-          <label class="form-label">First Name</label>
-          <input type="text" class="form-control">
+          <app-input [control]="firstName" label="First Name" type="text"></app-input>
         </div>
         <div class="mb-3">
-          <label class="form-label">Last Name</label>
-          <input type="text" class="form-control">
+          <app-input [control]="lastName" label="Last Name" type="text"></app-input>
         </div>
         <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Username</label>
-          <input type="text" class="form-control">
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Password</label>
-          <input type="password" class="form-control">
+          <app-input [control]="userName" label="Username" type="text"></app-input>
         </div>
         <div class="mb-3">
-          <label class="form-label">Confirm Password</label>
-          <input type="password" class="form-control">
+          <app-input [control]="email" label="Email" type="text"></app-input>
         </div>
 
-        <button type="submit" class="btn btn-primary">Register</button>
+        <div class="mb-3">
+          <app-input [control]="password" label="Password" type="password"></app-input>
+        </div>
+        <div class="mb-3">
+          <app-input [control]="confirmPassword" label="Confirm Password"
+            type="password"></app-input>
+          <p class="text-danger" *ngIf="confirmPassword.touched &&
+            !confirmPassword.valid||
+            registerForm.getError('match_error')">
+            Password and Confirm password does not match !
+          </p>
+        </div>
+
+
+
+        <button [disabled]="!registerForm.valid" type="submit" class="btn
+          btn-primary">Register</button>
       </form>
     </div>
 
