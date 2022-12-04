@@ -3,10 +3,11 @@ import {
   AbstractControl,
   FormControl,
   FormGroup,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,11 @@ export class RegisterComponent implements OnInit {
   password = new FormControl('', [Validators.required]);
   confirmPassword = new FormControl('', [Validators.required]);
 
-  constructor() {}
+  constructor(
+    private _accountService: AccountService,
+    private _spinner: NgxSpinnerService,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup(
@@ -39,7 +44,18 @@ export class RegisterComponent implements OnInit {
   }
 
   HandleSubmitForm() {
-    console.log(this.registerForm.value);
+    this._spinner.show();
+    this._accountService.RegisterUser(this.registerForm.value).subscribe({
+      next: (res) => {
+        console.log(res);
+        this._spinner.hide();
+        this._router.navigate(['home']);
+      },
+      error: (error) => {
+        console.log(error);
+        this._spinner.hide();
+      },
+    });
   }
 
   createCompareValidator(

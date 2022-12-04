@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { IAuthUser } from '../interfaces/user/IAuthUser';
 import { ILoginResponseDto } from '../interfaces/user/ILoginResponseDto';
 import { ILoginUserDto } from '../interfaces/user/ILoginUserDto';
+import { IRegisterUserRequest } from '../interfaces/user/IRegisterUserRequest';
+import { IRegisterUserResponse } from '../interfaces/user/IRegisterUserResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +27,25 @@ export class AccountService {
   public LoginUser(loginUserDto: ILoginUserDto) {
     return this.http
       .post<ILoginResponseDto>(this.baseUrl + '/login', loginUserDto)
+      .pipe(
+        map((res) => {
+          const user: IAuthUser = {
+            username: res.username,
+            role: res.role,
+            token: res.token,
+          };
+          localStorage.setItem('user', JSON.stringify(user));
+          this.EmitAuthUser(user);
+          return res;
+        })
+      );
+  }
+  public RegisterUser(registerUserRequest: IRegisterUserRequest) {
+    return this.http
+      .post<IRegisterUserResponse>(
+        this.baseUrl + '/register',
+        registerUserRequest
+      )
       .pipe(
         map((res) => {
           const user: IAuthUser = {
