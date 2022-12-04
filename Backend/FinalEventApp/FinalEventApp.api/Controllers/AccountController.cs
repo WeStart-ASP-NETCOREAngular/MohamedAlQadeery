@@ -110,7 +110,6 @@ namespace FinalEventApp.api.Controllers
                 {
                     loginStatus = StatusCodes.Status400BadRequest,
                     Error = "Email/password is wrong",
-                    IsLoggedInSuccessfully = false
                 });
             }
 
@@ -120,7 +119,6 @@ namespace FinalEventApp.api.Controllers
             return Ok(new loginResponseDto
             {
                 loginStatus = StatusCodes.Status200OK,
-                IsLoggedInSuccessfully = true,
                 Token = token,
                 Username = user.UserName,
                 Role = role.FirstOrDefault()

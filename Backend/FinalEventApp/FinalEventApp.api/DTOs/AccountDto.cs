@@ -47,7 +47,6 @@ namespace FinalEventApp.api.DTOs
     public class loginResponseDto
     {
         public int loginStatus { get; set; }
-        public bool IsLoggedInSuccessfully { get; set; }
         public string Error { get; set; }
         public string Token { get; set; }
         public string Role { get; set; }
