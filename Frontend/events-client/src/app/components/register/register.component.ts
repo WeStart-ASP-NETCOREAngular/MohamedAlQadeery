@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -26,7 +27,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private _accountService: AccountService,
     private _spinner: NgxSpinnerService,
-    private _router: Router
+    private _router: Router,
+    private _toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -48,10 +50,15 @@ export class RegisterComponent implements OnInit {
     this._accountService.RegisterUser(this.registerForm.value).subscribe({
       next: (res) => {
         console.log(res);
+        this._toastr.info(`Welcome ${res.username}`, 'Register Success', {
+          positionClass: 'toast-bottom-right',
+        });
         this._spinner.hide();
         this._router.navigate(['home']);
       },
       error: (error) => {
+        this._toastr.error('Something went wrong');
+
         console.log(error);
         this._spinner.hide();
       },

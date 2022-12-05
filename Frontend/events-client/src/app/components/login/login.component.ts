@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { ILoginResponseDto } from 'src/app/interfaces/user/ILoginResponseDto';
 import { ILoginUserDto } from 'src/app/interfaces/user/ILoginUserDto';
 import { AccountService } from 'src/app/services/account.service';
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private _accountService: AccountService,
     private _router: Router,
-    private _spinner: NgxSpinnerService
+    private _spinner: NgxSpinnerService,
+    private _toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,9 @@ export class LoginComponent implements OnInit {
         console.log(res);
         this.isLoggin = false;
         this._spinner.hide();
+        this._toastr.info(`Welcome ${res.username}`, 'Login Success', {
+          positionClass: 'toast-bottom-right',
+        });
         if (res.role == 'admin') {
           this._router.navigate(['admin']);
         } else {
@@ -49,6 +54,8 @@ export class LoginComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this._toastr.error(`Something went wrong`);
+
         this.isLoggin = false;
         this._spinner.hide();
       },
