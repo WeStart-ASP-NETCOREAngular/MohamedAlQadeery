@@ -41,7 +41,11 @@ export class LoginComponent implements OnInit {
         console.log(res);
         this.isLoggin = false;
         this._spinner.hide();
-        this._router.navigate(['home']);
+        if (res.role == 'admin') {
+          this._router.navigate(['admin']);
+        } else {
+          this._router.navigate(['home']);
+        }
       },
       error: (err) => {
         console.log(err);
