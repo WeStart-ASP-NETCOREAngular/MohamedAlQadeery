@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { map, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IAuthUser } from '../interfaces/user/IAuthUser';
@@ -16,6 +16,8 @@ export class AccountService {
 
   private authUserSubject = new ReplaySubject<IAuthUser | null>(1);
   public authUser$ = this.authUserSubject.asObservable();
+  public OnLoggedout = new EventEmitter();
+
   constructor(private http: HttpClient) {
     const currentAuthUser: IAuthUser = JSON.parse(
       localStorage.getItem('user')!
@@ -66,5 +68,6 @@ export class AccountService {
   public Logout() {
     localStorage.removeItem('user');
     this.authUserSubject.next(null);
+    this.OnLoggedout.emit();
   }
 }
