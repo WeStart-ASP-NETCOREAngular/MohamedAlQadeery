@@ -9,11 +9,10 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
-import { AdminHomepageComponent } from './components/admin/admin-homepage/admin-homepage.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AdminCategoriesComponent } from './components/admin/admin-categories/admin-categories.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -22,8 +21,6 @@ import { AdminCategoriesComponent } from './components/admin/admin-categories/ad
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    AdminHomepageComponent,
-    AdminCategoriesComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +30,7 @@ import { AdminCategoriesComponent } from './components/admin/admin-categories/ad
     HttpClientModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    AdminModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

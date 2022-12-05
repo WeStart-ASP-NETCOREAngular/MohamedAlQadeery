@@ -1,0 +1,16 @@
+<div class="sidebar text-bg-dark ">
+  <p class="fw-bold fs-3 mx-2 d-block d-sm-inline-block mt-2 me-4">Dashboard</p>
+  <a routerLink="/admin" routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact:true}"><span class="fst-italic">Home</span></a>
+  <a href="#" routerLinkActive="active"><span class="fst-italic">Users</span></a>
+  <a href="#" routerLinkActive="active">Events</a>
+  <a routerLink="categories" routerLinkActive="active">Categories</a>
+  <a href="#" routerLinkActive="active">Tags</a>
+</div>
+
+<div class="content ">
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

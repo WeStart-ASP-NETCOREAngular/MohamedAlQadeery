@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminCategoriesComponent } from './components/admin/admin-categories/admin-categories.component';
-import { AdminHomepageComponent } from './components/admin/admin-homepage/admin-homepage.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -22,14 +20,8 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: 'admin',
-    component: AdminHomepageComponent,
-    canActivate: [IsAuthentictedGuard, IsAdminGuard],
-    children: [{ path: 'categories', component: AdminCategoriesComponent }],
-  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home' },
+  // { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
