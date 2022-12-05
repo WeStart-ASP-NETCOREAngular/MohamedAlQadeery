@@ -1,5 +1,5 @@
 <div class="display-6 mb-5">
-  Manage Category Page
+  {{formType | titlecase }} Category Page
 </div>
 
 <div class="row">
@@ -10,7 +10,7 @@
           type="text"></app-input>
       </div>
       <button [disabled]="!categoryForm.valid" type="submit" class="btn
-        btn-success ">Add</button>
+        btn-success ">{{formType | titlecase}}</button>
 
     </form>
   </div>

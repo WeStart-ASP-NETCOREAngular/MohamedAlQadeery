@@ -17,6 +17,10 @@ const routes: Routes = [
         component: AdminCategoriesListComponent,
       },
       {
+        path: 'categories/create',
+        component: AdminCategoryFormComponent,
+      },
+      {
         path: 'categories/:id',
         component: AdminCategoryFormComponent,
       },
