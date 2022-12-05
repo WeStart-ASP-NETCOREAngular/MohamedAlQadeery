@@ -12,7 +12,7 @@ import { CategoryService } from 'src/app/services/category.service';
 export class AdminCategoryFormComponent implements OnInit {
   categoryForm: FormGroup;
   categoryNameInput: FormControl = new FormControl('', Validators.required);
-  id: string | null;
+  id: number | null;
   formType = 'create';
   constructor(
     private _route: ActivatedRoute,
@@ -46,7 +46,7 @@ export class AdminCategoryFormComponent implements OnInit {
         },
       });
     } else {
-      console.log('Updating category........');
+      console.log('Updating category........ for ' + this.id);
 
       this._categoryService
         .UpdateCategory(this.categoryForm.value, +this.id!)
@@ -67,7 +67,7 @@ export class AdminCategoryFormComponent implements OnInit {
 
   private TryEditForm() {
     this._route.paramMap.subscribe((param) => {
-      this.id = param.get('id');
+      this.id = +param.get('id')!;
       if (this.id) {
         this._spinner.show();
         this._categoryService.GetCategoryById(+this.id).subscribe({
