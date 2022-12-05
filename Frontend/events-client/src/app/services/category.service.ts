@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ICategoryResponseDto } from '../interfaces/category/ICategoryResponseDto';
+import { ICreateCategoryDto } from '../interfaces/category/ICreateCategoryDto';
+import { IUpdateCategoryDto } from '../interfaces/category/IUpdateCategoryDto';
 
 @Injectable({
   providedIn: 'root',
@@ -17,5 +19,13 @@ export class CategoryService {
 
   public GetCategoryById(id: number) {
     return this._http.get<ICategoryResponseDto>(`${this.baseUrl}/${id}`);
+  }
+
+  public CreateCategory(category: ICreateCategoryDto) {
+    return this._http.post<ICategoryResponseDto>(this.baseUrl, category);
+  }
+
+  public UpdateCategory(category: IUpdateCategoryDto, id: number) {
+    return this._http.put(`${this.baseUrl}/${id}`, category);
   }
 }
