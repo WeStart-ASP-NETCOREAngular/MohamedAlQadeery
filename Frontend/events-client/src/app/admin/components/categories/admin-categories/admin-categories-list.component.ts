@@ -24,4 +24,17 @@ export class AdminCategoriesListComponent implements OnInit {
       },
     });
   }
+
+  HandleOnDelete(id: number) {
+    this._categoryService.DeleteCategory(id).subscribe({
+      next: () => {
+        console.log('deleted success');
+        this.categoires = this.categoires.filter((c) => c.id != id);
+      },
+
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }

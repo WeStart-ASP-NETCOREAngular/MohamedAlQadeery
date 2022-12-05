@@ -31,4 +31,8 @@ export class CategoryService {
       category
     );
   }
+
+  public DeleteCategory(id: number) {
+    return this._http.delete(`${this.baseUrl}/${id}`);
+  }
 }

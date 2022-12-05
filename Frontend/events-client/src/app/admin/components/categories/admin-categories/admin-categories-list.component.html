@@ -19,7 +19,7 @@
           <a [routerLink]="'/admin/categories/'+category.id" class="btn
             btn-info
             me-2">Edit</a>
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-danger" (click)="HandleOnDelete(category.id)">Delete</button>
         </td>
       </tr>
 
