@@ -12,7 +12,7 @@ import { CategoryService } from 'src/app/services/category.service';
 export class AdminCategoryFormComponent implements OnInit {
   categoryForm: FormGroup;
   categoryNameInput: FormControl = new FormControl('', Validators.required);
-
+  id: string | null;
   formType = 'create';
   constructor(
     private _route: ActivatedRoute,
@@ -31,25 +31,49 @@ export class AdminCategoryFormComponent implements OnInit {
 
   HandleOnSubmit() {
     console.log(this.categoryForm.value);
+    this._spinner.show();
     if (this.formType == 'create') {
-      console.log('Createing new Category ...');
+      this._categoryService.CreateCategory(this.categoryForm.value).subscribe({
+        next: (res) => {
+          console.log(res);
+          this._spinner.hide();
+          this._router.navigate(['admin/categories']);
+        },
+
+        error: (err) => {
+          console.log(err);
+          this._spinner.hide();
+        },
+      });
     } else {
       console.log('Updating category........');
+
+      this._categoryService
+        .UpdateCategory(this.categoryForm.value, +this.id!)
+        .subscribe({
+          next: (res) => {
+            console.log(res);
+            this._spinner.hide();
+            this._router.navigate(['admin/categories']);
+          },
+
+          error: (err) => {
+            console.log(err);
+            this._spinner.hide();
+          },
+        });
     }
   }
 
   private TryEditForm() {
     this._route.paramMap.subscribe((param) => {
-      let id = param.get('id');
-      if (id) {
+      this.id = param.get('id');
+      if (this.id) {
         this._spinner.show();
-        this._categoryService.GetCategoryById(+id).subscribe({
+        this._categoryService.GetCategoryById(+this.id).subscribe({
           next: (category) => {
             this.categoryForm.controls['name'].setValue(category.name);
-            this.categoryForm.addControl(
-              'id',
-              new FormControl(id, Validators.required)
-            );
+
             this.formType = 'Update';
             this._spinner.hide();
           },
