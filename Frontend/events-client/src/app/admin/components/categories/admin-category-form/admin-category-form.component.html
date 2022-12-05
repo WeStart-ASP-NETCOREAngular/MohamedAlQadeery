@@ -1,0 +1,19 @@
+<div class="display-6 mb-5">
+  Manage Category Page
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <form [formGroup]="categoryForm" (ngSubmit)="HandleOnSubmit()">
+      <div class="mb-3">
+        <app-input [control]="categoryNameInput" label="Category Name"
+          type="text"></app-input>
+      </div>
+      <button [disabled]="!categoryForm.valid" type="submit" class="btn
+        btn-success ">Add</button>
+
+    </form>
+  </div>
+
+
+</div>
