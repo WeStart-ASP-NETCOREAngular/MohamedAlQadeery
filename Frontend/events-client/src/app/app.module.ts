@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AdminModule } from './admin/admin.module';
 import { JwtTokenInterceptor } from './interceptors/jwt-token.interceptor';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -28,8 +29,8 @@ import { JwtTokenInterceptor } from './interceptors/jwt-token.interceptor';
     ReactiveFormsModule,
     SharedModule,
     HttpClientModule,
-
     AdminModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     {
