@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICategoryResponseDto } from 'src/app/interfaces/category/ICategoryResponseDto';
 import { CategoryService } from 'src/app/services/category.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-categories',
@@ -11,7 +12,10 @@ import { CategoryService } from 'src/app/services/category.service';
 export class AdminCategoriesListComponent implements OnInit {
   categoires: ICategoryResponseDto[] = [];
 
-  constructor(private _categoryService: CategoryService) {}
+  constructor(
+    private _categoryService: CategoryService,
+    private _toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this._categoryService.GetAllCategories().subscribe({
@@ -28,7 +32,7 @@ export class AdminCategoriesListComponent implements OnInit {
   HandleOnDelete(id: number) {
     this._categoryService.DeleteCategory(id).subscribe({
       next: () => {
-        console.log('deleted success');
+        this._toastr.info('category has been deleted successfully!');
         this.categoires = this.categoires.filter((c) => c.id != id);
       },
 

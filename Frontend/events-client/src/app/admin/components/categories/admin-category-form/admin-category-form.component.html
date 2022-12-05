@@ -2,6 +2,9 @@
   {{formType | titlecase }} Category Page
 </div>
 
+<a routerLink="/admin/categories"
+  class="btn btn-dark mb-3">Go Back</a>
+
 <div class="row">
   <div class="col-md-8">
     <form [formGroup]="categoryForm" (ngSubmit)="HandleOnSubmit()">

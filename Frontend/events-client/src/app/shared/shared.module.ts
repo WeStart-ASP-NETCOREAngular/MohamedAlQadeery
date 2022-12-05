@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [InputComponent],
   imports: [
@@ -13,6 +15,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     SweetAlert2Module,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+    }),
   ],
   exports: [
     InputComponent,
@@ -20,6 +25,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     NgxSpinnerModule,
     BrowserAnimationsModule,
     SweetAlert2Module,
+    ToastrModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

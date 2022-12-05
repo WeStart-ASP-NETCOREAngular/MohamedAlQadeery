@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class AdminCategoryFormComponent implements OnInit {
     private _route: ActivatedRoute,
     private _categoryService: CategoryService,
     private _router: Router,
-    private _spinner: NgxSpinnerService
+    private _spinner: NgxSpinnerService,
+    private _toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +39,9 @@ export class AdminCategoryFormComponent implements OnInit {
         next: (res) => {
           console.log(res);
           this._spinner.hide();
+          this._toastr.success(
+            `Category : ${res.name} has been created successfully !`
+          );
           this._router.navigate(['admin/categories']);
         },
 
@@ -54,6 +59,10 @@ export class AdminCategoryFormComponent implements OnInit {
           next: (res) => {
             console.log(res);
             this._spinner.hide();
+            this._toastr.success(
+              `Category : ${res.name} has been updated successfully !`
+            );
+
             this._router.navigate(['admin/categories']);
           },
 
