@@ -9,9 +9,10 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AdminModule } from './admin/admin.module';
+import { JwtTokenInterceptor } from './interceptors/jwt-token.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,13 @@ import { AdminModule } from './admin/admin.module';
 
     AdminModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtTokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
