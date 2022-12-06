@@ -1,4 +1,5 @@
-using BookStore.API.DependancyInjections;
+
+using BookStore.API.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

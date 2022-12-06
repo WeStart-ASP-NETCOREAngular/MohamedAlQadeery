@@ -3,7 +3,7 @@ using BookStore.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStore.API.DependancyInjections
+namespace BookStore.API.Data
 {
     public static class DataLayerDI
     {
