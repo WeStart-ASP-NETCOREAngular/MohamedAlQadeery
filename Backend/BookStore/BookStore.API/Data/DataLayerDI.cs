@@ -34,6 +34,7 @@ namespace BookStore.API.Data
             services.AddScoped<IAuthorRepository,AuthorRepository>();
             services.AddScoped<ICategoryRepository,CategoryRepository>();
             services.AddScoped<ITranslatorRepository,TranslatorRepository>();
+            services.AddScoped<IPublisherRepository,PublisherRepository>();
 
             return services;
         }
