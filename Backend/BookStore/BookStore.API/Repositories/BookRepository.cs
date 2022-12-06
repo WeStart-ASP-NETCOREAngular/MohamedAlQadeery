@@ -44,7 +44,7 @@ namespace BookStore.API.Repositories
 
         public async Task<Book> UpdateAsync(int id, Book bookToUpdate)
         {
-            var book = await _context.Books.FindAsync(id);
+            var book = await _context.Books.AsNoTracking().FirstOrDefaultAsync(b => b.Id == id);
             if (book == null) return null;
             bookToUpdate.Id = book.Id;
 

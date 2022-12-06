@@ -1,4 +1,6 @@
-﻿namespace BookStore.API.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BookStore.API.Models
 {
     public class Book
     {
@@ -14,15 +16,22 @@
         public int PublishYear { get; set; }
         public int PageCount { get; set; }
 
+        [ForeignKey("Author")]
         public int AuthorId { get; set; }
         public Author Author { get; set; }
+
+        [ForeignKey("Translator")]
 
         public int TranslatorId { get; set; }
         public Translator Translator { get; set; }
 
 
+        [ForeignKey("Publisher")]
+
         public int PublisherId { get; set; }
         public Publisher Publisher { get; set; }
+
+        [ForeignKey("Category")]
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }

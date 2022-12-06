@@ -1,5 +1,6 @@
 
 using BookStore.API.Data;
+using BookStore.API.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDataLayer(builder.Configuration);
+builder.Services.AddDataLayer(builder.Configuration).AddMapping();
 
 var app = builder.Build();
 

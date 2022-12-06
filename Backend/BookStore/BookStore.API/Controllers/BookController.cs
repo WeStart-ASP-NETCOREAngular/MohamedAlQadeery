@@ -1,5 +1,7 @@
-﻿using BookStore.API.Interfaces.Repositories;
+﻿using BookStore.API.DTOs.Book.Request;
+using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
+using MapsterMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +12,12 @@ namespace BookStore.API.Controllers
     public class BookController : ControllerBase
     {
         private readonly IBookRepository _repo;
+        private readonly IMapper _mapper;
 
-        public BookController(IBookRepository repo)
+        public BookController(IBookRepository repo,IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
         }
 
 
@@ -37,8 +41,10 @@ namespace BookStore.API.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateBook(Book bookToCreate)
+        public async Task<IActionResult> CreateBook(CreateBookRequest createBookRequest)
         {
+
+            var bookToCreate = _mapper.Map<Book>(createBookRequest);
             var book = await _repo.CreateAsync(bookToCreate);
 
             return CreatedAtAction(nameof(GetBookById), new { id = book.Id }, book);
@@ -46,8 +52,9 @@ namespace BookStore.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBook(int id, Book bookToUpdate)
+        public async Task<IActionResult> UpdateBook(int id, UpdateBookRequest updateBookRequest)
         {
+            var bookToUpdate = _mapper.Map<Book>(updateBookRequest);
             var book = await _repo.UpdateAsync(id, bookToUpdate);
             if (book != null)
             {
