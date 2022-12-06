@@ -49,7 +49,7 @@ namespace BookStore.API.Data.Migrations
 
                     b.HasIndex("ZoneId");
 
-                    b.ToTable("Address");
+                    b.ToTable("Address", (string)null);
                 });
 
             modelBuilder.Entity("BookStore.API.Models.AppUser", b =>
@@ -142,7 +142,7 @@ namespace BookStore.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("BookStore.API.Models.Book", b =>
@@ -199,7 +199,7 @@ namespace BookStore.API.Data.Migrations
 
                     b.HasIndex("TranslatorId");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("BookStore.API.Models.BookReviews", b =>
@@ -226,7 +226,7 @@ namespace BookStore.API.Data.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("BookReviews");
+                    b.ToTable("BookReviews", (string)null);
                 });
 
             modelBuilder.Entity("BookStore.API.Models.BookSuggestion", b =>
@@ -262,7 +262,7 @@ namespace BookStore.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BookSuggestions");
+                    b.ToTable("BookSuggestions", (string)null);
                 });
 
             modelBuilder.Entity("BookStore.API.Models.Category", b =>
@@ -279,7 +279,7 @@ namespace BookStore.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("BookStore.API.Models.Contactus", b =>
@@ -310,7 +310,7 @@ namespace BookStore.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contactus");
+                    b.ToTable("Contactus", (string)null);
                 });
 
             modelBuilder.Entity("BookStore.API.Models.Publisher", b =>
@@ -331,7 +331,7 @@ namespace BookStore.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publishers");
+                    b.ToTable("Publishers", (string)null);
                 });
 
             modelBuilder.Entity("BookStore.API.Models.Sales", b =>
@@ -364,7 +364,7 @@ namespace BookStore.API.Data.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("Sales");
+                    b.ToTable("Sales", (string)null);
                 });
 
             modelBuilder.Entity("BookStore.API.Models.StaticPages", b =>
@@ -385,7 +385,7 @@ namespace BookStore.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("StaticPages");
+                    b.ToTable("StaticPages", (string)null);
                 });
 
             modelBuilder.Entity("BookStore.API.Models.Translator", b =>
@@ -402,7 +402,7 @@ namespace BookStore.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Translators");
+                    b.ToTable("Translators", (string)null);
                 });
 
             modelBuilder.Entity("BookStore.API.Models.UserFavs", b =>
@@ -417,7 +417,7 @@ namespace BookStore.API.Data.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("UserFavs");
+                    b.ToTable("UserFavs", (string)null);
                 });
 
             modelBuilder.Entity("BookStore.API.Models.Zone", b =>
@@ -434,7 +434,7 @@ namespace BookStore.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Zones");
+                    b.ToTable("Zones", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

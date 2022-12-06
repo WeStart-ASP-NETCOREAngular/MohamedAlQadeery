@@ -45,10 +45,10 @@ namespace BookStore.API.Repositories
 
         public async Task<Author> UpdateAsync(int id, Author authorToUpdate)
         {
-            var author = await _context.Authors.FindAsync(id);
-            if (author == null) return author;
+            var author = await _context.Authors.FirstOrDefaultAsync(a => a.Id == id);
+            if (author == null) return null;
 
-            author.Name = author.Name;
+            author.Name = authorToUpdate.Name;
             await _context.SaveChangesAsync();
 
             return author;

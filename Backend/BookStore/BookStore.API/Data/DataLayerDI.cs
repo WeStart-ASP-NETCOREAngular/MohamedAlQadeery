@@ -1,5 +1,7 @@
 ﻿using BookStore.API.Data;
+using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
+using BookStore.API.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +30,8 @@ namespace BookStore.API.Data
             })
                 .AddEntityFrameworkStores<BookStoreDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<IAuthorRepository,AuthorRepository>();
             return services;
         }
     }
