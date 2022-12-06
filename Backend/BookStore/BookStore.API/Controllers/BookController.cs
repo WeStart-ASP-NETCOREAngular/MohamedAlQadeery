@@ -1,4 +1,6 @@
-﻿using BookStore.API.DTOs.Book.Request;
+﻿
+using BookStore.API.DTOs.BookDto.Repsonse;
+using BookStore.API.DTOs.BookDto.Request;
 using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
 using MapsterMapper;
@@ -24,7 +26,11 @@ namespace BookStore.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllBooks()
         {
-            return Ok(await _repo.GetAllBooksAsync());
+            var books = await _repo.GetAllBooksAsync();
+
+            
+            var booksResponse = _mapper.Map<List<BookResponse>>(books);
+            return Ok(booksResponse);
         }
 
         [HttpGet("{id}")]
@@ -33,7 +39,7 @@ namespace BookStore.API.Controllers
             var book = await _repo.GetBookByIdAsync(id);
             if (book != null)
             {
-                return Ok(book);
+                return Ok(_mapper.Map<BookDetailsResponse>(book));
             }
 
             return NotFound();
@@ -47,7 +53,7 @@ namespace BookStore.API.Controllers
             var bookToCreate = _mapper.Map<Book>(createBookRequest);
             var book = await _repo.CreateAsync(bookToCreate);
 
-            return CreatedAtAction(nameof(GetBookById), new { id = book.Id }, book);
+            return CreatedAtAction(nameof(GetBookById), new { id = book.Id }, _mapper.Map<BookResponse>(book));
 
         }
 
@@ -58,7 +64,7 @@ namespace BookStore.API.Controllers
             var book = await _repo.UpdateAsync(id, bookToUpdate);
             if (book != null)
             {
-                return Ok(book);
+                return Ok(_mapper.Map<BookResponse>(book));
             }
 
             return NotFound();

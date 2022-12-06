@@ -1,4 +1,4 @@
-﻿namespace BookStore.API.DTOs.Book.Request
+﻿namespace BookStore.API.DTOs.BookDto.Request
 {
     public class UpdateBookRequest
     {
