@@ -31,7 +31,8 @@ namespace BookStore.API.Data
                 .AddEntityFrameworkStores<BookStoreDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddScoped<ICategoryRepository,AuthorRepository>();
+            services.AddScoped<IAuthorRepository,AuthorRepository>();
+            services.AddScoped<ICategoryRepository,CategoryRepository>();
             return services;
         }
     }
