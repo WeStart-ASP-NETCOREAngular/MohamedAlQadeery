@@ -26,7 +26,7 @@ namespace BookStore.API.Repositories
 
         public async Task<Category> CreateAsync(Category categoryToCreate)
         {
-            await _context.AddAsync(categoryToCreate);
+            await _context.Categories.AddAsync(categoryToCreate);
             await _context.SaveChangesAsync();
             return categoryToCreate;
         }

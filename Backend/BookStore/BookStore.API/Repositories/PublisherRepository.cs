@@ -27,7 +27,7 @@ namespace BookStore.API.Repositories
 
         public async Task<Publisher> CreateAsync(Publisher publisherToCreate)
         {
-            await _context.AddAsync(publisherToCreate);
+            await _context.Publishers.AddAsync(publisherToCreate);
             await _context.SaveChangesAsync();
             return publisherToCreate;
         }

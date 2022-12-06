@@ -15,6 +15,7 @@ namespace BookStore.API.Controllers
         {
             _repo = repo;
         }
+      
         [HttpGet]
         public async Task<IActionResult> GetAllCategories()
         {

@@ -27,7 +27,7 @@ namespace BookStore.API.Repositories
 
         public async Task<Zone> CreateAsync(Zone zoneToCreate)
         {
-            await _context.AddAsync(zoneToCreate);
+            await _context.Zones.AddAsync(zoneToCreate);
             await _context.SaveChangesAsync();
             return zoneToCreate;
         }

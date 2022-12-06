@@ -26,7 +26,7 @@ namespace BookStore.API.Repositories
 
         public async Task<Translator> CreateAsync(Translator translatorToCreate)
         {
-            await _context.AddAsync(translatorToCreate);
+            await _context.Translators.AddAsync(translatorToCreate);
             await _context.SaveChangesAsync();
             return translatorToCreate;
         }
