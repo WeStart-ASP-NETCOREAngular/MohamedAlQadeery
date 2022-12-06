@@ -1,4 +1,6 @@
-﻿namespace BookStore.API.Interfaces.Repositories
+﻿using BookStore.API.Models;
+
+namespace BookStore.API.Interfaces.Repositories
 {
     public interface IAuthorRepository
     {
