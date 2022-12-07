@@ -41,6 +41,8 @@ namespace BookStore.API.Data
 
         public DbSet<BookSuggestion> BookSuggestions { get; set; }
 
+        public DbSet<Address> Addresses { get; set; }
+
 
         private static void AutoIncludeBookRelations(ModelBuilder builder)
         {

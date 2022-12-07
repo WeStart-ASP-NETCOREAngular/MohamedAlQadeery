@@ -1,13 +1,13 @@
-﻿namespace BookStore.API.Models
+﻿using BookStore.API.Models;
+
+namespace BookStore.API.DTOs.AddressDto.Response
 {
-    public class Address
+    public class AddressResponse
     {
         public int Id { get; set; }
         public string Address1 { get; set; }
         public string? Address2 { get; set; }
         public string PostalCode { get; set; }
-
-        public int ZoneId { get; set; }
 
         public Zone Zone { get; set; }
     }
