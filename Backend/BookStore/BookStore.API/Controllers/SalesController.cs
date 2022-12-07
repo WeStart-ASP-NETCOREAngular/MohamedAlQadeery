@@ -75,5 +75,25 @@ namespace BookStore.API.Controllers
             return BadRequest();
         }
 
+        [HttpGet("user-sales")]
+        public async Task<IActionResult>GetUserSales()
+        {
+            //Here we get Authenticted user 
+            // this code is for testing purpose only until we implement authnetication
+            var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+
+            var sales = await _repo.GetUserSales(user.Id);
+            if (sales != null)
+            {
+                return Ok(_mapper.Map<List<SalesResponse>>(sales));
+            }
+
+
+            return BadRequest();
+        }
+
+
+
+
     }
 }

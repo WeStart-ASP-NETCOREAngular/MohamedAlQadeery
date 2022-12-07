@@ -55,9 +55,13 @@ namespace BookStore.API.Repositories
 
         }
 
-        public Task<List<Sales>> GetUserSales()
+        public async Task<List<Sales>> GetUserSales(string userId)
         {
-            throw new NotImplementedException();
+            //validate ids
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) return null;
+
+            return await _context.Sales.Include(s=>s.Book).Where(s => s.AppUserId == userId).ToListAsync();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace BookStore.API.Interfaces.Repositories
         Task<Book> GetMostSoldBookAsync();
         Task<Book> GetMostOrderdBookAsync();
 
-        Task<List<Sales>> GetUserSales();
+        Task<List<Sales>> GetUserSales(string userId);
 
 
     }
