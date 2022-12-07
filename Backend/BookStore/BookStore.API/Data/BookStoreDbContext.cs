@@ -1,4 +1,5 @@
 ﻿using BookStore.API.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,8 @@ namespace BookStore.API.Data
         {
             builder.Entity<UserFavs>().HasKey(uf => new { uf.AppUserId, uf.BookId });
             AutoIncludeBookRelations(builder);
-            OneToManyRelationships(builder);
+            SeedUser(builder);
+            //OneToManyRelationships(builder);
 
             base.OnModelCreating(builder);
         }
@@ -63,6 +65,25 @@ namespace BookStore.API.Data
            .HasOne(b => b.Publisher).WithMany(p => p.Books).HasForeignKey(b => b.PublisherId);
         }
 
+        private static void SeedUser(ModelBuilder modelBuilder)
+        {
+            var user = new AppUser
+            {
+                Id = "b5feebcf-f317-4117-81c5-f95c98e3999e",
+                Email = "user@user.com",
+                NormalizedEmail = "USER@USER.com",
+                EmailConfirmed = true,
+                FirstName = "Mohamed",
+                LastName = "alQadeery",
+                UserName = "MohamedAlQadeery",
+                NormalizedUserName = "MOHAMEDALQADEERY"
+            };
+
+            PasswordHasher<AppUser> ph = new PasswordHasher<AppUser>();
+            user.PasswordHash = ph.HashPassword(user, "123123");
+            modelBuilder.Entity<AppUser>().HasData(user);
+           
+        }
 
     }
 }

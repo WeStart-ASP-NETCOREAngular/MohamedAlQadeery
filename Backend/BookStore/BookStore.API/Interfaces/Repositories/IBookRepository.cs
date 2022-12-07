@@ -13,5 +13,8 @@ namespace BookStore.API.Interfaces.Repositories
         Task<Book> GetLatestBookAsync();
         Task<Book> GetMostSoldBookAsync();
         Task<Book> GetMostOrderdBookAsync();
+
+        Task<bool> AddToFavorite(string userId, int bookId);
+        Task<bool> RemoveFromoFavorite(string userId, int bookId);
     }
 }

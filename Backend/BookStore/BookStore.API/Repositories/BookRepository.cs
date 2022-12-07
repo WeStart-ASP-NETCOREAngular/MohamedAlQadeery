@@ -69,5 +69,15 @@ namespace BookStore.API.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> AddToFavorite(string userId, int bookId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> RemoveFromoFavorite(string userId, int bookId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
