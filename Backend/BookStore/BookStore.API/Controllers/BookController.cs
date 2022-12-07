@@ -1,6 +1,8 @@
 ﻿
 using BookStore.API.DTOs.BookDto.Repsonse;
 using BookStore.API.DTOs.BookDto.Request;
+using BookStore.API.DTOs.BookReviewsDto.Request;
+using BookStore.API.DTOs.BookReviewsDto.Response;
 using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
 using MapsterMapper;
@@ -97,7 +99,7 @@ namespace BookStore.API.Controllers
         }
 
 
-        [HttpGet("{bookId}/add-to-favorite")]
+        [HttpPost("{bookId}/add-to-favorite")]
         public async Task<IActionResult> AddBookToFavorite(int bookId)
         {
             //Here we get Authenticted user 
@@ -113,7 +115,7 @@ namespace BookStore.API.Controllers
             return BadRequest("ids are wrong or book is already added");
         }
 
-         [HttpGet("{bookId}/remove-from-favorite")]
+         [HttpDelete("{bookId}/remove-from-favorite")]
         public async Task<IActionResult> RemoveBookFromFavorite(int bookId)
         {
             //Here we get Authenticted user 
@@ -143,6 +145,25 @@ namespace BookStore.API.Controllers
 
         }
 
+
+        [HttpPost("{bookId}/add-review")]
+        public async Task<IActionResult> AddReview(int bookId,AddBookReviewRequest addBookReviewRequest)
+        {
+            //Here we get Authenticted user 
+            // this code is for testing purpose only until we implement authnetication
+            var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+            var reviewToAdd = _mapper.Map<BookReviews>(addBookReviewRequest);
+            reviewToAdd.AppUserId = user.Id;
+            reviewToAdd.BookId = bookId;
+
+            var isCreated = await _repo.AddReview(reviewToAdd);
+            if (isCreated != null)
+            {
+                return CreatedAtAction(nameof(GetBookById), new { id = isCreated.BookId }, _mapper.Map<BookReviewResponse>(isCreated));
+            }
+
+            return BadRequest();
+        }
 
     }
 }

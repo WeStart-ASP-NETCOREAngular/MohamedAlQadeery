@@ -16,7 +16,7 @@ namespace BookStore.API.Data
             builder.Entity<UserFavs>().HasKey(uf => new { uf.AppUserId, uf.BookId });
             AutoIncludeBookRelations(builder);
             SeedUser(builder);
-            //OneToManyRelationships(builder);
+            OneToManyRelationships(builder);
 
             base.OnModelCreating(builder);
         }
@@ -63,6 +63,9 @@ namespace BookStore.API.Data
 
             builder.Entity<Book>()
            .HasOne(b => b.Publisher).WithMany(p => p.Books).HasForeignKey(b => b.PublisherId);
+            
+            builder.Entity<BookReviews>()
+           .HasOne(br => br.Book).WithMany(b=> b.BookReviews).HasForeignKey(br => br.BookId);
         }
 
         private static void SeedUser(ModelBuilder modelBuilder)

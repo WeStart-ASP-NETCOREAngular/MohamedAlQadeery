@@ -37,5 +37,9 @@ namespace BookStore.API.Models
         public  Category Category { get; set; }
 
 
+
+        public List<BookReviews>? BookReviews { get; set; }
+
+
     }
 }

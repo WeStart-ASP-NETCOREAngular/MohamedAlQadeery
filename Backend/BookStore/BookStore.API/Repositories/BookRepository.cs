@@ -122,5 +122,23 @@ namespace BookStore.API.Repositories
     
 
         }
+
+        public async Task<BookReviews> AddReview(BookReviews bookReview)
+        {
+            //validate ids
+            var user = await _context.Users.FindAsync(bookReview.AppUserId);
+            if (user == null) return null;
+
+            var book = await _context.Books.FindAsync(bookReview.BookId);
+            if (book == null) return null;
+
+             _context.BookReviews.Add(bookReview);
+          var isAdded =  await _context.SaveChangesAsync() > 0;
+
+            if (!isAdded) return null;
+
+
+            return bookReview;
+        }
     }
 }

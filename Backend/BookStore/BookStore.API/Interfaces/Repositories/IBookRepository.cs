@@ -18,5 +18,9 @@ namespace BookStore.API.Interfaces.Repositories
         Task<bool> RemoveFromFavorite(string userId, int bookId);
 
         Task<List<Book>> GetUserFavoriteBooks(string userId);
+
+        Task<BookReviews> AddReview(BookReviews bookReview);
+
+
     }
 }
