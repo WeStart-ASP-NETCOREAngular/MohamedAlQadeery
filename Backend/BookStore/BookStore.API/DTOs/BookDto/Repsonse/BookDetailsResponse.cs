@@ -20,6 +20,6 @@ namespace BookStore.API.DTOs.BookDto.Repsonse
         public CategoryResponse Category { get; set; }
         public AuthorResponse Author { get; set; }
         public TranslatorResponse Translator { get; set; }
-        public PublisherResonse Publisher { get; set; }
+        public PublisherResponse Publisher { get; set; }
     }
 }

@@ -3,6 +3,10 @@ using Mapster;
 
 namespace BookStore.API.DTOs.AuthorDto
 {
+
+    /*
+     Basic data with no relations
+     */
     public class AuthorResponse
     {
         public int Id { get; set; }
@@ -11,6 +15,10 @@ namespace BookStore.API.DTOs.AuthorDto
        
     } 
     
+    /*
+     
+     This will have full detials inculding relaitions
+     */
     public class AuthorDeatilsResponse
     {
         public int Id { get; set; }
