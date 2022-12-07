@@ -11,8 +11,7 @@ namespace BookStore.API.Interfaces.Repositories
         Task<bool> DeleteAsync(int id);
 
         Task<Book> GetLatestBookAsync();
-        Task<Book> GetMostSoldBookAsync();
-        Task<Book> GetMostOrderdBookAsync();
+    
 
         Task<bool> AddToFavorite(string userId, int bookId);
         Task<bool> RemoveFromFavorite(string userId, int bookId);

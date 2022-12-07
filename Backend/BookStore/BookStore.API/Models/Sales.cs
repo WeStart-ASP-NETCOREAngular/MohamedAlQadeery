@@ -15,7 +15,7 @@ namespace BookStore.API.Models
         public Book Book { get; set; }
 
         public int Amount { get; set; }
-        public DateTime OrderDate { get; set; }
+        public DateTime OrderDate { get; set; } = DateTime.Now;
 
         public int TotalPrice { get; set; }
     }

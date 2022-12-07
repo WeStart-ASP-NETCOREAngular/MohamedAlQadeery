@@ -22,6 +22,6 @@ namespace BookStore.API.DTOs.BookDto.Repsonse
         public AuthorResponse Author { get; set; }
         public TranslatorResponse Translator { get; set; }
         public PublisherResponse Publisher { get; set; }
-        public List<DisplayBookReviewResponse> BookReviews { get; set; }
+        public List<DisplaySpecficBookReviewResponse> BookReviews { get; set; }
     }
 }

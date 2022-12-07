@@ -61,15 +61,7 @@ namespace BookStore.API.Repositories
             return await _context.Books.IgnoreAutoIncludes().OrderByDescending(b => b.Id).FirstOrDefaultAsync();
         }
 
-        public Task<Book> GetMostSoldBookAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Book> GetMostOrderdBookAsync()
-        {
-            throw new NotImplementedException();
-        }
+    
 
         public async Task<bool> AddToFavorite(string userId, int bookId)
         {

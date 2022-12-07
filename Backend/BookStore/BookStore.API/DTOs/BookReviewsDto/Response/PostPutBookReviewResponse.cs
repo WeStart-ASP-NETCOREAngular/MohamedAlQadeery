@@ -20,7 +20,7 @@ namespace BookStore.API.DTOs.BookReviewsDto.Response
     }
 
 
-    public class DisplayBookReviewResponse
+    public class DisplaySpecficBookReviewResponse
     {
         public int Id { get; set; }
         public string AppUserId { get; set; }

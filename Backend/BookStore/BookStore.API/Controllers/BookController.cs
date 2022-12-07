@@ -177,7 +177,7 @@ namespace BookStore.API.Controllers
             var bookReviews = await _repo.GetBookReviews(bookId);
             if (bookReviews != null)
             {
-                return Ok(_mapper.Map<List<DisplayBookReviewResponse>>(bookReviews));
+                return Ok(_mapper.Map<List<DisplaySpecficBookReviewResponse>>(bookReviews));
             }
 
             return BadRequest();
