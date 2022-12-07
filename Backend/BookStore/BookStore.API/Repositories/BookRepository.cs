@@ -110,5 +110,17 @@ namespace BookStore.API.Repositories
              _context.UserFavs.Remove(userFav);
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<List<Book>> GetUserFavoriteBooks(string userId)
+        {
+            //validate ids
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) return null;
+
+            return  await _context.UserFavs.Where(uf => uf.AppUserId == userId).Select(uf => uf.Book).ToListAsync();
+
+    
+
+        }
     }
 }

@@ -130,6 +130,19 @@ namespace BookStore.API.Controllers
         }
 
 
+        [HttpGet("favorite-books")]
+        public async Task<IActionResult> GetUserFavoriteBooks()
+        {
+            //Here we get Authenticted user 
+            // this code is for testing purpose only until we implement authnetication
+            var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+
+            var books = await _repo.GetUserFavoriteBooks(user.Id);
+
+            return Ok(_mapper.Map<List<BookResponse>>(books));
+
+        }
+
 
     }
 }
