@@ -11,6 +11,7 @@
         public string AuthorName { get; set; }
         public string Notes { get; set; }
         public DateTime? ReadAt { get; set; } = null;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     }
 }
