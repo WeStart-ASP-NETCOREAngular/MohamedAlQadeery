@@ -159,7 +159,25 @@ namespace BookStore.API.Controllers
             var isCreated = await _repo.AddReview(reviewToAdd);
             if (isCreated != null)
             {
-                return CreatedAtAction(nameof(GetBookById), new { id = isCreated.BookId }, _mapper.Map<BookReviewResponse>(isCreated));
+                return CreatedAtAction(nameof(GetBookById), new { id = isCreated.BookId }, _mapper.Map<PostPutBookReviewResponse>(isCreated));
+            }
+
+            return BadRequest();
+        }
+
+
+        [HttpGet("{bookId}/reviews")]
+        public async Task<IActionResult> GetBookReviews(int bookId)
+        {
+            //Here we get Authenticted user 
+            // this code is for testing purpose only until we implement authnetication
+            var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+           
+
+            var bookReviews = await _repo.GetBookReviews(bookId);
+            if (bookReviews != null)
+            {
+                return Ok(_mapper.Map<List<DisplayBookReviewResponse>>(bookReviews));
             }
 
             return BadRequest();

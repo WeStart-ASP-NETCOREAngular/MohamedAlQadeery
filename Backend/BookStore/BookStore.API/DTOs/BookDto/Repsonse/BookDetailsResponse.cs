@@ -1,4 +1,5 @@
 ﻿using BookStore.API.DTOs.AuthorDto;
+using BookStore.API.DTOs.BookReviewsDto.Response;
 using BookStore.API.DTOs.CategoryDto;
 using BookStore.API.DTOs.PublisherDto;
 using BookStore.API.DTOs.TranslatorDto;
@@ -21,5 +22,6 @@ namespace BookStore.API.DTOs.BookDto.Repsonse
         public AuthorResponse Author { get; set; }
         public TranslatorResponse Translator { get; set; }
         public PublisherResponse Publisher { get; set; }
+        public List<DisplayBookReviewResponse> BookReviews { get; set; }
     }
 }

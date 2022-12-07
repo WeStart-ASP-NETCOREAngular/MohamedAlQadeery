@@ -2,9 +2,10 @@
 
 namespace BookStore.API.DTOs.BookReviewsDto.Response
 {
-    public class BookReviewResponse
+    public class PostPutBookReviewResponse
     {
-       
+
+        public int Id { get; set; }
         public string AppUserId { get; set; }
 
       
@@ -16,5 +17,18 @@ namespace BookStore.API.DTOs.BookReviewsDto.Response
 
 
         public string Comment { get; set; }
+    }
+
+
+    public class DisplayBookReviewResponse
+    {
+        public int Id { get; set; }
+        public string AppUserId { get; set; }
+
+        public int Rate { get; set; }
+
+
+        public string Comment { get; set; }
+
     }
 }
