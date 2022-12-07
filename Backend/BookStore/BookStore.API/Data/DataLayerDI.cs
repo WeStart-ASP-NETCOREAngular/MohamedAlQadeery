@@ -39,6 +39,7 @@ namespace BookStore.API.Data
             services.AddScoped<IBookRepository,BookRepository>();
             services.AddScoped<ISalesRepository,SalesRepository>();
             services.AddScoped<IAddressRepository,AddressRepository>();
+            services.AddScoped<IStaticPagesRepository,StaticPagesRepository>();
 
             return services;
         }
