@@ -61,5 +61,19 @@ namespace BookStore.API.Controllers
             return BadRequest();
         }
 
+
+        [HttpGet("most-sold")]
+        public async Task<IActionResult> GetMostSoldBook()
+        {
+            var book = await _repo.GetMostSoldBookAsync();
+            if (book != null)
+            {
+                return Ok(_mapper.Map<BookResponse>(book));
+            }
+
+
+            return BadRequest();
+        }
+
     }
 }

@@ -44,9 +44,15 @@ namespace BookStore.API.Repositories
 
         }
 
-        public Task<Book> GetMostSoldBookAsync()
+        public async Task<Book> GetMostSoldBookAsync()
         {
-            throw new NotImplementedException();
+            var sales = await _context.Sales.ToListAsync();
+            var mostSoldBookId = sales.GroupBy(s => s.BookId).Select(g => new { bookId = g.Key, totalPrice = g.Sum(s => s.TotalPrice) })
+               .MaxBy(s => s.totalPrice);
+
+            return await _context.Books.FirstOrDefaultAsync(b => b.Id == mostSoldBookId.bookId);
+
+
         }
 
         public Task<List<Sales>> GetUserSales()
