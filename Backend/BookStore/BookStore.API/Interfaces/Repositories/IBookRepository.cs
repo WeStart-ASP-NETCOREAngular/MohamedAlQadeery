@@ -9,5 +9,9 @@ namespace BookStore.API.Interfaces.Repositories
         Task<Book> CreateAsync(Book bookToCreate);
         Task<Book> UpdateAsync(int id, Book bookToUpdate);
         Task<bool> DeleteAsync(int id);
+
+        Task<Book> GetLatestBookAsync();
+        Task<Book> GetMostSoldBookAsync();
+        Task<Book> GetMostOrderdBookAsync();
     }
 }

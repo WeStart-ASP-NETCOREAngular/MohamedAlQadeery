@@ -79,5 +79,19 @@ namespace BookStore.API.Controllers
 
             return BadRequest();
         }
+
+
+        [HttpGet("latest")]
+        public async Task<IActionResult> GetLatestBook()
+        {
+            var book = await _repo.GetLatestBookAsync();
+            if(book != null)
+            {
+                return Ok(_mapper.Map<SpecficBookResponse>(book));
+            }
+
+            return BadRequest();
+        }
+
     }
 }

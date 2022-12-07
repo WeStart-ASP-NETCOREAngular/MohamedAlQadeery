@@ -10,17 +10,20 @@ namespace BookStore.API.Mapping
         public void Register(TypeAdapterConfig config)
         {
             config.NewConfig<Book, BookResponse>();
-            //.Map(br => br.AuthorName, b => b.Author.Name)     
-            //.Map(br => br.PublisherName, b => b.Publisher.Name)
-            //.Map(br => br.TranslatorName, b => b.Translator.Name)
-            //.Map(br => br.CategoryName, b => b.Category.Name);
 
-                
 
-            
-               
-                    
-               
+
+            //.IgnoreIf((b, br) => b.Author == null,br=>br.Author);
+            //.Map(br => br.Publisher, b => b.Publisher, s => s.Publisher != null)
+            //.Map(br => br.Translator, b => b.Translator, s => s.Translator != null)
+            //.Map(br => br.Category, b => b.Category, s => s.Category != null);
+
+
+
+
+
+
+
         }
     }
 }

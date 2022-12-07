@@ -54,5 +54,20 @@ namespace BookStore.API.Repositories
 
 
         }
+
+        public async Task<Book> GetLatestBookAsync()
+        {
+            return await _context.Books.IgnoreAutoIncludes().OrderByDescending(b => b.Id).FirstOrDefaultAsync();
+        }
+
+        public Task<Book> GetMostSoldBookAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Book> GetMostOrderdBookAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

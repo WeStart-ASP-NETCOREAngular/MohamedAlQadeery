@@ -22,4 +22,12 @@ namespace BookStore.API.DTOs.BookDto.Repsonse
      
 
     }
+
+    public class SpecficBookResponse
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Image { get; set; }
+
+    }
 }
