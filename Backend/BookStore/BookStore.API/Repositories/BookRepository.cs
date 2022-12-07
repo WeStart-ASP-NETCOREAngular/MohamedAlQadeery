@@ -22,8 +22,7 @@ namespace BookStore.API.Repositories
 
         public async Task<Book> GetBookByIdAsync(int id)
         {
-            return await _context.Books.Include(b => b.Author).Include(b => b.Publisher).Include(b => b.Translator).Include(b => b.Category)
-                .FirstOrDefaultAsync(b => b.Id ==id);
+            return await _context.Books.FindAsync(id);
         }
         public async Task<Book> CreateAsync(Book bookToCreate)
         {

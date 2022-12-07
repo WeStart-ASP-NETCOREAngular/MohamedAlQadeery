@@ -1,5 +1,7 @@
-﻿using BookStore.API.Interfaces.Repositories;
+﻿using BookStore.API.DTOs.CategoryDto;
+using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
+using MapsterMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,16 +12,19 @@ namespace BookStore.API.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryRepository _repo;
+        private readonly IMapper _mapper;
 
-        public CategoryController(ICategoryRepository repo)
+        public CategoryController(ICategoryRepository repo,IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
         }
       
         [HttpGet]
         public async Task<IActionResult> GetAllCategories()
         {
-            return Ok(await _repo.GetAllCategoriesAsync());
+            var categories = await _repo.GetAllCategoriesAsync();
+            return Ok(_mapper.Map<List<CategoryResponse>>(categories));
         }
 
         [HttpGet("{id}")]
@@ -28,7 +33,7 @@ namespace BookStore.API.Controllers
             var category = await _repo.GetCategoryByIdAsync(id);
             if (category != null)
             {
-                return Ok(category);
+                return Ok(_mapper.Map<CategoryDetailsResponse>(category));
             }
 
             return NotFound();

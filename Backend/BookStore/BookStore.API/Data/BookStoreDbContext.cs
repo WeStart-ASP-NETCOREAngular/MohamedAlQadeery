@@ -14,7 +14,7 @@ namespace BookStore.API.Data
         {
             builder.Entity<UserFavs>().HasKey(uf => new { uf.AppUserId, uf.BookId });
             AutoIncludeBookRelations(builder);
-            //OneToManyRelationships(builder);
+            OneToManyRelationships(builder);
 
             base.OnModelCreating(builder);
         }

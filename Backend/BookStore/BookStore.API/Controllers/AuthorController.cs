@@ -23,7 +23,8 @@ namespace BookStore.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAuthors()
         {
-            return Ok(await _repo.GetAllAuthorsAsync());
+            var authors = await _repo.GetAllAuthorsAsync();
+            return Ok(_mapper.Map<List<AuthorResponse>>(authors));
         }
 
         [HttpGet("{id}")]

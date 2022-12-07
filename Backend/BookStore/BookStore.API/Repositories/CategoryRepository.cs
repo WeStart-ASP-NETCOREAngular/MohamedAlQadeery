@@ -20,7 +20,7 @@ namespace BookStore.API.Repositories
 
         public async Task<Category> GetCategoryByIdAsync(int id)
         {
-            return await _context.Categories.FindAsync(id);
+            return await _context.Categories.Include(c=>c.Books).FirstOrDefaultAsync(b => b.Id ==id);
         }
 
 

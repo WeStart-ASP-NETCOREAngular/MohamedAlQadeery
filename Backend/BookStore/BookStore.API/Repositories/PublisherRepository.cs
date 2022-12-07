@@ -21,7 +21,7 @@ namespace BookStore.API.Repositories
 
         public async Task<Publisher> GetPublisherByIdAsync(int id)
         {
-            return await _context.Publishers.FindAsync(id);
+            return await _context.Publishers.Include(c => c.Books).FirstOrDefaultAsync(b => b.Id == id);
         }
 
 

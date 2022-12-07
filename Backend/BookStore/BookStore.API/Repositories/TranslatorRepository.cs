@@ -20,7 +20,7 @@ namespace BookStore.API.Repositories
 
         public async Task<Translator> GetTranslatorByIdAsync(int id)
         {
-            return await _context.Translators.FindAsync(id);
+            return await _context.Translators.Include(c => c.Books).FirstOrDefaultAsync(b => b.Id == id);
         }
 
 
