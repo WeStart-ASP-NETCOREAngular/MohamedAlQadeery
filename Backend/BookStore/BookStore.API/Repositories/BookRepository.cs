@@ -16,8 +16,7 @@ namespace BookStore.API.Repositories
 
         public async Task<List<Book>> GetAllBooksAsync()
         {
-            return await _context.Books.
-                Include(b=>b.Author).Include(b=>b.Publisher).Include(b=>b.Translator).Include(b=>b.Category).ToListAsync();
+            return await _context.Books.ToListAsync();
 
         }
 

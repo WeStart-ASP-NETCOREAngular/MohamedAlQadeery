@@ -21,7 +21,7 @@ namespace BookStore.API.Repositories
 
         public async Task<Author> GetAuthorByIdAsync(int id)
         {
-            return await _context.Authors.FindAsync(id);
+            return await _context.Authors.Include(a => a.Books).FirstOrDefaultAsync(a => a.Id == id);
         }
 
 
@@ -53,5 +53,14 @@ namespace BookStore.API.Repositories
 
             return author;
         }
+
+      
+
+        public async Task<List<Book>> GetAuthorBooksAsync(int authorId)
+        {
+            return await _context.Books.Where(b => b.AuthorId == authorId).ToListAsync();
+        }
+
+     
     }
 }

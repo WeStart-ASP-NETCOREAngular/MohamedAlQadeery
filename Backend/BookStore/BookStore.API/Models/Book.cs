@@ -18,23 +18,23 @@ namespace BookStore.API.Models
 
         [ForeignKey("Author")]
         public int AuthorId { get; set; }
-        public virtual  Author Author { get; set; }
+        public   Author Author { get; set; }
 
         [ForeignKey("Translator")]
 
         public int TranslatorId { get; set; }
-        public virtual Translator Translator { get; set; }
+        public  Translator Translator { get; set; }
 
 
         [ForeignKey("Publisher")]
 
         public int PublisherId { get; set; }
-        public virtual Publisher Publisher { get; set; }
+        public  Publisher Publisher { get; set; }
 
         [ForeignKey("Category")]
 
         public int CategoryId { get; set; }
-        public virtual Category Category { get; set; }
+        public  Category Category { get; set; }
 
 
     }

@@ -1,5 +1,8 @@
-﻿using BookStore.API.Interfaces.Repositories;
+﻿using BookStore.API.DTOs.AuthorDto;
+using BookStore.API.DTOs.BookDto.Repsonse;
+using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
+using MapsterMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +13,12 @@ namespace BookStore.API.Controllers
     public class AuthorController : ControllerBase
     {
         private readonly IAuthorRepository _repo;
+        private readonly IMapper _mapper;
 
-        public AuthorController(IAuthorRepository repo)
+        public AuthorController(IAuthorRepository repo,IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
         }
         [HttpGet]
         public async Task<IActionResult> GetAllAuthors()
@@ -27,7 +32,7 @@ namespace BookStore.API.Controllers
             var author = await _repo.GetAuthorByIdAsync(id);
             if(author != null)
             {
-                return Ok(author);
+                return Ok(_mapper.Map<AuthorDeatilsResponse>(author));
             }
 
             return NotFound();
@@ -64,5 +69,17 @@ namespace BookStore.API.Controllers
 
             return BadRequest();
         }
+
+
+
+        [HttpGet("{id}/books")]
+        public async Task<IActionResult> GetAuthorBooks(int id)
+        {
+            var books = await _repo.GetAuthorBooksAsync(id);
+            var booksResponse = _mapper.Map<List<BookResponse>>(books);
+            return Ok(booksResponse);
+        }
+
+
     }
 }

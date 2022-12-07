@@ -13,27 +13,13 @@ namespace BookStore.API.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<UserFavs>().HasKey(uf => new { uf.AppUserId, uf.BookId });
-            
-            OneToManyRelationships(builder);
+            AutoIncludeBookRelations(builder);
+            //OneToManyRelationships(builder);
 
             base.OnModelCreating(builder);
         }
 
-        private static void OneToManyRelationships(ModelBuilder builder)
-        {
-            builder.Entity<Book>()
-                        .HasOne(b => b.Author).WithMany(a => a.Books).HasForeignKey(b =>b.AuthorId);
-
-
-            builder.Entity<Book>()
-            .HasOne(b => b.Category).WithMany(c => c.Books).HasForeignKey(b => b.CategoryId);
-            builder.Entity<Book>()
-            .HasOne(b => b.Translator).WithMany(t => t.Books).HasForeignKey(b => b.TranslatorId);
-
-            builder.Entity<Book>()
-           .HasOne(b => b.Publisher).WithMany(p => p.Books).HasForeignKey(b => b.PublisherId);
-        }
-
+       
         public DbSet<Author> Authors { get; set; }
         public DbSet<Translator> Translators { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -52,6 +38,31 @@ namespace BookStore.API.Data
         public DbSet<StaticPages> StaticPages { get; set; }
 
         public DbSet<BookSuggestion> BookSuggestions { get; set; }
+
+
+        private static void AutoIncludeBookRelations(ModelBuilder builder)
+        {
+            builder.Entity<Book>().Navigation(b => b.Author).AutoInclude();
+            builder.Entity<Book>().Navigation(b => b.Category).AutoInclude();
+            builder.Entity<Book>().Navigation(b => b.Translator).AutoInclude();
+            builder.Entity<Book>().Navigation(b => b.Publisher).AutoInclude();
+        }
+
+        private static void OneToManyRelationships(ModelBuilder builder)
+        {
+            builder.Entity<Book>()
+                        .HasOne(b => b.Author).WithMany(a => a.Books).HasForeignKey(b => b.AuthorId);
+
+
+            builder.Entity<Book>()
+            .HasOne(b => b.Category).WithMany(c => c.Books).HasForeignKey(b => b.CategoryId);
+            builder.Entity<Book>()
+            .HasOne(b => b.Translator).WithMany(t => t.Books).HasForeignKey(b => b.TranslatorId);
+
+            builder.Entity<Book>()
+           .HasOne(b => b.Publisher).WithMany(p => p.Books).HasForeignKey(b => b.PublisherId);
+        }
+
 
     }
 }

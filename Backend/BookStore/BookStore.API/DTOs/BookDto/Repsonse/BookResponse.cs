@@ -19,14 +19,7 @@ namespace BookStore.API.DTOs.BookDto.Repsonse
         public TranslatorResponse Translator { get; set; }
         public PublisherResonse Publisher { get; set; }
 
-        //public string AuthorName { get; set; }
-
-        //public string TranslatorName { get; set; }
-
-
-        //public string PublisherName { get; set; }
-
-        //public string CategoryName { get; set; }
+     
 
     }
 }

@@ -9,5 +9,7 @@ namespace BookStore.API.Interfaces.Repositories
         Task<Author> CreateAsync(Author authorToCreate);
         Task<Author> UpdateAsync(int id, Author authorToUpdate);
         Task<bool> DeleteAsync(int id);
+
+        Task<List<Book>> GetAuthorBooksAsync(int authorId);
     }
 }
