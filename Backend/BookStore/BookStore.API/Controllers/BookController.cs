@@ -5,6 +5,7 @@ using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
 using MapsterMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.API.Controllers
@@ -15,11 +16,13 @@ namespace BookStore.API.Controllers
     {
         private readonly IBookRepository _repo;
         private readonly IMapper _mapper;
+        private readonly UserManager<AppUser> _userManager;
 
-        public BookController(IBookRepository repo,IMapper mapper)
+        public BookController(IBookRepository repo,IMapper mapper,UserManager<AppUser> userManager)
         {
             _repo = repo;
             _mapper = mapper;
+            _userManager = userManager;
         }
 
 
@@ -92,6 +95,41 @@ namespace BookStore.API.Controllers
 
             return BadRequest();
         }
+
+
+        [HttpGet("{bookId}/add-to-favorite")]
+        public async Task<IActionResult> AddBookToFavorite(int bookId)
+        {
+            //Here we get Authenticted user 
+            // this code is for testing purpose only until we implement authnetication
+            var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+            
+            var result = await _repo.AddToFavorite(user.Id,bookId);
+            if (result)
+            {
+                return Ok("Book is added");
+            }
+
+            return BadRequest("ids are wrong or book is already added");
+        }
+
+         [HttpGet("{bookId}/remove-from-favorite")]
+        public async Task<IActionResult> RemoveBookFromFavorite(int bookId)
+        {
+            //Here we get Authenticted user 
+            // this code is for testing purpose only until we implement authnetication
+            var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+            
+            var result = await _repo.RemoveFromFavorite(user.Id,bookId);
+            if (result)
+            {
+                return Ok("Book is removed from fav");
+            }
+
+            return BadRequest("ids are wrong or the record not in database");
+        }
+
+
 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BookStore.API.Data;
 using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.API.Repositories
@@ -70,14 +71,44 @@ namespace BookStore.API.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> AddToFavorite(string userId, int bookId)
+        public async Task<bool> AddToFavorite(string userId, int bookId)
         {
-            throw new NotImplementedException();
+            //validate ids
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) return false;
+
+            var book = await _context.Books.FindAsync(bookId);
+            if (book == null) return false;
+
+            //validate if he already added it to fav
+            var userFav = new UserFavs { AppUserId = userId, BookId = bookId };
+            var result = await _context.UserFavs.AsNoTracking().SingleOrDefaultAsync(u => u.AppUserId == userFav.AppUserId && u.BookId == userFav.BookId);
+
+            if (result != null) return false;
+
+            await _context.UserFavs.AddAsync(userFav);
+            return await _context.SaveChangesAsync() > 0;
+
         }
 
-        public Task<bool> RemoveFromoFavorite(string userId, int bookId)
+        public async Task<bool> RemoveFromFavorite(string userId, int bookId)
         {
-            throw new NotImplementedException();
+            //validate ids
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) return false;
+
+            var book = await _context.Books.FindAsync(bookId);
+            if (book == null) return false;
+
+            //validate if its exist on database 
+            var userFav = new UserFavs { AppUserId = userId, BookId = bookId };
+
+            var result = await _context.UserFavs.AsNoTracking().SingleOrDefaultAsync(u => u.AppUserId == userFav.AppUserId && u.BookId == userFav.BookId);
+
+            if (result == null) return false;
+
+             _context.UserFavs.Remove(userFav);
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }
