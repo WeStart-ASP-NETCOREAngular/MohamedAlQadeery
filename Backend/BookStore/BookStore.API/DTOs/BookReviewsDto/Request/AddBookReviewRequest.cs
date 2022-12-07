@@ -14,7 +14,7 @@ namespace BookStore.API.DTOs.BookReviewsDto.Request
         [Required]
 
         [Range(1,5)]
-        public int Rate { get; set; }
+        public int? Rate { get; set; }
         [Required]
 
         public string Comment { get; set; }
