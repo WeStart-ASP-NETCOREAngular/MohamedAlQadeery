@@ -1,6 +1,7 @@
 ﻿using BookStore.API.Data;
 using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.API.Repositories
 {
@@ -31,9 +32,16 @@ namespace BookStore.API.Repositories
             return bookSale;
         }
 
-        public Task<Book> GetMostOrderdBookAsync()
+        public async Task<Book> GetMostOrderdBookAsync()
         {
-            throw new NotImplementedException();
+            var sales = await _context.Sales.ToListAsync();
+
+            var maxOrderdBookId = sales.GroupBy(s => s.BookId).Select(g => new { bookId = g.Key, totalAmount = g.Sum(s => s.Amount) })
+                .MaxBy(s => s.totalAmount);
+
+            return await _context.Books.FirstOrDefaultAsync(b=>b.Id == maxOrderdBookId.bookId);
+
+
         }
 
         public Task<Book> GetMostSoldBookAsync()

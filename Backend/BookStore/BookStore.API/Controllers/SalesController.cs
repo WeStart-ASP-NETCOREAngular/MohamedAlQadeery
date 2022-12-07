@@ -1,4 +1,5 @@
-﻿using BookStore.API.DTOs.SalesDto.Request;
+﻿using BookStore.API.DTOs.BookDto.Repsonse;
+using BookStore.API.DTOs.SalesDto.Request;
 using BookStore.API.DTOs.SalesDto.Response;
 using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
@@ -45,5 +46,20 @@ namespace BookStore.API.Controllers
 
             return BadRequest();
         }
+
+
+        [HttpGet("most-orderd")]
+        public async Task<IActionResult> GetMostOrderdBook()
+        {
+            var book = await _repo.GetMostOrderdBookAsync(); 
+            if(book != null)
+            {
+                return Ok(_mapper.Map<BookResponse>(book));
+            }
+           
+
+            return BadRequest();
+        }
+
     }
 }

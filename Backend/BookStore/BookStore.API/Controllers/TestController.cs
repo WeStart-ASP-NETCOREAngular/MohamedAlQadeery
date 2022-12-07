@@ -1,6 +1,8 @@
 ﻿using BookStore.API.Data;
+using BookStore.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.API.Controllers
 {
@@ -20,9 +22,22 @@ namespace BookStore.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Test()
         {
+            var sales = await _context.Sales.ToListAsync();
 
+            var list = sales.GroupBy(s => s.BookId).Select(g=> new {bookId = g.Key, totalAmount  = g.Sum(s=>s.Amount)});
+            //   ---> example : {bookid =5 , totalAmount =100}
 
-            return Ok();
+            var maxOrderdBookId = sales.GroupBy(s => s.BookId).Select(g => new { bookId = g.Key, totalAmount = g.Sum(s => s.Amount) })
+                .MaxBy(s => s.totalAmount);
+                        
+                
+            
+            
+
+      
+     
+
+            return Ok(new {list = list, maxBookId = maxOrderdBookId.bookId}) ;
         }
 
     }
