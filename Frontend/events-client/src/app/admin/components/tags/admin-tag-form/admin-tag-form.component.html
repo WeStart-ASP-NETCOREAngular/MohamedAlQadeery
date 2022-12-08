@@ -1,0 +1,25 @@
+<div class="display-6 mb-5">
+  {{formType | titlecase }} Tag Page
+</div>
+
+<a routerLink="/admin/tags"
+  class="btn btn-dark mb-3">Go Back</a>
+
+<div class="row">
+  <div class="col-md-8">
+    <form [formGroup]="tagForm" (ngSubmit)="HandleOnSubmit()">
+      <div class="mb-3">
+        <app-input [control]="tagNameInput" label="Tag Name"
+          type="text"></app-input>
+      </div>
+      <button [disabled]="!tagForm.valid" type="submit" class="btn
+        btn-success ">{{formType | titlecase}}</button>
+
+    </form>
+  </div>
+
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff"
+    type="pacman" [fullScreen]="true"><p style="color: white;margin-top:
+      3em;"> Getting Tag Data....
+    </p></ngx-spinner>
+</div>
