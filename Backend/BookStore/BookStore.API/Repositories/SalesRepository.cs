@@ -34,9 +34,9 @@ namespace BookStore.API.Repositories
 
         public async Task<Book> GetMostOrderdBookAsync()
         {
-            var sales = await _context.Sales.ToListAsync();
+          //  var sales = await _context.Sales.ToListAsync();
 
-            var maxOrderdBookId = sales.GroupBy(s => s.BookId).Select(g => new { bookId = g.Key, totalAmount = g.Sum(s => s.Amount) })
+            var maxOrderdBookId = _context.Sales.AsEnumerable().GroupBy(s => s.BookId).Select(g => new { bookId = g.Key, totalAmount = g.Sum(s => s.Amount) })
                 .MaxBy(s => s.totalAmount);
 
             return await _context.Books.FirstOrDefaultAsync(b=>b.Id == maxOrderdBookId.bookId);
@@ -46,8 +46,9 @@ namespace BookStore.API.Repositories
 
         public async Task<Book> GetMostSoldBookAsync()
         {
-            var sales = await _context.Sales.ToListAsync();
-            var mostSoldBookId = sales.GroupBy(s => s.BookId).Select(g => new { bookId = g.Key, totalPrice = g.Sum(s => s.TotalPrice) })
+
+          //  var sales = await _context.Sales.ToListAsync();
+            var mostSoldBookId = _context.Sales.AsEnumerable().GroupBy(s => s.BookId).Select(g => new { bookId = g.Key, totalPrice = g.Sum(s => s.TotalPrice) })
                .MaxBy(s => s.totalPrice);
 
             return await _context.Books.FirstOrDefaultAsync(b => b.Id == mostSoldBookId.bookId);
