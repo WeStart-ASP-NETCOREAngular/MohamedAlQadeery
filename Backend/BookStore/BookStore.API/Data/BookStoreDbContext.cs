@@ -46,7 +46,7 @@ namespace BookStore.API.Data
 
         private static void AutoIncludeBookRelations(ModelBuilder builder)
         {
-            builder.Entity<Book>().Navigation(b => b.Author).AutoInclude();
+           builder.Entity<Book>().Navigation(b => b.Author).AutoInclude();
             builder.Entity<Book>().Navigation(b => b.Category).AutoInclude();
             builder.Entity<Book>().Navigation(b => b.Translator).AutoInclude();
             builder.Entity<Book>().Navigation(b => b.Publisher).AutoInclude();
