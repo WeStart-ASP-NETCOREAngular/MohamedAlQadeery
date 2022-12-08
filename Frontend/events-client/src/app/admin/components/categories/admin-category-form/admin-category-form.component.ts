@@ -35,13 +35,24 @@ export class AdminCategoryFormComponent implements OnInit {
     console.log(this.categoryForm.value);
     this._spinner.show();
     if (this.formType == 'create') {
-      this._categoryService.CreateCategory(this.categoryForm.value).subscribe({
+      this.CreateCategory();
+    } else {
+      console.log('Updating category........ for ' + this.id);
+      this.UpdateCategory();
+    }
+  }
+
+  private UpdateCategory() {
+    this._categoryService
+      .UpdateCategory(this.categoryForm.value, +this.id!)
+      .subscribe({
         next: (res) => {
           console.log(res);
           this._spinner.hide();
           this._toastr.success(
-            `Category : ${res.name} has been created successfully !`
+            `Category : ${res.name} has been updated successfully !`
           );
+
           this._router.navigate(['admin/categories']);
         },
 
@@ -50,28 +61,24 @@ export class AdminCategoryFormComponent implements OnInit {
           this._spinner.hide();
         },
       });
-    } else {
-      console.log('Updating category........ for ' + this.id);
+  }
 
-      this._categoryService
-        .UpdateCategory(this.categoryForm.value, +this.id!)
-        .subscribe({
-          next: (res) => {
-            console.log(res);
-            this._spinner.hide();
-            this._toastr.success(
-              `Category : ${res.name} has been updated successfully !`
-            );
+  private CreateCategory() {
+    this._categoryService.CreateCategory(this.categoryForm.value).subscribe({
+      next: (res) => {
+        console.log(res);
+        this._spinner.hide();
+        this._toastr.success(
+          `Category : ${res.name} has been created successfully !`
+        );
+        this._router.navigate(['admin/categories']);
+      },
 
-            this._router.navigate(['admin/categories']);
-          },
-
-          error: (err) => {
-            console.log(err);
-            this._spinner.hide();
-          },
-        });
-    }
+      error: (err) => {
+        console.log(err);
+        this._spinner.hide();
+      },
+    });
   }
 
   private TryEditForm() {
