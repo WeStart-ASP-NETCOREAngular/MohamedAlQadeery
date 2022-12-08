@@ -5,6 +5,8 @@ import { IsAuthentictedGuard } from '../guards/is-authenticted.guard';
 import { AdminHomepageComponent } from './components/admin-homepage/admin-homepage.component';
 import { AdminCategoriesListComponent } from './components/categories/admin-categories/admin-categories-list.component';
 import { AdminCategoryFormComponent } from './components/categories/admin-category-form/admin-category-form.component';
+import { AdminTagFormComponent } from './components/tags/admin-tag-form/admin-tag-form.component';
+import { AdminTagsComponent } from './components/tags/admin-tags/admin-tags.component';
 
 const routes: Routes = [
   {
@@ -23,6 +25,18 @@ const routes: Routes = [
       {
         path: 'categories/:id',
         component: AdminCategoryFormComponent,
+      },
+      {
+        path: 'tags',
+        component: AdminTagsComponent,
+      },
+      {
+        path: 'tags/create',
+        component: AdminTagFormComponent,
+      },
+      {
+        path: 'tags/:id',
+        component: AdminTagFormComponent,
       },
     ],
   },
