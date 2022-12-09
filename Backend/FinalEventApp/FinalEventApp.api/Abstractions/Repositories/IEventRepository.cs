@@ -16,5 +16,7 @@ namespace FinalEventApp.api.Abstractions.Repositories
         Task<bool> ExitEvent(int eventId, string memberId);
 
         Task<List<EventMember>> GetEventMembers(int eventId);
+        Task<List<Event>> GetUserJoinedEvents(string userId);
+        Task<List<Event>> GetUserCreatedEvents(string userId);
     }
 }

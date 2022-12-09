@@ -128,5 +128,20 @@ namespace FinalEventApp.api.Data.Repositories
 
             return eventExist.Members.ToList();
         }
+
+
+        public async Task<List<Event>> GetUserJoinedEvents(string userId)
+        {
+           return await _context.EventMembers.Include(em => em.Event)
+                .Where(em => em.MemberId == userId).Select(em => em.Event).ToListAsync();
+
+            
+               
+        }
+
+        public async Task<List<Event>> GetUserCreatedEvents(string userId)
+        {
+            return await _context.Events.Where(e => e.OwnerId == userId).ToListAsync();
+        }
     }
 }
