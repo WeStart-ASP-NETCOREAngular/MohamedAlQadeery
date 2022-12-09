@@ -14,6 +14,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminModule } from './admin/admin.module';
 import { JwtTokenInterceptor } from './interceptors/jwt-token.interceptor';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { EventDetailsComponent } from './components/event/event-details/event-details.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
+    EventDetailsComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
