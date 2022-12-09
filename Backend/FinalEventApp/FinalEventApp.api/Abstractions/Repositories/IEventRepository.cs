@@ -9,5 +9,7 @@ namespace FinalEventApp.api.Abstractions.Repositories
         Task<Event> CreateAsync(Event newEvent);
         Task<Event> UpdateAsync(int id, Event eventToUpdate);
         Task<bool> DeleteAsync(int id);
+
+        Task AssignTagsToEventAsync(int id, List<EventTag> tags);
     }
 }

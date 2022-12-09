@@ -17,6 +17,9 @@ namespace FinalEventApp.api.Mapping
             config.NewConfig<Tag, TagResponseDto>();
             config.NewConfig<CreateTagDto,Tag>();
             config.NewConfig<UpdateTagDto,Tag>();
+
+
+            
         }
     }
 }

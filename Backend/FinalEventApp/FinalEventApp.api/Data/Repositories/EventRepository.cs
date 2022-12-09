@@ -20,29 +20,55 @@ namespace FinalEventApp.api.Data.Repositories
 
         public async Task<Event> GetEventByIdAsync(int id)
         {
-            return await _context.Events.FindAsync(id);
+            return await _context.Events.Include(t=>t.Tags).FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public async Task<Event> CreateAsync(Event newEvent)
         {
+
+           // newEvent.Tags.ForEach(t => t.EventId = newEvent.Id);
             _context.Events.Add(newEvent);
             await _context.SaveChangesAsync();
+
             return newEvent;
         }
 
         public async Task<Event> UpdateAsync(int id,Event eventToUpdate)
         {
-            var eventExist = await _context.Events.FindAsync(id);
-            eventToUpdate.Id = eventExist.Id;
-            if (eventExist != null)
+            var eventExist = await _context.Events.Include(e=>e.Tags).FirstOrDefaultAsync(e => e.Id == id);
+            if (eventExist == null) return null;
+
+            //updating event data
+            eventExist.Name = eventToUpdate.Name;
+            eventExist.CategoryId = eventToUpdate.CategoryId;
+            eventExist.Tags = eventToUpdate.Tags;
+         
+
+        //gets existing so we can remove the tags dont exist in the list
+        var exisitingTags = await _context.EventTags.Where(et => et.EventId == eventExist.Id).ToListAsync();
+
+            exisitingTags.ForEach(t =>
             {
-                _context.Events.Update(eventToUpdate);
+               
+
+                if (!eventExist.Tags.Any(updateTag => updateTag.TagId == t.TagId))
+                {
+                    //we should deatch it so ef will stop tracking it
+                    _context.Entry(t).State = EntityState.Detached;
+
+                    //does not exist in updated list so we should remove it
+                    _context.EventTags.Remove(t);
+                }
+            });
+           
+
+                _context.Events.Update(eventExist);
                 await _context.SaveChangesAsync();
-                return eventToUpdate;
+                return eventExist;
 
-            }
+           
 
-            return null;
+            
         }
 
         public async Task<bool> DeleteAsync(int id)
@@ -58,6 +84,14 @@ namespace FinalEventApp.api.Data.Repositories
             return false;
         }
 
-       
+        public async Task AssignTagsToEventAsync(int id, List<EventTag> tags)
+        {
+            var eventExist = await _context.Events.FindAsync(id);
+            if (eventExist == null) return;
+
+            tags.ForEach(t => _context.EventTags.Add(t));
+            await _context.SaveChangesAsync();
+
+        }
     }
 }
