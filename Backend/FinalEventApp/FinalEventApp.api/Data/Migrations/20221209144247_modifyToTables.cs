@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FinalEventApp.api.Data.Migrations
 {
-    public partial class inital : Migration
+    public partial class modifyToTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -218,6 +218,30 @@ namespace FinalEventApp.api.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EventMembers",
+                columns: table => new
+                {
+                    MemberId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    EventId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventMembers", x => new { x.EventId, x.MemberId });
+                    table.ForeignKey(
+                        name: "FK_EventMembers_AspNetUsers_MemberId",
+                        column: x => x.MemberId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EventMembers_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EventTags",
                 columns: table => new
                 {
@@ -241,30 +265,6 @@ namespace FinalEventApp.api.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "EventUsers",
-                columns: table => new
-                {
-                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    EventId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EventUsers", x => new { x.EventId, x.AppUserId });
-                    table.ForeignKey(
-                        name: "FK_EventUsers_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EventUsers_Events_EventId",
-                        column: x => x.EventId,
-                        principalTable: "Events",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
@@ -279,8 +279,8 @@ namespace FinalEventApp.api.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedAt", "DateOfBirth", "DeletedAt", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "65574566-fef6-4857-903b-af23c2d795e9", 0, "a32cc227-9154-42a0-a099-2785fa3a7f29", new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6295), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@admin.com", true, "admin", "admin", false, null, null, "ADMIN", "AQAAAAEAACcQAAAAEFWWwZJS0PHxaxE6934J4FzmNIXWyaeL3c8/EF1BwYqoE67GhjZu9caiJTyVLivlIA==", null, false, "02763bc9-481c-4773-870d-2b3a9589e9e9", false, "admin" },
-                    { "b5feebcf-f317-4117-81c5-f95c98e3999e", 0, "80c8bd36-e210-4b1e-8e1a-e2060d33a9c2", new DateTime(2022, 12, 2, 1, 28, 31, 250, DateTimeKind.Local).AddTicks(6404), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@user.com", true, "Mohamed", "alQadeery", false, null, null, "MOHAMEDALQADEERY", "AQAAAAEAACcQAAAAEMlIRYGuiU9cCGKuVPbPruianEv/DWqTKasVc4EE0fWEaT5Jes8hnEyxTVQoFyGU1g==", null, false, "c9d4df0f-b25d-4e79-80fa-d265e22d00db", false, "MohamedAlQadeery" }
+                    { "65574566-fef6-4857-903b-af23c2d795e9", 0, "7fdf7b93-04c8-489c-8e3d-485bd02014b7", new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(3225), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@admin.com", true, "admin", "admin", false, null, "ADMIN@ADMIN.COM", "ADMIN", "AQAAAAEAACcQAAAAEC0r0vl1TX3GODqcrDkHEcGTT8QDAK8IyS31/S+MbSLFS+nogX9N2A9hUOKyUlq7aA==", null, false, "a8241e0b-4686-4a62-a6d5-6c808a597794", false, "admin" },
+                    { "b5feebcf-f317-4117-81c5-f95c98e3999e", 0, "a5d5b300-45b8-4762-94ca-c38a4e21866d", new DateTime(2022, 12, 9, 16, 42, 47, 381, DateTimeKind.Local).AddTicks(3437), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@user.com", true, "Mohamed", "alQadeery", false, null, "USER@USER.com", "MOHAMEDALQADEERY", "AQAAAAEAACcQAAAAEFUXgkOBvnnDGRe9VIjGNIN2oy0YIUOCSgUbkEfBdHX44tQgHPYBE+8p//3LrYRTTw==", null, false, "5106cc4f-6f7e-4485-9a9b-997878a790be", false, "MohamedAlQadeery" }
                 });
 
             migrationBuilder.InsertData(
@@ -288,8 +288,8 @@ namespace FinalEventApp.api.Data.Migrations
                 columns: new[] { "Id", "CreatedAt", "DeletedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6031), null, "Sport" },
-                    { 2, new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6065), null, "Gaming" }
+                    { 1, new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(2964), null, "Sport" },
+                    { 2, new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(3000), null, "Gaming" }
                 });
 
             migrationBuilder.InsertData(
@@ -297,10 +297,10 @@ namespace FinalEventApp.api.Data.Migrations
                 columns: new[] { "Id", "CreatedAt", "DeletedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6177), null, "WorldCup" },
-                    { 2, new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6181), null, "FPS" },
-                    { 3, new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6182), null, "Music" },
-                    { 4, new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6184), null, "FIFA" }
+                    { 1, new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(3106), null, "WorldCup" },
+                    { 2, new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(3109), null, "FPS" },
+                    { 3, new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(3111), null, "Music" },
+                    { 4, new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(3112), null, "FIFA" }
                 });
 
             migrationBuilder.InsertData(
@@ -353,6 +353,11 @@ namespace FinalEventApp.api.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EventMembers_MemberId",
+                table: "EventMembers",
+                column: "MemberId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Events_CategoryId",
                 table: "Events",
                 column: "CategoryId");
@@ -366,11 +371,6 @@ namespace FinalEventApp.api.Data.Migrations
                 name: "IX_EventTags_TagId",
                 table: "EventTags",
                 column: "TagId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EventUsers_AppUserId",
-                table: "EventUsers",
-                column: "AppUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -391,19 +391,19 @@ namespace FinalEventApp.api.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "EventTags");
+                name: "EventMembers");
 
             migrationBuilder.DropTable(
-                name: "EventUsers");
+                name: "EventTags");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "Events");
 
             migrationBuilder.DropTable(
-                name: "Events");
+                name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

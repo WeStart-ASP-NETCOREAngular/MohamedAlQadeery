@@ -11,7 +11,7 @@ namespace FinalEventApp.api.Models
 
         public DateTime? DeletedAt { get; set; } = null;
 
-        public List<EventUser> EventUsers { get; set; } = null;
+        public List<EventMember> JoinedEvents { get; set; }
 
         public List<Event> CreatedEvents { get; set; }
 

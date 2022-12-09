@@ -21,19 +21,33 @@ namespace FinalEventApp.api.Data
             SeedAdmin(modelBuilder);
             SeedUser(modelBuilder);
 
-            modelBuilder.Entity<EventTag>().HasKey(et => new { et.EventId, et.TagId });
-            modelBuilder.Entity<EventUser>().HasKey(eu => new { eu.EventId, eu.AppUserId });
-            modelBuilder.Entity<AppUser>().HasMany(c => c.CreatedEvents).WithOne(e => e.Owner);
+            SettingManyToManyRelations(modelBuilder);
+
+            SettingOneToManyRelations(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
+
+            static void SettingManyToManyRelations(ModelBuilder modelBuilder)
+            {
+                modelBuilder.Entity<EventTag>().HasKey(et => new { et.EventId, et.TagId });
+                modelBuilder.Entity<EventTag>().HasOne(et => et.Tag).WithMany(t => t.Events).HasForeignKey(et => et.TagId);
+                modelBuilder.Entity<EventTag>().HasOne(et => et.Event).WithMany(e => e.Tags).HasForeignKey(et => et.EventId);
+
+                modelBuilder.Entity<EventMember>().HasKey(em => new { em.EventId, em.MemberId });
+                modelBuilder.Entity<EventMember>().HasOne(em => em.Member).WithMany(u => u.JoinedEvents).HasForeignKey(em => em.MemberId);
+                modelBuilder.Entity<EventMember>().HasOne(em => em.Event).WithMany(e => e.Members).HasForeignKey(em => em.EventId);
+            }
         }
 
-      
+        private static void SettingOneToManyRelations(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Event>().HasOne(e => e.Owner).WithMany(u => u.CreatedEvents).HasForeignKey(e => e.OwnerId);
+        }
 
         public DbSet<Tag>  Tags { get; set; }
         public DbSet<Category>  Categories { get; set; }
         public DbSet<EventTag> EventTags { get; set; }
-        public DbSet<EventUser> EventUsers { get; set; }
+        public DbSet<EventMember> EventMembers { get; set; }
         public DbSet<Event> Events { get; set; }
 
 

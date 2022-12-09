@@ -1,9 +1,9 @@
 ﻿namespace FinalEventApp.api.Models
 {
-    public class EventUser
+    public class EventMember
     {
-        public string AppUserId { get; set; }
-        public AppUser AppUser { get; set; }
+        public string MemberId { get; set; }
+        public AppUser Member { get; set; }
 
         public int EventId { get; set; }
         public Event Event { get; set; }

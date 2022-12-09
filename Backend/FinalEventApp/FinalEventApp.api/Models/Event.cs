@@ -19,9 +19,9 @@ namespace FinalEventApp.api.Models
         public string OwnerId { get; set; }
         public AppUser Owner { get; set; }
 
-        public List<EventTag> EventTags { get; set; }
+        public List<EventTag> Tags { get; set; }
 
-        public List<EventUser> EventUsers { get; set; }
+        public List<EventMember> Members { get; set; }
 
 
     }

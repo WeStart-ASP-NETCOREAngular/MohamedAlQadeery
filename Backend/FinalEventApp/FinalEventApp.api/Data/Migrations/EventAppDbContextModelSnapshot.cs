@@ -106,18 +106,19 @@ namespace FinalEventApp.api.Data.Migrations
                         {
                             Id = "65574566-fef6-4857-903b-af23c2d795e9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a32cc227-9154-42a0-a099-2785fa3a7f29",
-                            CreatedAt = new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6295),
+                            ConcurrencyStamp = "7fdf7b93-04c8-489c-8e3d-485bd02014b7",
+                            CreatedAt = new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(3225),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
                             LastName = "admin",
                             LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFWWwZJS0PHxaxE6934J4FzmNIXWyaeL3c8/EF1BwYqoE67GhjZu9caiJTyVLivlIA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC0r0vl1TX3GODqcrDkHEcGTT8QDAK8IyS31/S+MbSLFS+nogX9N2A9hUOKyUlq7aA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "02763bc9-481c-4773-870d-2b3a9589e9e9",
+                            SecurityStamp = "a8241e0b-4686-4a62-a6d5-6c808a597794",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
@@ -125,18 +126,19 @@ namespace FinalEventApp.api.Data.Migrations
                         {
                             Id = "b5feebcf-f317-4117-81c5-f95c98e3999e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "80c8bd36-e210-4b1e-8e1a-e2060d33a9c2",
-                            CreatedAt = new DateTime(2022, 12, 2, 1, 28, 31, 250, DateTimeKind.Local).AddTicks(6404),
+                            ConcurrencyStamp = "a5d5b300-45b8-4762-94ca-c38a4e21866d",
+                            CreatedAt = new DateTime(2022, 12, 9, 16, 42, 47, 381, DateTimeKind.Local).AddTicks(3437),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@user.com",
                             EmailConfirmed = true,
                             FirstName = "Mohamed",
                             LastName = "alQadeery",
                             LockoutEnabled = false,
+                            NormalizedEmail = "USER@USER.com",
                             NormalizedUserName = "MOHAMEDALQADEERY",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMlIRYGuiU9cCGKuVPbPruianEv/DWqTKasVc4EE0fWEaT5Jes8hnEyxTVQoFyGU1g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFUXgkOBvnnDGRe9VIjGNIN2oy0YIUOCSgUbkEfBdHX44tQgHPYBE+8p//3LrYRTTw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c9d4df0f-b25d-4e79-80fa-d265e22d00db",
+                            SecurityStamp = "5106cc4f-6f7e-4485-9a9b-997878a790be",
                             TwoFactorEnabled = false,
                             UserName = "MohamedAlQadeery"
                         });
@@ -167,13 +169,13 @@ namespace FinalEventApp.api.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6031),
+                            CreatedAt = new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(2964),
                             Name = "Sport"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6065),
+                            CreatedAt = new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(3000),
                             Name = "Gaming"
                         });
                 });
@@ -210,6 +212,21 @@ namespace FinalEventApp.api.Data.Migrations
                     b.ToTable("Events");
                 });
 
+            modelBuilder.Entity("FinalEventApp.api.Models.EventMember", b =>
+                {
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MemberId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("EventId", "MemberId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("EventMembers");
+                });
+
             modelBuilder.Entity("FinalEventApp.api.Models.EventTag", b =>
                 {
                     b.Property<int>("EventId")
@@ -223,21 +240,6 @@ namespace FinalEventApp.api.Data.Migrations
                     b.HasIndex("TagId");
 
                     b.ToTable("EventTags");
-                });
-
-            modelBuilder.Entity("FinalEventApp.api.Models.EventUser", b =>
-                {
-                    b.Property<int>("EventId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("EventId", "AppUserId");
-
-                    b.HasIndex("AppUserId");
-
-                    b.ToTable("EventUsers");
                 });
 
             modelBuilder.Entity("FinalEventApp.api.Models.Tag", b =>
@@ -265,25 +267,25 @@ namespace FinalEventApp.api.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6177),
+                            CreatedAt = new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(3106),
                             Name = "WorldCup"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6181),
+                            CreatedAt = new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(3109),
                             Name = "FPS"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6182),
+                            CreatedAt = new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(3111),
                             Name = "Music"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2022, 12, 2, 1, 28, 31, 244, DateTimeKind.Local).AddTicks(6184),
+                            CreatedAt = new DateTime(2022, 12, 9, 16, 42, 47, 375, DateTimeKind.Local).AddTicks(3112),
                             Name = "FIFA"
                         });
                 });
@@ -466,16 +468,35 @@ namespace FinalEventApp.api.Data.Migrations
                     b.Navigation("Owner");
                 });
 
+            modelBuilder.Entity("FinalEventApp.api.Models.EventMember", b =>
+                {
+                    b.HasOne("FinalEventApp.api.Models.Event", "Event")
+                        .WithMany("Members")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FinalEventApp.api.Models.AppUser", "Member")
+                        .WithMany("JoinedEvents")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("FinalEventApp.api.Models.EventTag", b =>
                 {
                     b.HasOne("FinalEventApp.api.Models.Event", "Event")
-                        .WithMany("EventTags")
+                        .WithMany("Tags")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FinalEventApp.api.Models.Tag", "Tag")
-                        .WithMany("EventTags")
+                        .WithMany("Events")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -483,25 +504,6 @@ namespace FinalEventApp.api.Data.Migrations
                     b.Navigation("Event");
 
                     b.Navigation("Tag");
-                });
-
-            modelBuilder.Entity("FinalEventApp.api.Models.EventUser", b =>
-                {
-                    b.HasOne("FinalEventApp.api.Models.AppUser", "AppUser")
-                        .WithMany("EventUsers")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FinalEventApp.api.Models.Event", "Event")
-                        .WithMany("EventUsers")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("Event");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -559,7 +561,7 @@ namespace FinalEventApp.api.Data.Migrations
                 {
                     b.Navigation("CreatedEvents");
 
-                    b.Navigation("EventUsers");
+                    b.Navigation("JoinedEvents");
                 });
 
             modelBuilder.Entity("FinalEventApp.api.Models.Category", b =>
@@ -569,14 +571,14 @@ namespace FinalEventApp.api.Data.Migrations
 
             modelBuilder.Entity("FinalEventApp.api.Models.Event", b =>
                 {
-                    b.Navigation("EventTags");
+                    b.Navigation("Members");
 
-                    b.Navigation("EventUsers");
+                    b.Navigation("Tags");
                 });
 
             modelBuilder.Entity("FinalEventApp.api.Models.Tag", b =>
                 {
-                    b.Navigation("EventTags");
+                    b.Navigation("Events");
                 });
 #pragma warning restore 612, 618
         }
