@@ -95,6 +95,12 @@ namespace FinalEventApp.api.Data.Repositories
             var memberExist = await _context.Users.FindAsync(memberId);
             if(memberExist == null) { return null; }
 
+            var isAlreadyJoined = await _context.EventMembers.
+                Where(em => em.EventId == eventId && em.MemberId == memberId)
+                .SingleOrDefaultAsync();
+
+            if (isAlreadyJoined != null) { return null; }
+
             var eventMember = new EventMember { EventId = eventId, MemberId = memberId };
             await _context.EventMembers.AddAsync(eventMember);
             await _context.SaveChangesAsync();
@@ -120,13 +126,17 @@ namespace FinalEventApp.api.Data.Repositories
            
         }
 
-        public async Task<List<EventMember>> GetEventMembers(int eventId)
+        public async Task<List<AppUser>> GetEventMembers(int eventId)
         {
-            var eventExist = await _context.Events.Include(e=>e.Members).FirstOrDefaultAsync(e=>e.Id == eventId);
+            var eventExit = await _context.Events.FindAsync(eventId);
+            if (eventExit == null) return null;
 
-            if(eventExist == null) { return null; }
-
-            return eventExist.Members.ToList();
+            return await _context.EventMembers
+                .Include(em => em.Member).
+                Where(em => em.EventId == eventId)
+                .Select(em => em.Member).ToListAsync();
+            
+          
         }
 
 
