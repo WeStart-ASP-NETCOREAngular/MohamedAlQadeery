@@ -1,4 +1,6 @@
-﻿using FinalEventApp.api.Data;
+﻿using FinalEventApp.api.Abstractions.Repositories;
+using FinalEventApp.api.Data;
+using FinalEventApp.api.Data.Repositories;
 using FinalEventApp.api.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +30,11 @@ namespace FinalEventApp.api.DependancyInjections
             })
                 .AddEntityFrameworkStores<EventAppDbContext>()
                 .AddDefaultTokenProviders();
+
+
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
+            services.AddScoped<IEventRepository, EventRepository>();
             return services;
         }
     }

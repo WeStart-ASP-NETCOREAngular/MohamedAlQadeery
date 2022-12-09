@@ -1,5 +1,4 @@
-using FinalEventApp.api.Abstractions.Repositories;
-using FinalEventApp.api.Data.Repositories;
+
 using FinalEventApp.api.DependancyInjections;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -13,8 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocumentation();
 builder.Services.ConfigureCors().AddDataLayer(builder.Configuration).AddAuthenticationJWT(builder.Configuration).AddMapping(); 
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ITagRepository, TagRepository>();
+
 
 
 var app = builder.Build();
