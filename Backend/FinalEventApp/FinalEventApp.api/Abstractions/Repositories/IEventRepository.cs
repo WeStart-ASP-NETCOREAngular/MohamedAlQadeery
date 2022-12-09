@@ -11,5 +11,10 @@ namespace FinalEventApp.api.Abstractions.Repositories
         Task<bool> DeleteAsync(int id);
 
         Task AssignTagsToEventAsync(int id, List<EventTag> tags);
+
+        Task<EventMember> JoinEvent(int eventId, string memberId);
+        Task<bool> ExitEvent(int eventId, string memberId);
+
+        Task<List<EventMember>> GetEventMembers(int eventId);
     }
 }
