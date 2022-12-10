@@ -24,7 +24,7 @@ namespace BookStore.API.Services
 
         }
 
-        private static void StoreUploadedImage(IFormFile imageFile, string fileName)
+        private  void StoreUploadedImage(IFormFile imageFile, string fileName)
         {
             if (!Directory.Exists(uploadDir))
             {

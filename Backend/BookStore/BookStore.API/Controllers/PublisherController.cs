@@ -1,5 +1,6 @@
 ﻿using BookStore.API.DTOs.PublisherDto;
 using BookStore.API.Interfaces.Repositories;
+using BookStore.API.Interfaces.Services;
 using BookStore.API.Models;
 using MapsterMapper;
 using Microsoft.AspNetCore.Http;
@@ -13,11 +14,13 @@ namespace BookStore.API.Controllers
     {
         private readonly IPublisherRepository _repo;
         private readonly IMapper _mapper;
+        private readonly IImageService _imageService;
 
-        public PublisherController(IPublisherRepository repo,IMapper mapper)
+        public PublisherController(IPublisherRepository repo,IMapper mapper,IImageService imageService)
         {
             _repo = repo;
             _mapper = mapper;
+            _imageService = imageService;
         }
         [HttpGet]
         public async Task<IActionResult> GetAllPublishers()
@@ -41,18 +44,36 @@ namespace BookStore.API.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreatePublisher(Publisher publisherToCreate)
+        public async Task<IActionResult> CreatePublisher([FromForm]PostPublisherRequest publisherToCreate)
         {
-            var publisher = await _repo.CreateAsync(publisherToCreate);
+           var logo =  _imageService.UploadImage(publisherToCreate.LogoImage);
+
+            if (logo == "") return BadRequest("File is not image ");
+
+            var publisher = new Publisher { Name = publisherToCreate.Name, Logo = logo };
+
+            await _repo.CreateAsync(publisher);
 
             return CreatedAtAction(nameof(GetPublisherById), new { id = publisher.Id }, publisher);
 
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePublisher(int id, Publisher publisherToUpdate)
+        public async Task<IActionResult> UpdatePublisher(int id,[FromForm] PutPublisherRequest publisherToUpdate)
         {
-            var publisher = await _repo.UpdateAsync(id, publisherToUpdate);
+            var publisher = new Publisher();
+          
+            if(publisherToUpdate.LogoImage != null)
+            {
+                var logo = _imageService.UploadImage(publisherToUpdate.LogoImage);
+
+                if (logo == "") return BadRequest("File is not image ");
+                publisher.Logo = logo;
+            }
+
+            publisher.Name = publisherToUpdate.Name;
+            
+             await _repo.UpdateAsync(id, publisher);
             if (publisher != null)
             {
                 return Ok(publisher);

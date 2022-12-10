@@ -48,9 +48,14 @@ namespace BookStore.API.Repositories
             var publisher = await _context.Publishers.FirstOrDefaultAsync(a => a.Id == id);
             if (publisher == null) return null;
 
-            publisher.Name = publisherToUpdate.Name;
+            if(publisherToUpdate.Logo != null)
+            {
             publisher.Logo = publisherToUpdate.Logo;
 
+            }
+            publisher.Name = publisherToUpdate.Name;
+            publisher.Id = id;
+            _context.Publishers.Update(publisher);
             await _context.SaveChangesAsync();
 
             return publisher;
