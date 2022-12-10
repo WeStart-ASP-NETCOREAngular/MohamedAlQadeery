@@ -47,7 +47,16 @@ namespace BookStore.API.Repositories
         {
             var book = await _context.Books.AsNoTracking().FirstOrDefaultAsync(b => b.Id == id);
             if (book == null) return null;
+
+            // if no image was uploaded then dont chage the image and keep it the same
+            if(bookToUpdate.Image == null)
+            {
+                bookToUpdate.Image = book.Image;
+            }
+
             bookToUpdate.Id = book.Id;
+          
+
 
             _context.Books.Update(bookToUpdate);
             await _context.SaveChangesAsync();

@@ -4,6 +4,7 @@ using BookStore.API.DTOs.BookDto.Request;
 using BookStore.API.DTOs.BookReviewsDto.Request;
 using BookStore.API.DTOs.BookReviewsDto.Response;
 using BookStore.API.Interfaces.Repositories;
+using BookStore.API.Interfaces.Services;
 using BookStore.API.Models;
 using MapsterMapper;
 using Microsoft.AspNetCore.Http;
@@ -19,12 +20,14 @@ namespace BookStore.API.Controllers
         private readonly IBookRepository _repo;
         private readonly IMapper _mapper;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IImageService _imageService;
 
-        public BookController(IBookRepository repo,IMapper mapper,UserManager<AppUser> userManager)
+        public BookController(IBookRepository repo,IMapper mapper,UserManager<AppUser> userManager,IImageService imageService)
         {
             _repo = repo;
             _mapper = mapper;
             _userManager = userManager;
+            _imageService = imageService;
         }
 
 
@@ -52,10 +55,14 @@ namespace BookStore.API.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateBook(CreateBookRequest createBookRequest)
+        public async Task<IActionResult> CreateBook([FromForm]CreateBookRequest createBookRequest)
         {
+            var fileName = _imageService.UploadImage(createBookRequest.ImageFile);
+            if (fileName == "") return BadRequest("File is not image");
 
             var bookToCreate = _mapper.Map<Book>(createBookRequest);
+            bookToCreate.Image = fileName;
+
             var book = await _repo.CreateAsync(bookToCreate);
 
             return CreatedAtAction(nameof(GetBookById), new { id = book.Id }, _mapper.Map<SpecficBookResponse>(book));
@@ -63,9 +70,17 @@ namespace BookStore.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBook(int id, UpdateBookRequest updateBookRequest)
+        public async Task<IActionResult> UpdateBook(int id, [FromForm]UpdateBookRequest updateBookRequest)
         {
             var bookToUpdate = _mapper.Map<Book>(updateBookRequest);
+
+            if(updateBookRequest.ImageFile != null)
+            {
+                var fileName = _imageService.UploadImage(updateBookRequest.ImageFile);
+                bookToUpdate.Image = fileName;
+            }
+
+
             var book = await _repo.UpdateAsync(id, bookToUpdate);
             if (book != null)
             {

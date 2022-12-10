@@ -15,7 +15,7 @@ namespace BookStore.API.DTOs.BookDto.Request
 
         [Required]
 
-        public string Image { get; set; }
+        public IFormFile ImageFile { get; set; }
         [Required]
 
         public string About { get; set; }
@@ -40,4 +40,9 @@ namespace BookStore.API.DTOs.BookDto.Request
         public int? CategoryId { get; set; }
 
     }
+
+
+
+
+
 }
