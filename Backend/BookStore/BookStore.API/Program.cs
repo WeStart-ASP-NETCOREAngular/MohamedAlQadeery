@@ -1,6 +1,7 @@
 
 using BookStore.API.Data;
 using BookStore.API.Mapping;
+using BookStore.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDataLayer(builder.Configuration).AddMapping();
+builder.Services.AddServicesDI();
 
 var app = builder.Build();
 
