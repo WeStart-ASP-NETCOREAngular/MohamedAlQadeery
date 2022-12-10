@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~font-awesome/css/font-awesome.min.css";
+
 footer {
   background-color: #009c96;
+  height: 100%;
+  width: 100%;
 }
 
 @font-face {
@@ -14,4 +18,22 @@ footer {
 
 body {
   font-family: "HelveticaNeueLT Arabic 55 Roman";
+}
+
+/* #hero {
+  background-image: url(/assets/hero.png);
+} */
+
+.card {
+  height: 350px;
+  /* width: 500px; */
+}
+
+.card img {
+  height: 100%;
+  width: 50%;
+}
+
+.card a {
+  border: 3px solid transparent;
 }
