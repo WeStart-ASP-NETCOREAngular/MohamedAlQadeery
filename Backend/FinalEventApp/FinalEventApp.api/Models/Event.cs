@@ -24,5 +24,13 @@ namespace FinalEventApp.api.Models
         public List<EventMember> Members { get; set; }
 
 
+
+        public string Image { get; set; } = String.Empty;
+        public string Description { get; set; } = String.Empty;
+        public string Time { get; set; } = String.Empty;
+        public string Location { get; set; } = String.Empty;
+        public DateTime StartDate { get; set; } = DateTime.Now;
+
     }
 }
+

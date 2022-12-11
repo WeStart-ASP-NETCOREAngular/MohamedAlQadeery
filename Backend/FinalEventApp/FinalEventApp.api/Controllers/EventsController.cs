@@ -1,4 +1,5 @@
 ﻿using FinalEventApp.api.Abstractions.Repositories;
+using FinalEventApp.api.Abstractions.Services;
 using FinalEventApp.api.DTOs;
 using FinalEventApp.api.DTOs.EventDto.Request;
 using FinalEventApp.api.DTOs.EventDto.Response;
@@ -19,12 +20,14 @@ namespace FinalEventApp.api.Controllers
         private readonly IEventRepository _repo;
         private readonly IMapper _mapper;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IImageService _imageService;
 
-        public EventsController(IEventRepository repo, IMapper mapper,UserManager<AppUser> userManager)
+        public EventsController(IEventRepository repo, IMapper mapper,UserManager<AppUser> userManager,IImageService imageService)
         {
             _repo = repo;
             _mapper = mapper;
             _userManager = userManager;
+            _imageService = imageService;
         }
 
         [HttpGet]
@@ -51,12 +54,17 @@ namespace FinalEventApp.api.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create(PostEventRequest eventRequest)
+        public async Task<IActionResult> Create([FromForm]PostEventRequest eventRequest)
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
+            var fileName = _imageService.UploadImage(eventRequest.ImageFile);
+            if (fileName == "") return BadRequest("File is not image");
+
+
             var newEvent = _mapper.Map<Event>(eventRequest);
             newEvent.OwnerId = userId;
+            newEvent.Image = fileName;
             var createdEvent = await _repo.CreateAsync(newEvent);
 
             //old way
@@ -72,9 +80,15 @@ namespace FinalEventApp.api.Controllers
 
         [HttpPut("{id}")]
         [Authorize]
-        public async Task<IActionResult> Update(int id, PutEventRequest eventToUpdateDto)
+        public async Task<IActionResult> Update(int id,[FromForm] PutEventRequest eventToUpdateDto)
         {
+  
             var eventToUpdate = _mapper.Map<Event>(eventToUpdateDto);
+            if (eventToUpdateDto.ImageFile != null)
+            {
+                var fileName = _imageService.UploadImage(eventToUpdateDto.ImageFile);
+                eventToUpdate.Image = fileName;
+            }
 
             var eventUpdated = await _repo.UpdateAsync(id, eventToUpdate);
 

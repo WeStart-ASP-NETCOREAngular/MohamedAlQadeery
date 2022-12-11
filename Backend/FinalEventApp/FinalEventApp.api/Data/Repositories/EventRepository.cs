@@ -38,12 +38,20 @@ namespace FinalEventApp.api.Data.Repositories
             var eventExist = await _context.Events.Include(e => e.Tags).FirstOrDefaultAsync(e => e.Id == id);
             if (eventExist == null) return null;
 
+            if(eventToUpdate.Image != "")
+            {
+                eventExist.Image = eventToUpdate.Image;
+            }
+           
             //updating event data
             eventExist.Name = eventToUpdate.Name;
             eventExist.CategoryId = eventToUpdate.CategoryId;
             eventExist.Tags = eventToUpdate.Tags;
-
-
+            eventExist.Location = eventToUpdate.Location;
+            eventExist.Time = eventToUpdate.Time;
+            eventExist.StartDate = eventToUpdate.StartDate;
+            eventExist.Description = eventToUpdate.Description;
+           
             //gets existing so we can remove the tags dont exist in the list
             var exisitingTags = await _context.EventTags.Where(et => et.EventId == eventExist.Id).ToListAsync();
 

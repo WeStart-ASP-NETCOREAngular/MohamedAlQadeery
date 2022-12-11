@@ -14,8 +14,18 @@ namespace FinalEventApp.api.DTOs.EventDto.Request
         [Required]
 
 
-      
         public int[]? TagsId { get; set; }
+        [Required]
+        public IFormFile ImageFile { get; set; } 
+        [Required]
+        public string Description { get; set; }
+        [Required]
+        public string Time { get; set; } 
+        [Required]
+        public string Location { get; set; } 
+
+        [Required]
+        public DateTime StartDate { get; set; } 
     }  
     public class PutEventRequest
     {
@@ -26,6 +36,19 @@ namespace FinalEventApp.api.DTOs.EventDto.Request
 
         public int? CategoryId { get; set; }
       
+        [Required]
         public int[]? TagsId { get; set; }
+
+
+        public IFormFile ImageFile { get; set; }
+        [Required]
+        public string Description { get; set; }
+        [Required]
+        public string Time { get; set; }
+        [Required]
+        public string Location { get; set; }
+
+        [Required]
+        public DateTime StartDate { get; set; }
     }
 }
