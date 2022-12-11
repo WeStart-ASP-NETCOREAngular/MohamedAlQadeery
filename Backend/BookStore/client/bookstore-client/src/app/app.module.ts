@@ -16,6 +16,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { CategoryComponent } from './components/admin/category/category.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
     FooterComponent,
     HomeComponent,
     DashboardComponent,
+    CategoryComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

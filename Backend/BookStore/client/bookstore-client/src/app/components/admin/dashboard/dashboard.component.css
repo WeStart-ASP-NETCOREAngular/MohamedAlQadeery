@@ -1,0 +1,11 @@
+#admin-nav {
+  background-color: #009c96;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
+nav a.active {
+  color: white;
+}
