@@ -1,35 +1,24 @@
 <div class="container">
     <div class="display-5 mb-4">صفحة التصنيفات</div>
 
-
-    <form [formGroup]="categoryFormGroup" class="mb-5">
-        <div class="row ">
-            <div class=" col-md-6">
+    <form [formGroup]="categoryFormGroup" class="mb-5" (ngSubmit)="HandleOnSubmit()">
+        <div class="row">
+            <div class="col-md-6">
                 <label class="form-label">الاسم</label>
 
-                <input type="text" class="form-control mb-3" placeholder="ادخل اسم التصنيف">
+                <input type="text" formControlName="name" class="form-control mb-3" placeholder="ادخل اسم التصنيف" />
 
-                <button type="submit" class="btn
-            btn-success ">انشاء</button>
+
+
+                <button [disabled]="!categoryFormGroup.valid" type="submit" class="btn
+          btn-success">{{buttonLabel}}</button>
             </div>
-
-
         </div>
-
     </form>
 
-
-
-
-
-    <div class="row ">
-
-
+    <div class="row">
         <div class="col-md-12">
-
-
-
-            <div class="table-responsive ">
+            <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -39,49 +28,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>قصص</td>
+                        <tr *ngFor="let category of categories;let i=index">
+                            <th>{{i+1}}</th>
+                            <td>{{category.name}}</td>
                             <td>
                                 <button class="btn btn-danger mx-2">حذف</button>
-                                <button class="btn btn-info">تعديل</button>
+                                <button class="btn btn-info" (click)="OnEdit(category.id)">تعديل</button>
                             </td>
-
                         </tr>
-                        <tr>
-                            <th>1</th>
-                            <td>قصص</td>
-                            <td>
-                                <button class="btn btn-danger mx-2">حذف</button>
-                                <button class="btn btn-info">تعديل</button>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <td>قصص</td>
-                            <td>
-                                <button class="btn btn-danger mx-2">حذف</button>
-                                <button class="btn btn-info">تعديل</button>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <td>قصص</td>
-                            <td>
-                                <button class="btn btn-danger mx-2">حذف</button>
-                                <button class="btn btn-info">تعديل</button>
-                            </td>
-
-                        </tr>
-
 
                     </tbody>
                 </table>
             </div>
         </div>
-
     </div>
-
 </div>
