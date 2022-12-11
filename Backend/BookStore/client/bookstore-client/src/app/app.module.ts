@@ -13,7 +13,7 @@ import { BooksPopularComponent } from './components/book/books-popular/books-pop
 import { BooksRowComponent } from './components/Shared/books-row/books-row.component';
 import { PublishersRowComponent } from './components/Shared/publishers-row/publishers-row.component';
 import { FooterComponent } from './components/footer/footer.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
     PublishersRowComponent,
     FooterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
