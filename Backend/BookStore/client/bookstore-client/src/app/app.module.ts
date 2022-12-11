@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { CategoryComponent } from './components/admin/category/category.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,12 @@ import { CategoryComponent } from './components/admin/category/category.componen
     DashboardComponent,
     CategoryComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
