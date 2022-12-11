@@ -36,9 +36,8 @@ namespace BookStore.API.Repositories
         {
             //  var sales = await _context.Sales.ToListAsync();
 
-            var result = _context.Sales
-                .AsEnumerable();
-             var maxOrderdBookId = result.GroupBy(s => s.BookId)
+       
+             var maxOrderdBookId = _context.Sales.AsEnumerable().GroupBy(s => s.BookId)
                 .Select(g => new { bookId = g.Key, totalAmount = g.Sum(s => s.Amount) })
                 .MaxBy(s => s.totalAmount);
 
