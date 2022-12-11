@@ -14,6 +14,8 @@ import { BooksRowComponent } from './components/Shared/books-row/books-row.compo
 import { PublishersRowComponent } from './components/Shared/publishers-row/publishers-row.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './components/home/home.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     BooksRowComponent,
     PublishersRowComponent,
     FooterComponent,
+    HomeComponent,
+    DashboardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
