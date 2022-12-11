@@ -10,19 +10,10 @@ import { ImageService } from './image.service';
 })
 export class BookService {
   private baseUrl = environment.baseURL + '/api';
-  constructor(private _http: HttpClient, private _imageService: ImageService) {}
+  constructor(private _http: HttpClient) {}
 
   public GetMostOrderdBook() {
     return this._http.get<IBookResponse>(`${this.baseUrl}/sales/most-orderd`);
-    // .pipe(
-    //   map((res) => {
-    //     this._imageService.GetImageUrl(res.image).pipe(
-    //       tap((imageResponse) => {
-    //         res.image = imageResponse.url!;
-    //       })
-    //     );
-    //   })
-    // );
   }
 
   public GetMostSoldBook() {
