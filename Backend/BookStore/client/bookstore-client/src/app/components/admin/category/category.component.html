@@ -1,5 +1,8 @@
 <div class="container">
     <div class="display-5 mb-4">صفحة التصنيفات</div>
+    <div class="alert alert-success" *ngIf="showAlert" role="alert">
+        {{alertMessage}}
+    </div>
 
     <form [formGroup]="categoryFormGroup" class="mb-5" (ngSubmit)="HandleOnSubmit()">
         <div class="row">
@@ -32,8 +35,13 @@
                             <th>{{i+1}}</th>
                             <td>{{category.name}}</td>
                             <td>
-                                <button class="btn btn-danger mx-2">حذف</button>
-                                <button class="btn btn-info" (click)="OnEdit(category.id)">تعديل</button>
+                                <button class="btn btn-info" (click)="HandleOnEdit(category.id)">تعديل</button>
+
+                                <button class="btn btn-danger mx-2" [swal]="{icon:'warning',
+                                title: 'تأكيد عملية الحذف' ,
+                                text:'هل انت متأكد من حذف التصنيف ؟',
+                                showCancelButton: true,confirmButtonText: 'تأكيد',cancelButtonText:'الغاء' }"
+                                    (confirm)="HandleOnDelete(category.id)">حذف</button>
                             </td>
                         </tr>
 
