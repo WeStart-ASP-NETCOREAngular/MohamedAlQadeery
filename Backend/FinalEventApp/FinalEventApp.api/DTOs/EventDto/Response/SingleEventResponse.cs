@@ -7,9 +7,9 @@
         public DateTime CreatedAt { get; set; }
 
         public string OwnerId { get; set; }
-        public int CategoryId { get; set; }
+        public CategoryResponseDto Category { get; set; }
 
-        public int[] TagsId { get; set; }
+        public List<TagResponseDto> Tags { get; set; }
 
         public string Image { get; set; }
         public string Description { get; set; }
@@ -26,8 +26,9 @@
         public DateTime CreatedAt { get; set; }
 
         public string OwnerId { get; set; }
-        public int CategoryId { get; set; }
+        public CategoryResponseDto Category { get; set; }
 
+        public List<TagResponseDto> Tags { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
         public string Time { get; set; }

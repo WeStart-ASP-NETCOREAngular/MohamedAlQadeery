@@ -15,12 +15,12 @@ namespace FinalEventApp.api.Data.Repositories
 
         public async Task<List<Event>> GetAllEventsAsync()
         {
-            return await _context.Events.ToListAsync();
+            return await _context.Events.Include(e => e.Category).Include(t => t.Tags).ThenInclude(et => et.Tag).ToListAsync();
         }
 
         public async Task<Event> GetEventByIdAsync(int id)
         {
-            return await _context.Events.Include(t => t.Tags).FirstOrDefaultAsync(e => e.Id == id);
+            return await _context.Events.Include(e=>e.Category).Include(e => e.Tags).ThenInclude(et => et.Tag).FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public async Task<Event> CreateAsync(Event newEvent)
