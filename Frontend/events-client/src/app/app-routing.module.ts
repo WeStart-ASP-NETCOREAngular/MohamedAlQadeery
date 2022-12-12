@@ -17,7 +17,7 @@ const routes: Routes = [
     children: [
       { path: '', component: LandingPageComponent },
       { path: 'landing', component: LandingPageComponent },
-      { path: 'event-details', component: EventDetailsComponent },
+      { path: 'event-details/:id', component: EventDetailsComponent },
       { path: 'login', component: LoginComponent, canActivate: [IsGuestGuard] },
       {
         path: 'register',
