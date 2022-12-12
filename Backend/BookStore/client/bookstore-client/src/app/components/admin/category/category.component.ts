@@ -38,9 +38,7 @@ export class CategoryComponent implements OnInit {
       this.UpdateCategory();
     }
 
-    this.ShowAlertMessage('تم انشاء/تحديث البيانات بنجاح');
-
-    this.categoryFormGroup.reset();
+    this.ResetForm();
   }
 
   HandleOnEdit(categoryId: number) {
@@ -87,5 +85,13 @@ export class CategoryComponent implements OnInit {
     setTimeout(() => {
       this.showAlert = false;
     }, 3000);
+  }
+
+  private ResetForm() {
+    this.ShowAlertMessage('تم انشاء/تحديث البيانات بنجاح');
+    this.formType = 'create';
+    this.buttonLabel = 'انشاء';
+
+    this.categoryFormGroup.reset();
   }
 }

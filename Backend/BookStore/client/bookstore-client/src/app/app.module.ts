@@ -19,6 +19,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { CategoryComponent } from './components/admin/category/category.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { AuthorComponent } from './components/admin/author/author.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     HomeComponent,
     DashboardComponent,
     CategoryComponent,
+    AuthorComponent,
   ],
   imports: [
     BrowserModule,
