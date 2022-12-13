@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AuthorComponent } from './components/admin/author/author.component';
 import { TranslatorComponent } from './components/admin/translator/translator.component';
+import { PublisherComponent } from './components/admin/publisher/publisher.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { TranslatorComponent } from './components/admin/translator/translator.co
     CategoryComponent,
     AuthorComponent,
     TranslatorComponent,
+    PublisherComponent,
   ],
   imports: [
     BrowserModule,
