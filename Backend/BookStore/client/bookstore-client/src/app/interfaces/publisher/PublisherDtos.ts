@@ -6,8 +6,10 @@ export interface IPublisherResponse {
 
 export interface ICreatePublisherDto {
   name: string;
+  logo: File;
 }
 
 export interface IUpdatePublisherDto {
   name: string;
+  logo?: File;
 }

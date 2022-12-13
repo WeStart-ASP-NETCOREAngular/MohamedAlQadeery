@@ -7,14 +7,32 @@
     <form [formGroup]="publisherFormGroup" class="mb-5" (ngSubmit)="HandleOnSubmit()">
         <div class="row">
             <div class="col-md-6">
-                <label class="form-label">الاسم</label>
+                <div class="mb-3">
+                    <label class="form-label">الاسم</label>
+                    <input type="text" formControlName="name" class="form-control mb-3"
+                        placeholder="ادخل اسم دار النشر" />
 
-                <input type="text" formControlName="name" class="form-control mb-3" placeholder="ادخل اسم دار النشر" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="logoInput" class="form-label">الشعار</label>
+                    <input (change)="HandleFileInputChange($event)" id="logoInput" class="form-control" type="file">
+                </div>
+
+                <div class="mb-3">
+                    <button [disabled]="!publisherFormGroup.valid" type="submit"
+                        class="btn btn-success">{{buttonLabel}}</button>
+                </div>
+            </div>
 
 
-
-                <button [disabled]="!publisherFormGroup.valid" type="submit" class="btn
-          btn-success">{{buttonLabel}}</button>
+            <div class="col-md-6 text-center">
+                <img class="img-thumbnail mb-2" [src]="imagePreview || 'https://via.placeholder.com/150'">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{ width: progressValue }">
+                        {{progressValue}}
+                    </div>
+                </div>
             </div>
         </div>
     </form>
