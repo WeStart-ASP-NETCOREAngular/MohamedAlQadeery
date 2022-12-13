@@ -20,6 +20,7 @@ import { CategoryComponent } from './components/admin/category/category.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AuthorComponent } from './components/admin/author/author.component';
+import { TranslatorComponent } from './components/admin/translator/translator.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { AuthorComponent } from './components/admin/author/author.component';
     DashboardComponent,
     CategoryComponent,
     AuthorComponent,
+    TranslatorComponent,
   ],
   imports: [
     BrowserModule,
