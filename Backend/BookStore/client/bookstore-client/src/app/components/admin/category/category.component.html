@@ -1,8 +1,5 @@
 <div class="container">
     <div class="display-5 mb-4">صفحة التصنيفات</div>
-    <div class="alert alert-success" *ngIf="showAlert" role="alert">
-        {{alertMessage}}
-    </div>
 
     <form [formGroup]="categoryFormGroup" class="mb-5" (ngSubmit)="HandleOnSubmit()">
         <div class="row">

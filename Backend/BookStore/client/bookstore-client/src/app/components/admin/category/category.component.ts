@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { timeout } from 'rxjs';
 import { ICategoryResponseDto } from 'src/app/interfaces/category/ICategoryResponseDto';
 import { CategoryService } from 'src/app/services/category.service';
@@ -17,9 +18,10 @@ export class CategoryComponent implements OnInit {
   categoryId: number;
   categories: ICategoryResponseDto[] = [];
 
-  showAlert = false;
-  alertMessage = '';
-  constructor(private _categoryService: CategoryService) {}
+  constructor(
+    private _categoryService: CategoryService,
+    private _toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.categoryNameInput = new FormControl('', [Validators.required]);
@@ -56,6 +58,10 @@ export class CategoryComponent implements OnInit {
       .subscribe((res) => {
         let category = this.categories.find((c) => c.id == res.id)!;
         category.name = res.name;
+        this._toastr.success(
+          `تم تحديث التصنيف : ${category.name}, بنجاح`,
+          'تمت العملية'
+        );
       });
   }
 
@@ -64,13 +70,17 @@ export class CategoryComponent implements OnInit {
       .CreateCategory(this.categoryFormGroup.value)
       .subscribe((res) => {
         this.categories.push(res);
+        this._toastr.success(
+          `تم اضافة التصنيف : ${res.name}, بنجاح`,
+          'تمت العملية'
+        );
       });
   }
 
   HandleOnDelete(categoryId: number) {
     this._categoryService.DeleteCategory(categoryId).subscribe({
       next: () => {
-        this.ShowAlertMessage('تم حذف التصنيف بنجاح');
+        this._toastr.success('تم حذف التصنيف بنجاح', 'تمت العملية');
         this.categories = this.categories.filter((c) => c.id != categoryId);
       },
       error: (err) => {
@@ -79,16 +89,7 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  ShowAlertMessage(message: string) {
-    this.alertMessage = message;
-    this.showAlert = true;
-    setTimeout(() => {
-      this.showAlert = false;
-    }, 3000);
-  }
-
   private ResetForm() {
-    this.ShowAlertMessage('تم انشاء/تحديث البيانات بنجاح');
     this.formType = 'create';
     this.buttonLabel = 'انشاء';
 

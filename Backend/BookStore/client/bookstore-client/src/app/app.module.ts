@@ -23,6 +23,9 @@ import { AuthorComponent } from './components/admin/author/author.component';
 import { TranslatorComponent } from './components/admin/translator/translator.component';
 import { PublisherComponent } from './components/admin/publisher/publisher.component';
 import { InputComponent } from './components/Shared/input/input.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +53,12 @@ import { InputComponent } from './components/Shared/input/input.component';
     HttpClientModule,
     ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-left',
+      progressBar: true,
+      progressAnimation: 'increasing',
+    }), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent],

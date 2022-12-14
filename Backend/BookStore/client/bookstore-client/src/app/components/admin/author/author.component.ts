@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { IAuthorResponse } from 'src/app/interfaces/author/IAuthorResponse';
 import { AuthorService } from 'src/app/services/author.service';
 
@@ -16,9 +17,10 @@ export class AuthorComponent implements OnInit {
   authorId: number;
   authors: IAuthorResponse[] = [];
 
-  showAlert = false;
-  alertMessage = '';
-  constructor(private _authorService: AuthorService) {}
+  constructor(
+    private _authorService: AuthorService,
+    private _toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.authorNameInput = new FormControl('', [Validators.required]);
@@ -55,6 +57,11 @@ export class AuthorComponent implements OnInit {
       .subscribe((res) => {
         let author = this.authors.find((c) => c.id == res.id)!;
         author.name = res.name;
+
+        this._toastr.success(
+          `تم تحديث المؤلف : ${author.name}, بنجاح`,
+          'تمت العملية'
+        );
       });
   }
 
@@ -63,13 +70,17 @@ export class AuthorComponent implements OnInit {
       .CreateAuthor(this.authorFormGroup.value)
       .subscribe((res) => {
         this.authors.push(res);
+        this._toastr.success(
+          `تم اضافة المؤلف : ${res.name}, بنجاح`,
+          'تمت العملية'
+        );
       });
   }
 
   HandleOnDelete(authorId: number) {
     this._authorService.DeleteAuthor(authorId).subscribe({
       next: () => {
-        this.ShowAlertMessage('تم حذف المؤلف بنجاح');
+        this._toastr.success('تم حذف المؤلف بنجاح', 'تمت العملية');
         this.authors = this.authors.filter((c) => c.id != authorId);
       },
       error: (err) => {
@@ -78,16 +89,7 @@ export class AuthorComponent implements OnInit {
     });
   }
 
-  ShowAlertMessage(message: string) {
-    this.alertMessage = message;
-    this.showAlert = true;
-    setTimeout(() => {
-      this.showAlert = false;
-    }, 3000);
-  }
-
   private ResetForm() {
-    this.ShowAlertMessage('تم انشاء/تحديث البيانات بنجاح');
     this.formType = 'create';
     this.buttonLabel = 'انشاء';
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ITranslatorResponse } from 'src/app/interfaces/translator/TranslatorDtos';
 import { TranslatorService } from 'src/app/services/translator.service';
 
@@ -16,9 +17,10 @@ export class TranslatorComponent implements OnInit {
   translatorId: number;
   translators: ITranslatorResponse[] = [];
 
-  showAlert = false;
-  alertMessage = '';
-  constructor(private _translatorService: TranslatorService) {}
+  constructor(
+    private _translatorService: TranslatorService,
+    private _toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.translatorNameInput = new FormControl('', [Validators.required]);
@@ -57,6 +59,10 @@ export class TranslatorComponent implements OnInit {
       .subscribe((res) => {
         let translator = this.translators.find((c) => c.id == res.id)!;
         translator.name = res.name;
+        this._toastr.success(
+          `تم تحديث المترجم : ${translator.name}, بنجاح`,
+          'تمت العملية'
+        );
       });
   }
 
@@ -65,13 +71,17 @@ export class TranslatorComponent implements OnInit {
       .CreateTranslator(this.translatorFormGroup.value)
       .subscribe((res) => {
         this.translators.push(res);
+        this._toastr.success(
+          `تم اضافة المترجم : ${res.name}, بنجاح`,
+          'تمت العملية'
+        );
       });
   }
 
   HandleOnDelete(translatorId: number) {
     this._translatorService.DeleteTranslator(translatorId).subscribe({
       next: () => {
-        this.ShowAlertMessage('تم حذف المترجم بنجاح');
+        this._toastr.success('تم حذف المترجم بنجاح', 'تمت العملية');
         this.translators = this.translators.filter((c) => c.id != translatorId);
       },
       error: (err) => {
@@ -80,16 +90,7 @@ export class TranslatorComponent implements OnInit {
     });
   }
 
-  ShowAlertMessage(message: string) {
-    this.alertMessage = message;
-    this.showAlert = true;
-    setTimeout(() => {
-      this.showAlert = false;
-    }, 3000);
-  }
-
   private ResetForm() {
-    this.ShowAlertMessage('تم انشاء/تحديث البيانات بنجاح');
     this.formType = 'create';
     this.buttonLabel = 'انشاء';
 

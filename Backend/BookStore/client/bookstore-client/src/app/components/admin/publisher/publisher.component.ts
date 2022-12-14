@@ -1,6 +1,7 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import {
   IPublisherResponse,
   IUpdatePublisherDto,
@@ -23,15 +24,15 @@ export class PublisherComponent implements OnInit {
   publisherId: number;
   publishers: IPublisherResponse[] = [];
 
-  showAlert = false;
-  alertMessage = '';
-
   imagesUrl = `${environment.baseURL}/images`;
 
   imagePreview = '';
   progressValue: string = '';
 
-  constructor(private _publisherService: PublisherService) {}
+  constructor(
+    private _publisherService: PublisherService,
+    private _toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.publisherNameInput = new FormControl('', [Validators.required]);
@@ -74,6 +75,10 @@ export class PublisherComponent implements OnInit {
 
           if (res.type == HttpEventType.Response && res.body != null) {
             this.publishers.push(res.body);
+            this._toastr.success(
+              `تم اضافة دار النشر : ${res.body!.name}, بنجاح`,
+              'تمت العملية'
+            );
           }
         },
         error: (err) => {
@@ -106,6 +111,11 @@ export class PublisherComponent implements OnInit {
             this.publishers[publisherIndex].logo = request.logo
               ? res.body!.logo
               : this.publishers[publisherIndex].logo;
+
+            this._toastr.success(
+              `تم تحديث دار النشر : ${this.publishers[publisherIndex].name}, بنجاح`,
+              'تمت العملية'
+            );
           }
         },
         error: (err) => {
@@ -130,7 +140,7 @@ export class PublisherComponent implements OnInit {
   HandleOnDelete(publisherId: number) {
     this._publisherService.DeletePublisher(publisherId).subscribe({
       next: () => {
-        this.ShowAlertMessage('تم حذف دار النشر بنجاح');
+        this._toastr.success('تم حذف دار النشر بنجاح', 'تمت العملية');
         this.publishers = this.publishers.filter((c) => c.id != publisherId);
       },
       error: (err) => {
@@ -139,16 +149,7 @@ export class PublisherComponent implements OnInit {
     });
   }
 
-  ShowAlertMessage(message: string) {
-    this.alertMessage = message;
-    this.showAlert = true;
-    setTimeout(() => {
-      this.showAlert = false;
-    }, 3000);
-  }
-
   ResetForm() {
-    this.ShowAlertMessage('تم انشاء/تحديث البيانات بنجاح');
     this.formType = 'create';
     this.buttonLabel = 'انشاء';
     this.imagePreview = '';
@@ -169,6 +170,6 @@ export class PublisherComponent implements OnInit {
       // file exist
       this.publisherLogoInput.setValue(files[0]);
     }
-    console.log(files);
+    console.log('file input changed : ' + files);
   }
 }
