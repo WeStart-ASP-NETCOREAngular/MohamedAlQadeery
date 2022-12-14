@@ -10,7 +10,7 @@ export interface IBookResponse {
   category: ICategoryResponseDto;
   author: IAuthorResponse;
   publisher: IPublisherResponse;
-  translator: ITranslatorResponse;
+  translator?: ITranslatorResponse;
   about: string;
   discount: number;
   publishYear: number;

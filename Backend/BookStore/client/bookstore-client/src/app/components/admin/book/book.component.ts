@@ -184,24 +184,28 @@ export class BookComponent implements OnInit {
     if (this.formType == 'create') {
       this.CreateBook();
     } else {
-      this._bookService
-        .UpdateBook(this.bookId, this.bookFormGroup.value)
-        .subscribe({
-          next: (res) => {
-            this.books = this.books.filter((b) => b.id != res.id);
-            this.books.push(res);
-
-            this._toastr.success(
-              `تم تحديث كتاب :${res.name},بنجاح`,
-              'تمت العملية '
-            );
-          },
-          error: (err) => {
-            this._toastr.error(err, 'فشل العملية');
-          },
-        });
+      this.UpdateBook();
     }
-    this.bookFormGroup.reset();
+    this.ResetForm();
+  }
+
+  private UpdateBook() {
+    this._bookService
+      .UpdateBook(this.bookId, this.bookFormGroup.value)
+      .subscribe({
+        next: (res) => {
+          this.books = this.books.filter((b) => b.id != res.id);
+          this.books.push(res);
+
+          this._toastr.success(
+            `تم تحديث كتاب :${res.name},بنجاح`,
+            'تمت العملية '
+          );
+        },
+        error: (err) => {
+          this._toastr.error(err, 'فشل العملية');
+        },
+      });
   }
 
   private CreateBook() {
@@ -211,6 +215,7 @@ export class BookComponent implements OnInit {
           `تم اضافة كتاب :${res.name},بنجاح`,
           'تمت العملية '
         );
+        this.books.push(res);
       },
       error: (err) => {
         this._toastr.error(err, 'فشل العملية');
@@ -232,8 +237,11 @@ export class BookComponent implements OnInit {
         this.pageCount.setValue(res.pageCount);
         this.authorId.setValue(res.author.id);
         this.publisherId.setValue(res.publisher.id);
-        this.translatorId.setValue(res.translator.id);
         this.categoryId.setValue(res.category.id);
+
+        if (res.translator) {
+          this.translatorId.setValue(res.translator.id);
+        }
 
         this.formType = 'update';
         this.buttonLabel = 'تحديث';
@@ -244,5 +252,18 @@ export class BookComponent implements OnInit {
         this._toastr.error(err);
       },
     });
+  }
+
+  private ResetForm() {
+    this.formType = 'create';
+    this.buttonLabel = 'انشاء';
+    this.imagePreview = '';
+    this.bookFormGroup.reset();
+
+    this.bookFormGroup.controls['ImageFile'].setValidators([
+      Validators.required,
+    ]);
+    this.bookFormGroup.controls['ImageFile'].updateValueAndValidity();
+    console.log('form is reset back to create mode');
   }
 }
