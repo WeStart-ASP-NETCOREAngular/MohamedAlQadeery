@@ -7,6 +7,7 @@ import { ICategoryResponseDto } from 'src/app/interfaces/category/ICategoryRespo
 import { IPublisherResponse } from 'src/app/interfaces/publisher/PublisherDtos';
 import { ITranslatorResponse } from 'src/app/interfaces/translator/TranslatorDtos';
 import { AuthorService } from 'src/app/services/author.service';
+import { BookService } from 'src/app/services/book.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { PublisherService } from 'src/app/services/publisher.service';
 import { TranslatorService } from 'src/app/services/translator.service';
@@ -45,6 +46,7 @@ export class BookComponent implements OnInit {
     private _categoryService: CategoryService,
     private _publisherService: PublisherService,
     private _translatorService: TranslatorService,
+    private _bookService: BookService,
     private _toastr: ToastrService
   ) {}
 
@@ -154,6 +156,26 @@ export class BookComponent implements OnInit {
       // file exist
       this.bookCoverFileInput.setValue(files[0]);
     }
-    console.log('Book Cover input changed : ' + files);
+    console.log(this.bookFormGroup.controls['ImageFile'].value);
+  }
+
+  HandleOnSubmit() {
+    console.log(this.bookFormGroup.value);
+    this.CreateBook();
+    this.bookFormGroup.reset();
+  }
+
+  private CreateBook() {
+    this._bookService.CreateBook(this.bookFormGroup.value).subscribe({
+      next: (res) => {
+        this._toastr.success(
+          `تم اضافة كتاب :${res.name},بنجاح`,
+          'تمت العملية '
+        );
+      },
+      error: (err) => {
+        this._toastr.error(err, 'فشل العملية');
+      },
+    });
   }
 }

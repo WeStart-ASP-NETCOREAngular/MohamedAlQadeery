@@ -1,7 +1,7 @@
 <div class="container">
     <div class="display-5 mb-4">صفحة الكتب</div>
 
-    <form [formGroup]="bookFormGroup">
+    <form [formGroup]="bookFormGroup" (ngSubmit)="HandleOnSubmit()">
         <div class="row d-flex justify-content-between">
             <div class="col-md-4 align-self-center col-md-4">
                 <div class="mb-3">
@@ -12,7 +12,7 @@
 
 
             <div class="col-md-6 text-end">
-                <img class="img-thumbnail mb-2" src="https://via.placeholder.com/200x200">
+                <img class="img-thumbnail mb-2" src="https://via.placeholder.com/200x300">
 
             </div>
         </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="col-md-6 mb-4">
                 <label for="about-book" class="form-label">عن الكتاب</label>
-                <textarea class="form-control" id="about-book" rows="3"></textarea>
+                <textarea class="form-control" id="about-book" [formControl]="about" rows="3"></textarea>
 
             </div>
 
