@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="display-5 mb-4">صفحة العناوين</div>
+
+
+    <form [formGroup]="addressFormGroup" class="mb-5" (ngSubmit)="HandleOnSubmit()">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <app-input label="العنوان الاول" type="text" [control]="address1Input"></app-input>
+            </div>
+            <div class="col-md-6 mb-3">
+                <app-input label="العنوان الثاني" type="text" [control]="address2Input"></app-input>
+            </div>
+            <div class="col-md-6 mb-3">
+                <app-input label="رمز البريد" type="text" [control]="postalCodeInput"></app-input>
+            </div>
+            <div class="col-md-6 mb-3">
+                <app-select-input label="المحافظة" [options]="zonesOptions" [control]="zoneIdInput"></app-select-input>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <button [disabled]="!addressFormGroup.valid" type="submit" class="btn
+          btn-success">{{buttonLabel}}</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">العنوان الاول</th>
+                            <th scope="col">العنوان التاني</th>
+                            <th scope="col">رمز البريد</th>
+                            <th scope="col">المحافظة</th>
+                            <th scope="col">العملية</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let address of addresses;let i=index">
+                            <th>{{i+1}}</th>
+                            <td>{{address.address1}}</td>
+                            <td>{{address.address2}}</td>
+                            <td>{{address.postalCode}}</td>
+                            <td>{{address.zone.name}}</td>
+                            <td>
+                                <button class="btn btn-info" (click)="HandleOnEdit(address.id)">تعديل</button>
+
+                                <button class="btn btn-danger mx-2" [swal]="{icon:'warning',
+                                title: 'تأكيد عملية الحذف' ,
+                                text:'هل انت متأكد من حذف العنوان ؟',
+                                showCancelButton: true,confirmButtonText: 'تأكيد',cancelButtonText:'الغاء' }"
+                                    (confirm)="HandleOnDelete(address.id)">حذف</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

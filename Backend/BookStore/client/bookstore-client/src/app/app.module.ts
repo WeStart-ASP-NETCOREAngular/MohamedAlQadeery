@@ -28,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BookComponent } from './components/admin/book/book.component';
 import { SelectInputComponent } from './components/Shared/select-input/select-input.component';
 import { ZonesComponent } from './components/admin/zones/zones.component';
+import { AddressComponent } from './components/admin/address/address.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ZonesComponent } from './components/admin/zones/zones.component';
     BookComponent,
     SelectInputComponent,
     ZonesComponent,
+    AddressComponent,
   ],
   imports: [
     BrowserModule,
