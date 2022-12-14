@@ -112,11 +112,11 @@
                             <td>
                                 <button class="btn btn-info" (click)="HandleOnEdit(book.id)">تعديل</button>
 
-                                <button class="btn btn-danger mx-2"
-                                    [swal]="{icon:'warning',
+                                <button class="btn btn-danger mx-2" [swal]="{icon:'warning',
                                 title: 'تأكيد عملية الحذف' ,
                                 text:'هل انت متأكد من حذف  الكتاب ؟',
-                                showCancelButton: true,confirmButtonText: 'تأكيد',cancelButtonText:'الغاء' }">حذف</button>
+                                showCancelButton: true,confirmButtonText: 'تأكيد',cancelButtonText:'الغاء' }"
+                                    (confirm)="HandleOnDelete(book.id)">حذف</button>
                             </td>
                         </tr>
 

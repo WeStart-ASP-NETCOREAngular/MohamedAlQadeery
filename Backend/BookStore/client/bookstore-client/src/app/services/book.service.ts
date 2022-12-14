@@ -73,4 +73,8 @@ export class BookService {
 
     return this._http.put<IBookResponse>(`${this.baseUrl}/book/${id}`, data);
   }
+
+  public DeleteBook(id: number) {
+    return this._http.delete(`${this.baseUrl}/book/${id}`);
+  }
 }

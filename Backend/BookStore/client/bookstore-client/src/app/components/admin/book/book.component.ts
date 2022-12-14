@@ -254,6 +254,18 @@ export class BookComponent implements OnInit {
     });
   }
 
+  HandleOnDelete(bookId: number) {
+    this._bookService.DeleteBook(bookId).subscribe({
+      next: () => {
+        this._toastr.success('تم حذف الكتاب بنجاح', 'تمت العملية');
+        this.books = this.books.filter((c) => c.id != bookId);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
   private ResetForm() {
     this.formType = 'create';
     this.buttonLabel = 'انشاء';
