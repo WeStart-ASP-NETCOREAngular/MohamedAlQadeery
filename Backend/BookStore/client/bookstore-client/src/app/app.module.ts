@@ -27,6 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BookComponent } from './components/admin/book/book.component';
 import { SelectInputComponent } from './components/Shared/select-input/select-input.component';
+import { ZonesComponent } from './components/admin/zones/zones.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { SelectInputComponent } from './components/Shared/select-input/select-in
     InputComponent,
     BookComponent,
     SelectInputComponent,
+    ZonesComponent,
   ],
   imports: [
     BrowserModule,
