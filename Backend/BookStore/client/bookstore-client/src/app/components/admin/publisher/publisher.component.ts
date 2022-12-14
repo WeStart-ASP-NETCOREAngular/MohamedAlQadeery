@@ -29,7 +29,8 @@ export class PublisherComponent implements OnInit {
   imagesUrl = `${environment.baseURL}/images`;
 
   imagePreview = '';
-  progressValue = '';
+  progressValue: string = '';
+
   constructor(private _publisherService: PublisherService) {}
 
   ngOnInit(): void {
@@ -39,6 +40,7 @@ export class PublisherComponent implements OnInit {
     this.publisherFormGroup = new FormGroup({
       name: this.publisherNameInput,
       logo: this.publisherLogoInput,
+      file: new FormControl(''),
     });
 
     this._publisherService.GetAllPublishers().subscribe((res) => {
@@ -72,10 +74,7 @@ export class PublisherComponent implements OnInit {
 
           if (res.type == HttpEventType.Response && res.body != null) {
             this.publishers.push(res.body);
-            this.imagePreview = `${this.imagesUrl}/${res.body.logo}`;
           }
-
-          this.ShowAlertMessage('تم اضافة/تحديث البيانات');
         },
         error: (err) => {
           console.log(err);
@@ -102,10 +101,12 @@ export class PublisherComponent implements OnInit {
             let publisherIndex = this.publishers.findIndex(
               (p) => p.id == res.body?.id
             );
-            this.publishers[publisherIndex].name = res.body!.name;
-          }
 
-          this.ShowAlertMessage('تم اضافة/تحديث البيانات');
+            this.publishers[publisherIndex].name = res.body!.name;
+            this.publishers[publisherIndex].logo = request.logo
+              ? res.body!.logo
+              : this.publishers[publisherIndex].logo;
+          }
         },
         error: (err) => {
           console.log(err);
@@ -144,12 +145,14 @@ export class PublisherComponent implements OnInit {
     }, 3000);
   }
 
-  private ResetForm() {
+  ResetForm() {
     this.ShowAlertMessage('تم انشاء/تحديث البيانات بنجاح');
     this.formType = 'create';
     this.buttonLabel = 'انشاء';
-
+    this.imagePreview = '';
+    this.progressValue = '0%';
     this.publisherFormGroup.reset();
+    console.log('form is reset back to create mode');
   }
 
   HandleFileInputChange(event: Event) {

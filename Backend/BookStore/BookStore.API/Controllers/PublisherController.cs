@@ -59,24 +59,24 @@ namespace BookStore.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePublisher(int id,[FromForm] PutPublisherRequest publisherToUpdate)
+        public async Task<IActionResult> UpdatePublisher(int id,[FromForm] PutPublisherRequest putPublisherRequest)
         {
-            var publisher = new Publisher();
+            var publisherToUpdate = new Publisher();
           
-            if(publisherToUpdate.LogoImage != null)
+            if(putPublisherRequest.LogoImage != null)
             {
-                var logo = _imageService.UploadImage(publisherToUpdate.LogoImage);
+                var logo = _imageService.UploadImage(putPublisherRequest.LogoImage);
 
                 if (logo == "") return BadRequest("File is not image ");
-                publisher.Logo = logo;
+                publisherToUpdate.Logo = logo;
             }
 
-            publisher.Name = publisherToUpdate.Name;
+            publisherToUpdate.Name = putPublisherRequest.Name;
             
-             await _repo.UpdateAsync(id, publisher);
-            if (publisher != null)
+            var updatedPublisher=  await _repo.UpdateAsync(id, publisherToUpdate);
+            if (updatedPublisher != null)
             {
-                return Ok(publisher);
+                return Ok(_mapper.Map<PublisherResponse>(updatedPublisher));
             }
 
             return NotFound();

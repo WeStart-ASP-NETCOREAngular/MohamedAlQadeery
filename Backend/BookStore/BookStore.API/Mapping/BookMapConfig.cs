@@ -1,5 +1,6 @@
 ﻿using BookStore.API.DTOs.AuthorDto;
 using BookStore.API.DTOs.BookDto.Repsonse;
+using BookStore.API.DTOs.PublisherDto;
 using BookStore.API.Models;
 using Mapster;
 
@@ -10,6 +11,8 @@ namespace BookStore.API.Mapping
         public void Register(TypeAdapterConfig config)
         {
             config.NewConfig<Book, BookResponse>();
+
+            config.NewConfig<Publisher, PublisherResponse>();
 
 
 

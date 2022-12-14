@@ -54,7 +54,6 @@ namespace BookStore.API.Repositories
 
             }
             publisher.Name = publisherToUpdate.Name;
-            publisher.Id = id;
             _context.Publishers.Update(publisher);
             await _context.SaveChangesAsync();
 
