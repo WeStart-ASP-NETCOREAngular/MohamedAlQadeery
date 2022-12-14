@@ -1,0 +1,15 @@
+<label class="form-label">{{label}}</label>
+
+<select class="form-select" [formControl]="control">
+    <option *ngFor="let option of options" [value]="option.id">{{option.name}}</option>
+
+</select>
+
+
+<ng-container *ngIf="control.touched && !control.valid || control.dirty">
+
+    <p *ngIf="control.getError('required')" class="text-danger">
+        {{label}} مطلوب
+    </p>
+
+</ng-container>

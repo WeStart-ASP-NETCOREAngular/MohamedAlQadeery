@@ -25,6 +25,8 @@ import { PublisherComponent } from './components/admin/publisher/publisher.compo
 import { InputComponent } from './components/Shared/input/input.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BookComponent } from './components/admin/book/book.component';
+import { SelectInputComponent } from './components/Shared/select-input/select-input.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TranslatorComponent,
     PublisherComponent,
     InputComponent,
+    BookComponent,
+    SelectInputComponent,
   ],
   imports: [
     BrowserModule,
