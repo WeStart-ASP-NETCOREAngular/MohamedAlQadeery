@@ -48,7 +48,7 @@ export class BookComponent implements OnInit {
   imagesUrl = `${environment.baseURL}/images`;
   buttonLabel = 'انشاء';
   formType = 'create';
-  bookId = '';
+  bookId: number;
   imagePreview = '';
   //#endregion
   constructor(
@@ -180,7 +180,27 @@ export class BookComponent implements OnInit {
 
   HandleOnSubmit() {
     console.log(this.bookFormGroup.value);
-    this.CreateBook();
+
+    if (this.formType == 'create') {
+      this.CreateBook();
+    } else {
+      this._bookService
+        .UpdateBook(this.bookId, this.bookFormGroup.value)
+        .subscribe({
+          next: (res) => {
+            this.books = this.books.filter((b) => b.id != res.id);
+            this.books.push(res);
+
+            this._toastr.success(
+              `تم تحديث كتاب :${res.name},بنجاح`,
+              'تمت العملية '
+            );
+          },
+          error: (err) => {
+            this._toastr.error(err, 'فشل العملية');
+          },
+        });
+    }
     this.bookFormGroup.reset();
   }
 
@@ -201,6 +221,9 @@ export class BookComponent implements OnInit {
   HandleOnEdit(id: number) {
     this._bookService.GetBookById(id).subscribe({
       next: (res) => {
+        this.bookFormGroup.controls['ImageFile'].clearValidators();
+        this.bookFormGroup.controls['ImageFile'].updateValueAndValidity();
+
         this.name.setValue(res.name);
         this.price.setValue(res.price);
         this.discount.setValue(res.discount);
@@ -215,6 +238,7 @@ export class BookComponent implements OnInit {
         this.formType = 'update';
         this.buttonLabel = 'تحديث';
         this.imagePreview = `${this.imagesUrl}/${res.image}`;
+        this.bookId = res.id;
       },
       error: (err) => {
         this._toastr.error(err);

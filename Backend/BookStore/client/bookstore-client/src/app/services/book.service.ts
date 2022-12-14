@@ -4,6 +4,7 @@ import { map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IBookResponse } from '../interfaces/book/IBookResponse';
 import { ICreateBookRequest } from '../interfaces/book/ICreateBookRequest';
+import { IUpdateBookRequest } from '../interfaces/book/IUpdateBookRequest';
 import { ImageService } from './image.service';
 
 @Injectable({
@@ -35,19 +36,11 @@ export class BookService {
     data.append('publishYear', '' + createBookRequest.publishYear);
     data.append('pageCount', '' + createBookRequest.pageCount);
     data.append('authorId', '' + createBookRequest.authorId);
-
+    data.append('publisherId', '' + createBookRequest.publisherId);
+    data.append('categoryId', '' + createBookRequest.categoryId);
     if (createBookRequest.translatorId) {
       data.append('translatorId', '' + createBookRequest.translatorId);
     }
-
-    data.append('publisherId', '' + createBookRequest.publisherId);
-    data.append('categoryId', '' + createBookRequest.categoryId);
-
-    console.log(createBookRequest);
-    console.log('-----------------------------');
-    data.forEach((key, value) => {
-      console.log(key, value);
-    });
 
     return this._http.post<IBookResponse>(this.baseUrl + '/book', data);
   }
@@ -58,5 +51,26 @@ export class BookService {
 
   public GetBookById(id: number) {
     return this._http.get<IBookResponse>(`${this.baseUrl}/book/${id}`);
+  }
+
+  public UpdateBook(id: number, updateBookRequest: IUpdateBookRequest) {
+    let data = new FormData();
+    data.append('name', updateBookRequest.name);
+    data.append('price', '' + updateBookRequest.price);
+    data.append('discount', '' + updateBookRequest.discount);
+    data.append('about', updateBookRequest.about);
+    data.append('publishYear', '' + updateBookRequest.publishYear);
+    data.append('pageCount', '' + updateBookRequest.pageCount);
+    data.append('authorId', '' + updateBookRequest.authorId);
+    data.append('publisherId', '' + updateBookRequest.publisherId);
+    data.append('categoryId', '' + updateBookRequest.categoryId);
+    if (updateBookRequest.translatorId) {
+      data.append('translatorId', '' + updateBookRequest.translatorId);
+    }
+    if (updateBookRequest.ImageFile) {
+      data.append('ImageFile', updateBookRequest.ImageFile);
+    }
+
+    return this._http.put<IBookResponse>(`${this.baseUrl}/book/${id}`, data);
   }
 }

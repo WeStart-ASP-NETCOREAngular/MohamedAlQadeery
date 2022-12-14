@@ -21,9 +21,8 @@ namespace BookStore.API.Models
         public   Author Author { get; set; }
 
         [ForeignKey("Translator")]
-
-        public int TranslatorId { get; set; }
-        public  Translator Translator { get; set; }
+        public int? TranslatorId { get; set; }
+        public  Translator? Translator { get; set; }
 
 
         [ForeignKey("Publisher")]

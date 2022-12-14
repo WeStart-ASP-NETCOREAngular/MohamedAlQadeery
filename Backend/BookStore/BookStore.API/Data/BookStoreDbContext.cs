@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.API.Data
 {
-    public class BookStoreDbContext :IdentityDbContext<AppUser>
+    public class BookStoreDbContext : IdentityDbContext<AppUser>
     {
         public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options) : base(options)
         {
@@ -14,6 +14,7 @@ namespace BookStore.API.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<UserFavs>().HasKey(uf => new { uf.AppUserId, uf.BookId });
+            
             AutoIncludeBookRelations(builder);
             SeedUser(builder);
             OneToManyRelationships(builder);
@@ -21,7 +22,7 @@ namespace BookStore.API.Data
             base.OnModelCreating(builder);
         }
 
-       
+
         public DbSet<Author> Authors { get; set; }
         public DbSet<Translator> Translators { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -46,7 +47,7 @@ namespace BookStore.API.Data
 
         private static void AutoIncludeBookRelations(ModelBuilder builder)
         {
-           builder.Entity<Book>().Navigation(b => b.Author).AutoInclude();
+            builder.Entity<Book>().Navigation(b => b.Author).AutoInclude();
             builder.Entity<Book>().Navigation(b => b.Category).AutoInclude();
             builder.Entity<Book>().Navigation(b => b.Translator).AutoInclude();
             builder.Entity<Book>().Navigation(b => b.Publisher).AutoInclude();
@@ -65,9 +66,9 @@ namespace BookStore.API.Data
 
             builder.Entity<Book>()
            .HasOne(b => b.Publisher).WithMany(p => p.Books).HasForeignKey(b => b.PublisherId);
-            
+
             builder.Entity<BookReviews>()
-           .HasOne(br => br.Book).WithMany(b=> b.BookReviews).HasForeignKey(br => br.BookId);
+           .HasOne(br => br.Book).WithMany(b => b.BookReviews).HasForeignKey(br => br.BookId);
         }
 
         private static void SeedUser(ModelBuilder modelBuilder)
@@ -87,7 +88,7 @@ namespace BookStore.API.Data
             PasswordHasher<AppUser> ph = new PasswordHasher<AppUser>();
             user.PasswordHash = ph.HashPassword(user, "123123");
             modelBuilder.Entity<AppUser>().HasData(user);
-           
+
         }
 
     }

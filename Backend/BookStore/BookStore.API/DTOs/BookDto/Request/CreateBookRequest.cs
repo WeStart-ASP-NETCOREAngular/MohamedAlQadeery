@@ -14,7 +14,6 @@ namespace BookStore.API.DTOs.BookDto.Request
         public int? Discount { get; set; }
 
         [Required]
-
         public IFormFile ImageFile { get; set; }
         [Required]
 

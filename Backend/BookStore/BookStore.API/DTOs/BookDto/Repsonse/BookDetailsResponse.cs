@@ -18,6 +18,7 @@ namespace BookStore.API.DTOs.BookDto.Repsonse
 
         public int PublishYear { get; set; }
         public int PageCount { get; set; }
+        public int Discount { get; set; }
         public CategoryResponse Category { get; set; }
         public AuthorResponse Author { get; set; }
         public TranslatorResponse Translator { get; set; }
