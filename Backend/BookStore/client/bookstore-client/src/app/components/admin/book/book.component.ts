@@ -29,6 +29,7 @@ export class BookComponent implements OnInit {
   translatorId: FormControl;
   publisherId: FormControl;
   categoryId: FormControl;
+  bookCoverFileInput: FormControl;
   //#endregion
 
   //#region select inputs options
@@ -49,7 +50,6 @@ export class BookComponent implements OnInit {
 
   ngOnInit(): void {
     this.InitForm();
-
     this.InitSelectOptions();
   }
 
@@ -130,6 +130,7 @@ export class BookComponent implements OnInit {
     this.publisherId = new FormControl('', [Validators.required]);
     this.categoryId = new FormControl('', [Validators.required]);
     this.authorId = new FormControl('', [Validators.required]);
+    this.bookCoverFileInput = new FormControl('', [Validators.required]);
 
     this.bookFormGroup = new FormGroup({
       name: this.name,
@@ -142,6 +143,17 @@ export class BookComponent implements OnInit {
       translatorId: this.translatorId,
       publisherId: this.publisherId,
       categoryId: this.categoryId,
+      ImageFile: this.bookCoverFileInput,
     });
+  }
+
+  HandleFileInputChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const files = target.files!;
+    if (files.length > 0) {
+      // file exist
+      this.bookCoverFileInput.setValue(files[0]);
+    }
+    console.log('Book Cover input changed : ' + files);
   }
 }
