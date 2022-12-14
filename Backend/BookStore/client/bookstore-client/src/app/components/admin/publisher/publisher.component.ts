@@ -35,7 +35,7 @@ export class PublisherComponent implements OnInit {
 
   ngOnInit(): void {
     this.publisherNameInput = new FormControl('', [Validators.required]);
-    this.publisherLogoInput = new FormControl('');
+    this.publisherLogoInput = new FormControl('', [Validators.required]);
 
     this.publisherFormGroup = new FormGroup({
       name: this.publisherNameInput,
@@ -117,6 +117,8 @@ export class PublisherComponent implements OnInit {
   HandleOnEdit(publisherId: number) {
     this._publisherService.GetPublisherById(publisherId).subscribe((res) => {
       this.publisherFormGroup.controls['logo'].clearValidators();
+      this.publisherFormGroup.controls['logo'].updateValueAndValidity();
+
       this.formType = 'update';
       this.buttonLabel = 'تحديث';
       this.imagePreview = `${this.imagesUrl}/${res.logo}`;
@@ -152,6 +154,11 @@ export class PublisherComponent implements OnInit {
     this.imagePreview = '';
     this.progressValue = '0%';
     this.publisherFormGroup.reset();
+
+    this.publisherFormGroup.controls['logo'].setValidators([
+      Validators.required,
+    ]);
+    this.publisherFormGroup.controls['logo'].updateValueAndValidity();
     console.log('form is reset back to create mode');
   }
 

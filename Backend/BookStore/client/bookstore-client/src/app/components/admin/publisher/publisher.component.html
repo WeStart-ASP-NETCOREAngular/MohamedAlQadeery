@@ -7,10 +7,9 @@
     <form [formGroup]="publisherFormGroup" class="mb-5" (ngSubmit)="HandleOnSubmit()">
         <div class="row">
             <div class="col-md-6">
+
                 <div class="mb-3">
-                    <label class="form-label">الاسم</label>
-                    <input type="text" formControlName="name" class="form-control mb-3"
-                        placeholder="ادخل اسم دار النشر" />
+                    <app-input label="الاسم" type="text" [control]="publisherNameInput"></app-input>
 
                 </div>
 
@@ -26,7 +25,7 @@
             </div>
 
 
-            <div class="col-md-6 text-center">
+            <div class="col-md-6 text-center" *ngIf="formType == 'update'">
                 <img class="img-thumbnail mb-2" [src]="imagePreview || 'https://via.placeholder.com/150'">
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" [ngStyle]="{ width: progressValue }">

@@ -22,6 +22,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AuthorComponent } from './components/admin/author/author.component';
 import { TranslatorComponent } from './components/admin/translator/translator.component';
 import { PublisherComponent } from './components/admin/publisher/publisher.component';
+import { InputComponent } from './components/Shared/input/input.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { PublisherComponent } from './components/admin/publisher/publisher.compo
     AuthorComponent,
     TranslatorComponent,
     PublisherComponent,
+    InputComponent,
   ],
   imports: [
     BrowserModule,
