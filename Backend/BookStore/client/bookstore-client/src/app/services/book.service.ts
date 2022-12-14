@@ -51,4 +51,8 @@ export class BookService {
 
     return this._http.post<IBookResponse>(this.baseUrl + '/book', data);
   }
+
+  public GetAllBooks() {
+    return this._http.get<IBookResponse[]>(this.baseUrl + '/book');
+  }
 }

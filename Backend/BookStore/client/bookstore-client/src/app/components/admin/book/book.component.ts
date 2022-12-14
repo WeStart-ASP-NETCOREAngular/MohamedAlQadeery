@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs';
 import { IAuthorResponse } from 'src/app/interfaces/author/IAuthorResponse';
+import { IBookResponse } from 'src/app/interfaces/book/IBookResponse';
 import { ICategoryResponseDto } from 'src/app/interfaces/category/ICategoryResponseDto';
 import { IPublisherResponse } from 'src/app/interfaces/publisher/PublisherDtos';
 import { ITranslatorResponse } from 'src/app/interfaces/translator/TranslatorDtos';
@@ -11,6 +12,7 @@ import { BookService } from 'src/app/services/book.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { PublisherService } from 'src/app/services/publisher.service';
 import { TranslatorService } from 'src/app/services/translator.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-book',
@@ -40,7 +42,13 @@ export class BookComponent implements OnInit {
   translatorOptions: { id: number; name: string }[] = [];
 
   //#endregion
+
+  //#region Book Page variables
+  books: IBookResponse[] = [];
+  imagesUrl = `${environment.baseURL}/images`;
+
   buttonLabel = 'انشاء';
+  //#endregion
   constructor(
     private _authorService: AuthorService,
     private _categoryService: CategoryService,
@@ -53,6 +61,15 @@ export class BookComponent implements OnInit {
   ngOnInit(): void {
     this.InitForm();
     this.InitSelectOptions();
+    this._bookService.GetAllBooks().subscribe({
+      next: (res) => {
+        this.books = res;
+      },
+
+      error: (err) => {
+        this._toastr.error(err);
+      },
+    });
   }
 
   private InitSelectOptions() {
