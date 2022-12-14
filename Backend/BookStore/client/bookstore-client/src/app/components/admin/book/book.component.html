@@ -12,7 +12,7 @@
 
 
             <div class="col-md-6 text-end">
-                <img class="img-thumbnail mb-2" src="https://via.placeholder.com/200x300">
+                <img class="img-thumbnail mb-2" [src]="imagePreview || 'https://via.placeholder.com/200x300'">
 
             </div>
         </div>
@@ -110,7 +110,7 @@
                             <td>{{book.publisher.name}}</td>
                             <td>{{book.category.name}}</td>
                             <td>
-                                <button class="btn btn-info">تعديل</button>
+                                <button class="btn btn-info" (click)="HandleOnEdit(book.id)">تعديل</button>
 
                                 <button class="btn btn-danger mx-2"
                                     [swal]="{icon:'warning',

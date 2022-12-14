@@ -46,8 +46,10 @@ export class BookComponent implements OnInit {
   //#region Book Page variables
   books: IBookResponse[] = [];
   imagesUrl = `${environment.baseURL}/images`;
-
   buttonLabel = 'انشاء';
+  formType = 'create';
+  bookId = '';
+  imagePreview = '';
   //#endregion
   constructor(
     private _authorService: AuthorService,
@@ -192,6 +194,30 @@ export class BookComponent implements OnInit {
       },
       error: (err) => {
         this._toastr.error(err, 'فشل العملية');
+      },
+    });
+  }
+
+  HandleOnEdit(id: number) {
+    this._bookService.GetBookById(id).subscribe({
+      next: (res) => {
+        this.name.setValue(res.name);
+        this.price.setValue(res.price);
+        this.discount.setValue(res.discount);
+        this.about.setValue(res.about);
+        this.publishYear.setValue(res.publishYear);
+        this.pageCount.setValue(res.pageCount);
+        this.authorId.setValue(res.author.id);
+        this.publisherId.setValue(res.publisher.id);
+        this.translatorId.setValue(res.translator.id);
+        this.categoryId.setValue(res.category.id);
+
+        this.formType = 'update';
+        this.buttonLabel = 'تحديث';
+        this.imagePreview = `${this.imagesUrl}/${res.image}`;
+      },
+      error: (err) => {
+        this._toastr.error(err);
       },
     });
   }

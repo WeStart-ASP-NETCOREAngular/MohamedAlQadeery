@@ -55,4 +55,8 @@ export class BookService {
   public GetAllBooks() {
     return this._http.get<IBookResponse[]>(this.baseUrl + '/book');
   }
+
+  public GetBookById(id: number) {
+    return this._http.get<IBookResponse>(`${this.baseUrl}/book/${id}`);
+  }
 }
