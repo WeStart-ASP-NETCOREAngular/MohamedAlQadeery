@@ -29,6 +29,7 @@ import { BookComponent } from './components/admin/book/book.component';
 import { SelectInputComponent } from './components/Shared/select-input/select-input.component';
 import { ZonesComponent } from './components/admin/zones/zones.component';
 import { AddressComponent } from './components/admin/address/address.component';
+import { StaticPagesComponent } from './components/admin/static-pages/static-pages.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { AddressComponent } from './components/admin/address/address.component';
     SelectInputComponent,
     ZonesComponent,
     AddressComponent,
+    StaticPagesComponent,
   ],
   imports: [
     BrowserModule,

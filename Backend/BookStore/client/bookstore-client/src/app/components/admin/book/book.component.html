@@ -35,6 +35,9 @@
             <div class="col-md-6 mb-4">
                 <label for="about-book" class="form-label">عن الكتاب</label>
                 <textarea class="form-control" id="about-book" [formControl]="about" rows="3"></textarea>
+                <p class="text-danger" *ngIf="about.touched && !about.valid && about.getError('required')">
+                    عن الكتاب مطلوب
+                </p>
 
             </div>
 
