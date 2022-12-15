@@ -31,6 +31,7 @@ import { ZonesComponent } from './components/admin/zones/zones.component';
 import { AddressComponent } from './components/admin/address/address.component';
 import { StaticPagesComponent } from './components/admin/static-pages/static-pages.component';
 import { SalesComponent } from './components/admin/sales/sales.component';
+import { ContactUsComponent } from './components/admin/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { SalesComponent } from './components/admin/sales/sales.component';
     AddressComponent,
     StaticPagesComponent,
     SalesComponent,
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { AddressComponent } from './components/admin/address/address.component';
 import { AuthorComponent } from './components/admin/author/author.component';
 import { BookComponent } from './components/admin/book/book.component';
 import { CategoryComponent } from './components/admin/category/category.component';
+import { ContactUsComponent } from './components/admin/contact-us/contact-us.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { PublisherComponent } from './components/admin/publisher/publisher.component';
 import { SalesComponent } from './components/admin/sales/sales.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path: 'addresses', component: AddressComponent },
       { path: 'static-pages', component: StaticPagesComponent },
       { path: 'sales', component: SalesComponent },
+      { path: 'contactus', component: ContactUsComponent },
     ],
   },
 ];

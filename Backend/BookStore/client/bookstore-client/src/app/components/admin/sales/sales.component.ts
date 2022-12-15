@@ -10,8 +10,6 @@ import { SalesService } from 'src/app/services/sales.service';
   styleUrls: ['./sales.component.css'],
 })
 export class SalesComponent implements OnInit {
-  //#endregion
-
   sales: ISalesResponse[] = [];
 
   constructor(
