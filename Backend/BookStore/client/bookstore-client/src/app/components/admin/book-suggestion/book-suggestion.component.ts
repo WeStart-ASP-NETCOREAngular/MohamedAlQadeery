@@ -10,6 +10,8 @@ import { BookSuggestionService } from 'src/app/services/book-suggestion.service'
 })
 export class BookSuggestionComponent implements OnInit {
   messages: IBookSuggestionResponse[] = [];
+  selectedMessage: IBookSuggestionResponse;
+  showMessage = false;
 
   constructor(
     private _bookSuggestionsService: BookSuggestionService,
@@ -20,5 +22,25 @@ export class BookSuggestionComponent implements OnInit {
     this._bookSuggestionsService.GetAllMessages().subscribe((res) => {
       this.messages = res;
     });
+  }
+
+  OnShowMessage(messageId: number) {
+    this._bookSuggestionsService.MarkMessageAsRead(messageId).subscribe({
+      next: () => {
+        this.selectedMessage = this.messages.find((m) => m.id == messageId)!;
+        if (!this.selectedMessage.readAt) {
+          this.selectedMessage.readAt = new Date();
+          this._toastr.success('تغير حالة الرسالة', 'تم تحديث حالة الرسالة ');
+        }
+        this.showMessage = true;
+      },
+      error: (err) => {
+        this._toastr.error(err);
+      },
+    });
+  }
+
+  OnClickBack() {
+    this.showMessage = false;
   }
 }

@@ -2,6 +2,43 @@
     <div class="display-5 mb-4">صفحة اقتراحات الكتب</div>
 
 
+    <div class="row mb-5" *ngIf="showMessage">
+        <div class="col-md-12">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            عرض محتوى رسالة الاقتراح
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <p class="card-text">{{selectedMessage.createdAt | date}}</p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <p class="card-text fw-bold">اسم الكتاب : {{selectedMessage.bookName}}</p>
+                    <p class="card-text fw-bold"> اسم المؤلف: {{selectedMessage.authorName}}</p>
+                    <p class="card-text fw-bold"> اسم دار النشر: {{selectedMessage.publisherName}}</p>
+                    <hr>
+
+                    <p class="card-text">{{selectedMessage.notes}}</p>
+
+
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-end">
+                            <button class="btn btn-danger" (click)="OnClickBack()">رجوع</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <div class="row">
         <div class="col-md-12">
@@ -15,7 +52,9 @@
                             <th scope="col">اسم المؤلف</th>
                             <th scope="col">اسم دار النشر</th>
                             <th scope="col">ملاحظات</th>
+                            <th scope="col">الحالة</th>
                             <th scope="col">تاريخ الارسال</th>
+                            <th scope="col">العملية</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,7 +65,10 @@
                             <td>{{message.authorName}}</td>
                             <td>{{message.publisherName}}</td>
                             <td>{{message.notes}}</td>
+                            <td>{{message.readAt ? 'تم قرائتها' : 'جديدة'}}</td>
                             <td>{{message.createdAt | date}}</td>
+                            <td><button class="btn btn-info" (click)="OnShowMessage(message.id)">عرض</button></td>
+
 
 
                         </tr>

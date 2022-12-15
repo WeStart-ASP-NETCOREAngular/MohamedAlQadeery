@@ -14,4 +14,8 @@ export class BookSuggestionService {
   public GetAllMessages() {
     return this._http.get<IBookSuggestionResponse[]>(this.baseUrl);
   }
+
+  public MarkMessageAsRead(messageId: number) {
+    return this._http.put(`${this.baseUrl}/${messageId}/mark-read`, {});
+  }
 }
