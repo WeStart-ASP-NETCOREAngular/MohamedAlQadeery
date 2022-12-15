@@ -62,7 +62,15 @@
                             <td>{{message.email}}</td>
                             <td>{{message.message}}</td>
                             <td>{{message.createdAt | date}}</td>
-                            <td>{{message.readAt ? 'تم قرائتها' : 'جديدة'}}</td>
+
+                            <td *ngIf="message.readAt; else newMessage">
+                                <span class="badge bg-success p-2">تم قرائتها</span>
+
+                            </td>
+
+                            <ng-template #newMessage>
+                                <td><span class="badge bg-danger p-2">جديدة</span></td>
+                            </ng-template>
                             <td><button class="btn btn-info" (click)="OnShowMessage(message.id)">عرض</button></td>
 
 
