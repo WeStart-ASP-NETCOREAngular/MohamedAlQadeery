@@ -1,4 +1,5 @@
 ﻿using BookStore.API.Data;
+using BookStore.API.Helpers;
 using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +15,16 @@ namespace BookStore.API.Repositories
             _context = context;
         }
 
-        public async Task<List<Publisher>> GetAllPublishersAsync()
+        public async Task<List<Publisher>> GetAllPublishersAsync(PublisherParams publisherParams)
         {
-            return await _context.Publishers.ToListAsync();
+            var publishers = _context.Publishers.OrderByDescending(b => b.Id).AsQueryable();
+
+            if (publisherParams.TakeCount != 0)
+            {
+                publishers = publishers.Take(publisherParams.TakeCount);
+            }
+
+            return await publishers.ToListAsync();
         }
 
         public async Task<Publisher> GetPublisherByIdAsync(int id)

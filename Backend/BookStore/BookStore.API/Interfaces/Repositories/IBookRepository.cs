@@ -1,10 +1,11 @@
-﻿using BookStore.API.Models;
+﻿using BookStore.API.Helpers;
+using BookStore.API.Models;
 
 namespace BookStore.API.Interfaces.Repositories
 {
     public interface IBookRepository
     {
-        Task<List<Book>> GetAllBooksAsync();
+        Task<List<Book>> GetAllBooksAsync(BookParams bookParams);
         Task<Book> GetBookByIdAsync(int id);
         Task<Book> CreateAsync(Book bookToCreate);
         Task<Book> UpdateAsync(int id, Book bookToUpdate);

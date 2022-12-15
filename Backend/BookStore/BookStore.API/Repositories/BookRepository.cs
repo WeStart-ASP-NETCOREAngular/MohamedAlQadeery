@@ -1,4 +1,5 @@
 ﻿using BookStore.API.Data;
+using BookStore.API.Helpers;
 using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
 using Microsoft.AspNetCore.Identity;
@@ -15,9 +16,17 @@ namespace BookStore.API.Repositories
             _context = context;
         }
 
-        public async Task<List<Book>> GetAllBooksAsync()
+        public async Task<List<Book>> GetAllBooksAsync(BookParams bookParams)
         {
-            return await _context.Books.ToListAsync();
+            var books = _context.Books.OrderByDescending(b => b.Id).AsQueryable();
+           
+            if(bookParams.TakeCount != 0)
+            {
+                books = books.Take(bookParams.TakeCount);
+            }
+            
+
+            return await books.ToListAsync();
 
         }
 

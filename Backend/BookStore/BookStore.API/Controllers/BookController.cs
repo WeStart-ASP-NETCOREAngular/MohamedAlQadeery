@@ -3,6 +3,7 @@ using BookStore.API.DTOs.BookDto.Repsonse;
 using BookStore.API.DTOs.BookDto.Request;
 using BookStore.API.DTOs.BookReviewsDto.Request;
 using BookStore.API.DTOs.BookReviewsDto.Response;
+using BookStore.API.Helpers;
 using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Interfaces.Services;
 using BookStore.API.Models;
@@ -32,9 +33,9 @@ namespace BookStore.API.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetAllBooks()
+        public async Task<IActionResult> GetAllBooks([FromQuery]BookParams bookParams)
         {
-            var books = await _repo.GetAllBooksAsync();
+            var books = await _repo.GetAllBooksAsync(bookParams);
 
             
             var booksResponse = _mapper.Map<List<BookResponse>>(books);

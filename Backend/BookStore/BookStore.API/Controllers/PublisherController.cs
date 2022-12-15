@@ -1,4 +1,5 @@
 ﻿using BookStore.API.DTOs.PublisherDto;
+using BookStore.API.Helpers;
 using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Interfaces.Services;
 using BookStore.API.Models;
@@ -23,9 +24,9 @@ namespace BookStore.API.Controllers
             _imageService = imageService;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllPublishers()
+        public async Task<IActionResult> GetAllPublishers([FromQuery] PublisherParams publisherParams)
         {
-            var publishers = await _repo.GetAllPublishersAsync();
+            var publishers = await _repo.GetAllPublishersAsync(publisherParams);
 
             return Ok(_mapper.Map<List<PublisherResponse>>(publishers));
         }
