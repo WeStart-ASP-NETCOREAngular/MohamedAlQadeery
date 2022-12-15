@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { BookParams } from '../helpers/bookParams';
 import { IBookResponse } from '../interfaces/book/IBookResponse';
 import { ICreateBookRequest } from '../interfaces/book/ICreateBookRequest';
 import { IUpdateBookRequest } from '../interfaces/book/IUpdateBookRequest';
@@ -45,8 +46,14 @@ export class BookService {
     return this._http.post<IBookResponse>(this.baseUrl + '/book', data);
   }
 
-  public GetAllBooks() {
-    return this._http.get<IBookResponse[]>(this.baseUrl + '/book');
+  public GetAllBooks(bookParams?: BookParams) {
+    let params = new HttpParams();
+    if (bookParams) {
+      params = params.append('takeCount', bookParams.takeCount);
+    }
+    return this._http.get<IBookResponse[]>(this.baseUrl + '/book', {
+      params: params,
+    });
   }
 
   public GetBookById(id: number) {

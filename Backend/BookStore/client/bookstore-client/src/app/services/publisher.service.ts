@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { PublisherParams } from '../helpers/publisherParams';
 import {
   ICreatePublisherDto,
   IPublisherResponse,
@@ -15,8 +16,14 @@ export class PublisherService {
 
   constructor(private _http: HttpClient) {}
 
-  public GetAllPublishers() {
-    return this._http.get<IPublisherResponse[]>(this.baseUrl);
+  public GetAllPublishers(publisherParams?: PublisherParams) {
+    let params = new HttpParams();
+    if (publisherParams) {
+      params = params.append('takeCount', publisherParams.takeCount);
+    }
+    return this._http.get<IPublisherResponse[]>(this.baseUrl, {
+      params: params,
+    });
   }
 
   public GetPublisherById(id: number) {
