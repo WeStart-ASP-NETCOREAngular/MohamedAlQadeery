@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="display-5 mb-4">صفحة المبيعات</div>
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">اسم المستخدم</th>
+                            <th scope="col">اسم الكتاب</th>
+                            <th scope="col">الكمية</th>
+                            <th scope="col">السعر الكلي</th>
+                            <th scope="col">تاريخ العملية</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let sale of sales;let i=index">
+                            <th>{{i+1}}</th>
+                            <td>{{sale.appUser.userName}}</td>
+                            <td>{{sale.book.name}}</td>
+                            <td>{{sale.amount}}</td>
+                            <td>{{sale.totalPrice}}</td>
+                            <td>{{sale.orderDate | date}}</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

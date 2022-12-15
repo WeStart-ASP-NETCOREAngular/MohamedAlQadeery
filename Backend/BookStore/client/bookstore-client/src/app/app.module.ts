@@ -30,6 +30,7 @@ import { SelectInputComponent } from './components/Shared/select-input/select-in
 import { ZonesComponent } from './components/admin/zones/zones.component';
 import { AddressComponent } from './components/admin/address/address.component';
 import { StaticPagesComponent } from './components/admin/static-pages/static-pages.component';
+import { SalesComponent } from './components/admin/sales/sales.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { StaticPagesComponent } from './components/admin/static-pages/static-pag
     ZonesComponent,
     AddressComponent,
     StaticPagesComponent,
+    SalesComponent,
   ],
   imports: [
     BrowserModule,

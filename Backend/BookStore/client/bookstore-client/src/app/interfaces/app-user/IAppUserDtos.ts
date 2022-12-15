@@ -1,12 +1,12 @@
 export interface IAppUserResponse {
   id: number;
-  name: string;
+  userName: string;
 }
 
 export interface ICreateAppUserDto {
-  name: string;
+  userName: string;
 }
 
 export interface IUpdateAppUserDto {
-  name: string;
+  userName: string;
 }

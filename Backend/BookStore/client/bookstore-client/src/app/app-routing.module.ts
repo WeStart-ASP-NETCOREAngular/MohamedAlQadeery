@@ -6,6 +6,7 @@ import { BookComponent } from './components/admin/book/book.component';
 import { CategoryComponent } from './components/admin/category/category.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { PublisherComponent } from './components/admin/publisher/publisher.component';
+import { SalesComponent } from './components/admin/sales/sales.component';
 import { StaticPagesComponent } from './components/admin/static-pages/static-pages.component';
 import { TranslatorComponent } from './components/admin/translator/translator.component';
 import { ZonesComponent } from './components/admin/zones/zones.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'zones', component: ZonesComponent },
       { path: 'addresses', component: AddressComponent },
       { path: 'static-pages', component: StaticPagesComponent },
+      { path: 'sales', component: SalesComponent },
     ],
   },
 ];

@@ -11,15 +11,15 @@ export interface ISalesResponse {
 }
 
 export interface ICreateSalesDto {
-  book: IBookResponse;
-  appUser: IAppUserResponse;
+  bookId: number;
+  appUserId: number;
   amount: number;
   totalPrice: number;
 }
 
 export interface IUpdateSalesDto {
-  book: IBookResponse;
-  appUser: IAppUserResponse;
+  bookId: number;
+  appUserId: number;
   amount: number;
   totalPrice: number;
 }
