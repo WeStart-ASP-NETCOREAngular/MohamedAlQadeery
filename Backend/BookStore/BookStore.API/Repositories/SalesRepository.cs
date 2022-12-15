@@ -41,6 +41,8 @@ namespace BookStore.API.Repositories
                 .Select(g => new { bookId = g.Key, totalAmount = g.Sum(s => s.Amount) })
                 .MaxBy(s => s.totalAmount);
 
+            if (maxOrderdBookId == null) return null;
+
             return await _context.Books.FirstOrDefaultAsync(b=>b.Id == maxOrderdBookId.bookId);
 
 
@@ -52,6 +54,9 @@ namespace BookStore.API.Repositories
           //  var sales = await _context.Sales.ToListAsync();
             var mostSoldBookId = _context.Sales.AsEnumerable().GroupBy(s => s.BookId).Select(g => new { bookId = g.Key, totalPrice = g.Sum(s => s.TotalPrice) })
                .MaxBy(s => s.totalPrice);
+
+            if (mostSoldBookId == null) return null;
+
 
             return await _context.Books.FirstOrDefaultAsync(b => b.Id == mostSoldBookId.bookId);
 
@@ -65,6 +70,20 @@ namespace BookStore.API.Repositories
             if (user == null) return null;
 
             return await _context.Sales.Include(s=>s.Book).Where(s => s.AppUserId == userId).ToListAsync();
+        }
+
+        public async Task<List<Sales>> GetBookSales(int bookId)
+        {
+            //validate ids
+            var book = await _context.Books.FindAsync(bookId);
+            if (book == null) return null;
+
+            return await _context.Sales.Include(s => s.Book).Where(s => s.BookId == bookId).ToListAsync();
+        }
+
+        public async Task<List<Sales>> GetAllSales()
+        {
+            return await _context.Sales.Include(s=>s.Book).Include(s=>s.AppUser).ToListAsync();
         }
     }
 }

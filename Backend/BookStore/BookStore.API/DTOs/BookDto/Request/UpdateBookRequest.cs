@@ -28,7 +28,7 @@ namespace BookStore.API.DTOs.BookDto.Request
 
         public int? AuthorId { get; set; }
 
-        public int TranslatorId { get; set; }
+        public int? TranslatorId { get; set; }
 
         [Required]
 

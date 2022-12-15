@@ -29,7 +29,8 @@ namespace BookStore.API.Repositories
         {
             await _context.Addresses.AddAsync(addressToCreate);
             await _context.SaveChangesAsync();
-            return addressToCreate;
+
+            return await GetByIdAsync(addressToCreate.Id);
         }
 
         public async Task<bool> DeleteAsync(int id)
@@ -45,7 +46,7 @@ namespace BookStore.API.Repositories
 
         public async Task<Address> UpdateAsync(int id, Address addressToUpdate)
         {
-            var address = await _context.Addresses.FirstOrDefaultAsync(a => a.Id == id);
+            var address = await _context.Addresses.Include(a=>a.Zone).FirstOrDefaultAsync(a => a.Id == id);
             if (address == null) return null;
 
             address.Address1 = addressToUpdate.Address1;
@@ -53,7 +54,7 @@ namespace BookStore.API.Repositories
             address.ZoneId = addressToUpdate.ZoneId;
             await _context.SaveChangesAsync();
 
-            return address;
+            return await GetByIdAsync(id);
         }
     }
 }

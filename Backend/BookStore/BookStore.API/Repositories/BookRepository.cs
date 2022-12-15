@@ -29,7 +29,9 @@ namespace BookStore.API.Repositories
         {
             await _context.Books.AddAsync(bookToCreate);
             await _context.SaveChangesAsync();
-            return bookToCreate;
+
+            
+            return await GetBookByIdAsync(bookToCreate.Id);
         }
 
         public async Task<bool> DeleteAsync(int id)
@@ -60,7 +62,7 @@ namespace BookStore.API.Repositories
 
             _context.Books.Update(bookToUpdate);
             await _context.SaveChangesAsync();
-            return bookToUpdate;
+            return await GetBookByIdAsync(bookToUpdate.Id);
 
 
         }

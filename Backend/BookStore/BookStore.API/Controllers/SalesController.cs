@@ -25,6 +25,16 @@ namespace BookStore.API.Controllers
             _mapper = mapper;
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllSales()
+        {
+            var sales = await _repo.GetAllSales();
+
+            return Ok(_mapper.Map<List<SalesResponse>>(sales));
+        }
+
+
         [HttpPost("{bookId}/add-sale")]
         public async Task<IActionResult> AddBookSale(int bookId,AddSaleRequest saleRequest)
         {
@@ -93,7 +103,21 @@ namespace BookStore.API.Controllers
         }
 
 
+        [HttpGet("book-sales/{bookId}")]
+        public async Task<IActionResult> GetBookSales(int bookId)
+        {
 
 
+            var sales = await _repo.GetBookSales(bookId);
+            if (sales != null)
+            {
+                return Ok(_mapper.Map<List<SalesResponse>>(sales));
+            }
+
+
+            return BadRequest();
+        }
+
+      
     }
 }

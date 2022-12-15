@@ -65,7 +65,7 @@ namespace BookStore.API.Controllers
 
             var book = await _repo.CreateAsync(bookToCreate);
 
-            return CreatedAtAction(nameof(GetBookById), new { id = book.Id }, _mapper.Map<SpecficBookResponse>(book));
+            return CreatedAtAction(nameof(GetBookById), new { id = book.Id }, _mapper.Map<BookDetailsResponse>(book));
 
         }
 
@@ -84,7 +84,7 @@ namespace BookStore.API.Controllers
             var book = await _repo.UpdateAsync(id, bookToUpdate);
             if (book != null)
             {
-                return Ok(_mapper.Map<SpecficBookResponse>(book));
+                return Ok(_mapper.Map<BookDetailsResponse>(book));
             }
 
             return NotFound();
