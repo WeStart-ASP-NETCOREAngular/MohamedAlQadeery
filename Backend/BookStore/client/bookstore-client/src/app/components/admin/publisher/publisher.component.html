@@ -13,7 +13,8 @@
 
                 <div class="mb-3">
                     <label for="logoInput" class="form-label">الشعار</label>
-                    <input (change)="HandleFileInputChange($event)" id="logoInput" class="form-control" type="file">
+                    <input formControlName="file" (change)="HandleFileInputChange($event)" id="logoInput"
+                        class="form-control" type="file">
                 </div>
 
                 <div class="mb-3">
