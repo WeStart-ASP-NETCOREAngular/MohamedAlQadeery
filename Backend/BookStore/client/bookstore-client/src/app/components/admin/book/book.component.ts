@@ -45,7 +45,7 @@ export class BookComponent implements OnInit {
 
   //#region Book Page variables
   books: IBookResponse[] = [];
-  imagesUrl = `${environment.baseURL}/images`;
+  imagesUrl = `${environment.baseURL}/images/thumbs/med`;
   buttonLabel = 'انشاء';
   formType = 'create';
   bookId: number;
@@ -72,6 +72,10 @@ export class BookComponent implements OnInit {
         this._toastr.error(err);
       },
     });
+  }
+
+  get getallAuthors() {
+    return this._authorService.GetAllAuthors();
   }
 
   private InitSelectOptions() {
@@ -140,6 +144,10 @@ export class BookComponent implements OnInit {
       });
   }
 
+  get nameField() {
+    return this.bookFormGroup.get('name');
+  }
+
   private InitForm() {
     this.name = new FormControl('', [Validators.required]);
     this.price = new FormControl('', [Validators.required]);
@@ -165,6 +173,7 @@ export class BookComponent implements OnInit {
       publisherId: this.publisherId,
       categoryId: this.categoryId,
       ImageFile: this.bookCoverFileInput,
+      file: new FormControl(''),
     });
   }
 

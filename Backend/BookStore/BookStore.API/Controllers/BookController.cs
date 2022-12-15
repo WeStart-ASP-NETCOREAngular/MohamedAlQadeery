@@ -57,7 +57,7 @@ namespace BookStore.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBook([FromForm]CreateBookRequest createBookRequest)
         {
-            var fileName = _imageService.UploadImage(createBookRequest.ImageFile);
+            var fileName =await _imageService.UploadImage(createBookRequest.ImageFile);
             if (fileName == "") return BadRequest("File is not image");
 
             var bookToCreate = _mapper.Map<Book>(createBookRequest);
@@ -76,7 +76,7 @@ namespace BookStore.API.Controllers
 
             if(updateBookRequest.ImageFile != null)
             {
-                var fileName = _imageService.UploadImage(updateBookRequest.ImageFile);
+                var fileName = await _imageService.UploadImage(updateBookRequest.ImageFile);
                 bookToUpdate.Image = fileName;
             }
 

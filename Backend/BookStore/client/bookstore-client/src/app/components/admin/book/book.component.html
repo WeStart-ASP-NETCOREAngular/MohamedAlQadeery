@@ -6,7 +6,8 @@
             <div class="col-md-4 align-self-center col-md-4">
                 <div class="mb-3">
                     <label for="book-cover" class="form-label">الشعار</label>
-                    <input id="book-cver" (change)="HandleFileInputChange($event)" class="form-control" type="file">
+                    <input id="book-cver" (change)="HandleFileInputChange($event)" formControlName="file"
+                        class="form-control" type="file">
                 </div>
             </div>
 
@@ -50,6 +51,7 @@
 
 
             <div class="col-md-3 mb-4">
+
                 <app-select-input [control]="authorId" label="المؤلف" [options]="authorsOptions"></app-select-input>
             </div>
             <div class="col-md-3 mb-4">

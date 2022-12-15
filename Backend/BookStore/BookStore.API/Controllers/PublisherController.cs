@@ -46,7 +46,7 @@ namespace BookStore.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePublisher([FromForm]PostPublisherRequest publisherToCreate)
         {
-           var logo =  _imageService.UploadImage(publisherToCreate.LogoImage);
+           var logo = await _imageService.UploadImage(publisherToCreate.LogoImage);
 
             if (logo == "") return BadRequest("File is not image ");
 
@@ -65,7 +65,7 @@ namespace BookStore.API.Controllers
           
             if(putPublisherRequest.LogoImage != null)
             {
-                var logo = _imageService.UploadImage(putPublisherRequest.LogoImage);
+                var logo =await  _imageService.UploadImage(putPublisherRequest.LogoImage);
 
                 if (logo == "") return BadRequest("File is not image ");
                 publisherToUpdate.Logo = logo;
