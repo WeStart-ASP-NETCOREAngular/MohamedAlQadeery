@@ -2,6 +2,43 @@
     <div class="display-5 mb-4">صفحة التواصل معنا</div>
 
 
+    <div class="row mb-5" *ngIf="showMessage">
+        <div class="col-md-12">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            عرض محتوى الرسالة
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <p class="card-text">{{selectedMessage.createdAt | date}}</p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <p class="card-text fw-bold">الاسم : {{selectedMessage.fullName}}</p>
+                    <p class="card-text fw-bold">البريد الالكتروني : {{selectedMessage.email}}</p>
+                    <hr>
+
+                    <p class="card-text">{{selectedMessage.message}}</p>
+
+
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-end">
+                            <button class="btn btn-danger" (click)="OnClickBack()">رجوع</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <div class="row">
         <div class="col-md-12">
@@ -14,6 +51,8 @@
                             <th scope="col">البريد الالكتروني</th>
                             <th scope="col">الرسالة</th>
                             <th scope="col">تاريخ الارسال</th>
+                            <th scope="col">الحالة</th>
+                            <th scope="col">العملية</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,6 +62,8 @@
                             <td>{{message.email}}</td>
                             <td>{{message.message}}</td>
                             <td>{{message.createdAt | date}}</td>
+                            <td>{{message.readAt ? 'تم قرائتها' : 'جديدة'}}</td>
+                            <td><button class="btn btn-info" (click)="OnShowMessage(message.id)">عرض</button></td>
 
 
                         </tr>

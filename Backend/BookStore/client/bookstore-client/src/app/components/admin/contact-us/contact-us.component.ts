@@ -10,6 +10,8 @@ import { ContactUsService } from 'src/app/services/contact-us.service';
 })
 export class ContactUsComponent implements OnInit {
   messages: IContactusResponse[] = [];
+  selectedMessage: IContactusResponse;
+  showMessage = false;
 
   constructor(
     private _contactussService: ContactUsService,
@@ -20,5 +22,25 @@ export class ContactUsComponent implements OnInit {
     this._contactussService.GetAllMessages().subscribe((res) => {
       this.messages = res;
     });
+  }
+
+  OnShowMessage(messageId: number) {
+    this._contactussService.MarkMessageAsRead(messageId).subscribe({
+      next: () => {
+        this.selectedMessage = this.messages.find((m) => m.id == messageId)!;
+        if (!this.selectedMessage.readAt) {
+          this.selectedMessage.readAt = new Date();
+          this._toastr.success('تغير حالة الرسالة', 'تم تحديث حالة الرسالة ');
+        }
+        this.showMessage = true;
+      },
+      error: (err) => {
+        this._toastr.error(err);
+      },
+    });
+  }
+
+  OnClickBack() {
+    this.showMessage = false;
   }
 }
