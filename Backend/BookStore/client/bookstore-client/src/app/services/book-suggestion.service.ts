@@ -1,0 +1,17 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { IBookSuggestionResponse } from '../interfaces/book-suggestions/IBookSuggestionDtos';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class BookSuggestionService {
+  private baseUrl = environment.baseURL + '/api/bookSuggestions';
+
+  constructor(private _http: HttpClient) {}
+
+  public GetAllMessages() {
+    return this._http.get<IBookSuggestionResponse[]>(this.baseUrl);
+  }
+}

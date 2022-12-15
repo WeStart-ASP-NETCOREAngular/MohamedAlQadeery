@@ -32,6 +32,7 @@ import { AddressComponent } from './components/admin/address/address.component';
 import { StaticPagesComponent } from './components/admin/static-pages/static-pages.component';
 import { SalesComponent } from './components/admin/sales/sales.component';
 import { ContactUsComponent } from './components/admin/contact-us/contact-us.component';
+import { BookSuggestionComponent } from './components/admin/book-suggestion/book-suggestion.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { ContactUsComponent } from './components/admin/contact-us/contact-us.com
     StaticPagesComponent,
     SalesComponent,
     ContactUsComponent,
+    BookSuggestionComponent,
   ],
   imports: [
     BrowserModule,

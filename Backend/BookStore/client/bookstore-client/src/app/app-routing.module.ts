@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddressComponent } from './components/admin/address/address.component';
 import { AuthorComponent } from './components/admin/author/author.component';
+import { BookSuggestionComponent } from './components/admin/book-suggestion/book-suggestion.component';
 import { BookComponent } from './components/admin/book/book.component';
 import { CategoryComponent } from './components/admin/category/category.component';
 import { ContactUsComponent } from './components/admin/contact-us/contact-us.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: 'static-pages', component: StaticPagesComponent },
       { path: 'sales', component: SalesComponent },
       { path: 'contactus', component: ContactUsComponent },
+      { path: 'book-suggestions', component: BookSuggestionComponent },
     ],
   },
 ];

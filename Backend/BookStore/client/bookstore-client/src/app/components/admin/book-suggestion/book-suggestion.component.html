@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="display-5 mb-4">صفحة اقتراحات الكتب</div>
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">البريد الالكتروني</th>
+                            <th scope="col">اسم الكتاب</th>
+                            <th scope="col">اسم المؤلف</th>
+                            <th scope="col">اسم دار النشر</th>
+                            <th scope="col">ملاحظات</th>
+                            <th scope="col">تاريخ الارسال</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let message of messages;let i=index">
+                            <th>{{i+1}}</th>
+                            <td>{{message.email}}</td>
+                            <td>{{message.bookName}}</td>
+                            <td>{{message.authorName}}</td>
+                            <td>{{message.publisherName}}</td>
+                            <td>{{message.notes}}</td>
+                            <td>{{message.createdAt | date}}</td>
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
