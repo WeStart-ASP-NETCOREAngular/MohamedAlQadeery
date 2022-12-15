@@ -10,12 +10,7 @@
 
                 </div>
                 <div class="mb-3">
-                    <label for="about-book" class="form-label">التفاصيل</label>
-                    <textarea class="form-control" id="about-book" [formControl]="detailsInput" rows="3"></textarea>
-                    <p class="text-danger"
-                        *ngIf="detailsInput.touched && !detailsInput.valid && detailsInput.getError('required')">
-                        التفاصيل مطلوبة
-                    </p>
+                    <app-text-area [control]="detailsInput" label="التفاصيل"></app-text-area>
                 </div>
             </div>
 

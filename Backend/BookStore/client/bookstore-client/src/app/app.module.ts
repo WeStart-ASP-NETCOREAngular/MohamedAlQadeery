@@ -33,6 +33,7 @@ import { StaticPagesComponent } from './components/admin/static-pages/static-pag
 import { SalesComponent } from './components/admin/sales/sales.component';
 import { ContactUsComponent } from './components/admin/contact-us/contact-us.component';
 import { BookSuggestionComponent } from './components/admin/book-suggestion/book-suggestion.component';
+import { TextAreaComponent } from './components/Shared/text-area/text-area.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { BookSuggestionComponent } from './components/admin/book-suggestion/book
     SalesComponent,
     ContactUsComponent,
     BookSuggestionComponent,
+    TextAreaComponent,
   ],
   imports: [
     BrowserModule,

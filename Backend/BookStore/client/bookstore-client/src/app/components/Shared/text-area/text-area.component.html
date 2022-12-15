@@ -1,0 +1,10 @@
+<label class="form-label">{{label}}</label>
+<textarea class="form-control" [formControl]="control" rows="3"></textarea>
+
+<ng-container *ngIf="control.touched && !control.valid || control.dirty">
+
+    <p *ngIf="control.getError('required')" class="text-danger">
+        {{label}} مطلوب
+    </p>
+
+</ng-container>
