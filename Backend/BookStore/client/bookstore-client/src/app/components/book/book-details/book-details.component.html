@@ -4,7 +4,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a routerLink="/home" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact:true}">الرئيسية</a></li>
-                <li class="breadcrumb-item "><a routerLink="/books">الروايات</a></li>
+                <li class="breadcrumb-item "><a routerLink="/books" routerLinkActive="active">الروايات</a></li>
                 <li class="breadcrumb-item "><span class="text-white">التفاصيل</span></li>
 
 
@@ -21,7 +21,7 @@
             <div class="col-md-6 d-flex flex-row">
                 <img [src]="imagesUrl + '/'+book.image" class="img-thumbnail w-50">
 
-                <div class="book-info ms-4">
+                <div class="book-info  ms-4">
                     <div class="book-header">
                         <p class="fs-3 fw-bold">{{book.name}}</p>
                         <p class="fs-6 fw-bold">المؤلف : <span class="text-muted">{{book.author.name}}</span></p>
@@ -117,15 +117,15 @@
                                     <input type="number" class="form-control form-control-sm">
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 mb-2 mb-md-0">
                                     <button
-                                        class="border border-secondary px-3 py-1 sale-button fw-light">اشتري</button>
+                                        class="border border-secondary px-3 py-1 sale-button fw-light w-100">اشتري</button>
 
                                 </div>
 
                                 <div class="col-md-6">
                                     <button
-                                        class="border border-secondary px-3 py-1 sale-button fw-light">المفضلة</button>
+                                        class="border border-secondary px-3 py-1 sale-button fw-light w-100">المفضلة</button>
                                 </div>
 
 
