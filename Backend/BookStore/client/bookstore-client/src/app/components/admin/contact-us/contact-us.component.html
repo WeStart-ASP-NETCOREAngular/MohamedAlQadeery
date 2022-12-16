@@ -28,7 +28,13 @@
                 </div>
                 <div class="card-footer">
                     <div class="row">
-                        <div class="col-md-12 text-end">
+                        <div class="col-md-6 text-start">
+                            <button class="btn btn-info" (click)="MarkAsUnRead(selectedMessage.id)">تغير حالة الى لم يتم
+                                قرائتها</button>
+
+                        </div>
+
+                        <div class="col-md-6 text-end">
                             <button class="btn btn-danger" (click)="OnClickBack()">رجوع</button>
                         </div>
                     </div>

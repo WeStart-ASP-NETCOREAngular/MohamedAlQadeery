@@ -3,7 +3,7 @@ export interface IContactusResponse {
   email: string;
   fullName: string;
   message: string;
-  readAt: Date;
+  readAt: Date | null;
   createdAt: Date;
 }
 

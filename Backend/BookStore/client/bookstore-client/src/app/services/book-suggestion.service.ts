@@ -18,4 +18,7 @@ export class BookSuggestionService {
   public MarkMessageAsRead(messageId: number) {
     return this._http.put(`${this.baseUrl}/${messageId}/mark-read`, {});
   }
+  public MarkMessageAsUnRead(messageId: number) {
+    return this._http.put(`${this.baseUrl}/${messageId}/mark-unread`, {});
+  }
 }

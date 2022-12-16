@@ -30,7 +30,10 @@ export class BookSuggestionComponent implements OnInit {
         this.selectedMessage = this.messages.find((m) => m.id == messageId)!;
         if (!this.selectedMessage.readAt) {
           this.selectedMessage.readAt = new Date();
-          this._toastr.success('تغير حالة الرسالة', 'تم تحديث حالة الرسالة ');
+          this._toastr.success(
+            'تغير حالة الرسالة',
+            'تم تحديث حالة الرسالة الى تم قرائتها'
+          );
         }
         this.showMessage = true;
       },
@@ -42,5 +45,24 @@ export class BookSuggestionComponent implements OnInit {
 
   OnClickBack() {
     this.showMessage = false;
+  }
+
+  MarkAsUnRead(messageId: number) {
+    this._bookSuggestionsService.MarkMessageAsUnRead(messageId).subscribe({
+      next: () => {
+        this.selectedMessage = this.messages.find((m) => m.id == messageId)!;
+        if (this.selectedMessage.readAt) {
+          this.selectedMessage.readAt = null;
+          this._toastr.success(
+            'تغير حالة الرسالة',
+            'تم تحديث حالة الرسالة الى لم يتم قرائتها'
+          );
+        }
+        this.showMessage = true;
+      },
+      error: (err) => {
+        this._toastr.error(err);
+      },
+    });
   }
 }

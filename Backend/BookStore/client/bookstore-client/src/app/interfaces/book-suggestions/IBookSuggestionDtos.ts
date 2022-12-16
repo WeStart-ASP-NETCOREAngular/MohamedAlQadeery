@@ -5,7 +5,7 @@ export interface IBookSuggestionResponse {
   publisherName: string;
   authorName: string;
   notes: string;
-  readAt: Date;
+  readAt: Date | null;
   createdAt: Date;
 }
 
