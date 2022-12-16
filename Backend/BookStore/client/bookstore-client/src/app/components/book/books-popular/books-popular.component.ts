@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IBookResponse } from 'src/app/interfaces/book/IBookResponse';
 import { BookService } from 'src/app/services/book.service';
 import { ImageService } from 'src/app/services/image.service';
@@ -11,26 +12,15 @@ import { environment } from 'src/environments/environment';
 })
 export class BooksPopularComponent implements OnInit {
   constructor(private _bookService: BookService) {}
-  latestBook: IBookResponse;
-  mostOrderdBook: IBookResponse;
-  mostSoldBook: IBookResponse;
+  latestBook$: Observable<IBookResponse>;
+  mostOrderdBook$: Observable<IBookResponse>;
+  mostSoldBook$: Observable<IBookResponse>;
 
   imagesUrl = `${environment.baseURL}/images/thumbs/med`;
 
   ngOnInit(): void {
-    this._bookService.GetLatestBook().subscribe((res) => {
-      this.latestBook = res;
-      this.latestBook.image = `${this.imagesUrl}/${this.latestBook.image}`;
-    });
-
-    this._bookService.GetMostOrderdBook().subscribe((res) => {
-      this.mostOrderdBook = res;
-      this.mostOrderdBook.image = `${this.imagesUrl}/${this.mostOrderdBook.image}`;
-    });
-
-    this._bookService.GetMostSoldBook().subscribe((res) => {
-      this.mostSoldBook = res;
-      this.mostSoldBook.image = `${this.imagesUrl}/${this.mostSoldBook.image}`;
-    });
+    this.latestBook$ = this._bookService.GetLatestBook();
+    this.mostOrderdBook$ = this._bookService.GetMostOrderdBook();
+    this.mostSoldBook$ = this._bookService.GetMostSoldBook();
   }
 }

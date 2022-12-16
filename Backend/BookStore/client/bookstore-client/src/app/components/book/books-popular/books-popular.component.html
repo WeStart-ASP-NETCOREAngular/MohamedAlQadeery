@@ -2,10 +2,10 @@
     <div class="container">
 
         <div class="row mt-3   ">
-            <div class="col-12 col-md-4 mb-4 mb-md-0">
+            <div class="col-12 col-md-4 mb-4 mb-md-0" *ngIf="(latestBook$ | async) as latestBook">
 
                 <div class="card d-flex flex-row" style="background-color: #de002f;">
-                    <img [src]="latestBook.image" alt="Book cover">
+                    <img [src]="imagesUrl + '/'+latestBook.image" alt="Book cover">
 
                     <div class="card-body align-self-end mb-4">
                         <h5 class="card-title fw-bolder text-white fs-1">اصدارات جديــــــدة</h5>
@@ -16,10 +16,10 @@
 
 
             </div>
-            <div class="col-12 col-md-4 mb-4 mb-md-0">
+            <div class="col-12 col-md-4 mb-4 mb-md-0" *ngIf="(mostSoldBook$ | async) as mostSoldBook">
 
                 <div class="card d-flex flex-row" style="background-color: #153e76;">
-                    <img [src]="mostSoldBook.image" alt="Book cover">
+                    <img [src]="imagesUrl + '/'+mostSoldBook.image" alt="Book cover">
 
 
                     <div class="card-body align-self-end mb-4">
@@ -33,10 +33,10 @@
 
             </div>
 
-            <div class="col-12 col-md-4 mb-4 mb-md-0">
+            <div class="col-12 col-md-4 mb-4 mb-md-0" *ngIf="(mostOrderdBook$ | async) as mostOrderdBook">
 
                 <div class="card d-flex flex-row" style="background-color: #009c96;">
-                    <img [src]="mostOrderdBook.image" alt="Book cover">
+                    <img [src]="imagesUrl + '/'+mostOrderdBook.image" alt="Book cover">
 
                     <div class="card-body align-self-end mb-4">
                         <h5 class="card-title fw-bolder text-white fs-1 ">الاكثـــر طلبـــــا</h5>
