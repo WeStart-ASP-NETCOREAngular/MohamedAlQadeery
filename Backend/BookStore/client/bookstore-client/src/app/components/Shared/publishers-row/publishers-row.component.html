@@ -1,11 +1,20 @@
 <section id="publishers" class="mb-5">
     <div class="container">
-        <h2 class="fs-1 mb-3 fw-bold">دور النشر</h2>
+        <div class="row mb-4">
+            <div class="col-6">
+                <h2 class="fs-1 fw-bold">دور النشر</h2>
+            </div>
+
+            <div class="col-6 text-end">
+                <a href="#" class="fs-1  fw-bold text-decoration-none text-dark">المزيد</a>
+            </div>
+        </div>
+
         <div class="row ">
 
-            <div class="col-md-2 text-center" *ngFor="let publisher of publishers$ |async">
+            <div class="col-6 col-md-2 text-center" *ngFor="let publisher of publishers$ |async">
                 <div class="flex-flex-column border border-secondary p-1 ">
-                    <img [src]="imagesUrl + '/'+publisher.logo" class="img-thumbnail">
+                    <img [src]="imagesUrl + '/'+publisher.logo" class="w-50">
                     <p class="fw-bold fs-4">{{publisher.name}}</p>
                 </div>
             </div>

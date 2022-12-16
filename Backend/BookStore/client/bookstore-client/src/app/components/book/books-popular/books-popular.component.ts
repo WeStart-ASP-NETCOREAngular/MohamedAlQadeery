@@ -15,20 +15,22 @@ export class BooksPopularComponent implements OnInit {
   mostOrderdBook: IBookResponse;
   mostSoldBook: IBookResponse;
 
+  imagesUrl = `${environment.baseURL}/images/thumbs/med`;
+
   ngOnInit(): void {
     this._bookService.GetLatestBook().subscribe((res) => {
       this.latestBook = res;
-      this.latestBook.image = `${environment.baseURL}/images/${this.latestBook.image}`;
+      this.latestBook.image = `${this.imagesUrl}/${this.latestBook.image}`;
     });
 
     this._bookService.GetMostOrderdBook().subscribe((res) => {
       this.mostOrderdBook = res;
-      this.mostOrderdBook.image = `${environment.baseURL}/images/${this.mostOrderdBook.image}`;
+      this.mostOrderdBook.image = `${this.imagesUrl}/${this.mostOrderdBook.image}`;
     });
 
     this._bookService.GetMostSoldBook().subscribe((res) => {
       this.mostSoldBook = res;
-      this.mostSoldBook.image = `${environment.baseURL}/images/${this.mostSoldBook.image}`;
+      this.mostSoldBook.image = `${this.imagesUrl}/${this.mostSoldBook.image}`;
     });
   }
 }
