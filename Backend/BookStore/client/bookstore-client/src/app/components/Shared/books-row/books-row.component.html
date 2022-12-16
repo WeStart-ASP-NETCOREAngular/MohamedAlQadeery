@@ -14,7 +14,8 @@
         <div class="row">
             <div class="col-6 col-md-2 " *ngFor="let book of books$ | async">
                 <div class="d-flex flex-column">
-                    <img [src]="imagesUrl + '/'+book.image" class="img-thumbnail">
+                    <a [routerLink]="['/books',book.id]"><img [src]="imagesUrl + '/'+book.image"
+                            class="img-thumbnail"></a>
                     <div class="flex-column text-center ">
 
                         <i class="fa fa-star"></i>

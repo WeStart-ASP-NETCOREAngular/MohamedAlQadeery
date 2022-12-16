@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PublishersRowComponent implements OnInit {
   constructor(private _publisherService: PublisherService) {}
-  imagesUrl = `${environment.baseURL}/images/thumbs/small`;
+  imagesUrl = `${environment.baseURL}/images/thumbs/med`;
   publishers$: Observable<IPublisherResponse[]>;
 
   ngOnInit(): void {

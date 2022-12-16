@@ -5,8 +5,7 @@
                 <li class="breadcrumb-item"><a routerLink="/home" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact:true}">الرئيسية</a></li>
                 <li class="breadcrumb-item "><a routerLink="books" routerLinkActive="active">شراء</a></li>
-                <li class="breadcrumb-item "><a routerLink="/books/2" routerLinkActive="active"
-                        [routerLinkActiveOptions]="{exact:true}">روايات</a></li>
+                <li class="breadcrumb-item "><span class="text-white">التفاصيل</span></li>
 
 
             </ol>
@@ -15,17 +14,17 @@
 </section>
 
 
-<section id="book-details">
+<section id="book-details" *ngIf="(book$ |async) as book">
     <div class="container">
-        <div class="row">
+        <div class="row mb-5">
             <!-- Start of book info -->
             <div class="col-md-6 d-flex flex-row">
-                <img src="../../../../assets/img/book.png" class="img-thumbnail w-50">
+                <img [src]="imagesUrl + '/'+book.image" class="img-thumbnail w-50">
 
                 <div class="book-info ms-4">
                     <div class="book-header">
-                        <p class="fs-3 fw-bold">قاسم زودي</p>
-                        <p class="fs-6 fw-bold">المؤلف : <span class="text-muted">عبد الغفور عصام</span></p>
+                        <p class="fs-3 fw-bold">{{book.name}}</p>
+                        <p class="fs-6 fw-bold">المؤلف : <span class="text-muted">{{book.author.name}}</span></p>
                     </div>
                     <div class="stars mb-3">
                         <span>(2)</span>
@@ -44,7 +43,7 @@
                                 </p>
                             </div>
                             <div class="col-6">
-                                <span class="text-muted">:روافد</span>
+                                <span class="text-muted">:{{book.publisher.name}}</span>
                             </div>
                             <div class="col-4">
                                 <p class="fs-6 fw-bold">
@@ -52,23 +51,26 @@
                                 </p>
                             </div>
                             <div class="col-6">
-                                <span class="text-muted">:عبد الغفور عصام</span>
+                                <span class="text-muted">:{{book.author.name}}</span>
                             </div>
-                            <div class="col-4">
-                                <p class="fs-6 fw-bold">
-                                    المترجم
-                                </p>
-                            </div>
-                            <div class="col-6">
-                                <span class="text-muted">:مجموعة مؤلفين</span>
-                            </div>
+                            <ng-container *ngIf="book.translator">
+                                <div class="col-4">
+                                    <p class="fs-6 fw-bold">
+                                        المترجم
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <span class="text-muted">:{{book.translator.name}}</span>
+                                </div>
+                            </ng-container>
+
                             <div class="col-4">
                                 <p class="fs-6 fw-bold">
                                     سنة النشر
                                 </p>
                             </div>
                             <div class="col-6">
-                                <span class="text-muted">:2021</span>
+                                <span class="text-muted">:{{book.publishYear}}</span>
                             </div>
                             <div class="col-5">
                                 <p class="fs-6 fw-bold">
@@ -76,7 +78,7 @@
                                 </p>
                             </div>
                             <div class="col-6">
-                                <span class="text-muted">:288</span>
+                                <span class="text-muted">:{{book.pageCount}}</span>
                             </div>
                         </div>
 
@@ -101,8 +103,8 @@
                                 </div>
 
                                 <div class="col-md-6 d-flex mb-3">
-                                    <p class="price fs-5 fw-bold m-0">$12.00</p>
-                                    <span class="align-self-center m-2 text-muted">$19.00</span>
+                                    <p class="price fs-5 fw-bold m-0">${{book.price}}</p>
+                                    <span class="align-self-center m-2 text-muted">${{book.discount}}</span>
                                 </div>
 
 
@@ -139,6 +141,18 @@
 
             <!-- end of book sale -->
         </div>
+
+
+
+        <div class="card h-100" style="background-color: #f2f2f2;">
+            <div class="card-header">
+                <p class="fs-5 fw-bold">عن الكتاب</p>
+            </div>
+            <div class="card-body">
+                {{book.about}}
+            </div>
+        </div>
+
 
 
 
