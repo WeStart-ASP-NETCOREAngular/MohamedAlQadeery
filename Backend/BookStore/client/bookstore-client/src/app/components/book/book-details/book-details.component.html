@@ -1,0 +1,147 @@
+<section id="breadcrumbs" class="mb-5">
+    <div class="container">
+        <nav id="site-nav" class="py-2 px-2">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/home" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact:true}">الرئيسية</a></li>
+                <li class="breadcrumb-item "><a routerLink="books" routerLinkActive="active">شراء</a></li>
+                <li class="breadcrumb-item "><a routerLink="/books/2" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact:true}">روايات</a></li>
+
+
+            </ol>
+        </nav>
+    </div>
+</section>
+
+
+<section id="book-details">
+    <div class="container">
+        <div class="row">
+            <!-- Start of book info -->
+            <div class="col-md-6 d-flex flex-row">
+                <img src="../../../../assets/img/book.png" class="img-thumbnail w-50">
+
+                <div class="book-info ms-4">
+                    <div class="book-header">
+                        <p class="fs-3 fw-bold">قاسم زودي</p>
+                        <p class="fs-6 fw-bold">المؤلف : <span class="text-muted">عبد الغفور عصام</span></p>
+                    </div>
+                    <div class="stars mb-3">
+                        <span>(2)</span>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+
+                    <div class="book-details">
+                        <div class="row justify-content-between">
+                            <div class="col-4">
+                                <p class="fs-6 fw-bold">
+                                    دار النشر
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <span class="text-muted">:روافد</span>
+                            </div>
+                            <div class="col-4">
+                                <p class="fs-6 fw-bold">
+                                    اسم المؤلف
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <span class="text-muted">:عبد الغفور عصام</span>
+                            </div>
+                            <div class="col-4">
+                                <p class="fs-6 fw-bold">
+                                    المترجم
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <span class="text-muted">:مجموعة مؤلفين</span>
+                            </div>
+                            <div class="col-4">
+                                <p class="fs-6 fw-bold">
+                                    سنة النشر
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <span class="text-muted">:2021</span>
+                            </div>
+                            <div class="col-5">
+                                <p class="fs-6 fw-bold">
+                                    عدد الصفحات
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <span class="text-muted">:288</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- End of book info -->
+
+            <!-- start of book sale -->
+            <div class="col-md-6 ">
+
+                <div class="row justify-content-center mt-5">
+                    <div class="w-50  p-5" style="background-color: #e1e1e1;">
+                        <div class="book-sale-header">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="fs-6 fw-bold" style="color: #009c96;">سعر الكتاب :</p>
+
+                                </div>
+
+                                <div class="col-md-6 d-flex mb-3">
+                                    <p class="price fs-5 fw-bold m-0">$12.00</p>
+                                    <span class="align-self-center m-2 text-muted">$19.00</span>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <p class="fs-6 fw-bold" style="color: #009c96;">الكمية:</p>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <input type="number" class="form-control form-control-sm">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <button
+                                        class="border border-secondary px-3 py-1 sale-button fw-light">اشتري</button>
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <button
+                                        class="border border-secondary px-3 py-1 sale-button fw-light">المفضلة</button>
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- end of book sale -->
+        </div>
+
+
+
+    </div>
+
+</section>

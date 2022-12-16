@@ -34,6 +34,8 @@ import { SalesComponent } from './components/admin/sales/sales.component';
 import { ContactUsComponent } from './components/admin/contact-us/contact-us.component';
 import { BookSuggestionComponent } from './components/admin/book-suggestion/book-suggestion.component';
 import { TextAreaComponent } from './components/Shared/text-area/text-area.component';
+import { BookDetailsComponent } from './components/book/book-details/book-details.component';
+import { BookListComponent } from './components/book/book-list/book-list.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { TextAreaComponent } from './components/Shared/text-area/text-area.compo
     ContactUsComponent,
     BookSuggestionComponent,
     TextAreaComponent,
+    BookDetailsComponent,
+    BookListComponent,
   ],
   imports: [
     BrowserModule,

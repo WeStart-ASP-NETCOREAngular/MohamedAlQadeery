@@ -13,6 +13,8 @@ import { StaticPagesComponent } from './components/admin/static-pages/static-pag
 import { TranslatorComponent } from './components/admin/translator/translator.component';
 import { ZonesComponent } from './components/admin/zones/zones.component';
 import { HomeComponent } from './components/home/home.component';
+import { BookListComponent } from './components/book/book-list/book-list.component';
+import { BookDetailsComponent } from './components/book/book-details/book-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -32,6 +34,14 @@ const routes: Routes = [
       { path: 'contactus', component: ContactUsComponent },
       { path: 'book-suggestions', component: BookSuggestionComponent },
     ],
+  },
+  {
+    path: 'books',
+    component: BookListComponent,
+  },
+  {
+    path: 'books/:id',
+    component: BookDetailsComponent,
   },
 ];
 
