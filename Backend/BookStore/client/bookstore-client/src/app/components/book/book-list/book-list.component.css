@@ -1,0 +1,29 @@
+#site-nav {
+  background-color: #009c96;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
+nav a.active {
+  color: white;
+}
+
+ol.breadcrumb {
+  list-style: none;
+}
+
+ol.breadcrumb li::before {
+  content: ">";
+  color: white;
+  margin-right: 8px;
+}
+
+ol.breadcrumb li:first-child::before {
+  content: "";
+}
+
+.input-bg {
+  background-color: #e4e4e4;
+}

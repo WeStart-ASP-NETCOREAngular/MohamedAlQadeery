@@ -28,37 +28,3 @@ ol.breadcrumb li:first-child::before {
   background-color: #009c96;
   color: white;
 }
-
-/* Style the tab links */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
-
-.tab a {
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-/* Change background color of links on hover */
-.tab a:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab a.active {
-  background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
