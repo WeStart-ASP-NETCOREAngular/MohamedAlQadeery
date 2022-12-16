@@ -2,46 +2,11 @@
     <div class="container">
         <h2 class="fs-1 mb-3 fw-bold">دور النشر</h2>
         <div class="row ">
-            <div class="col-md-2 
-         text-center">
+
+            <div class="col-md-2 text-center" *ngFor="let publisher of publishers$ |async">
                 <div class="flex-flex-column border border-secondary p-1 ">
-                    <img src="../assets/img/publisher-1.png" class="img-fluid ">
-                    <p class="fw-bold fs-4">دار الشروق</p>
-                </div>
-            </div>
-            <div class="col-md-2 
-         text-center">
-                <div class="flex-flex-column border border-secondary p-1 ">
-                    <img src="../assets/img/publisher-1.png" class="img-fluid ">
-                    <p class="fw-bold fs-4">دار الشروق</p>
-                </div>
-            </div>
-            <div class="col-md-2 
-         text-center">
-                <div class="flex-flex-column border border-secondary p-1 ">
-                    <img src="../assets/img/publisher-1.png" class="img-fluid ">
-                    <p class="fw-bold fs-4">دار الشروق</p>
-                </div>
-            </div>
-            <div class="col-md-2 
-         text-center">
-                <div class="flex-flex-column border border-secondary p-1 ">
-                    <img src="../assets/img/publisher-1.png" class="img-fluid ">
-                    <p class="fw-bold fs-4">دار الشروق</p>
-                </div>
-            </div>
-            <div class="col-md-2 
-         text-center">
-                <div class="flex-flex-column border border-secondary p-1 ">
-                    <img src="../assets/img/publisher-1.png" class="img-fluid ">
-                    <p class="fw-bold fs-4">دار الشروق</p>
-                </div>
-            </div>
-            <div class="col-md-2 
-         text-center">
-                <div class="flex-flex-column border border-secondary p-1 ">
-                    <img src="../assets/img/publisher-1.png" class="img-fluid ">
-                    <p class="fw-bold fs-4">دار الشروق</p>
+                    <img [src]="imagesUrl + '/'+publisher.logo" class="img-thumbnail">
+                    <p class="fw-bold fs-4">{{publisher.name}}</p>
                 </div>
             </div>
 
