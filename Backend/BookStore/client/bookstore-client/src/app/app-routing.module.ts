@@ -43,6 +43,8 @@ const routes: Routes = [
     path: 'books/:id',
     component: BookDetailsComponent,
   },
+
+  { path: '', component: HomeComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
