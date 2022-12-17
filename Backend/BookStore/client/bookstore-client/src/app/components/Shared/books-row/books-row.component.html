@@ -6,13 +6,21 @@
                 <h2 class="fs-1  fw-bold">اصدارات جديدة</h2>
             </div>
 
-            <div class="col-6 text-end">
+            <div class="col-6 text-end" *ngIf="!currentUrl.includes('books')">
                 <a routerLink="/books" class="fw-bold fs-2 text-decoration-none text-dark">المزيد</a>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-6 col-md-2 " *ngFor="let book of books$ | async">
+            <ng-container *ngIf="(books$ | async) as books">
+                <div *ngIf="books.length == 0" class="display-6 fw-bold text-center">
+                    لم يتم الحصول على نتائج للبحث
+                </div>
+            </ng-container>
+
+
+            <div class="col-6 col-md-2 " *ngFor="let book of books$ | async ">
+
                 <div class="d-flex flex-column">
                     <a [routerLink]="['/books',book.id]"><img [src]="imagesUrl + '/'+book.image"
                             class="img-thumbnail"></a>
@@ -32,6 +40,8 @@
             </div>
 
         </div>
+
+
     </div>
 
 </section>

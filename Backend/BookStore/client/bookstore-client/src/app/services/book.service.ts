@@ -48,9 +48,19 @@ export class BookService {
 
   public GetAllBooks(bookParams?: BookParams) {
     let params = new HttpParams();
-    if (bookParams) {
+    if (bookParams?.takeCount) {
       params = params.append('takeCount', bookParams.takeCount);
     }
+    if (bookParams?.bookName) {
+      params = params.append('bookName', bookParams.bookName);
+    }
+    if (bookParams?.authorName) {
+      params = params.append('authorName', bookParams.authorName);
+    }
+    if (bookParams?.year) {
+      params = params.append('year', bookParams.year);
+    }
+
     return this._http.get<IBookResponse[]>(this.baseUrl + '/book', {
       params: params,
     });
