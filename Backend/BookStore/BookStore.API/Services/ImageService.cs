@@ -51,17 +51,22 @@ namespace BookStore.API.Services
         {
             var folderMedi = Path.Combine(uploadedFolder, "Thumbs", "Med", fileName);
             var folderSmall = Path.Combine(uploadedFolder, "Thumbs", "Small", fileName);
+            var folderBig = Path.Combine(uploadedFolder, "Thumbs", "Big", fileName);
 
             //application/pdf
             //images/jpg
             using (Image input = Image.Load(filePath))
             {
+                input.Mutate(x => x.Resize(new ResizeOptions { Mode = ResizeMode.Max, Size = new Size(457, 666) }));
+                await input.SaveAsync(folderBig);
 
                 input.Mutate(x => x.Resize(new ResizeOptions { Mode = ResizeMode.Crop, Size = new Size(266,378) }));
                 await input.SaveAsync(folderMedi);
 
-                input.Mutate(x => x.Resize(new ResizeOptions { Mode = ResizeMode.Crop, Size = new Size(136, 155) }));
-                await input.SaveAsync(folderSmall);
+                input.Mutate(x => x.Resize(new ResizeOptions { Mode = ResizeMode.Crop, Size = new Size(199, 131) }));
+                await input.SaveAsync(folderSmall); 
+                
+               
 
             }
         }

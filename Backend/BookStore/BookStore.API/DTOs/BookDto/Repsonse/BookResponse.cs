@@ -11,6 +11,8 @@ namespace BookStore.API.DTOs.BookDto.Repsonse
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public int Discount { get; set; }
+        public int PublishYear { get; set; }
 
         public string Image { get; set; }
 

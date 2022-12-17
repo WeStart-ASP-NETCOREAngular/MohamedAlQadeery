@@ -27,6 +27,7 @@
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\images\Thumbs\Med\" />
+    <Folder Include="wwwroot\images\Thumbs\Big\" />
     <Folder Include="wwwroot\images\Thumbs\Small\" />
   </ItemGroup>
 

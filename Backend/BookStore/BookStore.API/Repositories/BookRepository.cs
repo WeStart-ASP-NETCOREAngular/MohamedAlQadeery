@@ -20,11 +20,26 @@ namespace BookStore.API.Repositories
         {
             var books = _context.Books.OrderByDescending(b => b.Id).AsQueryable();
            
-            if(bookParams.TakeCount != 0)
+          
+
+            if(bookParams.bookName != null)
+            {
+                books = books.Where(b => b.Name.Contains(bookParams.bookName));
+            }
+
+            if (bookParams.authorName != null)
+            {
+                books = books.Where(b => b.Author.Name.Contains(bookParams.authorName));
+            }
+            if (bookParams.Year != 0)
+            {
+                books = books.Where(b => b.PublishYear == bookParams.Year);
+            }
+
+            if (bookParams.TakeCount != 0)
             {
                 books = books.Take(bookParams.TakeCount);
             }
-            
 
             return await books.ToListAsync();
 
