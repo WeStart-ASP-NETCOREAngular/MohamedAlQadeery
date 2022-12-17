@@ -1,32 +1,37 @@
 <header id="header" class="my-3">
     <div class="container">
-        <div class="d-flex justify-content-between ">
-            <div>
+        <div class="row justify-content-between text-center text-md-start">
+
+            <div class="col-md-2 mb-3 mb-md-0 ">
                 <a routerLink="/home">
-                    <img src="../assets/Logo.png" class="w-50 " alt="" srcset="">
+                    <img src="../assets/Logo.png" class="w-50" alt="" srcset="">
                 </a>
             </div>
 
-            <app-search-bar></app-search-bar>
-            <div>
-                <div class="row">
-                    <div class="col-6 col-md-9">
-                        <a class=" text-decoration-none link-dark">
-                            <i class="fa fa-user-o  fa-lg">
-
-                            </i>
-                            <span class="p-1 d-none d-md-inline-block">حسابي</span>
-
-                        </a>
-                    </div>
-
-                    <div class="col-6 col-md-3">
-                        <app-cart></app-cart>
-
-                    </div>
-                </div>
+            <div class="col-md-5 mb-5 mb-md-0">
+                <app-search-bar></app-search-bar>
 
             </div>
+
+
+
+            <div class="col-md-2 mb-3 mb-md-0">
+                <a class=" text-decoration-none link-dark me-5 me-md-2">
+                    <i class="fa fa-user-o  fa-lg">
+
+                    </i>
+                    <span class="p-1 d-none d-md-inline-block">حسابي</span>
+
+                </a>
+
+                <app-cart></app-cart>
+
+            </div>
+
+
+
+
+
 
         </div>
     </div>
