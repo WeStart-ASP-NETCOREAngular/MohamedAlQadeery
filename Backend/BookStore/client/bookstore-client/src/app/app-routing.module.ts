@@ -15,6 +15,8 @@ import { ZonesComponent } from './components/admin/zones/zones.component';
 import { HomeComponent } from './components/home/home.component';
 import { BookListComponent } from './components/book/book-list/book-list.component';
 import { BookDetailsComponent } from './components/book/book-details/book-details.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -44,6 +46,8 @@ const routes: Routes = [
     component: BookDetailsComponent,
   },
 
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
 ];
 

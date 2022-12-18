@@ -1,0 +1,23 @@
+<div class="text-center mt-5">
+    <div class="display-5 mb-4">تسجيل حساب جديد</div>
+
+    <form [formGroup]="registerFormGroup" class="mb-5" (ngSubmit)="HandleOnLogin()">
+        <div class="row justify-content-center row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <app-input label="الاسم الاول" type="text" [control]="firstNameFormControl"></app-input>
+                    <app-input label="الاسم الاخير" type="text" [control]="lastNameFormControl"></app-input>
+                    <app-input label="البريد الالكتروني" type="text" [control]="emailFormControl"></app-input>
+                    <app-input label="كلمة المرور" type="password" [control]="passwordFormControl"></app-input>
+                    <app-input label="تأكيد كلمة المرور" type="password"
+                        [control]="confirmPasswordFormControl"></app-input>
+
+                </div>
+
+
+                <button [disabled]="!registerFormGroup.valid" type="submit" class="btn
+      btn-success">تسجيل</button>
+            </div>
+        </div>
+    </form>
+</div>

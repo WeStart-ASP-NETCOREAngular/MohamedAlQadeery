@@ -7,4 +7,11 @@
         {{label}} مطلوب
     </p>
 
+    <p *ngIf="control.getError('email')" class="text-danger">
+        الرجاء ادخل البريد الالكتروني بشكل صحيح
+    </p>
+    <p *ngIf="control.getError('mustMatch')" class="text-danger">
+        كلمة المرور غير متطابقة الرجاء اعادة كتابتها
+    </p>
+
 </ng-container>
