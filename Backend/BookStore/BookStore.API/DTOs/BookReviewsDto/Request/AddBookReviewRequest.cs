@@ -9,10 +9,6 @@ namespace BookStore.API.DTOs.BookReviewsDto.Request
 
         [Required]
 
-        public int BookId { get; set; }
-
-        [Required]
-
         [Range(1,5)]
         public int? Rate { get; set; }
         [Required]

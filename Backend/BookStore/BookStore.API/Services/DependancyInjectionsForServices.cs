@@ -7,6 +7,7 @@ namespace BookStore.API.Services
         public static IServiceCollection AddServicesDI(this IServiceCollection services)
         {
             services.AddScoped<IImageService, ImageService>();
+            services.AddScoped<ITokenService, TokenService>();
 
             return services;
         }

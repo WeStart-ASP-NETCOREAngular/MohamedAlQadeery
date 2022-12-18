@@ -78,6 +78,7 @@
                             <ng-template #newMessage>
                                 <td><span class="badge bg-danger p-2">جديدة</span></td>
                             </ng-template>
+
                             <td>{{message.createdAt | date}}</td>
                             <td><button class="btn btn-info" (click)="OnShowMessage(message.id)">عرض</button></td>
 

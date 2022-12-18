@@ -22,14 +22,14 @@ namespace BookStore.API.Repositories
            
           
 
-            if(bookParams.bookName != null)
+            if(bookParams.BookName != null)
             {
-                books = books.Where(b => b.Name.Contains(bookParams.bookName));
+                books = books.Where(b => b.Name.Contains(bookParams.BookName));
             }
 
-            if (bookParams.authorName != null)
+            if (bookParams.AuthorName != null)
             {
-                books = books.Where(b => b.Author.Name.Contains(bookParams.authorName));
+                books = books.Where(b => b.Author.Name.Contains(bookParams.AuthorName));
             }
             if (bookParams.Year != 0)
             {
