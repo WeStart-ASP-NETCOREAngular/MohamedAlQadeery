@@ -14,14 +14,17 @@ namespace BookStore.API.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<UserFavs>().HasKey(uf => new { uf.AppUserId, uf.BookId });
-            
+
             AutoIncludeBookRelations(builder);
             SeedUser(builder);
             OneToManyRelationships(builder);
 
+            SeedRolesData(builder);
+
             base.OnModelCreating(builder);
         }
 
+       
 
         public DbSet<Author> Authors { get; set; }
         public DbSet<Translator> Translators { get; set; }
@@ -43,6 +46,10 @@ namespace BookStore.API.Data
         public DbSet<BookSuggestion> BookSuggestions { get; set; }
 
         public DbSet<Address> Addresses { get; set; }
+
+
+
+
 
 
         private static void AutoIncludeBookRelations(ModelBuilder builder)
@@ -89,6 +96,15 @@ namespace BookStore.API.Data
             user.PasswordHash = ph.HashPassword(user, "123123");
             modelBuilder.Entity<AppUser>().HasData(user);
 
+        }
+
+
+        private static void SeedRolesData(ModelBuilder builder)
+        {
+            builder.Entity<IdentityRole>()
+               .HasData(new IdentityRole { Name = "admin", NormalizedName = "ADMIN" });
+            builder.Entity<IdentityRole>()
+                .HasData(new IdentityRole { Name = "user", NormalizedName = "USER" });
         }
 
     }

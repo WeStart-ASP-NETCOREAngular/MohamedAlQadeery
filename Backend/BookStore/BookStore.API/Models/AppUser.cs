@@ -7,6 +7,6 @@ namespace BookStore.API.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public bool isActive { get; set; } = false;
+        public bool IsActive { get; set; } = true;
     }
 }
