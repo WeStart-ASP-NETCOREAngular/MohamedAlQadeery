@@ -35,7 +35,6 @@ export class BookDetailsComponent implements OnInit {
 
   //#region auth variables
   isLoggedIn$: Observable<boolean>;
-  currentUserId = '';
   //#endregion
   //#region review Form Controls
   reviewFormGroup: FormGroup;
@@ -44,8 +43,6 @@ export class BookDetailsComponent implements OnInit {
   //#endregion
   ngOnInit(): void {
     this.SetBookId();
-
-    this.SetCurrentUserId();
 
     this.book$ = this._bookService.GetBookById(this.bookId);
 
@@ -127,27 +124,9 @@ export class BookDetailsComponent implements OnInit {
       });
   }
 
-  HandleOnRemoveReview(reviewId: number) {
-    this._bookService.RemoveReviewFromBook(reviewId).subscribe({
-      next: () => {
-        this.bookReviews = this.bookReviews?.filter((br) => br.id != reviewId);
-        this._toastr.success('تم حذف مراجعتك بنجاح', 'تمت العملية');
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
-
   private SetBookId() {
     this._route.paramMap.subscribe((param) => {
       this.bookId = +param.get('id')!;
     });
-  }
-
-  private SetCurrentUserId() {
-    this.currentUserId = this._authService.GetFieldFromJWT(
-      'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
-    );
   }
 }

@@ -44,6 +44,7 @@ import { ReviewsComponent } from './components/account/reviews/reviews.component
 import { FavoriteBooksComponent } from './components/account/favorite-books/favorite-books.component';
 import { InfoComponent } from './components/account/info/info.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { BookReviewsComponent } from './components/book/book-reviews/book-reviews.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     ReviewsComponent,
     FavoriteBooksComponent,
     InfoComponent,
+    BookReviewsComponent,
   ],
   imports: [
     BrowserModule,
