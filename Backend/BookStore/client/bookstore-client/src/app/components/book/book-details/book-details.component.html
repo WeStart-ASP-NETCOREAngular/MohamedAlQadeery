@@ -182,7 +182,11 @@
                     </div>
                     <div class="col-md-4 text-center" *ngIf="currentUserId === review.appUserId">
 
-                        <button class="btn btn-danger" (click)="HandleOnRemoveReview(review.id)">حذف </button>
+                        <button class="btn btn-danger mx-2" [swal]="{icon:'warning',
+                        title: 'تأكيد عملية الحذف' ,
+                        text:'هل انت متأكد من حذف مراجعتك ؟',
+                        showCancelButton: true,confirmButtonText: 'تأكيد',cancelButtonText:'الغاء' }"
+                            (confirm)="HandleOnRemoveReview(review.id)">حذف</button>
                     </div>
 
 

@@ -125,7 +125,7 @@ export class BookService {
   }
 
   public RemoveReviewFromBook(id: number) {
-    return this._http.delete(`${this.baseUrl}/book/${id}/remove-from-favorite`);
+    return this._http.delete(`${this.baseUrl}/book/review/${id}`);
   }
 
   public GetBookReviews(bookId: number) {

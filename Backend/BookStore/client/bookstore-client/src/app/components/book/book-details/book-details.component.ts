@@ -119,6 +119,7 @@ export class BookDetailsComponent implements OnInit {
         next: (res) => {
           this.bookReviews.push(res);
           this._toastr.success('تم اضافة مراجعتك بنجاح ', 'تمت العملية');
+          this.reviewFormGroup.reset();
         },
         error: (err) => {
           console.log(err);
@@ -127,7 +128,15 @@ export class BookDetailsComponent implements OnInit {
   }
 
   HandleOnRemoveReview(reviewId: number) {
-    this._toastr.error('' + reviewId);
+    this._bookService.RemoveReviewFromBook(reviewId).subscribe({
+      next: () => {
+        this.bookReviews = this.bookReviews?.filter((br) => br.id != reviewId);
+        this._toastr.success('تم حذف مراجعتك بنجاح', 'تمت العملية');
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   private SetBookId() {
