@@ -1,9 +1,12 @@
-﻿using BookStore.API.DTOs.AuthenticationDto.Request;
+﻿using BookStore.API.DTOs.AppUserDto.Response;
+using BookStore.API.DTOs.AuthenticationDto.Request;
 using BookStore.API.Interfaces.Services;
 using BookStore.API.Models;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BookStore.API.Controllers
 {
@@ -41,7 +44,7 @@ namespace BookStore.API.Controllers
 
             }
             else
-                return Unauthorized(new { message = "Unauthorized" });
+                return Unauthorized(new { message = "تأكد من بريدك الالكتروني و كلمة المرور" });
         }
 
 
@@ -53,7 +56,8 @@ namespace BookStore.API.Controllers
             var userExists = await _userManager.FindByEmailAsync(request.Email);
             if (userExists != null)
             {
-                return BadRequest("User exists!");
+                return BadRequest(new { Errors = "هذا البريد الالكتروني مسجل مسبقا" });
+
             }
 
             var identityUser = _mapper.Map<AppUser>(request);
@@ -73,6 +77,24 @@ namespace BookStore.API.Controllers
 
 
         }
+
+
+        [HttpGet("info")]
+        [Authorize]
+        public async Task<IActionResult> GetUserInfo()
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if(user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok( _mapper.Map<InfoResponse>(user));
+
+        }
+        
 
     }
 }

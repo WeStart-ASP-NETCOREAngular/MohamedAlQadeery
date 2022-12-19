@@ -25,6 +25,7 @@ namespace BookStore.API.Services
             // Claims
             List<Claim> claims = new List<Claim>()
             {
+                new Claim(ClaimTypes.NameIdentifier,user.Id),
                 new Claim(ClaimTypes.Name , user.UserName),
                 new Claim("Email" , user.Email),
             };
