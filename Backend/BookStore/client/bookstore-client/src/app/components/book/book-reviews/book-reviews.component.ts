@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IBookReviewResponse } from 'src/app/interfaces/book/IBookResponse';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,13 +14,16 @@ export class BookReviewsComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _bookService: BookService,
-    private _toastr: ToastrService
+    private _toastr: ToastrService,
+    private _route: Router
   ) {}
   @Input() bookReviews: IBookReviewResponse[];
   currentUserId = '';
+  currentUrl = '';
 
   ngOnInit(): void {
     this.SetCurrentUserId();
+    this.currentUrl = this._route.url;
   }
 
   HandleOnRemoveReview(reviewId: number) {

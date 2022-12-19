@@ -1,9 +1,13 @@
-<div class="card h-100 mb-4" style="border-color: #009c96;background-color: #f2f2f2;"
-    *ngFor="let review of bookReviews">
+<div class="card  mb-4" style="border-color: #009c96;background-color: #f2f2f2;" *ngFor="let review of bookReviews">
     <div class="card-header">
         <div class="row">
             <div class="col-md-4">
-                <p class="fw-bold">{{review.userName}}</p>
+                <p class="fw-bold" *ngIf="!currentUrl.includes('account');else displayBookName">{{review.userName}}</p>
+                <ng-template #displayBookName>
+                    اسم الكتاب : <a class="fw-bold" [routerLink]="['/books',review.bookId]">{{review.bookName}}</a>
+
+                </ng-template>
+
             </div>
 
             <div class="col-md-3">
