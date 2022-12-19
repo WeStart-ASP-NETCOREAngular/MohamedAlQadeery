@@ -18,12 +18,17 @@ import { BookDetailsComponent } from './components/book/book-details/book-detail
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { IsAuthenticatedGuard } from './guards/is-authenticated.guard';
+import { ProfileComponent } from './components/account/profile/profile.component';
+import { ReviewsComponent } from './components/account/reviews/reviews.component';
+import { FavoriteBooksComponent } from './components/account/favorite-books/favorite-books.component';
+import { OrdersComponent } from './components/account/orders/orders.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
     path: 'admin',
     component: DashboardComponent,
+    canActivate: [IsAuthenticatedGuard],
     canActivateChild: [IsAuthenticatedGuard],
     children: [
       { path: 'category', component: CategoryComponent },
@@ -39,6 +44,19 @@ const routes: Routes = [
       { path: 'book-suggestions', component: BookSuggestionComponent },
     ],
   },
+
+  {
+    path: 'account',
+    component: ProfileComponent,
+    canActivate: [IsAuthenticatedGuard],
+    canActivateChild: [IsAuthenticatedGuard],
+    children: [
+      { path: 'reviews', component: ReviewsComponent },
+      { path: 'favorite-books', component: FavoriteBooksComponent },
+      { path: 'orders', component: OrdersComponent },
+    ],
+  },
+
   {
     path: 'books',
     component: BookListComponent,

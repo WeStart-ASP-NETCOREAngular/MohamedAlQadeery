@@ -38,6 +38,10 @@ import { BookDetailsComponent } from './components/book/book-details/book-detail
 import { BookListComponent } from './components/book/book-list/book-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ProfileComponent } from './components/account/profile/profile.component';
+import { OrdersComponent } from './components/account/orders/orders.component';
+import { ReviewsComponent } from './components/account/reviews/reviews.component';
+import { FavoriteBooksComponent } from './components/account/favorite-books/favorite-books.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +76,10 @@ import { RegisterComponent } from './components/register/register.component';
     BookListComponent,
     LoginComponent,
     RegisterComponent,
+    ProfileComponent,
+    OrdersComponent,
+    ReviewsComponent,
+    FavoriteBooksComponent,
   ],
   imports: [
     BrowserModule,
