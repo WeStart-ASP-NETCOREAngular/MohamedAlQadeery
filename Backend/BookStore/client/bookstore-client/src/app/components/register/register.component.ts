@@ -1,6 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import Validation from 'src/app/helpers/validation';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +12,11 @@ import Validation from 'src/app/helpers/validation';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private _authService: AuthService,
+    private _toastr: ToastrService,
+    private _router: Router
+  ) {}
   //#region FormGroup and formControls
   registerFormGroup: FormGroup;
   emailFormControl: FormControl;
@@ -48,7 +56,22 @@ export class RegisterComponent implements OnInit {
     ]);
   }
 
-  HandleOnLogin() {
+  HandleOnRegister() {
     console.log(this.registerFormGroup.value);
+    this._authService
+      .RegisterWithEmail(this.registerFormGroup.value)
+      .subscribe({
+        next: (res) => {
+          this._router.navigate(['auth/login']);
+          this._toastr.success(
+            'سجل دخولك في هذه الصفحة',
+            'تم تسجيل الحساب بنجاح'
+          );
+        },
+        error: (err: HttpErrorResponse) => {
+          console.log(err);
+          this._toastr.error(err.error.errors, 'فشلت العملية');
+        },
+      });
   }
 }

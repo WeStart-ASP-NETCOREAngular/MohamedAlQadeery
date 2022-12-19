@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
   }
 
   HandleOnLogin() {
-    console.log(this.loginFormGroup.value);
     this._authService.LoginWithEmail(this.loginFormGroup.value).subscribe({
       next: (res) => {
         var returnUrl = this._activeRoute.snapshot.queryParams['returnUrl'];
@@ -53,6 +52,7 @@ export class LoginComponent implements OnInit {
         });
       },
       error: (err: HttpErrorResponse) => {
+        console.log(err);
         this._toastr.error(err.error.message, 'خطأ في تسجيل الدخول');
       },
     });
