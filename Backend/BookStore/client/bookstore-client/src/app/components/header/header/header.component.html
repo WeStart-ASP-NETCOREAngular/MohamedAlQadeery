@@ -18,9 +18,8 @@
 
             <div class="col-md-3 mb-3 mb-md-0">
                 <ng-container *ngIf="(currentUser$ | async);else elseNotLoggedIn">
-                    <a class="me-5 me-md-2">
+                    <a class="me-5 me-md-2" routerLink="/account">
                         <i class="fa fa-user-o  fa-lg">
-
                         </i>
                         <span class="p-1 d-none d-md-inline-block">حسابي</span>
 

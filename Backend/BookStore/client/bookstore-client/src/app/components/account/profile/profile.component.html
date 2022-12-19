@@ -1,4 +1,22 @@
-<p>profile works!</p>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-3 ">
+            <div class="list-group">
+                <a class="list-group-item list-group-item-action" routerLink="/account" routerLinkActive="list-active"
+                    [routerLinkActiveOptions]="{exact:true}">
+                    معلومات الحساب
+                </a>
+                <a class="list-group-item list-group-item-action" routerLink="/account/orders"
+                    routerLinkActive="list-active">الطلبات</a>
+                <a class="list-group-item list-group-item-action" routerLink="/account/favorite-books"
+                    routerLinkActive="list-active">الكتب المفضلة</a>
+                <a class="list-group-item list-group-item-action" routerLink="/account/reviews"
+                    routerLinkActive="list-active">مراجعات الكتب</a>
+            </div>
+        </div>
 
-
-<router-outlet></router-outlet>
+        <div class="col-md-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
