@@ -44,15 +44,22 @@ export class AuthService {
     const expirationDate = new Date(expiration);
 
     if (expirationDate <= new Date()) {
-      this.logout();
+      this.Logout();
       return false;
     }
 
     return true;
   }
 
-  logout() {
+  Logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('token-expiration');
+  }
+
+  GetFieldFromJWT(field: string) {
+    const token = localStorage.getItem('token');
+    if (!token) return '';
+    const dataToken = JSON.parse(atob(token.split('.')[1]));
+    return dataToken[field];
   }
 }

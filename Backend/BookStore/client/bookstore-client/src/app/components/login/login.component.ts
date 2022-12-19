@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -12,7 +14,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _router: Router,
-    private _activeRoute: ActivatedRoute
+    private _activeRoute: ActivatedRoute,
+    private _toastr: ToastrService
   ) {}
   //#region FormGroup and formControls
   loginFormGroup: FormGroup;
@@ -44,9 +47,11 @@ export class LoginComponent implements OnInit {
         var returnUrl = this._activeRoute.snapshot.queryParams['returnUrl'];
         this._router.navigate([returnUrl ?? '/home']);
         this._authService.SaveToken(res);
+        const email = this._authService.GetFieldFromJWT('Email');
+        this._toastr.success(`اهلا بك ${email}`, 'تم تسجيل الدخول بنجاح');
       },
-      error: (err) => {
-        console.log(err);
+      error: (err: HttpErrorResponse) => {
+        this._toastr.error(err.error.message, 'خطأ في تسجيل الدخول');
       },
     });
   }
