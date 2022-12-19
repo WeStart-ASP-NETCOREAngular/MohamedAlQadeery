@@ -171,31 +171,35 @@
 
         <!-- start of add review to the book form -->
 
-        <h4 class="fw-bold mb-4" style="color: #009c96;">اضافة مراجعه</h4>
+
+        <ng-container *ngIf="isLoggedIn$ | async">
+            <h4 class="fw-bold mb-4" style="color: #009c96;">اضافة مراجعه</h4>
 
 
-        <form [formGroup]="reviewFormGroup" class="mb-5 " (ngSubmit)="HandleOnAddReview()">
-            <div class="row">
-                <div class="col-md-7 mb-3">
-                    <app-text-area [control]="commentFormControl" label="التعليق"></app-text-area>
+            <form [formGroup]="reviewFormGroup" class="mb-5 " (ngSubmit)="HandleOnAddReview()">
+                <div class="row">
+                    <div class="col-md-7 mb-3">
+                        <app-text-area [control]="commentFormControl" label="التعليق"></app-text-area>
+
+                    </div>
+
+                    <div class="col-md-2">
+                        <app-input label="التقييم" type="number" [control]="ratingFormControl"></app-input>
+
+                    </div>
+
 
                 </div>
 
-                <div class="col-md-2">
-                    <app-input label="التقييم" type="number" [control]="ratingFormControl"></app-input>
-
-                </div>
-
-
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <button [disabled]="!reviewFormGroup.valid" type="submit" class="btn
+                <div class="row">
+                    <div class="col-md-4">
+                        <button [disabled]="!reviewFormGroup.valid" type="submit" class="btn
               btn-success">اضافة</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </ng-container>
+
         <!--end of add review to the book form  -->
 
 
