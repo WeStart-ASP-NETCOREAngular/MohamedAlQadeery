@@ -1,5 +1,6 @@
 ﻿using BookStore.API.DTOs.AuthorDto;
 using BookStore.API.DTOs.BookDto.Repsonse;
+using BookStore.API.DTOs.BookReviewsDto.Response;
 using BookStore.API.DTOs.PublisherDto;
 using BookStore.API.Models;
 using Mapster;
@@ -13,6 +14,9 @@ namespace BookStore.API.Mapping
             config.NewConfig<Book, BookResponse>();
 
             config.NewConfig<Publisher, PublisherResponse>();
+            config.NewConfig<BookReviews, DisplaySpecficBookReviewResponse>()
+                .Map(res => res.UserName, br => br.AppUser.UserName)
+                .Map(res => res.BookName, br => br.Book.Name);
 
 
 

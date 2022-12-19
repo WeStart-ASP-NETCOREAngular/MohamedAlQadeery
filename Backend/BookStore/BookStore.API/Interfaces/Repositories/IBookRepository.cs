@@ -21,6 +21,8 @@ namespace BookStore.API.Interfaces.Repositories
 
         Task<BookReviews> AddReview(BookReviews bookReview);
         Task<List<BookReviews>> GetBookReviews(int bookId);
+        Task<List<BookReviews>> GetUserReviews(string userId);
+        
 
 
     }

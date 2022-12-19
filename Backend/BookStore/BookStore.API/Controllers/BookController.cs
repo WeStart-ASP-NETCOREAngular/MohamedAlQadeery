@@ -8,9 +8,11 @@ using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Interfaces.Services;
 using BookStore.API.Models;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BookStore.API.Controllers
 {
@@ -116,16 +118,21 @@ namespace BookStore.API.Controllers
 
 
         [HttpPost("{bookId}/add-to-favorite")]
+        [Authorize]
         public async Task<IActionResult> AddBookToFavorite(int bookId)
         {
             //Here we get Authenticted user 
             // this code is for testing purpose only until we implement authnetication
-            var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
-            
-            var result = await _repo.AddToFavorite(user.Id,bookId);
+            // var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            var result = await _repo.AddToFavorite(userId,bookId);
             if (result)
             {
-                return Ok("Book is added");
+                var book = await _repo.GetBookByIdAsync(bookId);
+
+                return Ok(_mapper.Map<BookResponse>(book));
             }
 
             return BadRequest("ids are wrong or book is already added");
@@ -136,12 +143,13 @@ namespace BookStore.API.Controllers
         {
             //Here we get Authenticted user 
             // this code is for testing purpose only until we implement authnetication
-            var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
-            
-            var result = await _repo.RemoveFromFavorite(user.Id,bookId);
+            // var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            var result = await _repo.RemoveFromFavorite(userId,bookId);
             if (result)
             {
-                return Ok("Book is removed from fav");
+                return NoContent();
             }
 
             return BadRequest("ids are wrong or the record not in database");
@@ -153,9 +161,10 @@ namespace BookStore.API.Controllers
         {
             //Here we get Authenticted user 
             // this code is for testing purpose only until we implement authnetication
-            var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+            //  var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
-            var books = await _repo.GetUserFavoriteBooks(user.Id);
+            var books = await _repo.GetUserFavoriteBooks(userId);
 
             return Ok(_mapper.Map<List<BookResponse>>(books));
 
@@ -167,9 +176,11 @@ namespace BookStore.API.Controllers
         {
             //Here we get Authenticted user 
             // this code is for testing purpose only until we implement authnetication
-            var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+            // var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
             var reviewToAdd = _mapper.Map<BookReviews>(addBookReviewRequest);
-            reviewToAdd.AppUserId = user.Id;
+            reviewToAdd.AppUserId = userId;
             reviewToAdd.BookId = bookId;
 
             var isCreated = await _repo.AddReview(reviewToAdd);
@@ -187,7 +198,7 @@ namespace BookStore.API.Controllers
         {
             //Here we get Authenticted user 
             // this code is for testing purpose only until we implement authnetication
-            var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+           // var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
            
 
             var bookReviews = await _repo.GetBookReviews(bookId);
@@ -197,6 +208,24 @@ namespace BookStore.API.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpGet("user-reviews")]
+        public async Task<IActionResult> GetUserReviews()
+        {
+            //Here we get Authenticted user 
+            // this code is for testing purpose only until we implement authnetication
+            //  var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            var userReviews = await _repo.GetUserReviews(userId);
+            if (userId != null)
+            {
+                return Ok(_mapper.Map<List<DisplaySpecficBookReviewResponse>>(userReviews));
+            }
+
+            return BadRequest();
+
         }
 
     }

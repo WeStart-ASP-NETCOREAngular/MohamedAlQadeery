@@ -173,8 +173,19 @@ namespace BookStore.API.Repositories
             var book = await _context.Books.FindAsync(bookId);
             if (book == null) return null;
 
-            return await _context.BookReviews.Where(br => br.BookId == bookId).ToListAsync();
+            return await _context.BookReviews.Include(br=>br.AppUser).Include(br =>br.Book).Where(br => br.BookId == bookId).ToListAsync();
             
+        }
+
+        public async Task<List<BookReviews>> GetUserReviews(string userId)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) return null;
+
+            return await _context.BookReviews.Include(br => br.AppUser).Include(br => br.Book).Where(br => br.AppUserId == userId).ToListAsync();
+
+
+
         }
     }
 }
