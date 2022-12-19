@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +9,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private _authService: AuthService,
+    private _router: Router,
+    private _activeRoute: ActivatedRoute
+  ) {}
   //#region FormGroup and formControls
   loginFormGroup: FormGroup;
   emailFormControl: FormControl;
@@ -33,5 +39,15 @@ export class LoginComponent implements OnInit {
 
   HandleOnLogin() {
     console.log(this.loginFormGroup.value);
+    this._authService.LoginWithEmail(this.loginFormGroup.value).subscribe({
+      next: (res) => {
+        var returnUrl = this._activeRoute.snapshot.queryParams['returnUrl'];
+        this._router.navigate([returnUrl ?? '/home']);
+        this._authService.SaveToken(res);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }
