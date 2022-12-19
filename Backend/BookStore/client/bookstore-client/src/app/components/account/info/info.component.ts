@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IInfoResponse } from 'src/app/interfaces/app-user/IAppUserDtos';
+import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,7 +10,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./info.component.css'],
 })
 export class InfoComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+  constructor(private _accountService: AccountService) {}
+  info$: Observable<IInfoResponse>;
+  ngOnInit(): void {
+    this.info$ = this._accountService.GetUserInfo();
+  }
 }

@@ -10,3 +10,10 @@ export interface ICreateAppUserDto {
 export interface IUpdateAppUserDto {
   userName: string;
 }
+
+export interface IInfoResponse {
+  userName: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+}

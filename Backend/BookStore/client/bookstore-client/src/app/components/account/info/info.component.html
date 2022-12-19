@@ -6,23 +6,24 @@
                     <div class="col-md-6">
                         معلومات الحساب
                     </div>
-                    <div class="col-md-6 text-end">
-                        <!-- <p class="card-text">{{selectedMessage.createdAt | date}}</p> -->
-                        <p class="card-text">2022</p>
 
-                    </div>
                 </div>
 
             </div>
             <div class="card-body">
-                <p class="card-text fw-bold">الاسم : Mohamed AlQadeery</p>
-                <p class="card-text fw-bold">البريد الالكتروني : mohamed@gmail.com</p>
-                <hr>
+
+                <ng-container *ngIf="(info$ | async) as info">
+                    <p class="card-text fw-bold">اسم الاول: {{info.firstName}}</p>
+                    <p class="card-text fw-bold">اسم الاخير: {{info.lastName}}</p>
+                    <p class="card-text fw-bold">اسم المستخدم : {{info.userName}}</p>
+                    <p class="card-text fw-bold">البريد الالكتروني : {{info.email}}</p>
+                </ng-container>
+
 
 
 
             </div>
-            <div class="card-footer">
+            <!-- <div class="card-footer">
                 <div class="row">
                     <div class="col-md-6 text-start">
 
@@ -31,7 +32,7 @@
 
 
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

@@ -13,7 +13,7 @@ import { BooksPopularComponent } from './components/book/books-popular/books-pop
 import { BooksRowComponent } from './components/Shared/books-row/books-row.component';
 import { PublishersRowComponent } from './components/Shared/publishers-row/publishers-row.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { CategoryComponent } from './components/admin/category/category.component';
@@ -43,6 +43,7 @@ import { OrdersComponent } from './components/account/orders/orders.component';
 import { ReviewsComponent } from './components/account/reviews/reviews.component';
 import { FavoriteBooksComponent } from './components/account/favorite-books/favorite-books.component';
 import { InfoComponent } from './components/account/info/info.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,13 @@ import { InfoComponent } from './components/account/info/info.component';
       progressAnimation: 'increasing',
     }), // ToastrModule added
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

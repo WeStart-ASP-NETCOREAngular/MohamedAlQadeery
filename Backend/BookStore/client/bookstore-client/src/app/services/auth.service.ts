@@ -72,4 +72,8 @@ export class AuthService {
     const dataToken = JSON.parse(atob(token.split('.')[1]));
     return dataToken[field];
   }
+
+  GetToken() {
+    return localStorage.getItem('token');
+  }
 }
