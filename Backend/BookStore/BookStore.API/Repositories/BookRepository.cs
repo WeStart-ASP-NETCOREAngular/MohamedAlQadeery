@@ -47,7 +47,7 @@ namespace BookStore.API.Repositories
 
         public async Task<Book> GetBookByIdAsync(int id)
         {
-            return await _context.Books.Include(b=>b.BookReviews).FirstOrDefaultAsync(b=>b.Id==id);
+            return await _context.Books.Include(b=>b.BookReviews).ThenInclude(br=>br.AppUser).FirstOrDefaultAsync(b=>b.Id==id);
         }
         public async Task<Book> CreateAsync(Book bookToCreate)
         {
