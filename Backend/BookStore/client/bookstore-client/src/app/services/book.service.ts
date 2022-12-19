@@ -98,7 +98,13 @@ export class BookService {
   }
 
   public AddBookToFavorite(id: number) {
-    return this._http.post(`${this.baseUrl}/book/${id}/add-to-favorite`, {});
+    return this._http.post<IBookResponse>(
+      `${this.baseUrl}/book/${id}/add-to-favorite`,
+      {}
+    );
+  }
+  public RemoveBookFromFavorite(id: number) {
+    return this._http.delete(`${this.baseUrl}/book/${id}/remove-from-favorite`);
   }
 
   public GetFavoriteBooks() {

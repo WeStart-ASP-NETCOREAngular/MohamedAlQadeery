@@ -91,7 +91,7 @@
             <!-- End of book info -->
 
             <!-- start of book sale -->
-            <div class="col-md-6 ">
+            <div class="col-md-6 " *ngIf="isLoggedIn$ | async">
 
                 <div class="row justify-content-center mt-5">
                     <div class="w-50  p-5" style="background-color: #e1e1e1;">
@@ -124,8 +124,18 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <button
-                                        class="border border-secondary px-3 py-1 sale-button fw-light w-100">المفضلة</button>
+                                    <button class="border border-secondary px-3 py-1 sale-button fw-light w-100"
+                                        *ngIf="!isFavoriteAlready(book.id);else alreadyFav"
+                                        (click)="OnAddToFavorite(book.id)">اضافة
+                                        للمفضلة</button>
+
+                                    <ng-template #alreadyFav>
+                                        <button
+                                            class="border border-secondary px-3 py-1 bg-danger sale-button fw-light w-100"
+                                            (click)="OnRemoveFromFavorite(book.id)">الغاء
+                                            للمفضلة</button>
+                                    </ng-template>
+
                                 </div>
 
 
