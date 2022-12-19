@@ -42,6 +42,7 @@ import { ProfileComponent } from './components/account/profile/profile.component
 import { OrdersComponent } from './components/account/orders/orders.component';
 import { ReviewsComponent } from './components/account/reviews/reviews.component';
 import { FavoriteBooksComponent } from './components/account/favorite-books/favorite-books.component';
+import { InfoComponent } from './components/account/info/info.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { FavoriteBooksComponent } from './components/account/favorite-books/favo
     OrdersComponent,
     ReviewsComponent,
     FavoriteBooksComponent,
+    InfoComponent,
   ],
   imports: [
     BrowserModule,

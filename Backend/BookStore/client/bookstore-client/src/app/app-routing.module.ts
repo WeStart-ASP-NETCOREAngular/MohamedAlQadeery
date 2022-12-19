@@ -22,6 +22,7 @@ import { ProfileComponent } from './components/account/profile/profile.component
 import { ReviewsComponent } from './components/account/reviews/reviews.component';
 import { FavoriteBooksComponent } from './components/account/favorite-books/favorite-books.component';
 import { OrdersComponent } from './components/account/orders/orders.component';
+import { InfoComponent } from './components/account/info/info.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -54,6 +55,8 @@ const routes: Routes = [
       { path: 'reviews', component: ReviewsComponent },
       { path: 'favorite-books', component: FavoriteBooksComponent },
       { path: 'orders', component: OrdersComponent },
+      { path: 'info', component: InfoComponent },
+      { path: '', component: InfoComponent },
     ],
   },
 
