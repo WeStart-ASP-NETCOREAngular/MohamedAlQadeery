@@ -153,8 +153,8 @@
         </div>
 
 
-
-        <div class="card h-100" style="background-color: #f2f2f2;">
+        <!--start of  about book -->
+        <div class="card h-100 mb-5" style="background-color: #f2f2f2;">
             <div class="card-header">
                 <p class="fs-5 fw-bold">عن الكتاب</p>
             </div>
@@ -162,6 +162,61 @@
                 {{book.about}}
             </div>
         </div>
+        <!-- end of about book -->
+
+        <!-- start of book reviews -->
+        <h4 class="fw-bold mb-5" style="color: #009c96;">مراجعات المستخدمين </h4>
+        <div class="card h-100 mb-4" style="border-color: #009c96;background-color: #f2f2f2;"
+            *ngFor="let review of bookReviews">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="fw-bold">{{review.userName}}</p>
+                    </div>
+
+                    <div class="col-md-6 text-end">
+                        <div class="d-flex">
+                            <i class="fa fa-star" *ngFor="let star of [].constructor(review.rate); let i = index"></i>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                {{review.comment}}
+            </div>
+        </div>
+        <!-- end of book reviews -->
+
+        <!-- start of add review to the book form -->
+
+        <h4 class="fw-bold mb-4" style="color: #009c96;">اضافة مراجعه</h4>
+
+
+        <form [formGroup]="reviewFormGroup" class="mb-5 " (ngSubmit)="HandleOnAddReview()">
+            <div class="row">
+                <div class="col-md-7 mb-3">
+                    <app-text-area [control]="commentFormControl" label="التعليق"></app-text-area>
+
+                </div>
+
+                <div class="col-md-2">
+                    <app-input label="التقييم" type="number" [control]="ratingFormControl"></app-input>
+
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <button [disabled]="!reviewFormGroup.valid" type="submit" class="btn
+              btn-success">اضافة</button>
+                </div>
+            </div>
+        </form>
+        <!--end of add review to the book form  -->
 
 
 

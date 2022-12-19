@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { IBookResponse } from 'src/app/interfaces/book/IBookResponse';
+import {
+  IBookResponse,
+  IBookReviewResponse,
+} from 'src/app/interfaces/book/IBookResponse';
 import { AuthService } from 'src/app/services/auth.service';
 import { BookService } from 'src/app/services/book.service';
 import { environment } from 'src/environments/environment';
@@ -26,7 +30,16 @@ export class BookDetailsComponent implements OnInit {
   bookId: number;
 
   favBooks: IBookResponse[];
+
+  bookReviews: IBookReviewResponse[];
+
   isLoggedIn$: Observable<boolean>;
+
+  //#region review Form Controls
+  reviewFormGroup: FormGroup;
+  ratingFormControl: FormControl;
+  commentFormControl: FormControl;
+  //#endregion
   ngOnInit(): void {
     this._route.paramMap.subscribe((param) => {
       this.bookId = +param.get('id')!;
@@ -42,8 +55,18 @@ export class BookDetailsComponent implements OnInit {
         console.log(err);
       },
     });
+    this._bookService.GetBookReviews(this.bookId).subscribe({
+      next: (res) => {
+        this.bookReviews = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
 
     this.isLoggedIn$ = this._authService.isLoggedin$;
+
+    this.InitReviewForm();
   }
 
   public isFavoriteAlready(bookId: number): boolean {
@@ -72,5 +95,32 @@ export class BookDetailsComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  private InitReviewForm() {
+    this.ratingFormControl = new FormControl('', [
+      Validators.required,
+      Validators.max(5),
+      Validators.min(1),
+    ]);
+    this.commentFormControl = new FormControl('', [Validators.required]);
+    this.reviewFormGroup = new FormGroup({
+      rate: this.ratingFormControl,
+      comment: this.commentFormControl,
+    });
+  }
+
+  HandleOnAddReview() {
+    this._bookService
+      .AddReviewToBook(this.bookId, this.reviewFormGroup.value)
+      .subscribe({
+        next: (res) => {
+          this.bookReviews.push(res);
+          this._toastr.success('تم اضافة مراجعتك بنجاح ', 'تمت العملية');
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 }

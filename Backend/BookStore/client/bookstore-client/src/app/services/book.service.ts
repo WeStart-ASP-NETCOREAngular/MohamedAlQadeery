@@ -3,7 +3,11 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BookParams } from '../helpers/bookParams';
-import { IBookResponse } from '../interfaces/book/IBookResponse';
+import {
+  IBookResponse,
+  IBookReviewRequest,
+  IBookReviewResponse,
+} from '../interfaces/book/IBookResponse';
 import { ICreateBookRequest } from '../interfaces/book/ICreateBookRequest';
 import { IUpdateBookRequest } from '../interfaces/book/IUpdateBookRequest';
 import { ImageService } from './image.service';
@@ -110,6 +114,19 @@ export class BookService {
   public GetFavoriteBooks() {
     return this._http.get<IBookResponse[]>(
       `${this.baseUrl}/book/favorite-books`
+    );
+  }
+
+  public AddReviewToBook(bookId: number, review: IBookReviewRequest) {
+    return this._http.post<IBookReviewResponse>(
+      `${this.baseUrl}/book/${bookId}/add-review`,
+      review
+    );
+  }
+
+  public GetBookReviews(bookId: number) {
+    return this._http.get<IBookReviewResponse[]>(
+      `${this.baseUrl}/book/${bookId}/reviews`
     );
   }
 }

@@ -10,6 +10,12 @@
     <p *ngIf="control.getError('email')" class="text-danger">
         الرجاء ادخل البريد الالكتروني بشكل صحيح
     </p>
+    <p *ngIf="control.getError('max')" class="text-danger">
+        الرجاء ادخال رقم اقل من {{control.getError('max').max}}
+    </p>
+    <p *ngIf="control.getError('min')" class="text-danger">
+        الرجاء ادخال رقم اكبر من {{control.getError('min').min}}
+    </p>
     <p *ngIf="control.getError('mustMatch')" class="text-danger">
         كلمة المرور غير متطابقة الرجاء اعادة كتابتها
     </p>

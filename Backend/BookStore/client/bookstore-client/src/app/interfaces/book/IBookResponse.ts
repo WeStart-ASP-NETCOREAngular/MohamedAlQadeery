@@ -15,6 +15,20 @@ export interface IBookResponse {
   discount: number;
   publishYear: number;
   pageCount: number;
-
+  bookReviews: IBookReviewResponse[];
   image: string;
+}
+
+export interface IBookReviewResponse {
+  id: number;
+  appUserId: string;
+  userName: string;
+  bookId: number;
+  bookName: string;
+  rate: number;
+  comment: string;
+}
+export interface IBookReviewRequest {
+  rate: number;
+  comment: string;
 }
