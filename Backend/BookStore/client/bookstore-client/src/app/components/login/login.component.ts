@@ -24,6 +24,10 @@ export class LoginComponent implements OnInit {
   //#endregion
 
   ngOnInit(): void {
+    if (this._authService.isAuthenticated()) {
+      this._router.navigate(['/home']);
+    }
+
     this.InitFormControls();
 
     this.loginFormGroup = new FormGroup({

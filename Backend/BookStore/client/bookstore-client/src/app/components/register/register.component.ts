@@ -27,6 +27,9 @@ export class RegisterComponent implements OnInit {
   //#endregion
 
   ngOnInit(): void {
+    if (this._authService.isAuthenticated()) {
+      this._router.navigate(['/home']);
+    }
     this.InitFormControls();
 
     this.registerFormGroup = new FormGroup(

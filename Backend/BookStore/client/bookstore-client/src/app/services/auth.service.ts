@@ -15,7 +15,11 @@ export class AuthService {
   baseURL = environment.baseURL + '/api/auth';
   private isLoggedInSubject = new BehaviorSubject(false);
   public isLoggedin$ = this.isLoggedInSubject.asObservable();
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+    if (this.isAuthenticated()) {
+      this.isLoggedInSubject.next(true);
+    }
+  }
 
   LoginWithEmail(userForAuth: LoginRequest) {
     return this.httpClient.post<AuthResponse>(
