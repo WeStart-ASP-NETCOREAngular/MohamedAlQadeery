@@ -186,8 +186,18 @@ namespace BookStore.API.Controllers
             var isCreated = await _repo.AddReview(reviewToAdd);
             if (isCreated != null)
             {
-                return CreatedAtAction(nameof(GetBookById), new { id = isCreated.BookId }, _mapper.Map<PostPutBookReviewResponse>(isCreated));
+                return CreatedAtAction(nameof(GetBookById), new { id = isCreated.BookId }, _mapper.Map<DisplaySpecficBookReviewResponse>(isCreated));
             }
+
+            return BadRequest();
+        }
+
+
+        [HttpDelete("review/{id}")]
+        public async Task<IActionResult> DeleteReview(int id)
+        {
+            var isDeleted = await _repo.RemoveReview(id);
+            if (isDeleted) return NoContent();
 
             return BadRequest();
         }

@@ -47,7 +47,7 @@ namespace BookStore.API.Repositories
 
         public async Task<Book> GetBookByIdAsync(int id)
         {
-            return await _context.Books.Include(b=>b.BookReviews).ThenInclude(br=>br.AppUser).FirstOrDefaultAsync(b=>b.Id==id);
+            return await _context.Books.FirstOrDefaultAsync(b=>b.Id==id);
         }
         public async Task<Book> CreateAsync(Book bookToCreate)
         {
@@ -166,6 +166,16 @@ namespace BookStore.API.Repositories
 
 
             return bookReview;
+        }
+
+
+        public async Task<bool> RemoveReview(int reviewId)
+        {
+            var review = await _context.BookReviews.FirstOrDefaultAsync(br => br.Id == reviewId);
+            if(review == null) { return false;}
+           
+            _context.BookReviews.Remove(review);
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public async Task<List<BookReviews>> GetBookReviews(int bookId)

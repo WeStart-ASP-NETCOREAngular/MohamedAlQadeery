@@ -20,6 +20,7 @@ namespace BookStore.API.Interfaces.Repositories
         Task<List<Book>> GetUserFavoriteBooks(string userId);
 
         Task<BookReviews> AddReview(BookReviews bookReview);
+        Task<bool> RemoveReview(int reviewId);
         Task<List<BookReviews>> GetBookReviews(int bookId);
         Task<List<BookReviews>> GetUserReviews(string userId);
         

@@ -33,17 +33,19 @@ export class BookDetailsComponent implements OnInit {
 
   bookReviews: IBookReviewResponse[];
 
+  //#region auth variables
   isLoggedIn$: Observable<boolean>;
-
+  currentUserId = '';
+  //#endregion
   //#region review Form Controls
   reviewFormGroup: FormGroup;
   ratingFormControl: FormControl;
   commentFormControl: FormControl;
   //#endregion
   ngOnInit(): void {
-    this._route.paramMap.subscribe((param) => {
-      this.bookId = +param.get('id')!;
-    });
+    this.SetBookId();
+
+    this.SetCurrentUserId();
 
     this.book$ = this._bookService.GetBookById(this.bookId);
 
@@ -122,5 +124,21 @@ export class BookDetailsComponent implements OnInit {
           console.log(err);
         },
       });
+  }
+
+  HandleOnRemoveReview(reviewId: number) {
+    this._toastr.error('' + reviewId);
+  }
+
+  private SetBookId() {
+    this._route.paramMap.subscribe((param) => {
+      this.bookId = +param.get('id')!;
+    });
+  }
+
+  private SetCurrentUserId() {
+    this.currentUserId = this._authService.GetFieldFromJWT(
+      'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+    );
   }
 }
