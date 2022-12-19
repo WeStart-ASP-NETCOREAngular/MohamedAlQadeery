@@ -1,5 +1,12 @@
-<div class="input-group">
+<form [formGroup]="searchFormGroup" (ngSubmit)="HandleOnSearch()">
 
-    <input type="text" class="form-control input-bg" placeholder="ابحث بأسم الكتاب او المؤلف">
-    <button class="btn btn-outline-secondary btn-style "><i class="fa fa-search" aria-hidden="true"></i></button>
-</div>
+    <div class="input-group">
+
+        <input type="text" formControlName="bookName" class="form-control input-bg"
+            placeholder="ابحث بأسم الكتاب او المؤلف">
+        <button class="btn btn-outline-secondary btn-style " type="submit"><i class="fa fa-search"
+                aria-hidden="true"></i></button>
+
+    </div>
+
+</form>

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row mb-4">
             <div class="col-6">
-                <h2 class="fs-1  fw-bold">اصدارات جديدة</h2>
+                <h2 class="fs-1  fw-bold" *ngIf="!currentUrl.includes('books')">اصدارات جديدة</h2>
             </div>
 
             <div class="col-6 text-end" *ngIf="!currentUrl.includes('books')">

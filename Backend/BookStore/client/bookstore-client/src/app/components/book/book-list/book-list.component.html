@@ -51,7 +51,10 @@
         </div>
 
         <div class="row">
+            <div class="display-5 mb-5" *ngIf="searchLabel" style="color: #009c96;">
+                {{searchLabel}}
 
+            </div>
             <app-books-row [books$]="books$"></app-books-row>
 
 

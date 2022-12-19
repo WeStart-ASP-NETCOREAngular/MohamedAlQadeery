@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { map, Observable, of, tap } from 'rxjs';
+import { EventEmitter, Injectable } from '@angular/core';
+import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BookParams } from '../helpers/bookParams';
 import { IBookResponse } from '../interfaces/book/IBookResponse';
@@ -13,6 +13,8 @@ import { ImageService } from './image.service';
 })
 export class BookService {
   private baseUrl = environment.baseURL + '/api';
+  public OnSearchBook = new BehaviorSubject<string>('');
+
   constructor(private _http: HttpClient) {}
 
   public GetMostOrderdBook() {
