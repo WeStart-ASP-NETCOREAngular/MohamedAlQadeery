@@ -35,4 +35,24 @@ export class AuthService {
       authResponse.expiration.toString()
     );
   }
+
+  isAuthenticated() {
+    const token = localStorage.getItem('token');
+    if (!token) return false;
+
+    const expiration = localStorage.getItem('token-expiration')!;
+    const expirationDate = new Date(expiration);
+
+    if (expirationDate <= new Date()) {
+      this.logout();
+      return false;
+    }
+
+    return true;
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('token-expiration');
+  }
 }

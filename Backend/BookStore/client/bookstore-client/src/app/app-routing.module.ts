@@ -17,12 +17,14 @@ import { BookListComponent } from './components/book/book-list/book-list.compone
 import { BookDetailsComponent } from './components/book/book-details/book-details.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { IsAuthenticatedGuard } from './guards/is-authenticated.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
     path: 'admin',
     component: DashboardComponent,
+    canActivateChild: [IsAuthenticatedGuard],
     children: [
       { path: 'category', component: CategoryComponent },
       { path: 'author', component: AuthorComponent },
@@ -46,8 +48,8 @@ const routes: Routes = [
     component: BookDetailsComponent,
   },
 
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'auth/login', component: LoginComponent },
+  { path: 'auth/register', component: RegisterComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
 ];
 
