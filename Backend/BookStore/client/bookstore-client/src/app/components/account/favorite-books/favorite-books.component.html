@@ -1,1 +1,11 @@
-<p>favorite-books works!</p>
+<div class="row">
+    <h4 class="mb-3 fw-bold" style="color: #009c96;">
+        كتبي المفضلة
+    </h4>
+    <div class="col-md-3 p-3" *ngFor="let book of favBooks$ | async">
+        <a [routerLink]="['/books',book.id]"><img [src]="imagesUrl + '/'+book.image" class="w-50"></a>
+        <p class="price fs-6 fw-bold m-0">{{book.name}}</p>
+
+    </div>
+
+</div>
