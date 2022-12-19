@@ -15,18 +15,37 @@
 
 
 
-            <div class="col-md-2 mb-3 mb-md-0">
-                <a class=" text-decoration-none link-dark me-5 me-md-2">
-                    <i class="fa fa-user-o  fa-lg">
 
-                    </i>
-                    <span class="p-1 d-none d-md-inline-block">حسابي</span>
+            <div class="col-md-3 mb-3 mb-md-0">
+                <ng-container *ngIf="(currentUser$ | async);else elseNotLoggedIn">
+                    <a class="me-5 me-md-2">
+                        <i class="fa fa-user-o  fa-lg">
 
-                </a>
+                        </i>
+                        <span class="p-1 d-none d-md-inline-block">حسابي</span>
 
-                <app-cart></app-cart>
+                    </a>
 
+                    <app-cart></app-cart>
+
+                    <a class=" ms-5 text-decoration-none" (click)="HandleLogOut()">
+
+                        تسجيل خروج
+
+                    </a>
+                </ng-container>
+
+                <ng-template #elseNotLoggedIn>
+                    <a routerLink="/auth/login" class="ms-5 ">
+                        تسجيل دخول
+                    </a>
+                    <a routerLink="/auth/register" class=" ms-5 ">
+                        انشاء حساب
+                    </a>
+                </ng-template>
             </div>
+
+
 
 
 

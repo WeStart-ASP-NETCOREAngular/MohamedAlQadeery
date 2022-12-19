@@ -48,7 +48,9 @@ export class LoginComponent implements OnInit {
         this._router.navigate([returnUrl ?? '/home']);
         this._authService.SaveToken(res);
         const email = this._authService.GetFieldFromJWT('Email');
-        this._toastr.success(`اهلا بك ${email}`, 'تم تسجيل الدخول بنجاح');
+        this._toastr.success(`اهلا بك ${email}`, 'تم تسجيل الدخول بنجاح', {
+          positionClass: 'toast-top-center',
+        });
       },
       error: (err: HttpErrorResponse) => {
         this._toastr.error(err.error.message, 'خطأ في تسجيل الدخول');

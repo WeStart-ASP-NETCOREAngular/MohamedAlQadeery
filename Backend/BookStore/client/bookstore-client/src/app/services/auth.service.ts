@@ -6,12 +6,15 @@ import {
   LoginRequest,
   RegisterRequest,
 } from '../interfaces/authentication/AuthenticationDtos';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   baseURL = environment.baseURL + '/api/auth';
+  private isLoggedInSubject = new BehaviorSubject(false);
+  public isLoggedin$ = this.isLoggedInSubject.asObservable();
   constructor(private httpClient: HttpClient) {}
 
   LoginWithEmail(userForAuth: LoginRequest) {
@@ -34,6 +37,8 @@ export class AuthService {
       'token-expiration',
       authResponse.expiration.toString()
     );
+
+    this.isLoggedInSubject.next(true);
   }
 
   isAuthenticated() {
@@ -54,6 +59,7 @@ export class AuthService {
   Logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('token-expiration');
+    this.isLoggedInSubject.next(false);
   }
 
   GetFieldFromJWT(field: string) {
