@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IBookResponse } from 'src/app/interfaces/book/IBookResponse';
 import { AuthService } from 'src/app/services/auth.service';
 import { BookService } from 'src/app/services/book.service';
@@ -12,11 +12,12 @@ import { environment } from 'src/environments/environment';
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.css'],
 })
-export class BookListComponent implements OnInit {
+export class BookListComponent implements OnInit, OnDestroy {
   constructor(
     private _bookService: BookService,
     private _activeRoute: ActivatedRoute
   ) {}
+
   imagesUrl = `${environment.baseURL}/images/thumbs/med`;
   books$: Observable<IBookResponse[]>;
 
@@ -25,19 +26,24 @@ export class BookListComponent implements OnInit {
   searchLabel: string;
 
   //#endregion
+
+  sub: Subscription;
   ngOnInit(): void {
     this.books$ = this._bookService.GetAllBooks();
 
-    this._bookService.OnSearchBook.subscribe((bookSearchValFromHeader) => {
-      if (bookSearchValFromHeader) {
-        this.searchLabel = `نتائج البحث عن : ${bookSearchValFromHeader}`;
-      } else {
-        this.searchLabel = '';
+    this.sub = this._bookService.OnSearchBook.subscribe(
+      (bookSearchValFromHeader) => {
+        if (bookSearchValFromHeader) {
+          this.searchLabel = `نتائج البحث عن : ${bookSearchValFromHeader}`;
+        } else {
+          this.searchLabel = '';
+        }
+
+        this.books$ = this._bookService.GetAllBooks({
+          bookName: bookSearchValFromHeader,
+        });
       }
-      this.books$ = this._bookService.GetAllBooks({
-        bookName: bookSearchValFromHeader,
-      });
-    });
+    );
 
     this.bookSearchFormGroup = new FormGroup({
       bookName: new FormControl(''),
@@ -52,5 +58,9 @@ export class BookListComponent implements OnInit {
     this.searchLabel = this.bookSearchFormGroup.value['bookName']
       ? `نتائج البحث عن : ${this.bookSearchFormGroup.value['bookName']}`
       : '';
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

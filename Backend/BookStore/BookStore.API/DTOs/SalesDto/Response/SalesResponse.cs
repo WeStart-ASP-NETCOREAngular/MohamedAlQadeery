@@ -1,5 +1,6 @@
 ﻿using BookStore.API.DTOs.AppUserDto.Response;
 using BookStore.API.DTOs.BookDto.Repsonse;
+using BookStore.API.Models;
 
 namespace BookStore.API.DTOs.SalesDto.Response
 {
@@ -15,5 +16,8 @@ namespace BookStore.API.DTOs.SalesDto.Response
 
         public int TotalPrice { get; set; }
         public DateTime OrderDate { get; set; }
+
+        public SalesStatus Status { get; set; }
+        public DateTime SoldDate { get; set; }
     }
 }

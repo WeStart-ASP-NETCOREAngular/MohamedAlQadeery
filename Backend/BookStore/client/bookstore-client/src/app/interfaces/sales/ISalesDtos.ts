@@ -8,6 +8,8 @@ export interface ISalesResponse {
   amount: number;
   totalPrice: number;
   orderDate: Date;
+  status: SalesStatus;
+  soldDate?: Date;
 }
 
 export interface ICreateSalesDto {
@@ -22,4 +24,10 @@ export interface IUpdateSalesDto {
   appUserId: number;
   amount: number;
   totalPrice: number;
+}
+
+export enum SalesStatus {
+  PENDING,
+  SOLD,
+  CANCELED,
 }

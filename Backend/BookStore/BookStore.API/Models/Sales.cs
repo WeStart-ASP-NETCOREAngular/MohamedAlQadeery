@@ -18,5 +18,14 @@ namespace BookStore.API.Models
         public DateTime OrderDate { get; set; } = DateTime.Now;
 
         public int TotalPrice { get; set; }
+
+        public SalesStatus Status { get; set; } = SalesStatus.PENDING;
+        public DateTime SoldDate { get; set; }
+    }
+
+
+    public enum SalesStatus
+    {
+        PENDING,SOLD,CANCELED
     }
 }
