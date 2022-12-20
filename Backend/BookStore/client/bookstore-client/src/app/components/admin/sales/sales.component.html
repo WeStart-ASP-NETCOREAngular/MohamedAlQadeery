@@ -15,6 +15,8 @@
                             <th scope="col">الكمية</th>
                             <th scope="col">السعر الكلي</th>
                             <th scope="col">تاريخ العملية</th>
+                            <th scope="col">حالة الطلب</th>
+                            <th scope="col">العملية</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,7 +27,31 @@
                             <td>{{sale.amount}}</td>
                             <td>{{sale.totalPrice}}</td>
                             <td>{{sale.orderDate | date}}</td>
+                            <td *ngIf="sale.status === 0">
+                                <span class="badge bg-info p-2">انتظار الموافقة</span>
 
+                            </td>
+                            <td *ngIf="sale.status === 1">
+                                <span class="badge bg-success p-2">مقبول</span>
+
+                            </td>
+                            <td *ngIf="sale.status === 2">
+                                <span class="badge bg-danger p-2">مرفوض</span>
+
+                            </td>
+                            <td>
+                                <button class="btn btn-secondary mx-2" [swal]="{icon:'info',
+                                title: 'تأكيد عملية تغيير الحالة' ,
+                                text:'هل انت متأكد من قبول طلب الشراء  ؟',
+                                showCancelButton: true,confirmButtonText: 'تأكيد',cancelButtonText:'الغاء' }"
+                                    (confirm)="HandleUpdateStatus(sale.id,1)">تأكيد الطلب</button>
+
+                                <button class="btn btn-danger mx-2" [swal]="{icon:'warning',
+                                title: 'تأكيد عملية تغيير الحالة' ,
+                                text:'هل انت متأكد من رفض الطلب ؟',
+                                showCancelButton: true,confirmButtonText: 'تأكيد',cancelButtonText:'الغاء' }"
+                                    (confirm)="HandleUpdateStatus(sale.id,2)">رفض الطلب</button>
+                            </td>
                         </tr>
 
                     </tbody>

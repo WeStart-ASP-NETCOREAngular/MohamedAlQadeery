@@ -28,4 +28,11 @@ export class SalesService {
   public GetUserOrders() {
     return this._http.get<ISalesResponse[]>(`${this.baseUrl}/user-sales`);
   }
+
+  public UpdateSaleStatus(saleId: number, status: number) {
+    return this._http.put<ISalesResponse>(
+      `${this.baseUrl}/${saleId}/${status}`,
+      {}
+    );
+  }
 }

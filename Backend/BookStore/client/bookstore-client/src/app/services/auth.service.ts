@@ -76,4 +76,12 @@ export class AuthService {
   GetToken() {
     return localStorage.getItem('token');
   }
+
+  isUserAdmin() {
+    const role = this.GetFieldFromJWT(
+      'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+    );
+
+    return role === 'admin';
+  }
 }

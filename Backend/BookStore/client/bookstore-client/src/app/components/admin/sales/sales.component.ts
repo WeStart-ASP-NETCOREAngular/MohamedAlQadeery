@@ -22,4 +22,18 @@ export class SalesComponent implements OnInit {
       this.sales = res;
     });
   }
+
+  HandleUpdateStatus(saleId: number, status: number) {
+    this._salesService.UpdateSaleStatus(saleId, status).subscribe({
+      next: (res) => {
+        let sale = this.sales.find((s) => s.id == saleId)!;
+        sale.status = res.status;
+        this._toastr.success('تم تحديث حالة الطلب بنجاح', 'تحديث حالة الطلب');
+      },
+
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }

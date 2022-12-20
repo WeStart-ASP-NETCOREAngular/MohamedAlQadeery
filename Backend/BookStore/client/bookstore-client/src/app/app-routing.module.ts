@@ -24,13 +24,14 @@ import { FavoriteBooksComponent } from './components/account/favorite-books/favo
 import { OrdersComponent } from './components/account/orders/orders.component';
 import { InfoComponent } from './components/account/info/info.component';
 import { CartContentComponent } from './components/header/cart-content/cart-content.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
     path: 'admin',
     component: DashboardComponent,
-    canActivate: [IsAuthenticatedGuard],
+    canActivate: [IsAuthenticatedGuard, AdminGuard],
     canActivateChild: [IsAuthenticatedGuard],
     children: [
       { path: 'category', component: CategoryComponent },

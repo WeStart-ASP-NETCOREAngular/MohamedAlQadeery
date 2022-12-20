@@ -8,7 +8,7 @@ export interface ISalesResponse {
   amount: number;
   totalPrice: number;
   orderDate: Date;
-  status: SalesStatus;
+  status: number;
   soldDate?: Date;
 }
 
