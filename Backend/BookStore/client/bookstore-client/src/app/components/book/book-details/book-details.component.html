@@ -108,38 +108,40 @@
                                 </div>
 
 
-                                <div class="col-md-6">
-                                    <p class="fs-6 fw-bold" style="color: #009c96;">الكمية:</p>
+
+                                <div class="col-md-12">
+                                    <form class="row" [formGroup]="cartFormGroup" (ngSubmit)="OnAddToCart()">
+                                        <div class="col-md-6">
+                                            <p class="fs-6 fw-bold" style="color: #009c96;">الكمية:</p>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="number" formControlName="amount" class="form-control">
+                                        </div>
+
+                                        <div class="col-md-6 ">
+                                            <button class="border border-secondary px-3 py-1 sale-button fw-light w-100"
+                                                [disabled]="!cartFormGroup.valid">اشتري</button>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button class="btn btn-primary sale-button rounded-0"
+                                                *ngIf="!isFavoriteAlready(book.id);else alreadyFav"
+                                                (click)="OnAddToFavorite(book.id)">اضافة
+                                                للمفضلة</button>
+
+                                            <ng-template #alreadyFav>
+                                                <button
+                                                    class="border border-secondary px-3 py-1 bg-danger sale-button fw-light w-100"
+                                                    (click)="OnRemoveFromFavorite(book.id)">الغاء
+                                                    للمفضلة</button>
+                                            </ng-template>
+
+                                        </div>
+                                    </form>
+
 
                                 </div>
-
-                                <form [formGroup]="cartFormGroup" (ngSubmit)="OnAddToCart()">
-                                    <div class="col-md-6 mb-3">
-                                        <input type="number" formControlName="amount" class="form-control">
-                                    </div>
-
-                                    <div class="col-md-6 mb-2 mb-md-0">
-                                        <button class="border border-secondary px-3 py-1 sale-button fw-light w-100"
-                                            [disabled]="!cartFormGroup.valid">اشتري</button>
-
-                                    </div>
-                                </form>
-
-                                <div class="col-md-6">
-                                    <button class="border border-secondary px-3 py-1 sale-button fw-light w-100"
-                                        *ngIf="!isFavoriteAlready(book.id);else alreadyFav"
-                                        (click)="OnAddToFavorite(book.id)">اضافة
-                                        للمفضلة</button>
-
-                                    <ng-template #alreadyFav>
-                                        <button
-                                            class="border border-secondary px-3 py-1 bg-danger sale-button fw-light w-100"
-                                            (click)="OnRemoveFromFavorite(book.id)">الغاء
-                                            للمفضلة</button>
-                                    </ng-template>
-
-                                </div>
-
 
                             </div>
 
