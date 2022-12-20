@@ -2,18 +2,19 @@
     <div class="container">
         <div class="row mb-4">
             <div class="col-6">
-                <h2 class="fs-1 fw-bold">دور النشر</h2>
+                <h2 class="fs-1 fw-bold" *ngIf="!currentUrl.includes('publishers')">دور النشر</h2>
             </div>
 
             <div class="col-6 text-end">
-                <a href="#" class="fs-1  fw-bold text-decoration-none text-dark">المزيد</a>
+                <a href="#" class="fs-1  fw-bold text-decoration-none text-dark"
+                    *ngIf="!currentUrl.includes('publishers')">المزيد</a>
             </div>
         </div>
 
         <div class="row ">
 
             <div class="col-6 col-md-2 text-center" *ngFor="let publisher of publishers$ |async">
-                <div class="flex-flex-column border border-secondary p-1 ">
+                <div class="flex-flex-column border border-secondary p-1 mb-3 ">
                     <img [src]="imagesUrl + '/'+publisher.logo" class="w-50">
                     <p class="fw-bold fs-4">{{publisher.name}}</p>
                 </div>

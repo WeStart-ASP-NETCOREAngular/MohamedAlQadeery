@@ -1,0 +1,30 @@
+<section id="breadcrumbs" class="mb-5">
+    <div class="container">
+        <nav id="site-nav" class="py-2 px-2">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/home" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact:true}">الرئيسية</a></li>
+                <li class="breadcrumb-item "><span class="text-white">دور النشر</span></li>
+
+
+            </ol>
+        </nav>
+    </div>
+</section>
+
+
+<section id="publisher-list">
+    <div class="container">
+
+        <div class="display-5 mb-3 fw-bold" style="color: #009c96;">دور النشر</div>
+
+
+
+        <div class="row">
+
+            <app-publishers-row [publishers$]="publishers$"></app-publishers-row>
+
+        </div>
+    </div>
+
+</section>

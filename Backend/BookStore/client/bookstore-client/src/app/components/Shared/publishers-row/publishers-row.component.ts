@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IPublisherResponse } from 'src/app/interfaces/publisher/PublisherDtos';
 import { PublisherService } from 'src/app/services/publisher.service';
@@ -10,13 +11,11 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./publishers-row.component.css'],
 })
 export class PublishersRowComponent implements OnInit {
-  constructor(private _publisherService: PublisherService) {}
+  constructor(private _route: Router) {}
   imagesUrl = `${environment.baseURL}/images/thumbs/med`;
-  publishers$: Observable<IPublisherResponse[]>;
-
+  @Input() publishers$: Observable<IPublisherResponse[]>;
+  currentUrl = '';
   ngOnInit(): void {
-    this.publishers$ = this._publisherService.GetAllPublishers({
-      takeCount: 6,
-    });
+    this.currentUrl = this._route.url;
   }
 }

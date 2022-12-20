@@ -25,6 +25,7 @@ import { OrdersComponent } from './components/account/orders/orders.component';
 import { InfoComponent } from './components/account/info/info.component';
 import { CartContentComponent } from './components/header/cart-content/cart-content.component';
 import { AdminGuard } from './guards/admin.guard';
+import { PublisherListComponent } from './components/publisher-list/publisher-list.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -70,7 +71,10 @@ const routes: Routes = [
     path: 'books/:id',
     component: BookDetailsComponent,
   },
-
+  {
+    path: 'publishers',
+    component: PublisherListComponent,
+  },
   {
     path: 'cart',
     component: CartContentComponent,
