@@ -170,7 +170,8 @@
 
         <!-- start of book reviews -->
         <h4 class="fw-bold mb-5" style="color: #009c96;">مراجعات المستخدمين </h4>
-        <app-book-reviews [bookReviews]="bookReviews"></app-book-reviews>
+        <app-book-reviews [bookReviews]="bookReviews"
+            (OnReviewRemovedId)="HandleOnReviewRemoved($event)"></app-book-reviews>
         <!-- end of book reviews -->
 
         <!-- start of add review to the book form -->

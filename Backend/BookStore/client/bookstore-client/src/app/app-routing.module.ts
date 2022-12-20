@@ -9,7 +9,6 @@ import { ContactUsComponent } from './components/admin/contact-us/contact-us.com
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { PublisherComponent } from './components/admin/publisher/publisher.component';
 import { SalesComponent } from './components/admin/sales/sales.component';
-import { StaticPagesComponent } from './components/admin/static-pages/static-pages.component';
 import { TranslatorComponent } from './components/admin/translator/translator.component';
 import { ZonesComponent } from './components/admin/zones/zones.component';
 import { HomeComponent } from './components/home/home.component';
@@ -26,6 +25,8 @@ import { InfoComponent } from './components/account/info/info.component';
 import { CartContentComponent } from './components/header/cart-content/cart-content.component';
 import { AdminGuard } from './guards/admin.guard';
 import { PublisherListComponent } from './components/publisher-list/publisher-list.component';
+import { StaticPageComponent } from './components/static-page/static-page.component';
+import { StaticPagesComponent } from './components/admin/static-pages/static-pages.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -68,6 +69,10 @@ const routes: Routes = [
     component: BookListComponent,
   },
   {
+    path: 'books/new',
+    component: BookListComponent,
+  },
+  {
     path: 'books/:id',
     component: BookDetailsComponent,
   },
@@ -75,6 +80,11 @@ const routes: Routes = [
     path: 'publishers',
     component: PublisherListComponent,
   },
+  {
+    path: 'aboutus',
+    component: StaticPageComponent,
+  },
+
   {
     path: 'cart',
     component: CartContentComponent,

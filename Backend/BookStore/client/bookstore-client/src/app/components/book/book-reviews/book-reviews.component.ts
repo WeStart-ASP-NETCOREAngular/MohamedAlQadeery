@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IBookReviewResponse } from 'src/app/interfaces/book/IBookResponse';
@@ -18,6 +18,8 @@ export class BookReviewsComponent implements OnInit {
     private _route: Router
   ) {}
   @Input() bookReviews: IBookReviewResponse[];
+
+  @Output() OnReviewRemovedId = new EventEmitter<number>();
   currentUserId = '';
   currentUrl = '';
 
@@ -31,6 +33,7 @@ export class BookReviewsComponent implements OnInit {
       next: () => {
         this.bookReviews = this.bookReviews?.filter((br) => br.id != reviewId);
         this._toastr.success('تم حذف مراجعتك بنجاح', 'تمت العملية');
+        this.OnReviewRemovedId?.emit(reviewId);
       },
       error: (err) => {
         console.log(err);

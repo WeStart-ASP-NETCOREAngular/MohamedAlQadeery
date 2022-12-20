@@ -77,6 +77,12 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  GetUserId(): string {
+    return this.GetFieldFromJWT(
+      'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+    );
+  }
+
   isUserAdmin() {
     const role = this.GetFieldFromJWT(
       'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'

@@ -2,28 +2,31 @@
     <div class="display-5 mb-4">صفحة الصفحات الثابته</div>
 
 
-    <form [formGroup]="staticPageFormGroup" class="mb-5" (ngSubmit)="HandleOnSubmit()">
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <div class="mb-3">
-                    <app-input label="اسم الصفحة" type="text" [control]="pageNameInput"></app-input>
+    <ng-container *ngIf="showForm">
+        <form [formGroup]="staticPageFormGroup" class="mb-5" (ngSubmit)="HandleOnSubmit()">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="mb-3">
+                        <app-input label="اسم الصفحة" type="text" [control]="pageNameInput"></app-input>
 
+                    </div>
+                    <div class="mb-3">
+                        <app-text-area [control]="detailsInput" label="التفاصيل"></app-text-area>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <app-text-area [control]="detailsInput" label="التفاصيل"></app-text-area>
-                </div>
+
+
             </div>
 
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <button [disabled]="!staticPageFormGroup.valid" type="submit" class="btn
-          btn-success">{{buttonLabel}}</button>
+            <div class="row">
+                <div class="col-md-4">
+                    <button [disabled]="!staticPageFormGroup.valid" type="submit" class="btn
+              btn-success">{{buttonLabel}}</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+
+    </ng-container>
 
     <div class="row">
         <div class="col-md-12">

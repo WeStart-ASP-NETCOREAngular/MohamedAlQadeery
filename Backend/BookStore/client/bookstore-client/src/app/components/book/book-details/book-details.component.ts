@@ -124,6 +124,15 @@ export class BookDetailsComponent implements OnInit {
   }
 
   HandleOnAddReview() {
+    //check if user already add review or not
+    let userId = this._authService.GetUserId();
+    if (this.bookReviews.findIndex((br) => br.appUserId == userId) != -1) {
+      this._toastr.error(
+        'يجب عليك حذف مراجعتك لاضافة مراجعة جديدة',
+        'خطأ في الاضافة'
+      );
+      return;
+    }
     this._bookService
       .AddReviewToBook(this.bookId, this.reviewFormGroup.value)
       .subscribe({
@@ -170,5 +179,9 @@ export class BookDetailsComponent implements OnInit {
         positionClass: 'toast-top-center',
       });
     }
+  }
+
+  HandleOnReviewRemoved(event: number) {
+    this.bookReviews = this.bookReviews?.filter((br) => br.id != event);
   }
 }

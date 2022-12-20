@@ -22,6 +22,8 @@ export class StaticPagesComponent implements OnInit {
   staticPageId: number;
   staticPages: IStaticPageResponse[] = [];
 
+  showForm = false;
+
   constructor(
     private _staticPageService: StaticPagesService,
     private _toastr: ToastrService
@@ -64,6 +66,7 @@ export class StaticPagesComponent implements OnInit {
       this.detailsInput.setValue(res.details);
 
       this.staticPageId = res.id;
+      this.showForm = true;
     });
   }
 
@@ -76,6 +79,7 @@ export class StaticPagesComponent implements OnInit {
         staticPage.details = res.details;
 
         this._toastr.success(`تم تحديث الصفحة الثابته بنجاح `, 'تمت العملية');
+        this.showForm = false;
       });
   }
 

@@ -47,6 +47,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { BookReviewsComponent } from './components/book/book-reviews/book-reviews.component';
 import { CartContentComponent } from './components/header/cart-content/cart-content.component';
 import { PublisherListComponent } from './components/publisher-list/publisher-list.component';
+import { StaticPageComponent } from './components/static-page/static-page.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { PublisherListComponent } from './components/publisher-list/publisher-li
     BookReviewsComponent,
     CartContentComponent,
     PublisherListComponent,
+    StaticPageComponent,
   ],
   imports: [
     BrowserModule,
