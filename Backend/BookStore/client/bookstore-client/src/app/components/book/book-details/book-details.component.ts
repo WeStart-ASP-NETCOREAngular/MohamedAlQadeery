@@ -7,8 +7,10 @@ import {
   IBookResponse,
   IBookReviewResponse,
 } from 'src/app/interfaces/book/IBookResponse';
+import { ICartItem } from 'src/app/interfaces/sales/ISalesDtos';
 import { AuthService } from 'src/app/services/auth.service';
 import { BookService } from 'src/app/services/book.service';
+import { CartService } from 'src/app/services/cart.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -21,7 +23,8 @@ export class BookDetailsComponent implements OnInit {
     private _route: ActivatedRoute,
     private _bookService: BookService,
     private _toastr: ToastrService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _cartService: CartService
   ) {}
 
   imagesUrl = `${environment.baseURL}/images/thumbs/big`;
@@ -41,6 +44,12 @@ export class BookDetailsComponent implements OnInit {
   ratingFormControl: FormControl;
   commentFormControl: FormControl;
   //#endregion
+
+  //#region Cart Form Controls
+  cartFormGroup: FormGroup;
+  amountToBuyFormControl: FormControl;
+  //#endregion
+  selectedBook: IBookResponse;
   ngOnInit(): void {
     this.SetBookId();
 
@@ -66,6 +75,11 @@ export class BookDetailsComponent implements OnInit {
     this.isLoggedIn$ = this._authService.isLoggedin$;
 
     this.InitReviewForm();
+    this.InitCartForm();
+
+    this.book$.subscribe((res) => {
+      this.selectedBook = res;
+    });
   }
 
   public isFavoriteAlready(bookId: number): boolean {
@@ -128,5 +142,29 @@ export class BookDetailsComponent implements OnInit {
     this._route.paramMap.subscribe((param) => {
       this.bookId = +param.get('id')!;
     });
+  }
+
+  private InitCartForm() {
+    this.amountToBuyFormControl = new FormControl('', [Validators.required]);
+    this.cartFormGroup = new FormGroup({
+      amount: new FormControl('', [Validators.required]),
+    });
+  }
+
+  public OnAddToCart() {
+    let amount = this.cartFormGroup.value['amount'];
+    let cartItem: ICartItem = {
+      amount: amount,
+      bookId: this.selectedBook.id,
+      totalPrice: this.selectedBook.price * amount,
+      bookImage: this.selectedBook.image,
+      bookName: this.selectedBook.name,
+    };
+    console.log(cartItem);
+    if (this._cartService.addToCart(cartItem)) {
+      this._toastr.success('تم اضافة الكتاب للسلة بنجاح', 'اضافة للسلة');
+    } else {
+      this._toastr.error('الكتاب موجود مسبقا في السلة', 'خطأ في الاضافة');
+    }
   }
 }

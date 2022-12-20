@@ -26,6 +26,14 @@ export interface IUpdateSalesDto {
   totalPrice: number;
 }
 
+export interface ICartItem {
+  bookId: number;
+  bookName: string;
+  bookImage: string;
+  amount: number;
+  totalPrice: number;
+}
+
 export enum SalesStatus {
   PENDING,
   SOLD,

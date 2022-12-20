@@ -1,1 +1,8 @@
-<p>cart-content works!</p>
+<div *ngFor="let item of cartItems$ | async">
+    <p>{{item.bookId}}</p>
+    <p>{{item.bookName}}</p>
+    <p>{{item.bookImage}}</p>
+    <p>{{item.amount}}</p>
+    <p>{{item.totalPrice}}</p>
+
+</div>

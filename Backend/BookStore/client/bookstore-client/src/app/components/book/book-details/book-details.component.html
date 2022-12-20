@@ -102,7 +102,7 @@
 
                                 </div>
 
-                                <div class="col-md-6 d-flex mb-3">
+                                <div class="col-md-6 d-flex ">
                                     <p class="price fs-5 fw-bold m-0">${{book.price}}</p>
                                     <span class="align-self-center m-2 text-muted">${{book.discount}}</span>
                                 </div>
@@ -113,15 +113,17 @@
 
                                 </div>
 
-                                <div class="col-md-6 mb-3">
-                                    <input type="number" class="form-control form-control-sm">
-                                </div>
+                                <form [formGroup]="cartFormGroup" (ngSubmit)="OnAddToCart()">
+                                    <div class="col-md-6 mb-3">
+                                        <input type="number" formControlName="amount" class="form-control">
+                                    </div>
 
-                                <div class="col-md-6 mb-2 mb-md-0">
-                                    <button
-                                        class="border border-secondary px-3 py-1 sale-button fw-light w-100">اشتري</button>
+                                    <div class="col-md-6 mb-2 mb-md-0">
+                                        <button class="border border-secondary px-3 py-1 sale-button fw-light w-100"
+                                            [disabled]="!cartFormGroup.valid">اشتري</button>
 
-                                </div>
+                                    </div>
+                                </form>
 
                                 <div class="col-md-6">
                                     <button class="border border-secondary px-3 py-1 sale-button fw-light w-100"

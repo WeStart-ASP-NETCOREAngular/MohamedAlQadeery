@@ -28,3 +28,9 @@ ol.breadcrumb li:first-child::before {
   background-color: #009c96;
   color: white;
 }
+
+button:disabled {
+  background-color: gray;
+  color: white;
+  cursor: not-allowed;
+}
