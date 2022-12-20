@@ -13,8 +13,6 @@ export interface ISalesResponse {
 }
 
 export interface ICreateSalesDto {
-  bookId: number;
-  appUserId: number;
   amount: number;
   totalPrice: number;
 }

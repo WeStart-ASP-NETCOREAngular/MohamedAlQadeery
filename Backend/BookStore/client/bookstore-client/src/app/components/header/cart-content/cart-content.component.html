@@ -16,7 +16,7 @@
 
         <div class="col-md-6 text-end">
 
-            <button class="btn btn-info mx-2" [swal]="{icon:'info',
+            <button (confirm)="ConfirmBuy()" class="btn btn-info mx-2" [swal]="{icon:'info',
                 title: 'تأكيد عملية الشراء' ,
                 text:'هل انت متأكد من عملية الشراء ؟',
                 showCancelButton: true,confirmButtonText: 'تأكيد',cancelButtonText:'الغاء' }">تأكيد الشراء</button>

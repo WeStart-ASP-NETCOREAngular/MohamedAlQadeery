@@ -162,9 +162,13 @@ export class BookDetailsComponent implements OnInit {
     };
     console.log(cartItem);
     if (this._cartService.addToCart(cartItem)) {
-      this._toastr.success('تم اضافة الكتاب للسلة بنجاح', 'اضافة للسلة');
+      this._toastr.success('تم اضافة الكتاب للسلة بنجاح', 'اضافة للسلة', {
+        positionClass: 'toast-top-center',
+      });
     } else {
-      this._toastr.error('الكتاب موجود مسبقا في السلة', 'خطأ في الاضافة');
+      this._toastr.error('الكتاب موجود مسبقا في السلة', 'خطأ في الاضافة', {
+        positionClass: 'toast-top-center',
+      });
     }
   }
 }
