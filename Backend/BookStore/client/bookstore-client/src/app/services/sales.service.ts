@@ -25,5 +25,7 @@ export class SalesService {
     );
   }
 
-  public CreateSales(sale: ICreateSalesDto[]) {}
+  public GetUserOrders() {
+    return this._http.get<ISalesResponse[]>(`${this.baseUrl}/user-sales`);
+  }
 }
