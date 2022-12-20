@@ -28,17 +28,18 @@ export class CartService {
     return true;
   }
 
-  public RemoveFromCart(item: ICartItem) {
+  public RemoveFromCart(item: ICartItem): boolean {
     if (!localStorage.getItem('cart')) {
-      return;
+      return false;
     }
     var items: ICartItem[] = JSON.parse(localStorage.getItem('cart')!);
-    if (!items.includes(item)) {
-      return;
+    if (!items.find((i) => i.bookId == item.bookId)) {
+      return false;
     }
     items = items.filter((i) => i.bookId != item.bookId);
     localStorage.setItem('cart', JSON.stringify(items));
     this.cartContent?.next(items);
+    return true;
   }
   public GetCartItems() {
     if (!localStorage.getItem('cart')) {

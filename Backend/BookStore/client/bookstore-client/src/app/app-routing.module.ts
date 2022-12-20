@@ -23,6 +23,7 @@ import { ReviewsComponent } from './components/account/reviews/reviews.component
 import { FavoriteBooksComponent } from './components/account/favorite-books/favorite-books.component';
 import { OrdersComponent } from './components/account/orders/orders.component';
 import { InfoComponent } from './components/account/info/info.component';
+import { CartContentComponent } from './components/header/cart-content/cart-content.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -69,6 +70,10 @@ const routes: Routes = [
     component: BookDetailsComponent,
   },
 
+  {
+    path: 'cart',
+    component: CartContentComponent,
+  },
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/register', component: RegisterComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
