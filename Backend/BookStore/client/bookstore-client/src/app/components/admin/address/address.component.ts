@@ -31,6 +31,7 @@ export class AddressComponent implements OnInit {
 
   addressId: number;
   addresses: IAddressResponse[] = [];
+  showForm = false;
 
   constructor(
     private _addressService: AddressService,
@@ -98,6 +99,7 @@ export class AddressComponent implements OnInit {
       }
 
       this.addressId = res.id;
+      this.showForm = true;
     });
   }
 
@@ -112,7 +114,7 @@ export class AddressComponent implements OnInit {
         if (res.address2) {
           address.address2 = res.address2;
         }
-
+        this.showForm = false;
         this._toastr.success(`تم تحديث العنوان بنجاح `, 'تمت العملية');
       });
   }

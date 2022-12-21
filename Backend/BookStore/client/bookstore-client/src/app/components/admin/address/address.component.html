@@ -2,30 +2,34 @@
     <div class="display-5 mb-4">صفحة العناوين</div>
 
 
-    <form [formGroup]="addressFormGroup" class="mb-5" (ngSubmit)="HandleOnSubmit()">
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <app-input label="العنوان الاول" type="text" [control]="address1Input"></app-input>
-            </div>
-            <div class="col-md-6 mb-3">
-                <app-input label="العنوان الثاني" type="text" [control]="address2Input"></app-input>
-            </div>
-            <div class="col-md-6 mb-3">
-                <app-input label="رمز البريد" type="text" [control]="postalCodeInput"></app-input>
-            </div>
-            <div class="col-md-6 mb-3">
-                <app-select-input label="المحافظة" [options]="zonesOptions" [control]="zoneIdInput"></app-select-input>
+    <ng-container *ngIf="showForm">
+        <form [formGroup]="addressFormGroup" class="mb-5" (ngSubmit)="HandleOnSubmit()">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <app-input label="العنوان الاول" type="text" [control]="address1Input"></app-input>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <app-input label="العنوان الثاني" type="text" [control]="address2Input"></app-input>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <app-input label="رمز البريد" type="text" [control]="postalCodeInput"></app-input>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <app-select-input label="المحافظة" [options]="zonesOptions"
+                        [control]="zoneIdInput"></app-select-input>
+                </div>
+
             </div>
 
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <button [disabled]="!addressFormGroup.valid" type="submit" class="btn
-          btn-success">{{buttonLabel}}</button>
+            <div class="row">
+                <div class="col-md-4">
+                    <button [disabled]="!addressFormGroup.valid" type="submit" class="btn
+              btn-success">{{buttonLabel}}</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </ng-container>
+
 
     <div class="row">
         <div class="col-md-12">
