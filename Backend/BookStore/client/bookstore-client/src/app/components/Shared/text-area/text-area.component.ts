@@ -9,6 +9,7 @@ import { FormControl } from '@angular/forms';
 export class TextAreaComponent implements OnInit {
   @Input() control: FormControl;
   @Input() label: string;
+  @Input() rowsNumber: number = 3;
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,5 +1,5 @@
 <label class="form-label">{{label}}</label>
-<textarea class="form-control" [formControl]="control" rows="3"></textarea>
+<textarea class="form-control" [formControl]="control" [rows]="rowsNumber"></textarea>
 
 <ng-container *ngIf="control.touched && !control.valid || control.dirty">
 
