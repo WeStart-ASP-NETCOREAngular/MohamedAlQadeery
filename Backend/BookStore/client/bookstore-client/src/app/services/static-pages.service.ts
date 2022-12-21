@@ -23,6 +23,10 @@ export class StaticPagesService {
     return this._http.get<IStaticPageResponse>(`${this.baseUrl}/${id}`);
   }
 
+  public GetStaticPageSlug(slug: string) {
+    return this._http.get<IStaticPageResponse>(`${this.baseUrl}/page/${slug}`);
+  }
+
   public CreateStaticPage(page: ICreateStaticPageDto) {
     return this._http.post<IStaticPageResponse>(this.baseUrl, page);
   }

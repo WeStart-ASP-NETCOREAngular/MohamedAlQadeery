@@ -84,6 +84,14 @@ const routes: Routes = [
     path: 'aboutus',
     component: StaticPageComponent,
   },
+  {
+    path: 'faq',
+    component: StaticPageComponent,
+  },
+  {
+    path: 'terms',
+    component: StaticPageComponent,
+  },
 
   {
     path: 'cart',
