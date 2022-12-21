@@ -48,6 +48,8 @@ import { BookReviewsComponent } from './components/book/book-reviews/book-review
 import { CartContentComponent } from './components/header/cart-content/cart-content.component';
 import { PublisherListComponent } from './components/publisher-list/publisher-list.component';
 import { StaticPageComponent } from './components/static-page/static-page.component';
+import { ContactusPageComponent } from './components/contactus-page/contactus-page.component';
+import { BookSuggestionPageComponent } from './components/book-suggestion-page/book-suggestion-page.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +93,8 @@ import { StaticPageComponent } from './components/static-page/static-page.compon
     CartContentComponent,
     PublisherListComponent,
     StaticPageComponent,
+    ContactusPageComponent,
+    BookSuggestionPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -27,6 +27,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { PublisherListComponent } from './components/publisher-list/publisher-list.component';
 import { StaticPageComponent } from './components/static-page/static-page.component';
 import { StaticPagesComponent } from './components/admin/static-pages/static-pages.component';
+import { ContactusPageComponent } from './components/contactus-page/contactus-page.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -91,6 +92,10 @@ const routes: Routes = [
   {
     path: 'terms',
     component: StaticPageComponent,
+  },
+  {
+    path: 'contactus',
+    component: ContactusPageComponent,
   },
 
   {

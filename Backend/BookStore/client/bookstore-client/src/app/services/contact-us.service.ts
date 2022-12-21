@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { IContactusResponse } from '../interfaces/contact-us/IContactusDtos';
+import {
+  IContactusResponse,
+  ICreateContactusDto,
+} from '../interfaces/contact-us/IContactusDtos';
 import { ISalesResponse } from '../interfaces/sales/ISalesDtos';
 
 @Injectable({
@@ -22,5 +25,9 @@ export class ContactUsService {
 
   public MarkMessageAsUnRead(messageId: number) {
     return this._http.put(`${this.baseUrl}/${messageId}/mark-unread`, {});
+  }
+
+  public CreateContactusMessage(createContactusMessage: ICreateContactusDto) {
+    return this._http.post(this.baseUrl, createContactusMessage);
   }
 }

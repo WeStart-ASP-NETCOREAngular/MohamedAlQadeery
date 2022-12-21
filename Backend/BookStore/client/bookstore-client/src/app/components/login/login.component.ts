@@ -47,13 +47,14 @@ export class LoginComponent implements OnInit {
   HandleOnLogin() {
     this._authService.LoginWithEmail(this.loginFormGroup.value).subscribe({
       next: (res) => {
-        var returnUrl = this._activeRoute.snapshot.queryParams['returnUrl'];
-        this._router.navigate([returnUrl ?? '/home']);
         this._authService.SaveToken(res);
         const email = this._authService.GetFieldFromJWT('Email');
         this._toastr.success(`اهلا بك ${email}`, 'تم تسجيل الدخول بنجاح', {
           positionClass: 'toast-top-center',
         });
+
+        var returnUrl = this._activeRoute.snapshot.queryParams['returnUrl'];
+        this._router.navigate([returnUrl ?? '/home']);
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);

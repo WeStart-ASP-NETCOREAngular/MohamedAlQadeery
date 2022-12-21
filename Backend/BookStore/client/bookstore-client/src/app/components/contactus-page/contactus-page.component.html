@@ -1,0 +1,17 @@
+<div class="container mt-5">
+    <h3 class="fw-bold">صفحة التواصل معنا</h3>
+
+    <div class="row">
+        <div class="col-md-8">
+            <form [formGroup]="contactusFormGroup" (ngSubmit)="OnSubmitContactForm()">
+
+                <app-input label="الاسم الرباعي" type="text" [control]="fullNameFormControl"></app-input>
+                <app-input label="البريد الالكتروني" type="email" [control]="emailFormControl"></app-input>
+                <app-text-area [control]="messageFormControl" label="الرسالة"></app-text-area>
+                <button [disabled]="!contactusFormGroup.valid" type="submit" class="btn btn-success mt-3">ارسال</button>
+            </form>
+
+
+        </div>
+    </div>
+</div>
