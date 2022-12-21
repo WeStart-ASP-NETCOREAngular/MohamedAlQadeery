@@ -4,9 +4,11 @@ using BookStore.API.DTOs.SalesDto.Response;
 using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BookStore.API.Controllers
 {
@@ -40,13 +42,14 @@ namespace BookStore.API.Controllers
         {
             //Here we get Authenticted user 
             // this code is for testing purpose only until we implement authnetication
-            var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
-  
+            // var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
 
             var saleToAdd = _mapper.Map<Sales>(saleRequest);
 
             saleToAdd.BookId = bookId;
-            saleToAdd.AppUserId = user.Id;
+            saleToAdd.AppUserId = userId;
           
             var isAdded = await _repo.AddBookSale(saleToAdd);
             if(isAdded != null)
@@ -90,9 +93,10 @@ namespace BookStore.API.Controllers
         {
             //Here we get Authenticted user 
             // this code is for testing purpose only until we implement authnetication
-            var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+            //var user = await _userManager.FindByIdAsync("b5feebcf-f317-4117-81c5-f95c98e3999e");
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
-            var sales = await _repo.GetUserSales(user.Id);
+            var sales = await _repo.GetUserSales(userId);
             if (sales != null)
             {
                 return Ok(_mapper.Map<List<SalesResponse>>(sales));
@@ -118,6 +122,22 @@ namespace BookStore.API.Controllers
             return BadRequest();
         }
 
-      
+
+        [HttpPut("{saleId}/{status}")]
+        [Authorize(Roles ="admin")]
+        public async Task<IActionResult> UpdateSaleStatus(int saleId,int status)
+        {
+
+
+            var sale = await _repo.UpdateStatus(saleId,status);
+            if (sale != null)
+            {
+                return Ok(_mapper.Map<SalesResponse>(sale));
+            }
+
+
+            return BadRequest();
+        }
+
     }
 }

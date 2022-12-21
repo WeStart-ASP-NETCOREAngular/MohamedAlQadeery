@@ -4,6 +4,7 @@ using BookStore.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.API.Data.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221221100531_AddSlugColumnInStaticPages")]
+    partial class AddSlugColumnInStaticPages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,7 +133,7 @@ namespace BookStore.API.Data.Migrations
                         {
                             Id = "b5feebcf-f317-4117-81c5-f95c98e3999e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "64ac3036-1f4d-4575-9124-0fb643e5645c",
+                            ConcurrencyStamp = "e1973bf1-12b7-484f-9d55-aee6c9c92033",
                             Email = "user@user.com",
                             EmailConfirmed = true,
                             FirstName = "Mohamed",
@@ -140,9 +142,9 @@ namespace BookStore.API.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@USER.com",
                             NormalizedUserName = "MOHAMEDALQADEERY",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGYn+zn/ekqNjysELJkA8Qm5MWW0CM/zpFmCBzOWH0fVe25163bgvIli8numzKKZQg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMlsh2EOontNZ0t/i7D9OSZm0aOIAuaCf9hAg4vsKK4ZMYfXajQyUb5Lz0TkvYVoEw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fc4aa50d-e58f-4cc5-877c-e2d584a4e4a4",
+                            SecurityStamp = "99f4c2eb-5f83-4642-bc14-31aaafd1aa34",
                             TwoFactorEnabled = false,
                             UserName = "MohamedAlQadeery"
                         },
@@ -150,7 +152,7 @@ namespace BookStore.API.Data.Migrations
                         {
                             Id = "65574566-fef6-4857-903b-af23c2d795e9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "40f996f3-bb75-4cda-98b1-e936b5d76f5f",
+                            ConcurrencyStamp = "29c7cb04-bf0c-4caf-a3fd-d1820e4db2e2",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -159,9 +161,9 @@ namespace BookStore.API.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFuBGP27Q8mUVESLRmcrklqt1YlxN/F7R2okryPFX96gdCzBll9ix/HSVb5xEQdfmA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDjBdXDyqlAesDznM/8ZZKxaXPV3QJn7YqACZ825Dn7mjXQ2DOMosWtYaVJ1+zU5CQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e5815aa5-e0ba-47a2-add2-bca7160311bf",
+                            SecurityStamp = "0dc0e265-facf-44df-9a99-d0199a7f7d5e",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -436,6 +438,7 @@ namespace BookStore.API.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Slug")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -521,15 +524,15 @@ namespace BookStore.API.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4f89dc3a-d9b8-42da-aac8-275015d0042f",
-                            ConcurrencyStamp = "05dcab0e-1ea9-4004-9b22-4a89718087c9",
+                            Id = "96f5b93a-e10e-4646-8ef7-b2a4bafa1d9d",
+                            ConcurrencyStamp = "96618e4c-d2d8-44a8-9c08-e0200ce8a5dd",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "1cd622f8-5cab-45da-a3a4-ce0716827b86",
-                            ConcurrencyStamp = "15a479d8-8981-4812-8bc6-55cd022bddad",
+                            Id = "295331b0-ffb7-44c9-8578-06b511bf8bf9",
+                            ConcurrencyStamp = "99dde738-5d24-4ee7-9ad6-66b0b9b7327e",
                             Name = "user",
                             NormalizedName = "USER"
                         });

@@ -54,5 +54,8 @@ namespace BookStore.API.Repositories
 
             return staticPage;
         }
+
+
+
     }
 }

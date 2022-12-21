@@ -12,6 +12,9 @@ namespace BookStore.API.Interfaces.Repositories
         Task<List<Sales>> GetBookSales(int bookId);
         Task<List<Sales>> GetAllSales();
 
+        Task<Sales> UpdateStatus(int saleId,int status);
+
+
 
 
 

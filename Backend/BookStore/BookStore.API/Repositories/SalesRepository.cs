@@ -52,7 +52,8 @@ namespace BookStore.API.Repositories
         {
 
           //  var sales = await _context.Sales.ToListAsync();
-            var mostSoldBookId = _context.Sales.AsEnumerable().GroupBy(s => s.BookId).Select(g => new { bookId = g.Key, totalPrice = g.Sum(s => s.TotalPrice) })
+            var mostSoldBookId = _context.Sales.AsEnumerable().GroupBy(s => s.BookId)
+                .Select(g => new { bookId = g.Key, totalPrice = g.Sum(s => s.TotalPrice) })
                .MaxBy(s => s.totalPrice);
 
             if (mostSoldBookId == null) return null;
@@ -83,7 +84,20 @@ namespace BookStore.API.Repositories
 
         public async Task<List<Sales>> GetAllSales()
         {
-            return await _context.Sales.Include(s=>s.Book).Include(s=>s.AppUser).ToListAsync();
+            return await _context.Sales.Include(s=>s.Book).Include(s=>s.AppUser).OrderByDescending(s=>s.Id).ToListAsync();
+        }
+
+        public async Task<Sales> UpdateStatus(int saleId, int status)
+        {
+            var saleToUpdate = await _context.Sales.Include(s=>s.AppUser).Include(s=>s.Book).FirstOrDefaultAsync(s=>s.Id == saleId);
+            if (saleToUpdate == null) return null;
+
+            saleToUpdate.Status = status == 1 ? SalesStatus.SOLD : SalesStatus.CANCELED;
+          
+            
+            await _context.SaveChangesAsync();
+
+            return saleToUpdate;
         }
     }
 }

@@ -17,6 +17,7 @@ namespace BookStore.API.Data
 
             AutoIncludeBookRelations(builder);
             SeedUser(builder);
+            SeedAdmin(builder);
             OneToManyRelationships(builder);
 
             SeedRolesData(builder);
@@ -52,7 +53,7 @@ namespace BookStore.API.Data
 
 
 
-        private static void AutoIncludeBookRelations(ModelBuilder builder)
+        private  void AutoIncludeBookRelations(ModelBuilder builder)
         {
             builder.Entity<Book>().Navigation(b => b.Author).AutoInclude();
             builder.Entity<Book>().Navigation(b => b.Category).AutoInclude();
@@ -60,7 +61,7 @@ namespace BookStore.API.Data
             builder.Entity<Book>().Navigation(b => b.Publisher).AutoInclude();
         }
 
-        private static void OneToManyRelationships(ModelBuilder builder)
+        private  void OneToManyRelationships(ModelBuilder builder)
         {
             builder.Entity<Book>()
                         .HasOne(b => b.Author).WithMany(a => a.Books).HasForeignKey(b => b.AuthorId);
@@ -78,7 +79,7 @@ namespace BookStore.API.Data
            .HasOne(br => br.Book).WithMany(b => b.BookReviews).HasForeignKey(br => br.BookId);
         }
 
-        private static void SeedUser(ModelBuilder modelBuilder)
+        private void SeedUser(ModelBuilder modelBuilder)
         {
             var user = new AppUser
             {
@@ -96,10 +97,40 @@ namespace BookStore.API.Data
             user.PasswordHash = ph.HashPassword(user, "123123");
             modelBuilder.Entity<AppUser>().HasData(user);
 
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                UserId = "b5feebcf-f317-4117-81c5-f95c98e3999e",
+                RoleId = "bd66ca1f-10a4-4087-a1be-41a256153d39"
+            });
+
+        }
+
+        private  void SeedAdmin(ModelBuilder modelBuilder)
+        {
+            var admin = new AppUser
+            {
+                Id = "65574566-fef6-4857-903b-af23c2d795e9",
+                Email = "admin@admin.com",
+                NormalizedEmail = "ADMIN@ADMIN.COM",
+                EmailConfirmed = true,
+                FirstName = "admin",
+                LastName = "admin",
+                UserName = "admin",
+                NormalizedUserName = "ADMIN"
+            };
+
+            PasswordHasher<AppUser> ph = new PasswordHasher<AppUser>();
+            admin.PasswordHash = ph.HashPassword(admin, "123123");
+            modelBuilder.Entity<AppUser>().HasData(admin);
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                UserId = "65574566-fef6-4857-903b-af23c2d795e9",
+                RoleId = "80f3c65b-9f1c-4422-81b7-efaf1460cc8f"
+            });
         }
 
 
-        private static void SeedRolesData(ModelBuilder builder)
+        private  void SeedRolesData(ModelBuilder builder)
         {
             builder.Entity<IdentityRole>()
                .HasData(new IdentityRole { Name = "admin", NormalizedName = "ADMIN" });
