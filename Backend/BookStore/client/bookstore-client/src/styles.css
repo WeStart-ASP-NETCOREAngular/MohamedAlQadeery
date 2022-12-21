@@ -67,3 +67,8 @@ ol.breadcrumb li:first-child::before {
 .input-bg {
   background-color: #e4e4e4;
 }
+
+.green-button {
+  background-color: #009c96;
+  color: white;
+}

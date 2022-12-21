@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
+        <div class="card" style=" height: 100%;">
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
@@ -12,27 +12,51 @@
             </div>
             <div class="card-body">
 
-                <ng-container *ngIf="(info$ | async) as info">
+                <ng-container *ngIf="(info != null)">
                     <p class="card-text fw-bold">اسم الاول: {{info.firstName}}</p>
                     <p class="card-text fw-bold">اسم الاخير: {{info.lastName}}</p>
                     <p class="card-text fw-bold">اسم المستخدم : {{info.userName}}</p>
                     <p class="card-text fw-bold">البريد الالكتروني : {{info.email}}</p>
                 </ng-container>
+                <hr>
+                <h4 class="mb-3">بيانات العنوان</h4>
+                <ng-container *ngIf="!hasAddress">
+                    <p class="text-danger">
+                        لم تقم بتعبئة بيانات العنوان بعد
+                    </p>
+                </ng-container>
 
+                <form [formGroup]="addressInfoFormGroup" (ngSubmit)="OnSubmitAddressForm()">
 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <app-select-input [options]="zonesOptions" label="المحافظة"
+                                [control]="zoneIdFormControl"></app-select-input>
+                        </div>
 
+                        <div class="col-md-4 mb-3">
+                            <app-input [control]="address1FormControl" label="العنوان الاول" type="text"></app-input>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <app-input [control]="address2FormControl" label="العنوان الثاني" type="text"></app-input>
 
-            </div>
-            <!-- <div class="card-footer">
-                <div class="row">
-                    <div class="col-md-6 text-start">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <app-input [control]="postalCodeFormControl" label="رمز البريد" type="text"></app-input>
+                        </div>
 
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-success green-button">{{buttonLabel}}</button>
+                        </div>
 
                     </div>
 
 
-                </div>
-            </div> -->
+
+                </form>
+
+            </div>
+
         </div>
     </div>
 </div>

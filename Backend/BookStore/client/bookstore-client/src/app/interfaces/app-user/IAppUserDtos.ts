@@ -1,3 +1,5 @@
+import { IAddressResponse } from '../address/IAddressDtos';
+
 export interface IAppUserResponse {
   id: number;
   userName: string;
@@ -16,4 +18,5 @@ export interface IInfoResponse {
   email: string;
   firstName: string;
   lastName: string;
+  address?: IAddressResponse | null;
 }
