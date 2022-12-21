@@ -25,6 +25,12 @@ namespace BookStore.API.Repositories
         }
 
 
+
+        public async Task<StaticPages> GetByPageSlugAsync(string slug)
+        {
+            return await _context.StaticPages.FirstOrDefaultAsync(sp => sp.Slug == slug);
+        }
+
         public async Task<StaticPages> CreateAsync(StaticPages staticPageToCreate)
         {
             await _context.StaticPages.AddAsync(staticPageToCreate);
@@ -55,7 +61,6 @@ namespace BookStore.API.Repositories
             return staticPage;
         }
 
-
-
+       
     }
 }

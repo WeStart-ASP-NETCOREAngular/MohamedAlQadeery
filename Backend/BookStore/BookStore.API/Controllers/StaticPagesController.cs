@@ -37,6 +37,18 @@ namespace BookStore.API.Controllers
 
             return NotFound();
         }
+        
+        [HttpGet("page/{slug}")]
+        public async Task<IActionResult> GetStaticPageBySlug(string slug)
+        {
+            var staticPages = await _repo.GetByPageSlugAsync(slug);
+            if (staticPages != null)
+            {
+                return Ok(_mapper.Map<StaticPages>(staticPages));
+            }
+
+            return NotFound();
+        }
 
 
         [HttpPost]
