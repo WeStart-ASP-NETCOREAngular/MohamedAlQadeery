@@ -28,6 +28,7 @@ import { PublisherListComponent } from './components/publisher-list/publisher-li
 import { StaticPageComponent } from './components/static-page/static-page.component';
 import { StaticPagesComponent } from './components/admin/static-pages/static-pages.component';
 import { ContactusPageComponent } from './components/contactus-page/contactus-page.component';
+import { BookSuggestionPageComponent } from './components/book-suggestion-page/book-suggestion-page.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -96,6 +97,10 @@ const routes: Routes = [
   {
     path: 'contactus',
     component: ContactusPageComponent,
+  },
+  {
+    path: 'suggestBook',
+    component: BookSuggestionPageComponent,
   },
 
   {

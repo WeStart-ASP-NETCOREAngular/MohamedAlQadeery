@@ -1,1 +1,21 @@
-<p>book-suggestion-page works!</p>
+<div class="container mt-5">
+    <h3 class="fw-bold">صفحة اقترح كتابا للموقع </h3>
+    <p class="lead mb-4">اقترح كتابا هنا غير موجود في الموقع و سيتم اضافته لاحقا</p>
+
+    <div class="row">
+        <div class="col-md-8">
+            <form [formGroup]="bookSuggestionFormGroup" (ngSubmit)="OnSubmitBookSuggestionForm()">
+
+                <app-input label="البريد الالكتروني" type="email" [control]="emailFormControl"></app-input>
+                <app-input label="اسم الكتاب" type="text" [control]="bookNameFormControl"></app-input>
+                <app-input label="اسم المؤلف" type="text" [control]="authorNameFormControl"></app-input>
+                <app-input label="اسم دار النشر" type="text" [control]="publisherNameFormControl"></app-input>
+                <app-text-area [control]="notesFormControl" label="ملاحظات"></app-text-area>
+                <button [disabled]="!bookSuggestionFormGroup.valid" type="submit"
+                    class="btn btn-success mt-3">ارسال</button>
+            </form>
+
+
+        </div>
+    </div>
+</div>
