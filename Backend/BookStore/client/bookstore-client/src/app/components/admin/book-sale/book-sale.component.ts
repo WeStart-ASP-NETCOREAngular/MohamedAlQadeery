@@ -22,6 +22,8 @@ export class BookSaleComponent implements OnInit {
   //#region Display Book Sales FormGroup and form controls
   bookSalesFormGroup: FormGroup;
   bookIdFormControl: FormControl;
+  fromDateFormControl: FormControl;
+  toDateFormControl: FormControl;
   booksOptions: { id: number; name: string }[] = [];
 
   //#endregion
@@ -29,8 +31,13 @@ export class BookSaleComponent implements OnInit {
   bookSalesList$: Observable<ISalesResponse[]>;
   ngOnInit(): void {
     this.bookIdFormControl = new FormControl('', [Validators.required]);
+    this.fromDateFormControl = new FormControl('');
+    this.toDateFormControl = new FormControl('');
+
     this.bookSalesFormGroup = new FormGroup({
       bookId: this.bookIdFormControl,
+      fromDate: this.fromDateFormControl,
+      toDate: this.toDateFormControl,
     });
 
     this.FeatchingBooksOptions();
@@ -56,6 +63,12 @@ export class BookSaleComponent implements OnInit {
 
   OnSubmitBookSale() {
     let bookId = this.bookSalesFormGroup.value['bookId'];
-    this.bookSalesList$ = this._salesService.GetBookSales(bookId);
+    let fromDate = this.bookSalesFormGroup.value['fromDate'];
+    let toDate = this.bookSalesFormGroup.value['toDate'];
+
+    this.bookSalesList$ = this._salesService.GetBookSales(bookId, {
+      fromDate,
+      toDate,
+    });
   }
 }

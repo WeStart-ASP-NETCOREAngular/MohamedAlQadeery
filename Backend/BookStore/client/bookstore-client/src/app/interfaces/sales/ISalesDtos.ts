@@ -37,3 +37,8 @@ export enum SalesStatus {
   SOLD,
   CANCELED,
 }
+
+export interface ISalesParams {
+  fromDate: Date;
+  toDate: Date;
+}

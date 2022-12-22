@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import {
   ICreateSalesDto,
+  ISalesParams,
   ISalesResponse,
 } from '../interfaces/sales/ISalesDtos';
 
@@ -36,9 +37,18 @@ export class SalesService {
     );
   }
 
-  public GetBookSales(bookId: number) {
+  public GetBookSales(bookId: number, salesParams?: ISalesParams) {
+    let params = new HttpParams();
+    if (salesParams?.fromDate != null) {
+      params = params.append('fromDate', salesParams.fromDate + '');
+    }
+    if (salesParams?.toDate != null) {
+      params = params.append('toDate', salesParams.toDate + '');
+    }
+
     return this._http.get<ISalesResponse[]>(
-      `${this.baseUrl}/book-sales/${bookId}`
+      `${this.baseUrl}/book-sales/${bookId}`,
+      { params: params }
     );
   }
 }

@@ -8,8 +8,15 @@
                 <app-select-input [control]="bookIdFormControl" label="اسم الكتاب" [options]="booksOptions"
                     placeHolder="اختر الكتاب هنا"></app-select-input>
             </div>
+            <div class="col-md-4">
+                <app-input label="من تاريخ" [control]="fromDateFormControl" type="date"></app-input>
+            </div>
+            <div class="col-md-4">
+                <app-input label="الى تاريخ" [control]="toDateFormControl" type="date"></app-input>
 
-            <div class="col-md-4 mt-4">
+            </div>
+
+            <div class="col-md-12 mt-4">
                 <button [disabled]="!bookSalesFormGroup.valid" class="btn btn-success green-button">عرض
                     المبيعات</button>
             </div>
