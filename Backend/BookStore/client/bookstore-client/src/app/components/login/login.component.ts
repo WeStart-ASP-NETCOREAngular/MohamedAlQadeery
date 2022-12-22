@@ -53,6 +53,10 @@ export class LoginComponent implements OnInit {
           positionClass: 'toast-top-center',
         });
 
+        if (this._authService.isUserAdmin()) {
+          this._router.navigate(['/admin']);
+          return;
+        }
         var returnUrl = this._activeRoute.snapshot.queryParams['returnUrl'];
         this._router.navigate([returnUrl ?? '/home']);
       },

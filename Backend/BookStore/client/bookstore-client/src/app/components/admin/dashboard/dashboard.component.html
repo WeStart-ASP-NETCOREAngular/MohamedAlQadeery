@@ -25,7 +25,9 @@
 <ng-container *ngIf="currentUrl =='/admin'">
 
     <div class="container mt-4">
-        <div class="info-cards row justify-content-center">
+        <h1 class="fw-bold green-label mb-2">لوحة التحكم</h1>
+        <h4 class="lead">يمكنك ادارة الموقع بشكل كامل عن طريق لوحة التحكم</h4>
+        <div class="info-cards row justify-content-center mt-5">
             <h4 class="fw-bold mb-4 green-label"> االكتب المشهورة الاكثر طلبا و سعرا</h4>
             <ng-container *ngIf="mostSoldBook$ | async as book">
                 <div class=" col-md-4">
