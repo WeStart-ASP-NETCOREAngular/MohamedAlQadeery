@@ -28,6 +28,11 @@
                 <li class="nav-item">
                     <a routerLink="/contactus" class="nav-link" routerLinkActive="menu-active">اتصل بنا</a>
                 </li>
+
+                <li class="nav-item" *ngIf="isAdmin">
+                    <a routerLink="/admin" class="ms-5 nav-link text-bg-danger" routerLinkActive="menu-active">لوحة
+                        التحكم</a>
+                </li>
             </ul>
         </nav>
     </div>
