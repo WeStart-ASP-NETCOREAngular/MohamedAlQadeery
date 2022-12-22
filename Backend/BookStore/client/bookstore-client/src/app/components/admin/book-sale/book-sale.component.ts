@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, map } from 'rxjs';
 import { IBookResponse } from 'src/app/interfaces/book/IBookResponse';
@@ -16,7 +17,8 @@ export class BookSaleComponent implements OnInit {
   constructor(
     private _bookService: BookService,
     private _toastr: ToastrService,
-    private _salesService: SalesService
+    private _salesService: SalesService,
+    private _route: ActivatedRoute
   ) {}
 
   //#region Display Book Sales FormGroup and form controls
@@ -30,9 +32,7 @@ export class BookSaleComponent implements OnInit {
 
   bookSalesList$: Observable<ISalesResponse[]>;
   ngOnInit(): void {
-    this.bookIdFormControl = new FormControl('', [Validators.required]);
-    this.fromDateFormControl = new FormControl('');
-    this.toDateFormControl = new FormControl('');
+    this.InitFormControls();
 
     this.bookSalesFormGroup = new FormGroup({
       bookId: this.bookIdFormControl,
@@ -41,6 +41,17 @@ export class BookSaleComponent implements OnInit {
     });
 
     this.FeatchingBooksOptions();
+
+    if (this._route.snapshot.queryParams['bookId']) {
+      let bookId = this._route.snapshot.queryParams['bookId'];
+      this.bookSalesList$ = this._salesService.GetBookSales(bookId);
+    }
+  }
+
+  private InitFormControls() {
+    this.bookIdFormControl = new FormControl('', [Validators.required]);
+    this.fromDateFormControl = new FormControl('');
+    this.toDateFormControl = new FormControl('');
   }
 
   private FeatchingBooksOptions() {

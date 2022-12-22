@@ -42,7 +42,8 @@
                                 <div class="card-body">
                                     <h5 class="card-title fw-bold">{{book.name}}</h5>
                                     <p class="lead">{{book.author.name}}</p>
-                                    <button class="btn btn-success green-button">عرض المبيعات</button>
+                                    <button class="btn btn-success green-button"
+                                        (click)="OnClickShowBookSales(book.id)">عرض المبيعات</button>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +61,8 @@
                                 <div class="card-body">
                                     <h5 class="card-title fw-bold">{{book.name}}</h5>
                                     <p class="lead">{{book.author.name}}</p>
-                                    <button class="btn btn-success green-button">عرض المبيعات</button>
+                                    <button class="btn btn-success green-button"
+                                        (click)="OnClickShowBookSales(book.id)">عرض المبيعات</button>
                                 </div>
                             </div>
                         </div>

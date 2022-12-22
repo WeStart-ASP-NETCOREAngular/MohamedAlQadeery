@@ -40,4 +40,10 @@ export class DashboardComponent implements OnInit, AfterContentChecked {
       queryParams: { messageId: messageId },
     });
   }
+
+  OnClickShowBookSales(bookId: number) {
+    this._router.navigate(['admin/book-sales'], {
+      queryParams: { bookId: bookId },
+    });
+  }
 }
