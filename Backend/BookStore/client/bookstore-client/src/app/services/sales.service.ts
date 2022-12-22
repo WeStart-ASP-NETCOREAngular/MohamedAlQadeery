@@ -35,4 +35,10 @@ export class SalesService {
       {}
     );
   }
+
+  public GetBookSales(bookId: number) {
+    return this._http.get<ISalesResponse[]>(
+      `${this.baseUrl}/book-sales/${bookId}`
+    );
+  }
 }

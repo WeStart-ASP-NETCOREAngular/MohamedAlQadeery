@@ -17,5 +17,60 @@
     </form>
 
 
+    <ng-container *ngIf="bookSalesList$ | async as sales">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive" *ngIf="sales.length > 0;else NoSalesYet ">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">اسم المستخدم</th>
+                                <th scope="col">اسم الكتاب</th>
+                                <th scope="col">الكمية</th>
+                                <th scope="col">السعر الكلي</th>
+                                <th scope="col">تاريخ العملية</th>
+                                <th scope="col">حالة الطلب</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let sale of sales;let i=index">
+                                <th>{{i+1}}</th>
+                                <td>{{sale.appUser.userName}}</td>
+                                <td>{{sale.book.name}}</td>
+                                <td>{{sale.amount}}</td>
+                                <td>{{sale.totalPrice}}</td>
+                                <td>{{sale.orderDate | date}}</td>
+                                <td *ngIf="sale.status === 0">
+                                    <span class="badge bg-info p-2">انتظار الموافقة</span>
+
+                                </td>
+                                <td *ngIf="sale.status === 1">
+                                    <span class="badge bg-success p-2">مقبول</span>
+
+                                </td>
+                                <td *ngIf="sale.status === 2">
+                                    <span class="badge bg-danger p-2">مرفوض</span>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <ng-template #NoSalesYet>
+                    <div class="text-center mt-5">
+                        <h1 class="text-danger mb-2">لم يتم العثور على نتائج في قاعدة البيانات</h1>
+
+                    </div>
+                </ng-template>
+
+            </div>
+        </div>
+    </ng-container>
+
+
 
 </div>

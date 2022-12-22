@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { IBookResponse } from 'src/app/interfaces/book/IBookResponse';
+import { ISalesResponse } from 'src/app/interfaces/sales/ISalesDtos';
 import { BookService } from 'src/app/services/book.service';
+import { SalesService } from 'src/app/services/sales.service';
 
 @Component({
   selector: 'app-book-sale',
@@ -13,7 +15,8 @@ import { BookService } from 'src/app/services/book.service';
 export class BookSaleComponent implements OnInit {
   constructor(
     private _bookService: BookService,
-    private _toastr: ToastrService
+    private _toastr: ToastrService,
+    private _salesService: SalesService
   ) {}
 
   //#region Display Book Sales FormGroup and form controls
@@ -22,6 +25,8 @@ export class BookSaleComponent implements OnInit {
   booksOptions: { id: number; name: string }[] = [];
 
   //#endregion
+
+  bookSalesList$: Observable<ISalesResponse[]>;
   ngOnInit(): void {
     this.bookIdFormControl = new FormControl('', [Validators.required]);
     this.bookSalesFormGroup = new FormGroup({
@@ -50,6 +55,7 @@ export class BookSaleComponent implements OnInit {
   }
 
   OnSubmitBookSale() {
-    console.log(this.bookSalesFormGroup.value);
+    let bookId = this.bookSalesFormGroup.value['bookId'];
+    this.bookSalesList$ = this._salesService.GetBookSales(bookId);
   }
 }
