@@ -125,13 +125,13 @@
 
                                         </div>
                                         <div class="col-md-6">
-                                            <button class="btn btn-primary sale-button rounded-0"
+                                            <button type="button" class="btn btn-primary sale-button rounded-0"
                                                 *ngIf="!isFavoriteAlready(book.id);else alreadyFav"
                                                 (click)="OnAddToFavorite(book.id)">اضافة
                                                 للمفضلة</button>
 
                                             <ng-template #alreadyFav>
-                                                <button
+                                                <button type="button"
                                                     class="border border-secondary px-3 py-1 bg-danger sale-button fw-light w-100"
                                                     (click)="OnRemoveFromFavorite(book.id)">الغاء
                                                     للمفضلة</button>
