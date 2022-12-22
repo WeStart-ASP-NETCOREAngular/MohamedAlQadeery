@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IContactusResponse } from 'src/app/interfaces/contact-us/IContactusDtos';
 import { ContactUsService } from 'src/app/services/contact-us.service';
@@ -15,13 +16,19 @@ export class ContactUsComponent implements OnInit {
 
   constructor(
     private _contactussService: ContactUsService,
-    private _toastr: ToastrService
+    private _toastr: ToastrService,
+    private _route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this._contactussService.GetAllMessages().subscribe((res) => {
       this.messages = res;
     });
+
+    if (this._route.snapshot.queryParams['messageId']) {
+      let messageId = this._route.snapshot.queryParams['messageId'];
+      this.OnShowMessage(messageId);
+    }
   }
 
   OnShowMessage(messageId: number) {

@@ -20,8 +20,96 @@
     </nav>
 
 
-
 </div>
+
+<ng-container *ngIf="currentUrl =='/admin'">
+
+    <div class="container mt-4">
+        <div class="info-cards row justify-content-center">
+            <h4 class="fw-bold mb-4 green-label"> االكتب المشهورة الاكثر طلبا و سعرا</h4>
+            <ng-container *ngIf="mostSoldBook$ | async as book">
+                <div class=" col-md-4">
+                    <div class="card mb-3 h-100">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img [src]="imagesUrl +'/'+book.image" class="img-thumbnail w-100" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">{{book.name}}</h5>
+                                    <p class="lead">{{book.author.name}}</p>
+                                    <button class="btn btn-success green-button">عرض المبيعات</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="mostOrderdBook$ | async as book">
+                <div class=" col-md-4">
+                    <div class="card mb-3 h-100">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img [src]="imagesUrl +'/'+book.image" class="img-thumbnail w-100" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">{{book.name}}</h5>
+                                    <p class="lead">{{book.author.name}}</p>
+                                    <button class="btn btn-success green-button">عرض المبيعات</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+
+        </div>
+
+        <div class="info-messages">
+            <h4 class="fw-bold mb-4 green-label">اخر الرسائل</h4>
+            <ng-container *ngIf="messages$ | async as messages">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">الاسم الرباعي</th>
+                                <th scope="col">البريد الالكتروني</th>
+                                <th scope="col">الحالة</th>
+                                <th scope="col">العملية</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let message of messages;let i=index">
+                                <th>{{i+1}}</th>
+                                <td>{{message.fullName}}</td>
+                                <td>{{message.email}}</td>
+                                <td *ngIf="message.readAt; else newMessage">
+                                    <span class="badge bg-success p-2">تم قرائتها</span>
+
+                                </td>
+
+                                <ng-template #newMessage>
+                                    <td><span class="badge bg-danger p-2">جديدة</span></td>
+                                </ng-template>
+                                <td><button class="btn btn-info" (click)="OnClickShowMessage(message.id)">عرض
+                                        الرسالة</button>
+                                </td>
+
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+</ng-container>
+
 
 
 <router-outlet></router-outlet>

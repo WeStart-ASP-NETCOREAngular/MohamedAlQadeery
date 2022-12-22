@@ -72,3 +72,7 @@ ol.breadcrumb li:first-child::before {
   background-color: #009c96;
   color: white;
 }
+
+.green-label {
+  color: #009c96;
+}
