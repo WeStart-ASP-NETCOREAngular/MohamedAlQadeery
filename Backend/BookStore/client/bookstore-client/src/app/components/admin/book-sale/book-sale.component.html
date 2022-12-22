@@ -1,0 +1,21 @@
+<div class="container">
+    <h1 class="fw-bold green-label mb-2">صفحة عرض المبيعات</h1>
+    <h4 class="lead mb-3">يمكنك عرض المبيعات المخصصة لأي كتاب في الموقع هنا</h4>
+
+    <form [formGroup]="bookSalesFormGroup" (ngSubmit)="OnSubmitBookSale()">
+        <div class="row">
+            <div class="col-md-4">
+                <app-select-input [control]="bookIdFormControl" label="اسم الكتاب" [options]="booksOptions"
+                    placeHolder="اختر الكتاب هنا"></app-select-input>
+            </div>
+
+            <div class="col-md-4 mt-4">
+                <button [disabled]="!bookSalesFormGroup.valid" class="btn btn-success green-button">عرض
+                    المبيعات</button>
+            </div>
+        </div>
+    </form>
+
+
+
+</div>

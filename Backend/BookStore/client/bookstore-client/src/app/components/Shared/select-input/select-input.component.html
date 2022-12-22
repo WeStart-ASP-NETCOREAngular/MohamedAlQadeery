@@ -1,6 +1,7 @@
 <label class="form-label">{{label}}</label>
 
 <select class="form-select" [formControl]="control">
+    <option value="" selected disabled>{{placeHolder}}</option>
     <option *ngFor="let option of options" [value]="option.id">{{option.name}}</option>
 </select>
 

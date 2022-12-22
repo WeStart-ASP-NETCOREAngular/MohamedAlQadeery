@@ -29,6 +29,7 @@ import { StaticPageComponent } from './components/static-page/static-page.compon
 import { StaticPagesComponent } from './components/admin/static-pages/static-pages.component';
 import { ContactusPageComponent } from './components/contactus-page/contactus-page.component';
 import { BookSuggestionPageComponent } from './components/book-suggestion-page/book-suggestion-page.component';
+import { BookSaleComponent } from './components/admin/book-sale/book-sale.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -49,6 +50,7 @@ const routes: Routes = [
       { path: 'sales', component: SalesComponent },
       { path: 'contactus', component: ContactUsComponent },
       { path: 'book-suggestions', component: BookSuggestionComponent },
+      { path: 'book-sales', component: BookSaleComponent },
     ],
   },
 

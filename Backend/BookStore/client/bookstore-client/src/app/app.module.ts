@@ -50,6 +50,7 @@ import { PublisherListComponent } from './components/publisher-list/publisher-li
 import { StaticPageComponent } from './components/static-page/static-page.component';
 import { ContactusPageComponent } from './components/contactus-page/contactus-page.component';
 import { BookSuggestionPageComponent } from './components/book-suggestion-page/book-suggestion-page.component';
+import { BookSaleComponent } from './components/admin/book-sale/book-sale.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { BookSuggestionPageComponent } from './components/book-suggestion-page/b
     StaticPageComponent,
     ContactusPageComponent,
     BookSuggestionPageComponent,
+    BookSaleComponent,
   ],
   imports: [
     BrowserModule,
