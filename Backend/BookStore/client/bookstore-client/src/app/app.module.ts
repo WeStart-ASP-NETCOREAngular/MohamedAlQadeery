@@ -51,6 +51,8 @@ import { StaticPageComponent } from './components/static-page/static-page.compon
 import { ContactusPageComponent } from './components/contactus-page/contactus-page.component';
 import { BookSuggestionPageComponent } from './components/book-suggestion-page/book-suggestion-page.component';
 import { BookSaleComponent } from './components/admin/book-sale/book-sale.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingSpinnerInterceptor } from './interceptors/loading-spinner.interceptor';
 
 @NgModule({
   declarations: [
@@ -110,11 +112,17 @@ import { BookSaleComponent } from './components/admin/book-sale/book-sale.compon
       progressBar: true,
       progressAnimation: 'increasing',
     }), // ToastrModule added
+    NgxSpinnerModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingSpinnerInterceptor,
       multi: true,
     },
   ],
