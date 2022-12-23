@@ -1,4 +1,5 @@
 ﻿using BookStore.API.Data;
+using BookStore.API.Helpers;
 using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
 using Microsoft.EntityFrameworkCore;
@@ -64,22 +65,33 @@ namespace BookStore.API.Repositories
 
         }
 
+
         public async Task<List<Sales>> GetUserSales(string userId)
         {
             //validate ids
             var user = await _context.Users.FindAsync(userId);
             if (user == null) return null;
 
-            return await _context.Sales.Include(s=>s.Book).Where(s => s.AppUserId == userId).ToListAsync();
+            return await _context.Sales.Include(s=>s.Book).Where(s => s.AppUserId == userId).OrderByDescending(s => s.Id).ToListAsync();
         }
 
-        public async Task<List<Sales>> GetBookSales(int bookId)
+        public async Task<List<Sales>> GetBookSales(int bookId, BookSalesParams bookSalesParams)
         {
-            //validate ids
-            var book = await _context.Books.FindAsync(bookId);
-            if (book == null) return null;
+         
+            var sale = _context.Sales.Where(s => s.BookId == bookId).AsQueryable();
+            if(bookSalesParams.FromDate != null) {
+                sale = sale.Where(s => s.OrderDate >= bookSalesParams.FromDate);
+            }
 
-            return await _context.Sales.Include(s => s.Book).Where(s => s.BookId == bookId).ToListAsync();
+            if(bookSalesParams.ToDate != null)
+            {
+                sale = sale.Where(s => s.OrderDate <= bookSalesParams.ToDate);
+
+            }
+
+            sale =  sale.Include(s => s.Book).Include(b => b.AppUser);
+
+            return await sale.ToListAsync();
         }
 
         public async Task<List<Sales>> GetAllSales()
@@ -98,6 +110,11 @@ namespace BookStore.API.Repositories
             await _context.SaveChangesAsync();
 
             return saleToUpdate;
+        }
+
+        public async Task<Sales> CheckIfUserOwnsBook(string userId,int bookId)
+        {
+            return await _context.Sales.Where(s => s.AppUserId == userId && s.BookId == bookId && s.Status == SalesStatus.SOLD).FirstOrDefaultAsync();
         }
     }
 }

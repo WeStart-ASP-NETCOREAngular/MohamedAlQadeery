@@ -1,11 +1,14 @@
-﻿using BookStore.API.DTOs.AppUserDto.Response;
+﻿using BookStore.API.DTOs.AddressDto.Request;
+using BookStore.API.DTOs.AppUserDto.Response;
 using BookStore.API.DTOs.AuthenticationDto.Request;
+using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Interfaces.Services;
 using BookStore.API.Models;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace BookStore.API.Controllers
@@ -84,7 +87,7 @@ namespace BookStore.API.Controllers
         public async Task<IActionResult> GetUserInfo()
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.Users.Include(u => u.Address).ThenInclude(a=>a.Zone).FirstOrDefaultAsync(u => u.Id == userId);
 
             if(user == null)
             {
@@ -94,7 +97,34 @@ namespace BookStore.API.Controllers
             return Ok( _mapper.Map<InfoResponse>(user));
 
         }
-        
+
+
+        [HttpPost("info")]
+        [Authorize]
+        public async Task<IActionResult> AddUserAddress(PostPutAddressRequest addressRequest)
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var user = await _userManager.Users.Include(u => u.Address).ThenInclude(a => a.Zone).FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var address = _mapper.Map<Address>(addressRequest);
+            user.Address = address;
+          var result=  await _userManager.UpdateAsync(user);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest();
+            }
+
+            return Ok(_mapper.Map<InfoResponse>(user));
+        }
+
+
+       
+
 
     }
 }

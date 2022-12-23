@@ -52,6 +52,7 @@ namespace BookStore.API.Repositories
             address.Address1 = addressToUpdate.Address1;
             address.Address2 = addressToUpdate.Address2;
             address.ZoneId = addressToUpdate.ZoneId;
+            address.PostalCode = addressToUpdate.PostalCode;
             await _context.SaveChangesAsync();
 
             return await GetByIdAsync(id);

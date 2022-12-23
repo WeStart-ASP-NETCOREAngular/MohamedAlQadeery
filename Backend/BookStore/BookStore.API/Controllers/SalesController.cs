@@ -1,6 +1,7 @@
 ﻿using BookStore.API.DTOs.BookDto.Repsonse;
 using BookStore.API.DTOs.SalesDto.Request;
 using BookStore.API.DTOs.SalesDto.Response;
+using BookStore.API.Helpers;
 using BookStore.API.Interfaces.Repositories;
 using BookStore.API.Models;
 using MapsterMapper;
@@ -19,12 +20,14 @@ namespace BookStore.API.Controllers
         private readonly ISalesRepository _repo;
         private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
+        private readonly IBookRepository _bookRepository;
 
-        public SalesController(ISalesRepository repo ,UserManager<AppUser> userManager,IMapper mapper)
+        public SalesController(ISalesRepository repo ,UserManager<AppUser> userManager,IMapper mapper,IBookRepository bookRepository)
         {
             _repo = repo;
             _userManager = userManager;
             _mapper = mapper;
+            _bookRepository = bookRepository;
         }
 
 
@@ -108,11 +111,11 @@ namespace BookStore.API.Controllers
 
 
         [HttpGet("book-sales/{bookId}")]
-        public async Task<IActionResult> GetBookSales(int bookId)
+        public async Task<IActionResult> GetBookSales(int bookId,[FromQuery] BookSalesParams bookSalesParams)
         {
 
 
-            var sales = await _repo.GetBookSales(bookId);
+            var sales = await _repo.GetBookSales(bookId, bookSalesParams);
             if (sales != null)
             {
                 return Ok(_mapper.Map<List<SalesResponse>>(sales));
@@ -136,6 +139,29 @@ namespace BookStore.API.Controllers
             }
 
 
+            return BadRequest();
+        }
+
+
+        [HttpGet("own/{bookId}")]
+        [Authorize]
+        public async Task<IActionResult> CheckUserOwnsBook(int bookId)
+        {
+            var book = await _bookRepository.GetBookByIdAsync(bookId);
+             if(book == null)
+            {
+                return NotFound();
+            }
+
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var ownedBookSale = await _repo.CheckIfUserOwnsBook(userId, book.Id);
+
+            if(ownedBookSale != null)
+            {
+                return Ok(_mapper.Map<SalesResponse>(ownedBookSale));
+            }
+           
+            //User does not owns the book sale
             return BadRequest();
         }
 

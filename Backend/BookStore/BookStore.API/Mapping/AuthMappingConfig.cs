@@ -1,4 +1,5 @@
-﻿using BookStore.API.DTOs.AuthenticationDto.Request;
+﻿using BookStore.API.DTOs.AddressDto.Request;
+using BookStore.API.DTOs.AuthenticationDto.Request;
 using BookStore.API.Models;
 using Mapster;
 
@@ -10,6 +11,8 @@ namespace BookStore.API.Mapping
         {
             config.NewConfig<RegisterRequest, AppUser>()
                 .Map(dest => dest.UserName, src => src.Email);
+
+           
         }
     }
 }

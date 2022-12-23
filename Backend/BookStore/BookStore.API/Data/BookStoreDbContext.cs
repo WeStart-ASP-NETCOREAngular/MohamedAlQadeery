@@ -22,6 +22,8 @@ namespace BookStore.API.Data
 
             SeedRolesData(builder);
 
+            builder.Entity<Address>().Navigation(a=>a.Zone).AutoInclude();
+
             base.OnModelCreating(builder);
         }
 
