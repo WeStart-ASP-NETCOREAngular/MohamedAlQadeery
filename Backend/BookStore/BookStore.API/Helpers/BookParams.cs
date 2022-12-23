@@ -7,6 +7,7 @@
         public string? BookName { get; set; }
 
         public string? AuthorName { get; set; }
+        public string? publisherName { get; set; }
         public int Year { get; set; } = 0;
     }
 

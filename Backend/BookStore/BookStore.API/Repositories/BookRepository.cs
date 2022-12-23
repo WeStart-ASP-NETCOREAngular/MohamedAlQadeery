@@ -31,6 +31,10 @@ namespace BookStore.API.Repositories
             {
                 books = books.Where(b => b.Author.Name.Contains(bookParams.AuthorName));
             }
+            if (bookParams.publisherName != null)
+            {
+                books = books.Where(b => b.Publisher.Name.Contains(bookParams.publisherName));
+            }
             if (bookParams.Year != 0)
             {
                 books = books.Where(b => b.PublishYear == bookParams.Year);
