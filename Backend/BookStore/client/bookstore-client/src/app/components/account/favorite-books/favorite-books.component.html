@@ -4,8 +4,12 @@
     </h4>
     <div class="col-md-3 p-3" *ngFor="let book of favBooks$ | async">
         <a [routerLink]="['/books',book.id]"><img [src]="imagesUrl + '/'+book.image" class="w-50"></a>
-        <p class="price fs-6 fw-bold m-0">{{book.name}}</p>
-
+        <p class="price fs-6 fw-bold m-0 mb-2">{{book.name}}</p>
+        <button class="btn btn-danger " [swal]="{icon:'warning',
+        title: 'تأكيد عملية الازالة' ,
+        text:'هل انت متأكد من ازالة الكتاب من المفضلة ؟',
+        showCancelButton: true,confirmButtonText: 'تأكيد',cancelButtonText:'الغاء' }"
+            (confirm)="OnRemoveFromFav(book.id)">ازالة</button>
     </div>
 
 </div>
