@@ -51,4 +51,8 @@ export class SalesService {
       { params: params }
     );
   }
+
+  public CheckUserOwnsBook(bookId: number) {
+    return this._http.get<ISalesResponse>(`${this.baseUrl}/own/${bookId}`);
+  }
 }

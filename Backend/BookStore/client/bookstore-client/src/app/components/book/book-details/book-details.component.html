@@ -177,7 +177,7 @@
         <!-- start of add review to the book form -->
 
 
-        <ng-container *ngIf="isLoggedIn$ | async">
+        <ng-container *ngIf="(isLoggedIn$ | async) && (ownsBookSale$ | async) else doesNotOwnsBook">
             <h4 class="fw-bold mb-4" style="color: #009c96;">اضافة مراجعه</h4>
 
 
@@ -204,6 +204,12 @@
                 </div>
             </form>
         </ng-container>
+
+        <ng-template #doesNotOwnsBook>
+            <h4 class="fw-bold mb-4 text-danger">يجب ان تشتري الكتاب لتتمكن من اضافة مراجعة</h4>
+
+        </ng-template>
+
 
         <!--end of add review to the book form  -->
 

@@ -7,10 +7,11 @@ import {
   IBookResponse,
   IBookReviewResponse,
 } from 'src/app/interfaces/book/IBookResponse';
-import { ICartItem } from 'src/app/interfaces/sales/ISalesDtos';
+import { ICartItem, ISalesResponse } from 'src/app/interfaces/sales/ISalesDtos';
 import { AuthService } from 'src/app/services/auth.service';
 import { BookService } from 'src/app/services/book.service';
 import { CartService } from 'src/app/services/cart.service';
+import { SalesService } from 'src/app/services/sales.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -24,20 +25,22 @@ export class BookDetailsComponent implements OnInit {
     private _bookService: BookService,
     private _toastr: ToastrService,
     private _authService: AuthService,
-    private _cartService: CartService
+    private _cartService: CartService,
+    private _salesService: SalesService
   ) {}
 
   imagesUrl = `${environment.baseURL}/images/thumbs/big`;
 
-  book$: Observable<IBookResponse>;
   bookId: number;
 
   favBooks: IBookResponse[];
 
   bookReviews: IBookReviewResponse[];
 
-  //#region auth variables
+  //#region Observables
   isLoggedIn$: Observable<boolean>;
+  book$: Observable<IBookResponse>;
+  ownsBookSale$: Observable<ISalesResponse>;
   //#endregion
   //#region review Form Controls
   reviewFormGroup: FormGroup;
@@ -50,6 +53,7 @@ export class BookDetailsComponent implements OnInit {
   amountToBuyFormControl: FormControl;
   //#endregion
   selectedBook: IBookResponse;
+
   ngOnInit(): void {
     this.SetBookId();
 
@@ -73,7 +77,7 @@ export class BookDetailsComponent implements OnInit {
     });
 
     this.isLoggedIn$ = this._authService.isLoggedin$;
-
+    this.ownsBookSale$ = this._salesService.CheckUserOwnsBook(this.bookId);
     this.InitReviewForm();
     this.InitCartForm();
 
