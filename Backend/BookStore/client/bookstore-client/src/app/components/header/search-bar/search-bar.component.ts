@@ -18,8 +18,11 @@ export class SearchBarComponent implements OnInit {
   }
 
   HandleOnSearch() {
-    this.bookService.OnSearchBook?.next(this.searchFormGroup.value['bookName']);
+    // this.bookService.OnSearchBook?.next(this.searchFormGroup.value['bookName']);
+    const bookName = this.searchFormGroup.value['bookName'];
     this.searchFormGroup.reset();
-    this._router.navigate(['/books']);
+    this._router.navigate(['/books'], {
+      queryParams: { bookName: bookName },
+    });
   }
 }

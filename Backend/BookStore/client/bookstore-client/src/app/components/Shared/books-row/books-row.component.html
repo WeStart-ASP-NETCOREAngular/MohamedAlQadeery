@@ -33,7 +33,8 @@
                         <i class="fa fa-star"></i>
                         <div class="d-flex flex-row justify-content-center">
                             <p class="price fs-5 fw-bold m-0">${{book.price}}</p>
-                            <span class="align-self-center m-2 text-muted">${{book.discount}}</span>
+                            <span class="align-self-center m-2 text-muted"
+                                *ngIf="book.discount !=0">${{book.discount}}</span>
                         </div>
                     </div>
                 </div>

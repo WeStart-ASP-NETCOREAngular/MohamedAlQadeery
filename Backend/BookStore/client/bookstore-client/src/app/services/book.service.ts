@@ -63,6 +63,9 @@ export class BookService {
     if (bookParams?.authorName) {
       params = params.append('authorName', bookParams.authorName);
     }
+    if (bookParams?.publisherName) {
+      params = params.append('publisherName', bookParams.publisherName);
+    }
     if (bookParams?.year) {
       params = params.append('year', bookParams.year);
     }

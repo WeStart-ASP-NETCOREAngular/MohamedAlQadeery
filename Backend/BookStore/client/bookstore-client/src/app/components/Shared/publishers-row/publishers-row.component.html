@@ -15,8 +15,13 @@
 
             <div class="col-6 col-md-2 text-center" *ngFor="let publisher of publishers$ |async">
                 <div class="flex-flex-column border border-secondary p-1 mb-3 ">
-                    <img [src]="imagesUrl + '/'+publisher.logo" class="w-50">
-                    <p class="fw-bold fs-4">{{publisher.name}}</p>
+
+                    <a [routerLink]="['/books']" [queryParams]="{publisherName:publisher.name}"
+                        class="text-decoration-none ">
+                        <img [src]=" imagesUrl + '/' +publisher.logo" class="w-50">
+                        <p class="fw-bold fs-4 text-dark">{{publisher.name}}</p>
+
+                    </a>
                 </div>
             </div>
 
