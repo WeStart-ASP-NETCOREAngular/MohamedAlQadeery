@@ -50,6 +50,8 @@ namespace BookStore.API.Data
 
         public DbSet<Address> Addresses { get; set; }
 
+        public DbSet<OrderNotification> OrderNotifications { get; set; }
+
 
 
 
