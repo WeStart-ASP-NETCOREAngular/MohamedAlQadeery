@@ -1,5 +1,6 @@
 
 using BookStore.API.Data;
+using BookStore.API.Hubs;
 using BookStore.API.Mapping;
 using BookStore.API.Services;
 
@@ -22,6 +23,8 @@ builder.Services.AddCors(options =>
         .AllowAnyHeader());
 });
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,4 +42,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapHub<NotificationHub>("/notifications");
 app.Run();
