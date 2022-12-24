@@ -7,7 +7,8 @@ namespace BookStore.API.Interfaces.Repositories
     {
 
 
-        Task<OrderNotification> AddNotification(OrderNotification notificationToAdd);
+        Task<OrderNotification> AddNotificationAsync(OrderNotification notificationToAdd);
+        Task<List<OrderNotification>> GetAllNotificationsAsync();
       
     }
 }
